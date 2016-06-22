@@ -139,12 +139,17 @@ public class Parser {
 					// -c		<geographic coordinate>		<half-height>		<half-width>
 					if  (str[1].equals("-l")){
 						db.whatIsInL(str[2], str[3],  str[4]);
-						System.out.println("what_is_in: "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] );
+						System.out.println("what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] );
 
 					}
 					
-					else if (str[1].equals("-c")) db.whatIsInC(str[2], str[3],  str[4]);
+					else if (str[1].equals("-c")) {
+						db.whatIsInC(str[2], str[3],  str[4]);
+						System.out.println("what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] );
+					}
 					else  db.whatIsIn(str[1], str[2],  str[3]);
+					System.out.println("what_is_in : "+ str[1] +" " + str[2] +" " + str[3] );
+
 					
 					//stat.append("\n show_latitude:		" + x);
 					cmdCount++;
