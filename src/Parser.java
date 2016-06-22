@@ -40,7 +40,7 @@ import java.io.RandomAccessFile;
 public class Parser {
 	// ~ Fields
 	// ................................................................
-	private FileWriter dataFile = null;
+	private File dataFile = null;
 	private FileReader commandFile = null;
 	private FileWriter stat = null;
 	
@@ -63,7 +63,7 @@ public class Parser {
 		// individual line.
 		try {
 			// theRecord = recordFile;
-			this.dataFile = new FileWriter(dataFile);
+			this.dataFile = new File(dataFile);
 			this.commandFile = new FileReader(commandFile);
 			stat = new FileWriter(logFile);
 			
@@ -116,7 +116,7 @@ public class Parser {
 				
 				else if (str[0].matches("import")) {
 					
-					dataFile = new FileWriter(str[1]);
+					dataFile = new File(str[1]);
 					db = new DataBase(dataFile, stat);
 					db.importFile(str[1]); //GIS record file>
 					stat.write("import: "+ str[1]  + "\n");
