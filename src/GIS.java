@@ -48,7 +48,7 @@ public class GIS {
         
         File recordFile = new File(recordFileName);
         File commandFile = new File(commandFileName);
-        File LogFile = new File(LogFileName);
+        File logFile = new File(LogFileName);
 
         // Takes the file to be parsed.
         Parser p = new Parser(recordFile, commandFile);
