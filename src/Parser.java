@@ -116,6 +116,7 @@ public class Parser {
 				
 				else if (str[0].matches("import")) {
 					
+					dataFile = new FileWriter(str[1]);
 					db = new DataBase(dataFile, stat);
 					db.importFile(str[1]); //GIS record file>
 					stat.write("import: "+ str[1]  + "\n");
