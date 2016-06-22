@@ -81,4 +81,40 @@ public class DataBase {
 
 	}
 
+	public void world(String string, String string2, String string3,
+			String string4) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void importFile(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void whatIsAt(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void whatIs(String string, String string2) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void whatIsInL(String string, String string2, String string3) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void whatIsInC(String string, String string2, String string3) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void debug(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
