@@ -1,85 +1,55 @@
-GIS data file contains the following records:   
+; Script 1
+;
+; Very basic testing of the simple search commands with a tiny DB.
+;
+; Specify boundaries of coordinate space:
 world: 0794130W 0792630W 381500N 383000N
 
-    265   1481345
-    387   1481852
-    515   1481878
-    675   1482110
-    797   1482176
-    953   1482324
-    1078   1482434
-    1201   1482557
-    1361   1482785
-    1513   1482950
-    1670   1483281
-    1822   1483492
-    1946   1483527
-    2100   1483647
-    2223   1483860
-    2346   1483916
-    2473   1484097
-    2612   1484099
-    2754   1484101
-    2877   1484292
-    3037   1484379
-    3162   1484574
-    3314   1484664
-    3438   1484722
-    3593   1484896
-    3720   1485337
-    3879   1485495
-    4001   1485521
-    4128   1485860
-    4256   1486118
-    4409   1486630
-    4530   1486995
-    4696   1487013
-    4819   1487250
-    4975   1487423
-    5102   1487661
-    5259   1487758
-    5419   1487894
-    5548   1488054
-    5669   1488106
-    5829   1488259
-    5991   1488320
-    6142   1488473
-    6294   1488515
-    6434   1495244
-    6560   1495400
-    6693   1495470
-    6811   1496000
-    6940   1496110
-    7069   1496144
-    7188   1496194
-    7309   1496241
-    7435   1496325
-    7562   1496326
-    7682   1498517
-    7818   1498741
-    7942   1673765
-    8081   1673766
-    8225   1673775
-    8369   1673777
-    8513   1673781
-    8654   1927411
-    8792   2391311
+;
+; Import some data:
 import: VA_Monterey.txt
+;
+; Let's take a look at our data set... this is NOT a required feature
+; and you may comment the following command out:
 debug: world
+;
+; Check the location and name/state indices:
 debug: quad
 debug: hash
+;
+; Let's try a single-match name/state search:
 what_is: Trimble Knob  VA
+;
+; Let's check the buffer pool:
 debug: pool
+;
+; Let's try a single-match location search:
 what_is_at: 382812N 0793156W
+;
+; Let's check the buffer pool:
 debug: pool
+;
+; Let's try a few more name/state searches:
 what_is: Swope Hollow  VA
 what_is: Possum Trot  VA
 what_is: Blue Grass  VA
+;
+; Let's check the buffer pool:
 debug: pool
+;
+; Let's try a few more location searches:
 what_is_at: 382145N 0793031W
 what_is_at: 382442N 0793451W
 what_is_at: 382607N 0793312W
+;
+; Let's check the buffer pool:
 debug: pool
+;
+; Let's try a two-match location search:
 what_is_at: 382856N 0793031W
+;
+; Let's check the buffer pool:
 debug: pool
+;
+; Exit
 quit 
