@@ -66,7 +66,12 @@ public class DataBase {
 		return result;
 
 	}
-
+	
+	public void appendFile(String string, int count) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	public void world(String westLong, String eastLong, String southLat, String northLat) {
 		// TODO Auto-generated method stub
 		
@@ -119,6 +124,8 @@ public class DataBase {
 		stat.close();
 
 	}
+
+
 
 
 }

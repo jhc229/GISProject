@@ -69,8 +69,7 @@ public class Parser {
 			this.commandFile = new FileReader(commandFile);
 			stat = new FileWriter(logFile);
 			
-			
-			//db = new DataBase(recordFile, stat);
+			db = new DataBase(this.dataFile, stat);
 		}
 
 		// I/O exception checks for any failure or interruption during the
@@ -98,7 +97,7 @@ public class Parser {
 		String line = "";
 
 		try {
-			brRecord = new BufferedWriter(new FileWriter(dataFile));
+			//brRecord = new BufferedWriter(new FileWriter(dataFile));
 			brCommand = new BufferedReader(commandFile);
 
 			stat.write("GIS data file contains the following records:   \n" );
@@ -111,7 +110,13 @@ public class Parser {
 				// remove all spaces and indents
 				String[] str = line.trim().split("\\s+");
 				
-				if (str[0].matches("world")) {  // 4 coordinates westlong eastlong southlat northlat
+				if (str[0].matches(";")){
+					
+					stat.write(line + "\n" );
+					System.out.println(line + "\n");
+				}
+				
+				else if (str[0].matches("world")) {  // 4 coordinates westlong eastlong southlat northlat
 					
 					//db.world(str[1], str[2], str[3], str[4]);
 					stat.write("world: "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] + "\n" );
@@ -122,9 +127,8 @@ public class Parser {
 				// append existing datafile
 				else if (str[0].matches("import")) {
 					
-					appendFile(new File(str[1]), count); // Add all the valid GIS records in the specified file to the database file.
+					db.appendFile((str[1]), count); // Add all the valid GIS records in the specified file to the database file.
 					//db = new DataBase(dataFile, stat);
-
 					//db.importFile(str[1]); //GIS record file>
 					stat.write("import: "+ str[1]  + "\n");
 					System.out.println("import: "+ str[1] );
@@ -202,10 +206,4 @@ public class Parser {
 			e.printStackTrace();
 		}
 	}
-
-	private void appendFile(File file) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
