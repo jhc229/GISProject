@@ -128,6 +128,7 @@ public class Parser {
 				else if (str[0].matches("what_is")) {
 					
 					db.whatIs(str[1], str[2]); //<feature name> and <state abbreviation>
+					System.out.println("what_is: "+ str[1] +" "+ str[2]);
 					//stat.append("\n show_longitude:		" + x);
 					cmdCount++;
 
