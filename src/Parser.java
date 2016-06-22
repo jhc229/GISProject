@@ -64,7 +64,6 @@ public class Parser {
 		// individual line.
 		try {
 			this.dataFile = new File(dataFile);
-			
 			this.commandFile = new FileReader(commandFile);
 			stat = new FileWriter(logFile);
 			
@@ -116,12 +115,14 @@ public class Parser {
 					cmdCount++;
 					
 				} 
-				
+				// append existing datafile
 				else if (str[0].matches("import")) {
 					
-					dataFile = new File(str[1]);
+				//	dataFile = BufferedWriter(new File(str[1]));
+					//dataFile
 					db = new DataBase(dataFile, stat);
-					db.dataPrint();
+				
+					//	db.dataPrint();
 
 					//db.importFile(str[1]); //GIS record file>
 					stat.write("import: "+ str[1]  + "\n");
