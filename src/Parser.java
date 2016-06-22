@@ -43,7 +43,7 @@ public class Parser {
 	// ................................................................
 	private File dataFile = null;
 	private FileReader commandFile = null;
-	private FileWriter stat = null;
+	private BufferedWriter stat = null;
 	
 	private Stat cmd = null;
 
@@ -67,7 +67,7 @@ public class Parser {
 			this.dataFile = new File(dataFile);
 			
 			this.commandFile = new FileReader(commandFile);
-			stat = new FileWriter(logFile);
+			stat = new BufferedWriter(new FileWriter(logFile, false));
 			
 			db = new DataBase(this.dataFile, stat);
 		}
@@ -91,7 +91,7 @@ public class Parser {
 	 *             Format error.
 	 */
 	public void parsing() throws NumberFormatException {
-		BufferedWriter brRecord = null;
+	//	BufferedWriter brRecord = null;
 		BufferedReader brCommand = null;
 
 		String line = "";
