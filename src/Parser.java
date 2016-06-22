@@ -29,7 +29,10 @@ import java.io.RandomAccessFile;
 // <Jung H Choi>
 
 /**
- * This is the main class that will do most of the parsing from the text files.
+ * This is the main handler class which will initiate the program.
+ * It begins with creating a new files, appending an existing file, and moving data by the given instructions.
+ * This class interacts with other classes to finalize the log file.
+ * 
  * 
  * @author sean
  *
@@ -37,16 +40,18 @@ import java.io.RandomAccessFile;
 public class Parser {
 	// ~ Fields
 	// ................................................................
-	private FileReader theRecordFile = null;
+	private FileWriter theRecordFile = null;
 	private FileReader theCommandFile = null;
+	private FileWriter stat = null;
+
 	// private File theRecord = null;
 	private DataBase db = null;
-	private FileWriter stat = null;
 
 	// ~ Parser Constructor
 	// ................................................................
 	/**
-	 * Constructor receives file command line.
+	 *  Constructor receives three file names from the GIS which will use them 
+	 *  to create files, move data, and append data.
 	 *
 	 * @param cmdFile
 	 *            The file received.

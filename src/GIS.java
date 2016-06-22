@@ -42,16 +42,16 @@ public class GIS {
         // This checks the number of arguments
         // to see if user typed in proper command; java Main {file-name}
         // trim ignores leading and trailing whitespace.
-        String recordFileName = args[0].trim();
+        String datFileName = args[0].trim();
         String commandFileName = args[1].trim();
         String LogFileName = args[2].trim();
         
-        File recordFile = new File(recordFileName);
+        File recordFile = new File(datFileName);
         File commandFile = new File(commandFileName);
         File logFile = new File(LogFileName);
 
         // Takes the file to be parsed.
         Parser p = new Parser(recordFile, commandFile, logFile);
-        p.parsing();
+        p.parsing(); // Start
      }
 }
