@@ -142,8 +142,9 @@ public class Parser {
 				}
 				
 				else if (str[0].matches("debug")) {
-					int x = Integer.parseInt(str[1]);
-					stat.append("\n show_latitude:		" + x);
+					
+					db.debug(str[1]);
+					//stat.append("\n show_latitude:		" + x);
 					cmdCount++;
 
 				}
