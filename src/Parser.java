@@ -167,7 +167,7 @@ public class Parser {
 					
 					db.debug(str[1]);
 					System.out.println("debug: "+ str[1] );
-					//stat.append("\n show_latitude:		" + x);
+					stat.write("debug: "+ str[1] );
 					cmdCount++;
 
 				}
