@@ -97,7 +97,7 @@ public class Parser {
 			while ((line = brCommand.readLine()) != null) {
 
 				// remove all spaces and indents
-				String[] str = line.trim().split("\\s+");
+				String[] str = line.split("\\s+");
 				
 				if (str[0].matches("world")) {  // 4 coordinates westlong eastlong southlat northlat
 					
