@@ -51,7 +51,7 @@ public class Parser {
 	 * @param cmdFile
 	 *            The file received.
 	 */
-	public Parser(File recordFile, File commandFile,File logFile) {
+	public Parser(File recordFile, File commandFile, File logFile) {
 		// db = new DataBase();
 		// Takes the input stream file from the main class parse through each
 		// individual line.
@@ -101,15 +101,17 @@ public class Parser {
 				int count = str.length;
 				
 				if (str[0].matches("world")) {
+					
+					
 					int x = Integer.parseInt(str[1]);
 					stat.append("\n show_name:		" + x);
 					//db.name(x);
 				} 
+				
 				else if (str[0].matches("import")) {
 					int x = Integer.parseInt(str[1]);
-					// db.showElevation(x); // parameter will take one for now
+					
 					stat.append("\n show_elevation:		" + x);
-					//db.elevation(x);
 
 				} else if (str[0].matches("what_is_at")) {
 					int x = Integer.parseInt(str[1]);
