@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -62,8 +63,8 @@ public class Parser {
 		// Takes the input stream file from the main class parse through each
 		// individual line.
 		try {
-			// theRecord = recordFile;
 			this.dataFile = new File(dataFile);
+			
 			this.commandFile = new FileReader(commandFile);
 			stat = new FileWriter(logFile);
 			
@@ -89,13 +90,13 @@ public class Parser {
 	 *             Format error.
 	 */
 	public void parsing() throws NumberFormatException {
-		BufferedReader brRecord = null;
+		BufferedWriter brRecord = null;
 		BufferedReader brCommand = null;
 
 		String line = "";
 
 		try {
-			brRecord = new BufferedReader(new FileReader(dataFile));
+			brRecord = new BufferedWriter(new FileWriter(dataFile));
 			brCommand = new BufferedReader(commandFile);
 
 			stat.write("GIS data file contains the following records:   \n" );
