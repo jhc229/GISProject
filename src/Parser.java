@@ -93,6 +93,7 @@ public class Parser {
 			stat.append("\n");
 			db.dataPrint();
 
+			int cmdCount = 1;
 			while ((line = brCommand.readLine()) != null) {
 
 				// remove all spaces and indents
@@ -100,52 +101,50 @@ public class Parser {
 
 				int count = str.length;
 				
-				if (str[0].matches("world")) {
-					// 4 coordinates westlong eastlong southlat northlat
+				if (str[0].matches("world")) {  // 4 coordinates westlong eastlong southlat northlat
 					db.world(str[1], str[2], str[3], str[4]);
 					
-				
-					stat.append("\n show_name:		" + x);
-					//db.name(x);
+					//stat.append("\n show_name:		" + x);
+					cmdCount++;
 				} 
 				
 				else if (str[0].matches("import")) {
-					int x = Integer.parseInt(str[1]);
 					
-					stat.append("\n show_elevation:		" + x);
+					db.importFile(str[1]);
+					cmdCount++;
+				}
+				
+				else if (str[0].matches("what_is_at")) {
+					db.
+					//stat.append("\n show_longitude:		" + x);
+					cmdCount++;
 
-				} else if (str[0].matches("what_is_at")) {
+				} 
+				else if (str[0].matches("what_is_in")) {
 					int x = Integer.parseInt(str[1]);
-					// db.showLongitude(x);
-					stat.append("\n show_longitude:		" + x);
-					//db.longtitude(x);
+					stat.append("\n show_latitude:		" + x);
 
-				} else if (str[0].matches("what_is_in")) {
+				}
+				else if (str[0].matches("what_is_in")) {
 					int x = Integer.parseInt(str[1]);
-					// db.showLatitude(x);
 					stat.append("\n show_latitude:		" + x);
-				//	db.latitude(x);
+				
+				}
+				else if (str[0].matches("what_is_in")) {
+					int x = Integer.parseInt(str[1]);
+					stat.append("\n show_latitude:		" + x);
+					cmdCount++;
+				}
+				
+				else if (str[0].matches("debug")) {
+					int x = Integer.parseInt(str[1]);
+					stat.append("\n show_latitude:		" + x);
+					cmdCount++;
 
-				}else if (str[0].matches("what_is_in")) {
-					int x = Integer.parseInt(str[1]);
-					// db.showLatitude(x);
-					stat.append("\n show_latitude:		" + x);
-					//db.latitude(x);
-				}else if (str[0].matches("what_is_in")) {
-					int x = Integer.parseInt(str[1]);
-					// db.showLatitude(x);
-					stat.append("\n show_latitude:		" + x);
-					//db.latitude(x);
-				}else if (str[0].matches("debug")) {
-					int x = Integer.parseInt(str[1]);
-					// db.showLatitude(x);
-					stat.append("\n show_latitude:		" + x);
-					//db.latitude(x);
 				}
 				else if (str[0].matches("quit")) {
-					// db.quit();
 					stat.append("\n quit");
-				//	db.quit();
+					db.quit();
 					stat.close();
 				}
 
