@@ -52,6 +52,6 @@ public class GIS {
 
         // Takes the file to be parsed.
         Parser p = new Parser(datFileName, commandFile, LogFileName);
-        p.parsing(); // Start
+        p.parsing(); // This begins the program
      }
 }

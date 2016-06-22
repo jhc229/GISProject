@@ -75,6 +75,8 @@ public class Parser {
 		catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		
 	}
 
 	// ................................................................
@@ -117,7 +119,9 @@ public class Parser {
 				else if (str[0].matches("import")) {
 					
 					dataFile = new File(str[1]);
-					//db = new DataBase(dataFile, stat);
+					db = new DataBase(dataFile, stat);
+					db.dataPrint();
+
 					//db.importFile(str[1]); //GIS record file>
 					stat.write("import: "+ str[1]  + "\n");
 					System.out.println("import: "+ str[1] );
