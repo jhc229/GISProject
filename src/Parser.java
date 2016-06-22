@@ -120,7 +120,6 @@ public class Parser {
 					
 					//db.whatIsAt(str[1]); // geographic coordinate "382812N	0793156W "
 					System.out.println("what_is_at: "+ str[1] +" " + str[2] );
-
 					//stat.append("\n show_longitude:		" + x);
 					cmdCount++;
 
@@ -144,9 +143,7 @@ public class Parser {
 					if  (str[1].equals("-l")){
 						//db.whatIsInL(str[2], str[3],  str[4]);
 						System.out.println("what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] );
-
 					}
-					
 					else if (str[1].equals("-c")) {
 						//db.whatIsInC(str[2], str[3],  str[4]);
 						System.out.println("what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] );
@@ -154,10 +151,7 @@ public class Parser {
 					else {
 						//db.whatIsIn(str[1], str[2],  str[3]);
 						System.out.println("what_is_in : "+ str[1] +" " + str[2] +" " + str[3] );
-
 					}
-
-					
 					//stat.append("\n show_latitude:		" + x);
 					cmdCount++;
 
@@ -167,7 +161,6 @@ public class Parser {
 					
 					//db.debug(str[1]);
 					System.out.println("debug: "+ str[1] );
-
 					//stat.append("\n show_latitude:		" + x);
 					cmdCount++;
 
@@ -177,7 +170,7 @@ public class Parser {
 					System.out.println("quit: " );
 					//stat.append("\n quit");
 					//db.quit();
-					//stat.close();
+					stat.close();
 					
 				}
 
