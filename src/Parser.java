@@ -98,29 +98,41 @@ public class Parser {
 
 				// remove all spaces and indents
 				String[] str = line.trim().split("\\s+");
-
 				int count = str.length;
 				
 				if (str[0].matches("world")) {  // 4 coordinates westlong eastlong southlat northlat
-					db.world(str[1], str[2], str[3], str[4]);
 					
+					db.world(str[1], str[2], str[3], str[4]);
 					//stat.append("\n show_name:		" + x);
 					cmdCount++;
+					
 				} 
 				
 				else if (str[0].matches("import")) {
 					
-					db.importFile(str[1]);
+					db.importFile(str[1]); //GIS record file>
 					cmdCount++;
+					
 				}
 				
 				else if (str[0].matches("what_is_at")) {
-					db.
+					
+					db.whatIsAt(str[1]);
+					//stat.append("\n show_longitude:		" + x);
+					cmdCount++;
+
+				} 
+				else if (str[0].matches("what_is")) {
+					if  (count == 2) db.
+					
+					
 					//stat.append("\n show_longitude:		" + x);
 					cmdCount++;
 
 				} 
 				else if (str[0].matches("what_is_in")) {
+					if  (count == 2) db.
+
 					int x = Integer.parseInt(str[1]);
 					stat.append("\n show_latitude:		" + x);
 
