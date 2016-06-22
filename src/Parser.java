@@ -101,9 +101,10 @@ public class Parser {
 				int count = str.length;
 				
 				if (str[0].matches("world")) {
+					// 4 coordinates westlong eastlong southlat northlat
+					db.world(str[1], str[2], str[3], str[4]);
 					
-					
-					int x = Integer.parseInt(str[1]);
+				
 					stat.append("\n show_name:		" + x);
 					//db.name(x);
 				} 
