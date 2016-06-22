@@ -30,7 +30,13 @@ import java.io.IOException;
  */
 public class GIS {
 	
-	
+	/*
+	 * The database file should be created as an empty file; note that the specified database file may already exist, in which case the
+	 * existing file should be truncated or deleted and recreated. If the command script file is not found the program should write an
+	 * error message to the console and exit. The log file should be rewritten every time the program is run, so if the file already
+	 * exists it should be truncated or deleted and recreated.
+
+	 */
     public static void main(String[] args) throws IOException
     {
         // This checks the number of arguments
