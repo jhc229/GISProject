@@ -48,7 +48,7 @@ public class Parser {
 	private Stat cmd = null;
 
 	// private File theRecord = null;
-	private DataBase db = null;
+	private DataParser db = null;
 
 	// ~ Parser Constructor
 	// ................................................................
@@ -69,7 +69,7 @@ public class Parser {
 			this.commandFile = new FileReader(commandFile);
 			stat = new BufferedWriter(new FileWriter(logFile, false));
 			
-			db = new DataBase(this.dataFile, stat);
+			db = new DataParser(this.dataFile, stat);
 		}
 
 		// I/O exception checks for any failure or interruption during the
