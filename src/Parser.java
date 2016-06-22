@@ -101,7 +101,7 @@ public class Parser {
 				
 				if (str[0].matches("world")) {  // 4 coordinates westlong eastlong southlat northlat
 					
-					db.world(str[1], str[2], str[3], str[4]);
+					//db.world(str[1], str[2], str[3], str[4]);
 					//stat.append("\n show_name:		" + x);
 					System.out.println("world: "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] );
 					cmdCount++;
@@ -110,7 +110,7 @@ public class Parser {
 				
 				else if (str[0].matches("import")) {
 					
-					db.importFile(str[1]); //GIS record file>
+					//db.importFile(str[1]); //GIS record file>
 					System.out.println("import: "+ str[1] );
 					cmdCount++;
 					
@@ -118,7 +118,7 @@ public class Parser {
 				
 				else if (str[0].matches("what_is_at")) {
 					
-					db.whatIsAt(str[1]); // geographic coordinate
+					//db.whatIsAt(str[1]); // geographic coordinate
 					System.out.println("what_is_at: "+ str[1] );
 
 					//stat.append("\n show_longitude:		" + x);
@@ -127,7 +127,7 @@ public class Parser {
 				} 
 				else if (str[0].matches("what_is")) {
 					
-					db.whatIs(str[1], str[2]); //<feature name> and <state abbreviation>
+					//db.whatIs(str[1], str[2]); //<feature name> and <state abbreviation>
 					System.out.println("what_is: "+ str[1] +" "+ str[2]);
 					//stat.append("\n show_longitude:		" + x);
 					cmdCount++;
@@ -138,17 +138,20 @@ public class Parser {
 					// -l		<geographic coordinate>		<half-height>		<half-width>
 					// -c		<geographic coordinate>		<half-height>		<half-width>
 					if  (str[1].equals("-l")){
-						db.whatIsInL(str[2], str[3],  str[4]);
+						//db.whatIsInL(str[2], str[3],  str[4]);
 						System.out.println("what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] );
 
 					}
 					
 					else if (str[1].equals("-c")) {
-						db.whatIsInC(str[2], str[3],  str[4]);
+						//db.whatIsInC(str[2], str[3],  str[4]);
 						System.out.println("what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] );
 					}
-					else  db.whatIsIn(str[1], str[2],  str[3]);
-					System.out.println("what_is_in : "+ str[1] +" " + str[2] +" " + str[3] );
+					else {
+						//db.whatIsIn(str[1], str[2],  str[3]);
+						System.out.println("what_is_in : "+ str[1] +" " + str[2] +" " + str[3] );
+
+					}
 
 					
 					//stat.append("\n show_latitude:		" + x);
@@ -158,7 +161,7 @@ public class Parser {
 				
 				else if (str[0].matches("debug")) {
 					
-					db.debug(str[1]);
+					//db.debug(str[1]);
 					System.out.println("debug: "+ str[1] );
 
 					//stat.append("\n show_latitude:		" + x);
@@ -169,7 +172,7 @@ public class Parser {
 					
 					System.out.println("quit: " );
 					//stat.append("\n quit");
-					db.quit();
+					//db.quit();
 					//stat.close();
 					
 				}
