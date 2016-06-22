@@ -103,6 +103,7 @@ public class Parser {
 					
 					db.world(str[1], str[2], str[3], str[4]);
 					//stat.append("\n show_name:		" + x);
+					System.out.println("world: "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] );
 					cmdCount++;
 					
 				} 
