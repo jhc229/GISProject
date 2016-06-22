@@ -40,7 +40,7 @@ import java.io.RandomAccessFile;
 public class Parser {
 	// ~ Fields
 	// ................................................................
-	private FileWriter theRecordFile = null;
+	private FileWriter dataFile = null;
 	private FileReader theCommandFile = null;
 	private FileWriter stat = null;
 
@@ -56,13 +56,13 @@ public class Parser {
 	 * @param cmdFile
 	 *            The file received.
 	 */
-	public Parser(File recordFile, File commandFile, File logFile) {
+	public Parser(File dataFile, File commandFile, File logFile) {
 		// db = new DataBase();
 		// Takes the input stream file from the main class parse through each
 		// individual line.
 		try {
 			// theRecord = recordFile;
-			theRecordFile = new FileReader(recordFile);
+			dataFile = new FileWirter(dataFile);
 			theCommandFile = new FileReader(commandFile);
 			stat = new java.io.FileWriter("Results.txt", false);
 			db = new DataBase(recordFile, stat);
