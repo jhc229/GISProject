@@ -56,13 +56,13 @@ public class Parser {
 	 * @param cmdFile
 	 *            The file received.
 	 */
-	public Parser(File dataFile, File commandFile, File logFile) {
+	public Parser(String dataFile, File commandFile, String logFile) {
 		// db = new DataBase();
 		// Takes the input stream file from the main class parse through each
 		// individual line.
 		try {
 			// theRecord = recordFile;
-			dataFile = new FileWirter(dataFile);
+			dataFile = new FileWriter(dataFile);
 			theCommandFile = new FileReader(commandFile);
 			stat = new java.io.FileWriter("Results.txt", false);
 			db = new DataBase(recordFile, stat);
