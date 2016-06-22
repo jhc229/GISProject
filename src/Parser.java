@@ -130,7 +130,7 @@ public class Parser {
 					//db.whatIs(str[1], str[2]); //<feature name> and <state abbreviation>
 					String featureName = "";
 					for (int i =1; i<str.length-1; i++){
-						featureName += str[i];
+						featureName += str[i] + " ";
 					}
 					System.out.println("what_is: "+ featureName +" "+ str[str.length-1]);
 					//stat.append("\n show_longitude:		" + x);
