@@ -59,7 +59,7 @@ public class Parser {
 			// theRecord = recordFile;
 			theRecordFile = new FileReader(recordFile);
 			theCommandFile = new FileReader(commandFile);
-			stat = new java.io.FileWriter("Results.txt", true);
+			stat = new java.io.FileWriter("Results.txt", false);
 			db = new DataBase(recordFile, stat);
 		}
 
@@ -89,8 +89,7 @@ public class Parser {
 			brRecord = new BufferedReader(theRecordFile);
 			brCommand = new BufferedReader(theCommandFile);
 
-			stat.append("GIS data file contains the following records:");
-			stat.append("\n");
+			stat.write("GIS data file contains the following records:   \n" );
 			db.dataPrint();
 
 			int cmdCount = 1;
@@ -102,7 +101,7 @@ public class Parser {
 				if (str[0].matches("world")) {  // 4 coordinates westlong eastlong southlat northlat
 					
 					db.world(str[1], str[2], str[3], str[4]);
-					stat.write("world: "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] );
+					stat.write("world: "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] + "\n" );
 					System.out.println("world: "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] );
 					cmdCount++;
 					
@@ -111,7 +110,7 @@ public class Parser {
 				else if (str[0].matches("import")) {
 					
 					db.importFile(str[1]); //GIS record file>
-					stat.write("import: "+ str[1] );
+					stat.write("import: "+ str[1]  + "\n");
 					System.out.println("import: "+ str[1] );
 					cmdCount++;
 					
@@ -121,7 +120,7 @@ public class Parser {
 					
 					db.whatIsAt(str[1]); // geographic coordinate "382812N	0793156W "
 					System.out.println("what_is_at: "+ str[1] +" " + str[2] );
-					stat.write("what_is_at: "+ str[1] +" " + str[2] );
+					stat.write("what_is_at: "+ str[1] +" " + str[2] + "\n" );
 					cmdCount++;
 
 				} 
@@ -133,7 +132,7 @@ public class Parser {
 						featureName += str[i] + " ";
 					}
 					System.out.println("what_is: "+ featureName +" "+ str[str.length-1]);
-					stat.write("what_is: "+ featureName +" "+ str[str.length-1]);
+					stat.write("what_is: "+ featureName +" "+ str[str.length-1] + "\n");
 					cmdCount++;
 
 				} 
@@ -144,19 +143,19 @@ public class Parser {
 					if  (str[1].matches("-l")){
 						db.whatIsInL(str[2], str[3],  str[4]);
 						System.out.println("what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] );
-						stat.write("what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4]);
+						stat.write("what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] + "\n");
 
 					}
 					else if (str[1].matches("-c")) {
 						db.whatIsInC(str[2], str[3],  str[4]);
 						System.out.println("what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] );
-						stat.write("what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] );
+						stat.write("what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] + "\n" );
 
 					}
 					else {
 						db.whatIsIn(str[1], str[2],  str[3]);
 						System.out.println("what_is_in : "+ str[1] +" " + str[2] +" " + str[3] );
-						stat.write("what_is_in : "+ str[1] +" " + str[2] +" " + str[3]);
+						stat.write("what_is_in : "+ str[1] +" " + str[2] +" " + str[3] + "\n");
 
 					}
 					cmdCount++;
@@ -167,14 +166,14 @@ public class Parser {
 					
 					db.debug(str[1]);
 					System.out.println("debug: "+ str[1] );
-					stat.write("debug: "+ str[1] );
+					stat.write("debug: "+ str[1] + "\n");
 					cmdCount++;
 
 				}
 				else if (str[0].matches("quit")) {
 					
 					System.out.println("quit: " );
-					stat.write("debug: "+ str[1] );
+					stat.write("quit \n");
 
 					//stat.append("\n quit");
 					db.quit();

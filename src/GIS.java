@@ -51,7 +51,7 @@ public class GIS {
         File logFile = new File(LogFileName);
 
         // Takes the file to be parsed.
-        Parser p = new Parser(recordFile, commandFile,logFile);
+        Parser p = new Parser(recordFile, commandFile, logFile);
         p.parsing();
      }
 }

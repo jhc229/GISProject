@@ -39,13 +39,13 @@ public class DataBase {
 		while (read.readLine() != null) {
 
 			//System.out.println("	" + offset + "   " + id(offset));
-			stat.append("\n    "+ offset + "   " + id(offset));
+			stat.write("\n    "+ offset + "   " + id(offset));
 			read.seek(offset);
 			endOffset = offset;
 			offset += read.readLine().length() + 1;
 			// stat.append("\nshow classes: " + id);
 		}
-		stat.append("\n");
+		stat.write("\n");
 		// read.close();
 	}
 
@@ -114,7 +114,7 @@ public class DataBase {
 	 * @throws IOException
 	 */
 	public void quit() throws IOException {
-		stat.append("\n   Exiting");
+		stat.write("\n   Exiting");
 		read.close();
 		stat.close();
 
