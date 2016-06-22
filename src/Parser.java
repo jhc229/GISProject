@@ -102,7 +102,7 @@ public class Parser {
 				if (str[0].matches("world")) {  // 4 coordinates westlong eastlong southlat northlat
 					
 					db.world(str[1], str[2], str[3], str[4]);
-					//stat.append("\n show_name:		" + x);
+					stat.write("world: "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] );
 					System.out.println("world: "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] );
 					cmdCount++;
 					
@@ -111,6 +111,7 @@ public class Parser {
 				else if (str[0].matches("import")) {
 					
 					db.importFile(str[1]); //GIS record file>
+					stat.write("import: "+ str[1] );
 					System.out.println("import: "+ str[1] );
 					cmdCount++;
 					
@@ -120,7 +121,7 @@ public class Parser {
 					
 					db.whatIsAt(str[1]); // geographic coordinate "382812N	0793156W "
 					System.out.println("what_is_at: "+ str[1] +" " + str[2] );
-					//stat.append("\n show_longitude:		" + x);
+					stat.write("what_is_at: "+ str[1] +" " + str[2] );
 					cmdCount++;
 
 				} 
@@ -132,7 +133,7 @@ public class Parser {
 						featureName += str[i] + " ";
 					}
 					System.out.println("what_is: "+ featureName +" "+ str[str.length-1]);
-					//stat.append("\n show_longitude:		" + x);
+					stat.write("what_is: "+ featureName +" "+ str[str.length-1]);
 					cmdCount++;
 
 				} 
@@ -143,6 +144,8 @@ public class Parser {
 					if  (str[1].matches("-l")){
 						db.whatIsInL(str[2], str[3],  str[4]);
 						System.out.println("what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] );
+						stat.write("what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4]);
+
 					}
 					else if (str[1].matches("-c")) {
 						db.whatIsInC(str[2], str[3],  str[4]);
@@ -152,7 +155,6 @@ public class Parser {
 						db.whatIsIn(str[1], str[2],  str[3]);
 						System.out.println("what_is_in : "+ str[1] +" " + str[2] +" " + str[3] );
 					}
-					//stat.append("\n show_latitude:		" + x);
 					cmdCount++;
 
 				}
