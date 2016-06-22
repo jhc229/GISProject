@@ -111,6 +111,7 @@ public class Parser {
 				else if (str[0].matches("import")) {
 					
 					db.importFile(str[1]); //GIS record file>
+					System.out.println("import: "+ str[1] );
 					cmdCount++;
 					
 				}
@@ -118,6 +119,8 @@ public class Parser {
 				else if (str[0].matches("what_is_at")) {
 					
 					db.whatIsAt(str[1]); // geographic coordinate
+					System.out.println("what_is_at: "+ str[1] );
+
 					//stat.append("\n show_longitude:		" + x);
 					cmdCount++;
 
