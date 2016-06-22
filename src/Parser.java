@@ -174,6 +174,8 @@ public class Parser {
 				else if (str[0].matches("quit")) {
 					
 					System.out.println("quit: " );
+					stat.write("debug: "+ str[1] );
+
 					//stat.append("\n quit");
 					db.quit();
 					stat.close();
