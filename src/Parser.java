@@ -150,10 +150,14 @@ public class Parser {
 					else if (str[1].matches("-c")) {
 						db.whatIsInC(str[2], str[3],  str[4]);
 						System.out.println("what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] );
+						stat.write("what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] );
+
 					}
 					else {
 						db.whatIsIn(str[1], str[2],  str[3]);
 						System.out.println("what_is_in : "+ str[1] +" " + str[2] +" " + str[3] );
+						stat.write("what_is_in : "+ str[1] +" " + str[2] +" " + str[3]);
+
 					}
 					cmdCount++;
 
