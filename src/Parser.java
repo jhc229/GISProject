@@ -45,6 +45,7 @@ public class Parser {
 	private FileReader commandFile = null;
 	private FileWriter stat = null;
 	
+	private Stat cmd = null;
 
 	// private File theRecord = null;
 	private DataBase db = null;
@@ -64,8 +65,10 @@ public class Parser {
 		// individual line.
 		try {
 			this.dataFile = new File(dataFile);
+			
 			this.commandFile = new FileReader(commandFile);
 			stat = new FileWriter(logFile);
+			
 			
 			//db = new DataBase(recordFile, stat);
 		}
@@ -119,14 +122,13 @@ public class Parser {
 				// append existing datafile
 				else if (str[0].matches("import")) {
 					
-					appendFile(new File(str[1])); // Add all the valid GIS records in the specified file to the database file.
-					db = new DataBase(dataFile, stat);
-				
-					//	db.dataPrint();
+					appendFile(new File(str[1]), count); // Add all the valid GIS records in the specified file to the database file.
+					//db = new DataBase(dataFile, stat);
 
 					//db.importFile(str[1]); //GIS record file>
 					stat.write("import: "+ str[1]  + "\n");
 					System.out.println("import: "+ str[1] );
+					count++; // # of import calls.
 					cmdCount++;
 					
 				}
