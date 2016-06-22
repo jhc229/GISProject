@@ -51,7 +51,7 @@ public class Parser {
 	 * @param cmdFile
 	 *            The file received.
 	 */
-	public Parser(File recordFile, File commandFile, logFile) {
+	public Parser(File recordFile, File commandFile,File logFile) {
 		// db = new DataBase();
 		// Takes the input stream file from the main class parse through each
 		// individual line.
