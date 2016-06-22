@@ -67,22 +67,7 @@ public class DataBase {
 
 	}
 
-
-
-
-	/**
-	 * 
-	 * @throws IOException
-	 */
-	public void quit() throws IOException {
-		stat.append("\n   Exiting");
-		read.close();
-		stat.close();
-
-	}
-
-	public void world(String string, String string2, String string3,
-			String string4) {
+	public void world(String westLong, String eastLong, String southLat, String northLat) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -111,10 +96,29 @@ public class DataBase {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public void whatIsIn(String string, String string2, String string3) {
+		// TODO Auto-generated method stub
+		
+	}
 
 	public void debug(String string) {
 		// TODO Auto-generated method stub
 		
 	}
+
+
+
+	/**
+	 * 
+	 * @throws IOException
+	 */
+	public void quit() throws IOException {
+		stat.append("\n   Exiting");
+		read.close();
+		stat.close();
+
+	}
+
 
 }
