@@ -149,9 +149,11 @@ public class Parser {
 
 				}
 				else if (str[0].matches("quit")) {
-					stat.append("\n quit");
+					
+					//stat.append("\n quit");
 					db.quit();
-					stat.close();
+					//stat.close();
+					
 				}
 
 			}
