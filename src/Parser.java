@@ -117,7 +117,7 @@ public class Parser {
 				
 				else if (str[0].matches("what_is_at")) {
 					
-					db.whatIsAt(str[1]);
+					db.whatIsAt(str[1], str[2]);
 					//stat.append("\n show_longitude:		" + x);
 					cmdCount++;
 
