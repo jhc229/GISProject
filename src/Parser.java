@@ -117,7 +117,7 @@ public class Parser {
 				
 				else if (str[0].matches("what_is_at")) {
 					
-					db.whatIsAt(str[1], str[2]);
+					db.what
 					//stat.append("\n show_longitude:		" + x);
 					cmdCount++;
 
@@ -125,7 +125,7 @@ public class Parser {
 				else if (str[0].matches("what_is")) {
 					if  (count == 2) db.
 					
-					
+					db.whatIs(str[1], str[2]); //<feature name> and <state abbreviation>
 					//stat.append("\n show_longitude:		" + x);
 					cmdCount++;
 
