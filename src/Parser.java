@@ -41,8 +41,9 @@ public class Parser {
 	// ~ Fields
 	// ................................................................
 	private FileWriter dataFile = null;
-	private FileReader theCommandFile = null;
+	private FileReader commandFile = null;
 	private FileWriter stat = null;
+	
 
 	// private File theRecord = null;
 	private DataBase db = null;
@@ -62,10 +63,11 @@ public class Parser {
 		// individual line.
 		try {
 			// theRecord = recordFile;
-			dataFile = new FileWriter(dataFile);
-			theCommandFile = new FileReader(commandFile);
-			stat = new java.io.FileWriter("Results.txt", false);
-			db = new DataBase(recordFile, stat);
+			this.dataFile = new FileWriter(dataFile);
+			this.commandFile = new FileReader(commandFile);
+			stat = new FileWriter(logFile);
+			
+			//db = new DataBase(recordFile, stat);
 		}
 
 		// I/O exception checks for any failure or interruption during the
@@ -114,6 +116,7 @@ public class Parser {
 				
 				else if (str[0].matches("import")) {
 					
+					db = new DataBase(dataFile, stat);
 					db.importFile(str[1]); //GIS record file>
 					stat.write("import: "+ str[1]  + "\n");
 					System.out.println("import: "+ str[1] );
