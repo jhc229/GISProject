@@ -118,8 +118,8 @@ public class Parser {
 				
 				else if (str[0].matches("what_is_at")) {
 					
-					//db.whatIsAt(str[1]); // geographic coordinate
-					System.out.println("what_is_at: "+ str[1] );
+					//db.whatIsAt(str[1]); // geographic coordinate "382812N	0793156W "
+					System.out.println("what_is_at: "+ str[1] +" " + str[2] );
 
 					//stat.append("\n show_longitude:		" + x);
 					cmdCount++;
@@ -128,7 +128,11 @@ public class Parser {
 				else if (str[0].matches("what_is")) {
 					
 					//db.whatIs(str[1], str[2]); //<feature name> and <state abbreviation>
-					System.out.println("what_is: "+ str[1] +" "+ str[2]);
+					String featureName = "";
+					for (int i =1; i<str.length; i++){
+						featureName += str[i];
+					}
+					System.out.println("what_is: "+ featureName +" "+ str[str.length]);
 					//stat.append("\n show_longitude:		" + x);
 					cmdCount++;
 
