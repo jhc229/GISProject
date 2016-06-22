@@ -44,7 +44,6 @@ public class GIS {
         File commandFile = new File(commandFileName);
         File LogFileName = new File(commandFileName);
 
-        
         // Takes the file to be parsed.
         Parser p = new Parser(recordFile, commandFile);
         p.parsing();
