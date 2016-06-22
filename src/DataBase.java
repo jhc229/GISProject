@@ -27,7 +27,7 @@ public class DataBase {
 	 * @throws IOException
 	 */
 	public DataBase(File gis, FileWriter result) throws IOException {
-		read = new RandomAccessFile(gis, "r");
+		read = new RandomAccessFile(gis, "rw");
 		stat = result;
 		offset = read.readLine().length() + 1;
 		
