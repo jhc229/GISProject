@@ -38,9 +38,12 @@ public class GIS {
         // trim ignores leading and trailing whitespace.
         String recordFileName = args[0].trim();
         String commandFileName = args[1].trim();
+        String LogFileName = args[2].trim();
         
         File recordFile = new File(recordFileName);
         File commandFile = new File(commandFileName);
+        File LogFileName = new File(commandFileName);
+
         
         // Takes the file to be parsed.
         Parser p = new Parser(recordFile, commandFile);
