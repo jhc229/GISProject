@@ -118,7 +118,7 @@ public class Parser {
 				// append existing datafile
 				else if (str[0].matches("import")) {
 					
-				//	dataFile = BufferedWriter(new File(str[1]));
+				    dataFile = BufferedWriter(new File(str[1]));
 					//dataFile
 					db = new DataBase(dataFile, stat);
 				
