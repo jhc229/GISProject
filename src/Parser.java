@@ -102,6 +102,7 @@ public class Parser {
 			//db.dataPrint();
 
 			int cmdCount = 1;
+			int count = 1;
 			while ((line = brCommand.readLine()) != null) {
 
 				// remove all spaces and indents
@@ -117,9 +118,8 @@ public class Parser {
 				} 
 				// append existing datafile
 				else if (str[0].matches("import")) {
-					
-				    dataFile = BufferedWriter(new File(str[1]));
-					//dataFile
+
+					appendFile(new File(str[1])); // Add all the valid GIS records in the specified file to the database file.
 					db = new DataBase(dataFile, stat);
 				
 					//	db.dataPrint();
@@ -199,6 +199,11 @@ public class Parser {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private void appendFile(File file) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
