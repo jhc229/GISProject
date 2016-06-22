@@ -114,30 +114,46 @@ public class Parser {
 
 				int count = str.length;
 				// first element for each line would always start with a command
-				if (str[0].matches("show_name")) {
+				if (str[0].matches("world")) {
 					int x = Integer.parseInt(str[1]);
 					// db.showName(x); // parameter will take one for now
 					stat.append("\n show_name:		" + x);
 					db.name(x);
-				} else if (str[0].matches("show_elevation")) {
+				} else if (str[0].matches("import")) {
 					int x = Integer.parseInt(str[1]);
 					// db.showElevation(x); // parameter will take one for now
 					stat.append("\n show_elevation:		" + x);
 					db.elevation(x);
 
-				} else if (str[0].matches("show_longitude")) {
+				} else if (str[0].matches("what_is_at")) {
 					int x = Integer.parseInt(str[1]);
 					// db.showLongitude(x);
 					stat.append("\n show_longitude:		" + x);
 					db.longtitude(x);
 
-				} else if (str[0].matches("show_latitude")) {
+				} else if (str[0].matches("what_is_in")) {
 					int x = Integer.parseInt(str[1]);
 					// db.showLatitude(x);
 					stat.append("\n show_latitude:		" + x);
 					db.latitude(x);
 
-				} else if (str[0].matches("quit")) {
+				}else if (str[0].matches("what_is_in")) {
+					int x = Integer.parseInt(str[1]);
+					// db.showLatitude(x);
+					stat.append("\n show_latitude:		" + x);
+					db.latitude(x);
+				}else if (str[0].matches("what_is_in")) {
+					int x = Integer.parseInt(str[1]);
+					// db.showLatitude(x);
+					stat.append("\n show_latitude:		" + x);
+					db.latitude(x);
+				}else if (str[0].matches("debug")) {
+					int x = Integer.parseInt(str[1]);
+					// db.showLatitude(x);
+					stat.append("\n show_latitude:		" + x);
+					db.latitude(x);
+				}
+				else if (str[0].matches("quit")) {
 					// db.quit();
 					stat.append("\n quit");
 					db.quit();
