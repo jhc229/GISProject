@@ -46,7 +46,7 @@ public class GIS {
         String commandFileName = args[1].trim();
         String LogFileName = args[2].trim();
         
-        File recordFile = new File(datFileName);
+        File datFile = new File(datFileName);
         File commandFile = new File(commandFileName);
         File logFile = new File(LogFileName);
 
