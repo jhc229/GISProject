@@ -98,7 +98,6 @@ public class Parser {
 
 				// remove all spaces and indents
 				String[] str = line.trim().split("\\s+");
-				int count = str.length;
 				
 				if (str[0].matches("world")) {  // 4 coordinates westlong eastlong southlat northlat
 					
@@ -117,13 +116,12 @@ public class Parser {
 				
 				else if (str[0].matches("what_is_at")) {
 					
-					db.what
+					db.whatIsAt(str[1]); // geographic coordinate
 					//stat.append("\n show_longitude:		" + x);
 					cmdCount++;
 
 				} 
 				else if (str[0].matches("what_is")) {
-					if  (count == 2) db.
 					
 					db.whatIs(str[1], str[2]); //<feature name> and <state abbreviation>
 					//stat.append("\n show_longitude:		" + x);
@@ -131,21 +129,16 @@ public class Parser {
 
 				} 
 				else if (str[0].matches("what_is_in")) {
-					if  (count == 2) db.
-
-					int x = Integer.parseInt(str[1]);
-					stat.append("\n show_latitude:		" + x);
-
-				}
-				else if (str[0].matches("what_is_in")) {
-					int x = Integer.parseInt(str[1]);
-					stat.append("\n show_latitude:		" + x);
-				
-				}
-				else if (str[0].matches("what_is_in")) {
-					int x = Integer.parseInt(str[1]);
-					stat.append("\n show_latitude:		" + x);
+					//			<geographic coordinate>		<half-height>		<half-width>
+					// -l		<geographic coordinate>		<half-height>		<half-width>
+					// -c		<geographic coordinate>		<half-height>		<half-width>
+					if  (str[1].equals("-l")) db.whatIsInL(str[2], str[3],  str[4]); 
+					else if (str[1].equals("-c")) db.whatIsInC(str[2], str[3],  str[4]);
+					else  db.whatIsIn(str[1], str[2],  str[3]);
+					
+					//stat.append("\n show_latitude:		" + x);
 					cmdCount++;
+
 				}
 				
 				else if (str[0].matches("debug")) {
