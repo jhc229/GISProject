@@ -19,7 +19,7 @@ import java.io.Reader;
 public class DataParser {
 	// ~ Fields
 	private RandomAccessFile dataFile = null;
-	private long offset = 0;
+	private long offset= 0 ;
 	private long endOffset = 0;
 	private BufferedWriter stat = null;
 	
@@ -39,46 +39,23 @@ public class DataParser {
 	 * 
 	 * @throws IOException
 	 */
-	public DataParser(File gis, BufferedWriter result) throws IOException {
-		dataFile = new RandomAccessFile(gis, "rw");
-		stat = result;
-		//offset = dataFile.readLine().length() + 1;
+	public DataParser(File gis, BufferedWriter result)  {
 		
-	}
+		
+		try {
+			dataFile = new RandomAccessFile(gis, "rw");
+			stat = result;
+			//pool = new BufferPool();
+			//table = new HashTable<NameIndex, Integer>(1024);
+			//offset  = 0;
 
-	public void dataPrint() throws IOException {
-		// offset = parserOffset;
-		// System.out.println(" " + offset);
-		while (dataFile.readLine() != null) {
-
-			//System.out.println("	" + offset + "   " + id(offset));
-			stat.write("\n    "+ offset + "   " + id(offset));
-			dataFile.seek(offset);
-			endOffset = offset;
-			offset += dataFile.readLine().length() + 1;
-			// stat.append("\nshow classes: " + id);
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 		}
-		stat.write("\n");
-		// dataFile.close();
-	}
-
-	/*
-	 * Feature ID (FID) 
-	 * non-negative integer
-	 * unique identifier for this geographic feature
-	 */
-	public int id(long parserOffset) throws IOException {
-		// offset = parserOffset;
-		dataFile.seek(parserOffset);
-		String line = dataFile.readLine();
-
-		String[] items = line.split("\\|");
-		int result = Integer.parseInt(items[0]);
-		// System.out.println("delimiter: " + s.delimiter());
-		// String token1 = s.next();
-		return result;
 
 	}
+
 	
 	public void appendFile(String gisRecordFile, int count) throws IOException {
 		
@@ -113,8 +90,19 @@ public class DataParser {
 		return coord = new DMScoordinates(degree, Minute, Second, direction);
 	}
 
-	public void importFile(String string) {
-		// TODO Auto-generated method stub
+	public void importFile(String string) throws IOException {
+		
+		
+		
+		while (dataFile.readLine() != null) {
+
+			NameIndex name = new NameIndex( )
+			
+			
+			
+		}
+		stat.write("\n");
+		// dataFile.close();
 		
 	}
 
