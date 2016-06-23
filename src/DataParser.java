@@ -20,6 +20,8 @@ public class DataParser {
 	private long offset = 0;
 	private long endOffset = 0;
 	private BufferedWriter stat = null;
+	GeoCoordinates geoCoord;
+	DMScoordinates coord;
 	// private Stats stat = null;
 
 	// ~ Constructor
@@ -72,21 +74,30 @@ public class DataParser {
 	public void appendFile(String gisRecordFile, int count) throws IOException {
 		
 		BufferedReader gisRecord = new BufferedReader(new FileReader(gisRecordFile)); 
-		if (count == 0){
-			gisRecord.readLine();
+		if (count >0){
+			gisRecord.readLine(); // Moves the pointer to next line
 		}
 		String str = "";
-		while ((str= gisRecord.readLine()) != null) {
+		while ((str= gisRecord.readLine()) != null) { 
 			System.out.println((str).getBytes());
 			dataFile.write((str +"\n").getBytes());
 		}
 		gisRecord.close();
 		stat.write("\n");
-		// dataFile.close();
 		
 	}
 	
+	//One degree is equal to 60 minutes and equal to 3600 seconds:
 	public void world(String westLong, String eastLong, String southLat, String northLat) {
+		geoCoord = new GeoCoordinates();
+		int wLong = geoCoord.setLat(Integer.parseInt(westLong.substring(0, 2)), Integer.parseInt(westLong.substring(2, 4)), Integer.parseInt(westLong.substring(4, 6)), westLong.charAt(westLong.length()-1))
+				
+				
+				//Integer.parseInt(westLong.substring(0, 2)), Integer.parseInt(westLong.substring(2, 4)), Integer.parseInt(westLong.substring(4, 6))
+		int eLong = 
+		int sLat = 
+		int nLat = 
+		
 		
 		
 	}
