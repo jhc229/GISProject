@@ -89,17 +89,17 @@ public class DataParser {
 	
 	//One degree is equal to 60 minutes and equal to 3600 seconds:
 	public void world(String westLong, String eastLong, String southLat, String northLat) {
-		//coord = new coord();
-		coord = new DMScoordinates(Integer.parseInt(westLong.substring(0, 2)), Integer.parseInt(westLong.substring(2, 4)), Integer.parseInt(westLong.substring(4, 6)), westLong.substring(6));
 				
-				
-				//Integer.parseInt(westLong.substring(0, 2)), Integer.parseInt(westLong.substring(2, 4)), Integer.parseInt(westLong.substring(4, 6))
-		int eLong = 
-		int sLat = 
-		int nLat = 
-		
-		
-		
+		int wLong = toCoord(Integer.parseInt(westLong.substring(0, 2)), Integer.parseInt(westLong.substring(2, 4)), Integer.parseInt(westLong.substring(4, 6)), westLong.substring(6)).toSeconds();
+		int eLong = toCoord(Integer.parseInt(westLong.substring(0, 2)), Integer.parseInt(westLong.substring(2, 4)), Integer.parseInt(westLong.substring(4, 6)), westLong.substring(6)).toSeconds();
+		int sLat =  toCoord(Integer.parseInt(westLong.substring(0, 3)), Integer.parseInt(westLong.substring(3, 5)), Integer.parseInt(westLong.substring(5, 7)), westLong.substring(7)).toSeconds();
+		int nLat = toCoord(Integer.parseInt(westLong.substring(0, 3)), Integer.parseInt(westLong.substring(3, 5)), Integer.parseInt(westLong.substring(5, 7)), westLong.substring(7)).toSeconds();
+
+		quadTree = new prQuadTree<Point>(wLong, eLong , sLat , nLat);
+	}
+	
+	public DMScoordinates toCoord(int degree, int Minute, int Second, String direction){
+		return coord = new DMScoordinates(degree, Minute, Second, direction);
 	}
 
 	public void importFile(String string) {

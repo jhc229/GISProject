@@ -28,7 +28,7 @@ public class DMScoordinates {
 
 	
 	public int getDegree(){
-		return degree;1
+		return degree;
 		
 	}
 	
