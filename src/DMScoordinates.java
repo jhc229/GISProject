@@ -53,7 +53,7 @@ public class DMScoordinates {
 	 */
 	//One degree is equal to 60 minutes and equal to 3600 seconds:
 	public int toSeconds(){
-		switch(direction){
+		if (direction.equals("N") || direction.equals("E") ){
 		case "N" || "E":
 			return degree*3600 + minute * 60 + second;
 		
