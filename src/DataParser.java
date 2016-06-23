@@ -89,8 +89,8 @@ public class DataParser {
 	
 	//One degree is equal to 60 minutes and equal to 3600 seconds:
 	public void world(String westLong, String eastLong, String southLat, String northLat) {
-		geoCoord = new GeoCoordinates();
-		int wLong = geoCoord.setLat(Integer.parseInt(westLong.substring(0, 2)), Integer.parseInt(westLong.substring(2, 4)), Integer.parseInt(westLong.substring(4, 6)), westLong.charAt(westLong.length()-1))
+		//coord = new coord();
+		coord = new DMScoordinates(Integer.parseInt(westLong.substring(0, 2)), Integer.parseInt(westLong.substring(2, 4)), Integer.parseInt(westLong.substring(4, 6)), westLong.substring(6));
 				
 				
 				//Integer.parseInt(westLong.substring(0, 2)), Integer.parseInt(westLong.substring(2, 4)), Integer.parseInt(westLong.substring(4, 6))

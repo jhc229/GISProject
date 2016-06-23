@@ -17,18 +17,18 @@ public class DMScoordinates {
 		direction = "";
 	}
 	
-	public DMScoordinates(int degree, int minute, int second, String direction){
+	public DMScoordinates(int degree, int minute, int second, String  degree){
 		
 		this.degree =  degree;
 		this.minute = minute;
 		this.second = second;
-		this.direction =direction;
+		this.direction = degree;
 		
 	}
 
 	
 	public int getDegree(){
-		return degree;
+		return degree;1
 		
 	}
 	
