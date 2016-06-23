@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+
+
 import java.io.RandomAccessFile;
 import java.io.Reader;
 
@@ -20,10 +22,17 @@ public class DataParser {
 	private long offset = 0;
 	private long endOffset = 0;
 	private BufferedWriter stat = null;
+	
+	private int wLong, eLong , sLat , nLat; //boundary
+	
 	GeoCoordinates geoCoord;
 	DMScoordinates coord;
 	// private Stats stat = null;
 
+	//public prQuadTree<Point> quadTree;
+//	public BufferPool pool;
+	//public HashTable<>
+	
 	// ~ Constructor
 	/**
 	 * Create a new dataParser object.
@@ -88,14 +97,16 @@ public class DataParser {
 	}
 	
 	//One degree is equal to 60 minutes and equal to 3600 seconds:
-	public void world(String westLong, String eastLong, String southLat, String northLat) {
+	public void world(String westLong, String eastLong, String southLat, String northLat) throws IOException {
 				
-		int wLong = toCoord(Integer.parseInt(westLong.substring(0, 2)), Integer.parseInt(westLong.substring(2, 4)), Integer.parseInt(westLong.substring(4, 6)), westLong.substring(6)).toSeconds();
-		int eLong = toCoord(Integer.parseInt(westLong.substring(0, 2)), Integer.parseInt(westLong.substring(2, 4)), Integer.parseInt(westLong.substring(4, 6)), westLong.substring(6)).toSeconds();
-		int sLat =  toCoord(Integer.parseInt(westLong.substring(0, 3)), Integer.parseInt(westLong.substring(3, 5)), Integer.parseInt(westLong.substring(5, 7)), westLong.substring(7)).toSeconds();
-		int nLat = toCoord(Integer.parseInt(westLong.substring(0, 3)), Integer.parseInt(westLong.substring(3, 5)), Integer.parseInt(westLong.substring(5, 7)), westLong.substring(7)).toSeconds();
+		wLong = toCoord(Integer.parseInt(westLong.substring(0, 2)), Integer.parseInt(westLong.substring(2, 4)), Integer.parseInt(westLong.substring(4, 6)), westLong.substring(6)).toSeconds();
+		eLong = toCoord(Integer.parseInt(westLong.substring(0, 2)), Integer.parseInt(westLong.substring(2, 4)), Integer.parseInt(westLong.substring(4, 6)), westLong.substring(6)).toSeconds();
+		sLat =  toCoord(Integer.parseInt(westLong.substring(0, 3)), Integer.parseInt(westLong.substring(3, 5)), Integer.parseInt(westLong.substring(5, 7)), westLong.substring(7)).toSeconds();
+		nLat = toCoord(Integer.parseInt(westLong.substring(0, 3)), Integer.parseInt(westLong.substring(3, 5)), Integer.parseInt(westLong.substring(5, 7)), westLong.substring(7)).toSeconds();
 
-		quadTree = new prQuadTree<Point>(wLong, eLong , sLat , nLat);
+	//	quadTree = new prQuadTree<Point>(wLong, eLong , sLat , nLat);
+		stat.write(wLong+ " "+ eLong +" "+ sLat +" "+ nLat);
+		
 	}
 	
 	public DMScoordinates toCoord(int degree, int Minute, int Second, String direction){

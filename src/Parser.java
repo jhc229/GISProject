@@ -95,7 +95,6 @@ public class Parser {
 		BufferedReader brCommand = null;
 
 		String line = "";
-
 		try {
 			//brRecord = new BufferedWriter(new FileWriter(dataFile));
 			brCommand = new BufferedReader(commandFile);
