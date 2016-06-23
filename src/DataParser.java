@@ -16,7 +16,7 @@ import java.io.Reader;
  */
 public class DataParser {
 	// ~ Fields
-	private RandomAccessFile read = null;
+	private RandomAccessFile dataFile = null;
 	private long offset = 0;
 	private long endOffset = 0;
 	private BufferedWriter stat = null;
@@ -29,26 +29,26 @@ public class DataParser {
 	 * @throws IOException
 	 */
 	public DataParser(File gis, BufferedWriter result) throws IOException {
-		read = new RandomAccessFile(gis, "rw");
+		dataFile = new RandomAccessFile(gis, "rw");
 		stat = result;
-		offset = read.readLine().length() + 1;
+		//offset = dataFile.readLine().length() + 1;
 		
 	}
 
 	public void dataPrint() throws IOException {
 		// offset = parserOffset;
 		// System.out.println(" " + offset);
-		while (read.readLine() != null) {
+		while (dataFile.readLine() != null) {
 
 			//System.out.println("	" + offset + "   " + id(offset));
 			stat.write("\n    "+ offset + "   " + id(offset));
-			read.seek(offset);
+			dataFile.seek(offset);
 			endOffset = offset;
-			offset += read.readLine().length() + 1;
+			offset += dataFile.readLine().length() + 1;
 			// stat.append("\nshow classes: " + id);
 		}
 		stat.write("\n");
-		// read.close();
+		// dataFile.close();
 	}
 
 	/*
@@ -58,8 +58,8 @@ public class DataParser {
 	 */
 	public int id(long parserOffset) throws IOException {
 		// offset = parserOffset;
-		read.seek(parserOffset);
-		String line = read.readLine();
+		dataFile.seek(parserOffset);
+		String line = dataFile.readLine();
 
 		String[] items = line.split("\\|");
 		int result = Integer.parseInt(items[0]);
@@ -70,25 +70,24 @@ public class DataParser {
 	}
 	
 	public void appendFile(String gisRecordFile, int count) throws IOException {
-		if (count == 0) stat.write("FEATURE_ID|FEATURE_NAME|FEATURE_CLASS|STATE_ALPHA|STATE_NUMERIC|COUNTY_NAME|COUNTY_NUMERIC|PRIMARY_LAT_DMS|PRIM_LONG_DMS|PRIM_LAT_DEC|PRIM_LONG_DEC|SOURCE_LAT_DMS|SOURCE_LONG_DMS|SOURCE_LAT_DEC|SOURCE_LONG_DEC|ELEV_IN_M|ELEV_IN_FT|MAP_NAME|DATE_CREATED|DATE_EDITED");
-		BufferedReader gisRecord = new BufferedReader(new FileReader(gisRecordFile)); 
 		
-		while (gisRecord.readLine() != null) {
-
-			//System.out.println("	" + offset + "   " + id(offset));
-			stat.write("\n    "+ offset + "   " + id(offset));
-			read.seek(offset);
-			endOffset = offset;
-			offset += read.readLine().length() + 1;
-			// stat.append("\nshow classes: " + id);
+		BufferedReader gisRecord = new BufferedReader(new FileReader(gisRecordFile)); 
+		if (count == 0){
+			gisRecord.readLine();
 		}
+		String str = "";
+		while ((str= gisRecord.readLine()) != null) {
+			System.out.println((str).getBytes());
+			dataFile.write((str +"\n").getBytes());
+		}
+		gisRecord.close();
 		stat.write("\n");
-		// read.close();
+		// dataFile.close();
 		
 	}
 	
 	public void world(String westLong, String eastLong, String southLat, String northLat) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
@@ -135,7 +134,7 @@ public class DataParser {
 	 */
 	public void quit() throws IOException {
 		stat.write("\n   Exiting");
-		read.close();
+		dataFile.close();
 		stat.close();
 
 	}
