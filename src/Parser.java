@@ -118,6 +118,8 @@ public class Parser {
 					//db.world(str[1], str[2], str[3], str[4]);
 					stat.write("world: "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] + "\n" +"\n" );
 					System.out.println("world: "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] );
+					cmd.diskReads =2;
+					System.out.println("stat check: " + cmd.cacheHits + " " +cmd.diskReads);
 					cmdCount++;
 					
 				} 
