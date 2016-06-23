@@ -56,9 +56,6 @@ public class DMScoordinates {
 		if (direction.equals("N") || direction.equals("E") ) return degree*3600 + minute * 60 + second;
 		 return (degree*3600 + minute * 60 + second) * -1;
 		
-		
-		
-		
 	}
 		
 		
