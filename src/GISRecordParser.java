@@ -17,7 +17,7 @@ public class GISRecordParser {
 	private RandomAccessFile read = null;
 	private long offset = 0;
 	private long endOffset = 0;
-	private FileWriter stat = null;
+	//private FileWriter stat = null;
 	// private Stats stat = null;
 
 	// ~ Constructor
@@ -26,9 +26,9 @@ public class GISRecordParser {
 	 * 
 	 * @throws IOException
 	 */
-	public GISRecordParser(File gis, FileWriter result) throws IOException {
-		read = new RandomAccessFile(gis, "r");
-		stat = result;
+	public GISRecordParser(RandomAccessFile dataFile) throws IOException {
+		read = dataFile;
+		//stat = result;
 		offset = read.readLine().length() + 1;
 		
 	}

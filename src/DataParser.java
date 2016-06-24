@@ -19,14 +19,15 @@ import java.io.Reader;
 public class DataParser {
 	// ~ Fields
 	private RandomAccessFile dataFile = null;
-	private long offset= 0 ;
-	private long endOffset = 0;
+	//private long offset= 0 ;
+	//private long endOffset = 0;
 	private BufferedWriter stat = null;
+	private GISRecordParser gisRecords =null;
 	
 	private int wLong, eLong , sLat , nLat; //boundary
 	
-	GeoCoordinates geoCoord;
-	DMScoordinates coord;
+	private GeoCoordinates geoCoord;
+	private DMScoordinates coord;
 	// private Stats stat = null;
 
 	//public prQuadTree<Point> quadTree;
@@ -86,7 +87,15 @@ public class DataParser {
 		
 	}
 	
-	public DMScoordinates toCoord(int degree, int Minute, int Second, String direction){
+	/**
+	 * 
+	 * @param degree
+	 * @param Minute
+	 * @param Second
+	 * @param direction
+	 * @return
+	 */
+	private DMScoordinates toCoord(int degree, int Minute, int Second, String direction){
 		return coord = new DMScoordinates(degree, Minute, Second, direction);
 	}
 
@@ -97,7 +106,6 @@ public class DataParser {
 		while (dataFile.readLine() != null) {
 
 			NameIndex name = new NameIndex( )
-			
 			
 			
 		}
