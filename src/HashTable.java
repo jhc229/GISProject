@@ -94,7 +94,7 @@ public class HashTable<Key, E> {
 		//}
 		// if the space does not exist, increase capacity size
 
-		}
+	//	}
 	}
 	 private int quadProbe(Key k) {
 
