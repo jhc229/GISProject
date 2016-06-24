@@ -26,7 +26,9 @@ class KVpair<Key, E> {
 	public void addValue(E r) {
 		offset.add(r);
 	}
-
+	public void setValues(Vector<E> e) {
+		offset = e;
+	}
 	
 	public Key getKey(){
 		return k;
