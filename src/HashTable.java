@@ -90,7 +90,7 @@ public class HashTable<Key, E> {
 
 			hashValue = (hashValue << 4) + str.charAt(Pos); // shift/mix
 
-			long hiBits = hashValue & 0xF0000000L; // get high nybble
+			long hiBits = hashValue & 0xF000000000000000; // get high nybble
 
 			if (hiBits != 0)
 				hashValue ^= hiBits >> 56; // xor high nybble with second nybble
