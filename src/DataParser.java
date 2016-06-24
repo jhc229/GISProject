@@ -119,7 +119,7 @@ public class DataParser {
 		while (dataFile.readLine() != null) {
 			//System.out.println(gisRecords.gisRecordsUpdate());
 		//	dataFile.seek(offset);
-	//		System.out.println("offset: " + offset);
+			System.out.println("offset: " + offset);
 			
 			gisRecords.gisRecordsUpdate(offset);
 			NameIndex names = new NameIndex(GeoFeatures.FEATURE_NAME, GeoFeatures.STATE_ALPHA);
