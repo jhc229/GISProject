@@ -127,4 +127,10 @@ public class Point implements Compare2D<Point> {
 		}
 		return false;
    }
+
+	@Override
+	public Direction directionFrom(long X, long Y) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
