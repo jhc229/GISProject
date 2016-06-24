@@ -60,7 +60,6 @@ public class GISRecordParser {
 			GeoFeatures.PRIM_LAT_DEC = Double.parseDouble(items[9]);
 			GeoFeatures.PRIM_LONG_DEC =Double.parseDouble(items[10]);
 			
-			System.out.println(items[11].getClass());
 			if (!items[11].equals("")){
 				GeoFeatures.SOURCE_LAT_DMS = new DMScoordinates(Integer.parseInt(items[11].substring(0, 2)), Integer.parseInt(items[11].substring(2, 4)), Integer.parseInt(items[11].substring(4, 6)), items[11].substring(6));
 				GeoFeatures.SOURCE_LONG_DMS = new DMScoordinates(Integer.parseInt(items[12].substring(0, 3)), Integer.parseInt(items[12].substring(3, 5)), Integer.parseInt(items[12].substring(5, 7)), items[12].substring(7));
