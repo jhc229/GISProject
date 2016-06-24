@@ -110,5 +110,18 @@ public class HashTable<Key, E> {
 	}
 	
 
+	public String hashToString(){
+		
+		String output = "";
+		for (int i = 0; i<size; i++){
+			if (tableList[i] != null) s+= i +":  [" + tableList[i].
+			
+		}
+		
+		
+		
+		return null;
+		
+	}
 	
 }
