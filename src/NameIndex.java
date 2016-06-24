@@ -45,8 +45,8 @@ public class NameIndex {
 	@Override
 	public int hashCode() {
 		
-		return HashTable.elfHash(featureName + ":" + state);
-		/*
+		//return HashTable.elfHash(featureName + ":" + state);
+		
 		long hashValue = 0;
 		for (int Pos = 0; Pos < str.length(); Pos++) { // use all elements
 
@@ -60,7 +60,7 @@ public class NameIndex {
 			hashValue &= ~hiBits; // clear high nybble
 		}
 		return (int) hashValue;
-		*/
+		
 	}
 
 }

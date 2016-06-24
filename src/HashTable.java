@@ -77,7 +77,8 @@ public class HashTable<Key, E> {
 	private void fInsertHash(KVpair[] table, Key k, E e){
 		int home; // initial position
 		int count = 0; //update probe
-		int pos = home = Math.abs(((NameIndex) k).hashCode() % table.length); 
+		//int pos = home = Math.abs(((NameIndex) k).hashCode() % table.length); 
+		int pos = home = (Math.abs(k.hashCode()) % table.length); 
 		System.out.println(pos);
 		//for (int i =0; tableList[pos] != null; i++){ // check duplicates?
 		for (int i = 0; i < table.length; i++){
@@ -264,7 +265,7 @@ public class HashTable<Key, E> {
 		String output = "";
 		//((NameIndex) tableList[i]. getKey()).nameIndexToString()
 		for (int i = 0; i<size; i++){
-			if (tableList[i] != null) output+= i +":  [" + tableList[i].kvPairtoString()+ "] "+ " probe: "+ getProbe(); " \n";
+			if (tableList[i] != null) output+= i +":  [" + tableList[i].kvPairtoString()+ "] "+ " probe: "+ getProbe() +" \n";
 			
 		}
 		return output;
