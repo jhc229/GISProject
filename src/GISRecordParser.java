@@ -74,6 +74,7 @@ public class GISRecordParser {
 			}
 			GeoFeatures.SOURCE_LAT_DEC = 0;
 			GeoFeatures.SOURCE_LONG_DEC =0;
+			
 			GeoFeatures.ELEV_IN_M = Integer.parseInt(items[15]);
 			GeoFeatures.ELEV_IN_FT = Integer.parseInt(items[16]);
 			GeoFeatures.MAP_NAME = items[17];
