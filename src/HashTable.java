@@ -78,7 +78,7 @@ public class HashTable<Key, E> {
 		return  (a * a + a)/2;
 	}
 	
-	public int get probe(){
+	public int getProbe(){
 		return longestProbe;
 	}
 
