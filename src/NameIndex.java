@@ -5,9 +5,9 @@
  */
 public class NameIndex {
 
-	private String featureName;
-	private String state; 
-	private String str;
+	private final String featureName;
+	private final String state; 
+	private final String str;
 
 	/*
 	 * 
