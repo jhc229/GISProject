@@ -126,7 +126,8 @@ public class DataParser {
 			Point pos = new Point(GeoFeatures.PRIM_LONG_DMS.toSeconds(), GeoFeatures.PRIMARY_LAT_DMS.toSeconds(), (int) offset);
 			
 			if (pos.inBox(wLong, eLong , sLat , nLat)){
-				table.insertHash(names, (int) offset);
+				//table.insertHash(names, (int) offset);
+				table.insert(names, (int) offset);
 				//System.out.println("Number of elements: " + table.getNumElements());
 				System.out.println("Number of probes: " + table.getProbe());
 				//System.out.println("Current table size: " + table.getCurrentSize());

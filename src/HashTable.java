@@ -1,4 +1,3 @@
-import random.KVpair;
 
 /**
  * Your table will use quadratic probing to resolve collisions, with the quadratic function (n^2+ n)/2 to compute the step size. 
@@ -101,7 +100,7 @@ public class HashTable<Key, E> {
 	}
 	 private int quadProbe(Key k) {
 
-			int index = k.hashCode() % size;
+			int index = Math.abs(k.hashCode() % size);
 			int offset = 1;
 			int count = 0;
 			while (tableList[index] != null && !tableList[index].getKey().equals(k)){
