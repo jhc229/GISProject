@@ -24,7 +24,7 @@ public class GeoFeatures {
 	public static double 				SOURCE_LONG_DEC = 0.0;
 	public static int 						ELEV_IN_M = 0;
 	public static int 						ELEV_IN_FT = 0;
-	public static String  				MAP_NAMEp;
+	public static String  				MAP_NAME;
 	public static String  				DATE_CREATED;
 	public static String  				DATE_EDITE;
 

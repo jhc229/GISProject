@@ -83,9 +83,9 @@ public class DataParser {
 	public void world(String westLong, String eastLong, String southLat, String northLat) throws IOException {
 				
 		wLong = toCoord(Integer.parseInt(westLong.substring(0, 2)), Integer.parseInt(westLong.substring(2, 4)), Integer.parseInt(westLong.substring(4, 6)), westLong.substring(6)).toSeconds();
-		eLong = toCoord(Integer.parseInt(westLong.substring(0, 2)), Integer.parseInt(westLong.substring(2, 4)), Integer.parseInt(westLong.substring(4, 6)), westLong.substring(6)).toSeconds();
-		sLat =  toCoord(Integer.parseInt(westLong.substring(0, 3)), Integer.parseInt(westLong.substring(3, 5)), Integer.parseInt(westLong.substring(5, 7)), westLong.substring(7)).toSeconds();
-		nLat = toCoord(Integer.parseInt(westLong.substring(0, 3)), Integer.parseInt(westLong.substring(3, 5)), Integer.parseInt(westLong.substring(5, 7)), westLong.substring(7)).toSeconds();
+		eLong = toCoord(Integer.parseInt(eastLong.substring(0, 2)), Integer.parseInt(eastLong.substring(2, 4)), Integer.parseInt(eastLong.substring(4, 6)), eastLong.substring(6)).toSeconds();
+		sLat =  toCoord(Integer.parseInt(southLat.substring(0, 3)), Integer.parseInt(southLat.substring(3, 5)), Integer.parseInt(southLat.substring(5, 7)), southLat.substring(7)).toSeconds();
+		nLat = toCoord(Integer.parseInt(northLat.substring(0, 3)), Integer.parseInt(northLat.substring(3, 5)), Integer.parseInt(northLat.substring(5, 7)), northLat.substring(7)).toSeconds();
 
 	//	quadTree = new prQuadTree<Point>(wLong, eLong , sLat , nLat);
 		stat.write(wLong+ " "+ eLong +" "+ sLat +" "+ nLat);
@@ -109,23 +109,18 @@ public class DataParser {
 	 * @param string
 	 * @throws IOException
 	 */
-	public void importFile() throws IOException {
+	public void importFile() throws IOException, GISRecordException {
 		
-		try {
-			gisRecords = new GISRecordParser(dataFile, endOffset); // Begin at the second line where records start.
+		gisRecords = new GISRecordParser(dataFile, endOffset); // Begin at the second line where records start.
 
-			while (dataFile.readLine() != null) {
+		while (dataFile.readLine() != null) {
 
-				//NameIndex name = new NameIndex(gisRecords.name(offset), gisRecords.s)
-				
-				
-			}
-			stat.write("\n");
-			// dataFile.close();
-		} catch (GISRecordException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//NameIndex name = new NameIndex(gisRecords.name(offset), gisRecords.s)
+			
+			
 		}
+		stat.write("\n");
+		// dataFile.close();
 		
 	}
 
