@@ -116,9 +116,11 @@ public class DataParser {
 		while (dataFile.readLine() != null) {
 			//System.out.println(gisRecords.gisRecordsUpdate());
 		//	dataFile.seek(offset);
-			System.out.println("offset: " + offset);
+	//		System.out.println("offset: " + offset);
 			gisRecords.gisRecordsUpdate(offset);
-			dataFile.seek(offset);
+			System.out.println(GeoFeatures.FEATURE_NAME);
+
+			//dataFile.seek(offset);
 		//	endOffset = offset;
 			
 			//System.out.println("name: " + gisRecords.name(offset));
