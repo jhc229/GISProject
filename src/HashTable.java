@@ -86,6 +86,9 @@ public class HashTable<Key, E> {
 		return longestProbe;
 	}
 
+	public int getNumElements(){
+		return numbElements;
+	}
 	/**
 	 * Source code from course notes.
 	 * 
