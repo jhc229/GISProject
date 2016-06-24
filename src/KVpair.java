@@ -14,7 +14,6 @@ class KVpair<Key, E> {
 	KVpair(){
 		k = null;
 		e = null;
-		
 	}
 	
 	KVpair(Key k, E e){
