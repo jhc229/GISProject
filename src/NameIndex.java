@@ -44,7 +44,7 @@ public class NameIndex {
 	 */
 	@Override
 	public int hashCode() {
-		/*
+		
 		long hashValue = 0;
 		for (int Pos = 0; Pos < str.length(); Pos++) { // use all elements
 
@@ -57,22 +57,7 @@ public class NameIndex {
 
 			hashValue &= ~hiBits; // clear high nybble
 		}
-		return (int) hashValue;*/
-		
-		long hashCode = 0;
-		for (int Pos = 0; Pos < str.length(); Pos++) { // use all elements
-
-			hashCode = (hashCode << 4) + str.charAt(Pos); // shift/mix
-
-			long hiBits = hashCode & 0xF0000000L; // get high nybble
-
-			if (hiBits != 0)
-				hashCode ^= hiBits >> 24; // xor high nybble with second nybble
-
-			hashCode &= ~hiBits; // clear high nybble
-		}
-
-		return (int) (hashCode);
+		return (int) hashValue;
 		
 	}
 
