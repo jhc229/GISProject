@@ -89,6 +89,7 @@ public class DataParser {
 		nLat = toCoord(Integer.parseInt(northLat.substring(0, 2)), Integer.parseInt(northLat.substring(2, 4)), Integer.parseInt(northLat.substring(4, 6)), northLat.substring(6)).toSeconds();
 
 	//	quadTree = new prQuadTree<Point>(wLong, eLong , sLat , nLat);
+		System.out.println("world to seconds                                     " + wLong+ " "+ eLong +" "+ sLat +" "+ nLat);
 		stat.write(wLong+ " "+ eLong +" "+ sLat +" "+ nLat);
 		
 	}
@@ -138,7 +139,6 @@ public class DataParser {
 				
 				countIdx++;
 			}
-			System.out.println("saddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
 
 			
 			dataFile.seek(offset); //Bring the pointer back to beginning of the line after reading from the gisRecordsUpdate

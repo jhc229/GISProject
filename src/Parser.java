@@ -116,11 +116,11 @@ public class Parser {
 				
 				else if (str[0].matches("world")) {  // 4 coordinates westlong eastlong southlat northlat
 					
-					//db.world(str[1], str[2], str[3], str[4]);
+					db.world(str[1], str[2], str[3], str[4]);
 					stat.write("world: "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] + "\n" +"\n" );
 					System.out.println("world: "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] );
-					cmd.diskReads =2;
-					System.out.println("stat check: " + cmd.cacheHits + " " +cmd.diskReads);
+					//cmd.diskReads =2;
+					//System.out.println("stat check: " + cmd.cacheHits + " " +cmd.diskReads);
 					cmdCount++;
 					
 				} 

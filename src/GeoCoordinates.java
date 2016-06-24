@@ -20,9 +20,9 @@ public class GeoCoordinates {
 		String s = "Heap sort statistics";
 		s += "\nData file name: " + dataFileName;
 		s += "\nCache hits: " + cacheHits;
-		s += "\nCache misses: " + cacheMisses;
-		s += "\nDisk reads: " + diskReads;
-		s += "\nDisk writes: " + diskWrites;
+	//	s += "\nCache misses: " + cacheMisses;
+		//s += "\nDisk reads: " + diskReads;
+	//	s += "\nDisk writes: " + diskWrites;
 		s += "\nSort elapsed time: " + elapsedTime + "ms";
 		s += "\n\n";
 		
