@@ -264,7 +264,7 @@ public class HashTable<Key, E> {
 		String output = "";
 		//((NameIndex) tableList[i]. getKey()).nameIndexToString()
 		for (int i = 0; i<size; i++){
-			if (tableList[i] != null) output+= i +":  [" + tableList[i].kvPairtoString()+ "] "+ "probe: "+ getProbe(); "\n";
+			if (tableList[i] != null) output+= i +":  [" + tableList[i].kvPairtoString()+ "] "+ " probe: "+ getProbe(); " \n";
 			
 		}
 		return output;
