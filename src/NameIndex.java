@@ -9,36 +9,34 @@ public class NameIndex {
 	private String state; 
 	private String str;
 
-	/**
-	 * Constructor
-	 * @param fName the feature name
-	 * @param state the state
+
+	/*
+	 * 
 	 */
 	public NameIndex(String featureName, String state) {
-		this.featureName = fName;
+		this.featureName = featureName;
 		this.state = state;
-		str =fName + ":" + state;
+		str =featureName + ":" + state;
 	}
 
-	/**
-	 * @return the feature name
+	/*
+	 * 
 	 */
 	public String getName() {
 		return fName;
 	}
 
-	/**
-	 * @return the state
+	/*
+	 * 
 	 */
 	public String getState() {
 		return state;
 	}
 
-	/**
+
+	/*
 	 * Source code from course notes.
-	 * 
-	 * @param str
-	 * @return
+	 * @see java.lang.Object#hashCode()
 	 */
 	public int hashCode() {
 		
