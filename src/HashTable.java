@@ -116,11 +116,14 @@ public class HashTable<Key, E> {
 	private int quadProbe(Key k) {
 
 			int index =  Math.abs(((NameIndex) k).hashCode() % size);
-			System.out.println(tableList[1]);
-			System.out.println(index); // pos = (home + step(k, i)) % table.length;
+			//System.out.println(tableList[1]);
+			//System.out.println(index); // pos = (home + step(k, i)) % table.length;
+			//index +
 			int offset = 1;
 			int count = 0;
 			while (tableList[index] != null && !tableList[index].getKey().equals(k)){
+				//System.out.println(tableList[index]); // pos = (home + step(k, i)) % table.length;
+
 				index += offset; // +1, +3, +5, +7, +9
 				offset += 2;
 				index %= size;
