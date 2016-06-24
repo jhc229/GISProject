@@ -1,6 +1,6 @@
 
 
-class KVpair {
+class KVpair<Key, E> {
 
 	private Key k;
 	private E e;
