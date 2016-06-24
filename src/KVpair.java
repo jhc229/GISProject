@@ -18,7 +18,7 @@ class KVpair<Key, E> {
 		offset = null;
 	}
 	
-	KVpair(Key k, Vector<E> offset){
+	KVpair(Key k, E offset){
 		this.k = k;
 		this.offset = new Vector<E>();
 		this.offset.add(offset);
