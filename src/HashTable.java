@@ -95,7 +95,7 @@ public class HashTable<Key, E> {
 		}
 		else if (tableList[index] != null) {
 			//tableList[index].addValue(r);
-			table[pos] = new KVpair<Key, E>(k, e);
+			tableList[index] = new KVpair<Key, E>(k, r);
 		}
 	//	numbElements++;
 		// if the space exists
@@ -116,9 +116,7 @@ public class HashTable<Key, E> {
 				index %= size;
 				count++;
 			}
-			if (count > longestProbe) {
-				longestProbe = count;
-			}
+			longestProbe = Math.max(count, longestProbe);
 			return index;
 		}
 		@SuppressWarnings("unchecked")
