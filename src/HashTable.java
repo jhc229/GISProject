@@ -104,9 +104,10 @@ public class HashTable<Key, E> {
 
 	//	}
 	}
-	 private int quadProbe(Key k) {
 
-			int index =  Math.abs(((NameIndex) k).hashCode() % size);
+	private int quadProbe(Key k) {
+
+			int index =  Math.abs(k.hashCode() % size);
 			int offset = 1;
 			int count = 0;
 			while (tableList[index] != null && !tableList[index].getKey().equals(k)){
@@ -118,30 +119,49 @@ public class HashTable<Key, E> {
 			longestProbe = Math.max(count, longestProbe);
 			return index;
 		}
-		@SuppressWarnings("unchecked")
-		private void rehash() {
-				size *= size;
-				//capacityIndex++;
-				//M = capacityList[capacityIndex];
 
-				@SuppressWarnings("rawtypes")
-				KVpair[] old = tableList;
-				tableList = new KVpair[size];
-				for (int i = 0; i < old.length; i++) {
-					if (old[i] != null) {
-						reInsert((Key) old[i].getKey(), old[i].getValue());
-					}
-				}
-			}
-		public void reInsert(Key k, Vector<E> elements) {
+	@SuppressWarnings("unchecked")
+	private void rehash() {
+		size *= size;
+		// capacityIndex++;
+		// M = capacityList[capacityIndex];
 
-			int index = quadProbe(k);
-			if (tableList[index] == null) {
-				size++;
-				tableList[index] = new KVpair<Key, E>(k, null);
-				tableList[index].setValues(elements);
+		@SuppressWarnings("rawtypes")
+		KVpair[] old = tableList;
+		tableList = new KVpair[size];
+		for (int i = 0; i < old.length; i++) {
+			if (old[i] != null) {
+				reInsert((Key) old[i].getKey(), old[i].getValue());
 			}
 		}
+	}
+
+	public void reInsert(Key k, Vector<E> elements) {
+
+		int index = quadProbe(k);
+		if (tableList[index] == null) {
+			size++;
+			tableList[index] = new KVpair<Key, E>(k, null);
+			tableList[index].setValues(elements);
+		}
+	}
+
+	public static int elfHash(String str) {
+		long hashCode = 0;
+		for (int Pos = 0; Pos < str.length(); Pos++) { // use all elements
+
+			hashCode = (hashCode << 4) + str.charAt(Pos); // shift/mix
+
+			long hiBits = hashCode & 0xF0000000L; // get high nybble
+
+			if (hiBits != 0)
+				hashCode ^= hiBits >> 24; // xor high nybble with second nybble
+
+			hashCode &= ~hiBits; // clear high nybble
+		}
+
+		return (int) (hashCode);
+	}
 	
 	private int step(Key k, int a){
 		return  (a * a + a)/2;
