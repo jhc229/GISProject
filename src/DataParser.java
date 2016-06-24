@@ -105,29 +105,39 @@ public class DataParser {
 	}
 
 	/**
-	 * 
+	 * When insert is completed log the number of entries added to each index, and the longest probe sequence that was needed when
+	 * inserting to the hash table. (A valid record is one that lies within the specified world boundaries.)
 	 * @param string
 	 * @throws IOException
 	 */
 	public void importFile() throws IOException, GISRecordException {
 		
 		gisRecords = new GISRecordParser(dataFile, endOffset); // Begin at the second line where records start.
-
+		int countIdx = 0;
 		while (dataFile.readLine() != null) {
 			//System.out.println(gisRecords.gisRecordsUpdate());
 		//	dataFile.seek(offset);
 	//		System.out.println("offset: " + offset);
+			
 			gisRecords.gisRecordsUpdate(offset);
 			System.out.println(GeoFeatures.FEATURE_NAME);
-
-			dataFile.seek(offset);
-		//	endOffset = offset;
+			NameIndex name = new NameIndex(GeoFeatures.FEATURE_NAME, GeoFeatures.STATE_ALPHA);
+			Point pos = new Point(GeoFeatures.PRIM_LONG_DMS, GeoFeatures.PRIMARY_LAT_DMS, offset);
+			
+			if (pos.inBox(wLong, eLong , sLat , nLat)){
+				table.insert(pos);
+				quadTree.insert(name, offset);
+				
+				countIdx++;
+			}
+			
+			dataFile.seek(offset); //Bring the pointer back to beginning of the line after reading from the gisRecordsUpdate
 			
 			//System.out.println("name: " + gisRecords.name(offset));
 
 			//System.out.println("offset: " + offset);
 			//System.out.println(GeoFeatures.COUNTY_NAME);
-			offset += dataFile.readLine().length() +1;
+			offset += dataFile.readLine().length() +1; // Next line
 			//NameIndex name = new NameIndex(gisRecords.name(offset), gisRecords.s)
 			
 			
