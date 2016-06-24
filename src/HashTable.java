@@ -114,13 +114,11 @@ public class HashTable<Key, E> {
 		
 		String output = "";
 		for (int i = 0; i<size; i++){
-			if (tableList[i] != null) s+= i +":  [" + tableList[i].kvPairtoString() + "]";
+			if (tableList[i] != null) s+= i +":  [" + tableList[i].kvPairtoString() + "] \n";
 			
 		}
+		return output;
 		
-		
-		
-		return null;
 		
 	}
 	
