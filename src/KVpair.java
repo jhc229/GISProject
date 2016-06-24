@@ -21,13 +21,13 @@ class KVpair<Key, E> {
 	KVpair(Key k, E offset){
 		this.k = k;
 		this.offset = new Vector<E>();
-		this.offset.add(offset)
+		this.offset.add(offset);
 	}
 	
-	public Key key(){
+	public Key getKey(){
 		return k;
 	}
-	public E value(){
+	public E getValue(){
 		return e;
 	}
 	
