@@ -41,7 +41,7 @@ public class GISRecordParser {
 
 	public void gisRecordsUpdate(long parserOffset) throws IOException, GISRecordException {
 		if ((parserOffset >= 265) && (parserOffset <= endOffset)){ //&& ((int)read.readByte() == 10)
-			read.seek(parserOffset);
+			//read.seek(parserOffset);
 			//String line = read.readLine();
 			String[] items = read.readLine().split("\\|");
 		
