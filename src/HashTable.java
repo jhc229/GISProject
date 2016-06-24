@@ -69,6 +69,7 @@ public class HashTable<Key, E> {
 		int pos = home = Math.abs(((NameIndex) k).hashCode() % table.length); 
 		//for (int i =0; tableList[pos] != null; i++){ // check duplicates?
 		//for (int i = 0; i < table.length; i++){
+		int i =0;
 		while (table[pos] != null && !table[pos].getKey().equals(k)){
 			pos = (home + step(k, i)) % table.length;
 			count++;
