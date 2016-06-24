@@ -35,16 +35,16 @@ public class HashTable<Key, E> {
         if (((double) numbElements / tableList.length) > .7) {
         	reallocate();
         }
-        KVpair[] result;
+        KVpair result;
         // check to see whether the size should be increased.
         if ((result = insertHelper(tableList, k, e)) == null) {
         	numbElements++;
         }
     }
 
-    private KVpair[] insertHelper(KVpair[] tb, Key k, E elem) {
+    private KVpair insertHelper(KVpair[] tb, Key k, E elem) {
         // the home slot for the current element
-        int home = Math.abs(elem.hashCode() % tb.length);
+        int home = Math.abs(k.hashCode() % tb.length);
         // declare the i outside the for loop because it will be used to count
         // the longest probing.
         int i;
@@ -53,7 +53,7 @@ public class HashTable<Key, E> {
             int pos = (home + (i * i + i) / 2) % tb.length;
             // the slot is empty, the place to put it is found
             if (tb[pos] == null) {
-                tb[pos] = elem;
+                tb[pos].addValue(elem);
                 break;
             }
             // if the position is holding a duplicate, return this duplicate.
@@ -66,14 +66,13 @@ public class HashTable<Key, E> {
 
     }
     private void reallocate() {
-        sizeIndex++;
         @SuppressWarnings("unchecked")
         // create the new table with bigger size
-        T[] newTable = (T[]) new Object[sizes[sizeIndex]];
+        KVpair[] newTable = (KVpair[] ) new Object[size*size];
         // traverse the old table and copy every element to the new table
-        for (T elem : table) {
+        for (KVpair elem : tableList) {
             if (elem != null) {
-                insertHelper(newTable, elem);
+                insertHelper(newTable, elem.getKey(), elem.getValue());
             }
         }
 
