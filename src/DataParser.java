@@ -113,8 +113,11 @@ public class DataParser {
 		
 		gisRecords = new GISRecordParser(dataFile, endOffset); // Begin at the second line where records start.
 
-		while (dataFile.readLine() != null) {
-
+		String str = "";
+		while ((str = dataFile.readLine()) != null) {
+			offset += dataFile.length() +1;
+			//System.out.println(gisRecords.gisRecordsUpdate());
+			System.out.println("offset: " + offset);
 			//NameIndex name = new NameIndex(gisRecords.name(offset), gisRecords.s)
 			
 			
