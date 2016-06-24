@@ -34,7 +34,7 @@ public class NameIndex {
 	/**
 	 *@return a hashcode for this specific container
 	 */
-	public int hashCode() {
+	public long hashCode() {
 		
 		long hashValue = 0;
 		for (int Pos = 0; Pos < str.length(); Pos++) { // use all elements
