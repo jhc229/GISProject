@@ -77,6 +77,10 @@ public class HashTable<Key, E> {
 	private int step(Key k, int a){
 		return  (a * a + a)/2;
 	}
+	
+	public int get probe(){
+		return longestProbe;
+	}
 
 	/**
 	 * Source code from course notes.
