@@ -26,7 +26,7 @@ public class GeoFeatures {
 	public static int 						ELEV_IN_FT = 0;
 	public static String  				MAP_NAME;
 	public static String  				DATE_CREATED;
-	public static String  				DATE_EDITE;
+	public static String  				DATE_EDITED;
 
 
 
