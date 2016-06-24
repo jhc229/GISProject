@@ -56,7 +56,7 @@ public class HashTable<Key, E> {
 		KVpair[] newTable  = new KVpair[size];
 		//tableList = new KVpair[size];
 		for (int i = 0; tableList[i] != null; i++){
-			fInsertHash(newTable, tableList[i].key(), tableList[i]	.value());
+			fInsertHash(newTable, tableList[i].getKey(), tableList[i].getValue());
 		}
 		tableList = newTable;
 		
