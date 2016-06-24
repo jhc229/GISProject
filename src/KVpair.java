@@ -27,7 +27,7 @@ class KVpair<Key, E> {
 	public Key getKey(){
 		return k;
 	}
-	public E getValue(){
+	public Vector<E> getValue(){
 		return offset;
 	}
 	
