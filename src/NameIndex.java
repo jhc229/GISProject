@@ -1,9 +1,12 @@
-
+/**
+ *  Feature Name and stat
+ * @author sean
+ *
+ */
 public class NameIndex {
 
-	
-	private final String fName; // the name
-	private final String state; //the state
+	private String featureName;
+	private String state; 
 	private String str;
 
 	/**
@@ -11,8 +14,8 @@ public class NameIndex {
 	 * @param fName the feature name
 	 * @param state the state
 	 */
-	public NameIndex(String fName, String state) {
-		this.fName = fName;
+	public NameIndex(String featureName, String state) {
+		this.featureName = fName;
 		this.state = state;
 		str =fName + ":" + state;
 	}
@@ -32,7 +35,10 @@ public class NameIndex {
 	}
 
 	/**
-	 *@return a hashcode for this specific container
+	 * Source code from course notes.
+	 * 
+	 * @param str
+	 * @return
 	 */
 	public int hashCode() {
 		
