@@ -55,12 +55,12 @@ public class GISRecordParser {
 			GeoFeatures.COUNTY_NUMERIC = Double.parseDouble(items[6]);
 			
 			GeoFeatures.PRIMARY_LAT_DMS = new DMScoordinates(Integer.parseInt(items[7].substring(0, 2)), Integer.parseInt(items[7].substring(2, 4)), Integer.parseInt(items[7].substring(4, 6)), items[7].substring(6));
-			GeoFeatures.PRIM_LONG_DMS = new DMScoordinates(Integer.parseInt(items[8].substring(0, 2)), Integer.parseInt(items[8].substring(2, 4)), Integer.parseInt(items[8].substring(4, 6)), items[8].substring(6));
+			GeoFeatures.PRIM_LONG_DMS = new DMScoordinates(Integer.parseInt(items[8].substring(0, 3)), Integer.parseInt(items[8].substring(3, 5)), Integer.parseInt(items[8].substring(5, 7)), items[8].substring(7));
 			
 			GeoFeatures.PRIM_LAT_DEC = Double.parseDouble(items[9]);
 			GeoFeatures.PRIM_LONG_DEC =Double.parseDouble(items[10]);
 			
-			GeoFeatures.SOURCE_LAT_DMS = new DMScoordinates(Integer.parseInt(items[11].substring(0, 3)), Integer.parseInt(items[11].substring(3, 5)), Integer.parseInt(items[11].substring(5, 7)), items[11].substring(7));
+			GeoFeatures.SOURCE_LAT_DMS = new DMScoordinates(Integer.parseInt(items[11].substring(0, 2)), Integer.parseInt(items[11].substring(2, 4)), Integer.parseInt(items[11].substring(4, 6)), items[11].substring(6));
 			GeoFeatures.SOURCE_LONG_DMS = new DMScoordinates(Integer.parseInt(items[12].substring(0, 2)), Integer.parseInt(items[12].substring(2, 4)), Integer.parseInt(items[12].substring(4, 6)), items[12].substring(6));
 			
 			GeoFeatures.SOURCE_LAT_DEC =Double.parseDouble(items[13]);
