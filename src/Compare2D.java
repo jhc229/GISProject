@@ -12,10 +12,10 @@ public interface Compare2D<T> {
 	public Vector<Integer> getOffsets();
 	
    // Returns the x-coordinate field of the user data object.
-   public long getX();
+   public float getX();
    
    // Returns the y-coordinate field of the user data object.
-   public long getY();
+   public float getY();
    
    // Returns indicator of the direction to the user data object from the 
    // location (X, Y) specified by the parameters.
@@ -46,12 +46,12 @@ public interface Compare2D<T> {
    //         y-axis, but not the positive x-axis
    //    NOQUADRANT:  user data object lies outside the specified rectangle
    //
-   public Direction inQuadrant(double xLo, double xHi, double yLo, 
-                               double yHi);
+   public Direction inQuadrant(float xLo, float xHi, float yLo, 
+                               float yHi);
    
    // Returns true iff the user data object lies within or on the boundaries
    // of the rectangle specified by the parameters.
-   public boolean   inBox(double xLo, double xHi, double yLo, double yHi);
+   public boolean   inBox(float xLo, float xHi, float yLo, float yHi);
    
    // Overrides the user data object's inherited equals() method with an
    // appropriate definition; it is necessary to place this in the interface
