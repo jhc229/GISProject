@@ -122,12 +122,8 @@ public class DataParser {
 	//		System.out.println("offset: " + offset);
 			
 			gisRecords.gisRecordsUpdate(offset);
-			//System.out.println(GeoFeatures.FEATURE_NAME);
 			NameIndex names = new NameIndex(GeoFeatures.FEATURE_NAME, GeoFeatures.STATE_ALPHA);
 			Point pos = new Point(GeoFeatures.PRIM_LONG_DMS.toSeconds(), GeoFeatures.PRIMARY_LAT_DMS.toSeconds(), (int) offset);
-			//table.insertHash(names, (int) offset);
-			//System.out.println("Number of elements: " + table.getNumElements());
-			//System.out.println("Number of probes: " + table.getProbe());
 			
 			if (pos.inBox(wLong, eLong , sLat , nLat)){
 				table.insertHash(names, (int) offset);

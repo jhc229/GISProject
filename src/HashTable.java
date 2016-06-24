@@ -100,6 +100,15 @@ public class HashTable<Key, E> {
 	public int getNumElements(){
 		return numbElements;
 	}
+	
+	/**
+	 * Get the current table size.
+	 * @return
+	 */
+	public int getCurrentSize(){
+		return size;
+	}
+	
 	/**
 	 * Source code from course notes.
 	 * 
