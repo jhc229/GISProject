@@ -67,18 +67,16 @@ public class DataParser {
 		
 		BufferedReader gisRecord = new BufferedReader(new FileReader(gisRecordFile)); 
 		String str = "";
-		while ((str= gisRecord.readLine()) != null) { 
-			if (count > 0){ // second time called
-				//gisRecord.skip(400); //Moves the pointer to next line
-			//	gisRecord.seek(endOffset+str.length()+1);
-				System.out.println(str =gisRecord.readLine());
-			}
-			System.out.println(endOffset);
+		if (count > 0){
+			gisRecord.readLine();
+			endOffset += 265 +1;
+		}
+		while ((str=gisRecord.readLine()) != null) { 
 
-		//	str =gisRecord.readLine();
-			//gisRecord.skip(n)
+			//System.out.println(endOffset);
+			//str = gisRecord.readLine();
+			System.out.println(str);
 			endOffset +=str.length() +1;
-			//System.out.println((str).getBytes());
 			dataFile.write((str +"\n").getBytes());
 		}
 		dataFile.seek(265); // reset the pointer in the file to 0;
@@ -160,7 +158,7 @@ public class DataParser {
 		System.out.println("toString:     \n" + table.hashToString());
 		stat.write("\n");
 		// dataFile.close();
-		
+		dataFile.seek(265);
 	}
 
 	public void whatIsAt(String string) {
