@@ -88,9 +88,15 @@ public class HashTable<Key, E> {
 	public void insert(Key k, E r){
 		int index = quadProbe(k);
 
+		//	int home;
+		//int pos = home = k.hashCode() % size;  
+		if ((numbElements/tableList.length) > .7){
+			rehash();
+		}
+		tableList[index].addValue(r);
+	//	numbElements++;
 		// if the space exists
 		//if (tableList[index] != null) {
-			tableList[index].addValue(r);
 		//}
 		// if the space does not exist, increase capacity size
 
