@@ -55,7 +55,8 @@ public class HashTable<Key, E> {
 		size *= 2;
 		KVpair[] newTable  = new KVpair[size];
 		//tableList = new KVpair[size];
-		for (int i = 0; tableList[i] != null; i++){
+		//for (int i = 0; tableList[i] != null; i++){
+		for (int i = 0; i < tableList.length; i++)
 			fInsertHash(newTable, tableList[i].getKey(), tableList[i].getValue().firstElement());
 		}
 		tableList = newTable;
@@ -66,7 +67,9 @@ public class HashTable<Key, E> {
 		int home; 
 		int count = 0;
 		int pos = home = Math.abs(e.hashCode() % table.length); 
-		for (int i =1; tableList[pos] != null; i++){ // check duplicates?
+		//for (int i =1; tableList[pos] != null; i++){ // check duplicates?
+		for (int i = 0; i < table.length; i++){
+			if (table[pos] == null)
 			pos = (home + step(k, i)) % size;
 			count++;
 		}
