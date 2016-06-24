@@ -147,20 +147,19 @@ public class HashTable<Key, E> {
 	}
 
 	public static int elfHash(String str) {
-		long hashCode = 0;
+		long hashValue = 0;
 		for (int Pos = 0; Pos < str.length(); Pos++) { // use all elements
 
-			hashCode = (hashCode << 4) + str.charAt(Pos); // shift/mix
+			hashValue = (hashValue << 4) + str.charAt(Pos); // shift/mix
 
-			long hiBits = hashCode & 0xF0000000L; // get high nybble
+			long hiBits = hashValue &  0xF000000000000000L; // get high nybble
 
 			if (hiBits != 0)
-				hashCode ^= hiBits >> 24; // xor high nybble with second nybble
+				hashValue ^= hiBits >> 56; // xor high nybble with second nybble
 
-			hashCode &= ~hiBits; // clear high nybble
+			hashValue &= ~hiBits; // clear high nybble
 		}
-
-		return (int) (hashCode);
+		return (int) hashValue;
 	}
 	
 	private int step(Key k, int a){
