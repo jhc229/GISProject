@@ -4,6 +4,8 @@ public class Point implements Compare2D<Point> {
 
    private long xcoord;
    private long ycoord;
+	private Vector<Integer> offsets;
+
    
    public Point() {
       xcoord = 0;
