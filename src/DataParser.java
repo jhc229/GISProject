@@ -69,6 +69,7 @@ public class DataParser {
 		String str = "";
 		if (count > 0){
 			gisRecord.readLine();
+			offset = endOffset + 265;
 			endOffset += 265 +1;
 		}
 		while ((str=gisRecord.readLine()) != null) { 
