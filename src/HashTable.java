@@ -93,11 +93,11 @@ public class HashTable<Key, E> {
 		if ((numbElements/tableList.length) > .7){
 			rehash();
 		}
-		tableList[index].addValue(r);
+		//tableList[index].addValue(r);
 		tableList[index] = new KVpair<Key, E>(k, r);
 		
 	//	numbElements++;
-		// if the space exists
+		// if the space//exists
 		//if (tableList[index] != null) {
 		//}
 		// if the space does not exist, increase capacity size
