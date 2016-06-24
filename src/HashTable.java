@@ -8,17 +8,23 @@
  * @author sean
  *
  * @param <Key>
- * @param <V>
+ * @param <E>
  */
-public class HashTable<Key, V> {
+public class HashTable<Key, E> {
 	
-	private KVpair<Key, V>[] tableList;
+	private KVpair<Key, E>[] tableList;
 	private int longestProbe = 0;
 	
 	
 	// Constructor
 	public HashTable(int size){
-		tableList = 
+		
+		tableList = new KVpair[size];
 	}
 
+	public void insertHash(Key k, E e){
+		
+		int 
+		
+	}
 }
