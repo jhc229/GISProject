@@ -37,13 +37,13 @@ public class HashTable<Key, E> {
         }
         KVpair result;
         // check to see whether the size should be increased.
-        if ((result = insertHelper(tableList, k, e)) == null) {
+        if ((result = insertHelper(tableList, k,  e) == null) {
         	numbElements++;
         }
     }
 
     @SuppressWarnings("rawtypes")
-	private KVpair insertHelper(KVpair<Key, E>[] tb, Key k, E vector) {
+	private KVpair insertHelper(KVpair<Key, E>[] tb, Key k, E e) {
         // the home slot for the current element
         int home = Math.abs(k.hashCode() % tb.length);
         // declare the i outside the for loop because it will be used to count
@@ -54,11 +54,11 @@ public class HashTable<Key, E> {
             int pos = (home + (i * i + i) / 2) % tb.length;
             // the slot is empty, the place to put it is found
             if (tb[pos] == null) {
-                tb[pos].addValue(vector);
+                tb[pos].addValue(e);
                 break;
             }
             // if the position is holding a duplicate, return this duplicate.
-            if (tb[pos].equals(vector)) {
+            if (tb[pos].equals(e)) {
                 return tb[pos];
             }
         }
@@ -78,7 +78,7 @@ public class HashTable<Key, E> {
             }
         }
 
-        table = newTable;
+        tableList = newTable;
     }
 	/*
 	 * insert element into hashtable
@@ -135,7 +135,7 @@ public class HashTable<Key, E> {
 		numbElements++;
 		table[pos] = new KVpair<Key, E>(k, e);
 	}
-	/*
+	/*****************************************
 	public void insert(Key k, E r){
 		int index = quadProbe(k);
 
@@ -180,7 +180,7 @@ public class HashTable<Key, E> {
 			}
 			longestProbe = Math.max(count, longestProbe);
 			return index;
-		}*/
+		}
 
 	@SuppressWarnings("unchecked")
 	private void rehash() {
@@ -206,7 +206,7 @@ public class HashTable<Key, E> {
 			tableList[index] = new KVpair<Key, E>(k, null);
 			tableList[index].setValues(elements);
 		}
-	}
+	}********************************/
 
 	public static int elfHash(String str) {
 		long hashValue = 0;
