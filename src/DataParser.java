@@ -73,11 +73,16 @@ public class DataParser {
 			//dataFile.seek(endOffset);
 			System.out.println(str);
 		}*/
+		if(count == 0){
+			
+			System.out.println("111111111111111111111111111111111111111");
+
+		}
 		while ((gisRecord.readLine()) != null) { 
 
-		//	System.out.println(endOffset);
+			//System.out.println(endOffset);
 			str = gisRecord.readLine();
-			//System.out.println(str);
+			System.out.println(str);
 			endOffset +=str.length() +1;
 			dataFile.write((str +"\n").getBytes());
 		}
