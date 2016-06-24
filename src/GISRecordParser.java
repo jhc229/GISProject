@@ -42,9 +42,7 @@ public class GISRecordParser {
 	public void gisRecordsUpdate(long parserOffset) throws IOException, GISRecordException {
 		if ((parserOffset >= 265) && (parserOffset <= endOffset)){ //&& ((int)read.readByte() == 10)
 			read.seek(parserOffset);
-			//String line = read.readLine();
 			String[] items = read.readLine().split("\\|");
-			//System.out.println(parserOffset );
 			
 			GeoFeatures.FEATURE_ID = Integer.parseInt(items[0]);
 			GeoFeatures.FEATURE_NAME = items[1];
@@ -81,7 +79,6 @@ public class GISRecordParser {
 			
 			if (items.length == 20) GeoFeatures.DATE_EDITED = items[19];
 			
-			//read.seek(parserOffset);
 		}
 		else {
 			if (((parserOffset >= 0) && (parserOffset < 265) ) || ((int)read.readByte() != 10)){

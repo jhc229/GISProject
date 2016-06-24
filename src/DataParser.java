@@ -120,7 +120,7 @@ public class DataParser {
 			gisRecords.gisRecordsUpdate(offset);
 			System.out.println(GeoFeatures.FEATURE_NAME);
 
-			//dataFile.seek(offset);
+			dataFile.seek(offset);
 		//	endOffset = offset;
 			
 			//System.out.println("name: " + gisRecords.name(offset));
