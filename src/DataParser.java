@@ -118,8 +118,8 @@ public class DataParser {
 		int countIdx = 0;
 		while (dataFile.readLine() != null) {
 			//System.out.println(gisRecords.gisRecordsUpdate());
-		//	dataFile.seek(offset);
-			System.out.println("offset: " + offset);
+			dataFile.seek(offset);
+			//System.out.println("offset: " + offset);
 			
 			gisRecords.gisRecordsUpdate(offset);
 			NameIndex names = new NameIndex(GeoFeatures.FEATURE_NAME, GeoFeatures.STATE_ALPHA);
@@ -144,7 +144,6 @@ public class DataParser {
 			//System.out.println(GeoFeatures.COUNTY_NAME);
 			offset += dataFile.readLine().length() +1; // Next line
 			//NameIndex name = new NameIndex(gisRecords.name(offset), gisRecords.s)
-			
 			
 		}
 		System.out.println("Number of elements: " + table.getNumElements());
