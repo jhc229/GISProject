@@ -1,7 +1,5 @@
 /**
  * Keep the records of the output generated from the run time.
- * @author Jung Hyun Choi (jhc229) Woo Jin Kye (woojin)
- * @version {04.04.2016}
  *
  */
 public class Stat {
