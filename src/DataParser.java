@@ -49,6 +49,7 @@ public class DataParser {
 			this.dataFile = new RandomAccessFile(dataFile, "rw");
 			stat = result;
 			offset = 265;
+			endOffset = 265;
 			//pool = new BufferPool();
 			//table = new HashTable<NameIndex, Integer>(1024);
 			//offset  = 0;
@@ -67,10 +68,14 @@ public class DataParser {
 		BufferedReader gisRecord = new BufferedReader(new FileReader(gisRecordFile)); 
 		String str = "";
 		while ((str= gisRecord.readLine()) != null) { 
-			if (count >0){ // second time called
-				gisRecord.skip(400); //Moves the pointer to next line
+			if (count > 0){ // second time called
+				//gisRecord.skip(400); //Moves the pointer to next line
 			//	gisRecord.seek(endOffset+str.length()+1);
+				System.out.println(str =gisRecord.readLine());
 			}
+			System.out.println(endOffset);
+
+		//	str =gisRecord.readLine();
 			//gisRecord.skip(n)
 			endOffset +=str.length() +1;
 			//System.out.println((str).getBytes());
