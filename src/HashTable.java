@@ -119,8 +119,9 @@ public class HashTable<Key, E> {
 			int offset = 1;
 			int count = 0;
 			while (tableList[index] != null && !tableList[index].getKey().equals(k)){
-				index  = (index + step(k, count)) % size;
-				offset++;
+				index += offset; // +1, +3, +5, +7, +9
+				offset += 2;
+				index %= size;
 				count++;
 			}
 			longestProbe = Math.max(count, longestProbe);
