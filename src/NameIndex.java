@@ -42,7 +42,7 @@ public class NameIndex {
 	 * (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
-	@Override
+	//@Override
 	public int hashCode() {
 		
 		//return HashTable.elfHash(featureName + ":" + state);
