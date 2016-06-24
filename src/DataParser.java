@@ -118,6 +118,8 @@ public class DataParser {
 			dataFile.seek(offset);
 			System.out.println("offset: " + offset);
 			gisRecords.gisRecordsUpdate(offset);
+			//System.out.println("name: " + gisRecords.name(offset));
+
 			//System.out.println("offset: " + offset);
 			//System.out.println(GeoFeatures.COUNTY_NAME);
 			offset += dataFile.readLine().length() +1;
