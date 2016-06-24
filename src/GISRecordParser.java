@@ -33,7 +33,7 @@ public class GISRecordParser {
 			throws IOException {
 		read = dataFile;
 		// stat = result;
-		read.seek(0); // initialize the pointer in the record to the beginning.
+		//read.seek(0); // initialize the pointer in the record to the beginning.
 		this.endOffset = endoffset;
 		offset = read.readLine().length() + 1; // Start at the second line.
 
