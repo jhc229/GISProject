@@ -32,7 +32,7 @@ public class HashTable<Key, E> {
 	public void insertHash(Key k, E e){
 		
 		int home;
-		int pos = home = availSlot(k);
+		int pos = home = availSlot(k);  //size -1
 		
 		for (int i = 1; tableList[pos] != null; i++){
 			pos = (home + p(k, i)) % size;
@@ -46,17 +46,13 @@ public class HashTable<Key, E> {
 		int offset = 1;
 		int count = 0;
 
-		// keep looking if the space exists and the key is not already in there
-		while (list[index] != null && !list[index].getKey().equals(key)) {
-
-			index += offset;
+		while (tableList[index] != null && !tableList[index].getKey().equals(k)) {
+			index += offset; // +1, +3, +5, +7, +9
 			offset += 2;
-			index %= capacity;
+			index %= size;
 			count++;
 
 		}
-		// helper code for getting the length of time spending on find the
-		// correct space
 		if (count > longestProbe) {
 			longestProbe = count;
 		}
