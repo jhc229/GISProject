@@ -68,8 +68,10 @@ public class DataParser {
 		String str = "";
 		while ((str= gisRecord.readLine()) != null) { 
 			if (count >0){ // second time called
-				gisRecord.readLine(); //Moves the pointer to next line
+				gisRecord.skip(400); //Moves the pointer to next line
+			//	gisRecord.seek(endOffset+str.length()+1);
 			}
+			//gisRecord.skip(n)
 			endOffset +=str.length() +1;
 			//System.out.println((str).getBytes());
 			dataFile.write((str +"\n").getBytes());
@@ -122,6 +124,7 @@ public class DataParser {
 			//System.out.println("offset: " + offset);
 			
 			gisRecords.gisRecordsUpdate(offset);
+			
 			NameIndex names = new NameIndex(GeoFeatures.FEATURE_NAME, GeoFeatures.STATE_ALPHA);
 			Point pos = new Point(GeoFeatures.PRIM_LONG_DMS.toSeconds(), GeoFeatures.PRIMARY_LAT_DMS.toSeconds(), (int) offset);
 			
