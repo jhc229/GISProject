@@ -69,12 +69,15 @@ public class HashTable<Key, E> {
 		int pos = home = Math.abs(((NameIndex) k).hashCode() % table.length); 
 		//for (int i =0; tableList[pos] != null; i++){ // check duplicates?
 		//for (int i = 0; i < table.length; i++){
-			if (table[pos] == null){
-				table[pos] = new KVpair<Key, E>(k, e);
-				break;
-			}
+		while (table[pos] != null && !table[pos].getKey().equals(k)){
 			pos = (home + step(k, i)) % table.length;
 			count++;
+			//if (table[pos] == null){
+		//		table[pos] = new KVpair<Key, E>(k, e);
+		//		break;
+			}
+			//pos = (home + step(k, i)) % table.length;
+			//count++;
 		}
 		longestProbe = Math.max(count, longestProbe);
 		numbElements++;
