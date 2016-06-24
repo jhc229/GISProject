@@ -42,6 +42,7 @@ public class NameIndex {
 	 * (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
+	@Override
 	public int hashCode() {
 		
 		long hashValue = 0;
