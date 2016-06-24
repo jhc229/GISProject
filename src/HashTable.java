@@ -15,6 +15,7 @@ public class HashTable<Key, E> {
 	private KVpair<Key, E>[] tableList;
 	private int longestProbe = 0;
 	private int size = 0;
+	private int numbElements = 0;
 	
 	
 	/*
@@ -31,37 +32,52 @@ public class HashTable<Key, E> {
 	 */
 	public void insertHash(Key k, E e){
 		
-		int home;
-		int pos = home = availSlot(k);  //size -1
-		
-		for (int i = 1; tableList[pos] != null; i++){
+	//	int home;
+		//int pos = home = k.hashCode() % size;  
+		if ((numbElements/tableList.length) > .7){
+			rehash();
+		}
+		fInsertHash(tableList, k, e);
+		numbElements++;
+		}
+	
+	/*
+		for (int i =1; tableList[pos] != null; i++){
 			pos = (home + p(k, i)) % size;
 			assert tableList[pos].key().compareTo(k) != 0: "duplicates not allowed";
 		}
 		tableList[pos] = new KVpair<Key, E>(k, e);
+	}*/
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private void rehash(){
+	
+		size *= 2;
+		KVpair[] newTable  = new KVpair[size];
+		//tableList = new KVpair[size];
+		for (int i = 0; tableList[i] != null; i++){
+			fInsertHash(newTable, tableList[i].key(), tableList[i]	.value());
+		}
+		tableList = newTable;
+		
 	}
 	
-	public int availSlot(Key k){
-		int index = k.hashCode() % size;
-		int offset = 1;
+	private void fInsertHash(KVpair[] table, Key k, E e){
+		int home; 
 		int count = 0;
-
-		while (tableList[index] != null && !tableList[index].getKey().equals(k)) {
-			index += offset; // +1, +3, +5, +7, +9        
-			offset += 2;
-			index %= size;
-			
-			// index = index +offset
-			// offset+2
-			
+		int pos = home = Math.abs(e.hashCode() % table.length); 
+		for (int i =1; tableList[pos] != null; i++){ // check duplicates?
+			pos = (home + step(k, i)) % size;
 			count++;
-
 		}
-		if (count > longestProbe) {
-			longestProbe = count;
-		}
-		return index;
+		longestProbe = Math.max(count, longestProbe);
+		table[pos] = new KVpair<Key, E>(k, e);
 	}
+	
+	private int step(Key k, int a){
+		return  (a * a + a)/2;
+	}
+
 	/**
 	 * Source code from course notes.
 	 * 
@@ -77,11 +93,10 @@ public class HashTable<Key, E> {
 			long hiBits = hashCode & 0xF0000000L; // get high nybble
 
 			if (hiBits != 0)
-				hashCode ^= hiBits >> 24; // xor high nybble with second nybble
+				hashCode ^= hiBits >> 54; // xor high nybble with second nybble
 
 			hashCode &= ~hiBits; // clear high nybble
 		}
-
 		return hashCode;
 	}
 	
