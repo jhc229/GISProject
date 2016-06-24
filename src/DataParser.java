@@ -25,6 +25,7 @@ public class DataParser {
 	private long endOffset = 0;
 	private BufferedWriter stat = null;
 	private GISRecordParser gisRecords =null; // GIS  record parts
+	private int ct;
 	
 	private int wLong, eLong , sLat , nLat; //boundary
 	
@@ -67,26 +68,17 @@ public class DataParser {
 		
 		BufferedReader gisRecord = new BufferedReader(new FileReader(gisRecordFile)); 
 		String str = "";
-		/*if (count > 0){
-			str =gisRecord.readLine();
-			//offset = endOffset + 265;
-			//dataFile.seek(endOffset);
-			System.out.println(str);
-		}*/
-		if(count == 1){
-			
-			System.out.println("111111111111111111111111111111111111111");
-
+		if (count > 0){
+			gisRecord.readLine();
 		}
-		while ((gisRecord.readLine()) != null) { 
+		while ((str =gisRecord.readLine()) != null) { 
 
-			//System.out.println(endOffset);
-			str = gisRecord.readLine();
 			System.out.println(str);
-			endOffset +=str.length() +1;
+			//endOffset +=str.length() +1;
 			dataFile.write((str +"\n").getBytes());
 		}
-		dataFile.seek(265); // reset the pointer in the file to 0;
+		ct++;
+		//dataFile.seek(265); // reset the pointer in the file to 0;
 		gisRecord.close();
 		stat.write("\n");
 		
