@@ -93,7 +93,9 @@ public class HashTable<Key, E> {
 		if ((numbElements/tableList.length) > .7){
 			rehash();
 		}
-		tableList[index].addValue(r);
+		else if (tableList[index] != null) {
+			tableList[index].addValue(r);
+		}
 	//	numbElements++;
 		// if the space exists
 		//if (tableList[index] != null) {
