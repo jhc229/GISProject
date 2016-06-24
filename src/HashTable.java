@@ -109,27 +109,6 @@ public class HashTable<Key, E> {
 		return size;
 	}
 	
-	/**
-	 * Source code from course notes.
-	 * 
-	 * @param str
-	 * @return
-	 */
-	public static long elfHash(String str) {
-		long hashValue = 0;
-		for (int Pos = 0; Pos < str.length(); Pos++) { // use all elements
 
-			hashValue = (hashValue << 4) + str.charAt(Pos); // shift/mix
-
-			long hiBits = hashValue &  0xF000000000000000L; // get high nybble
-
-			if (hiBits != 0)
-				hashValue ^= hiBits >> 56; // xor high nybble with second nybble
-
-			hashValue &= ~hiBits; // clear high nybble
-		}
-		return hashValue;
-	}
-	
 	
 }
