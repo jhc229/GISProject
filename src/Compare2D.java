@@ -6,6 +6,11 @@ package Minor.P3.DS;
 //
 public interface Compare2D<T> {
 	
+
+	public void addOffsets(Vector<Integer> offs);
+
+	public Vector<Integer> getOffsets();
+	
    // Returns the x-coordinate field of the user data object.
    public long getX();
    

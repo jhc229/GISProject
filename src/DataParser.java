@@ -129,6 +129,7 @@ public class DataParser {
 		//	System.out.println("Number of probes: " + table.getProbe());
 			
 			if (pos.inBox(wLong, eLong , sLat , nLat)){
+				System.out.println("saddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
 				table.insertHash(names, (int) offset);
 				System.out.println("Number of elements: " + table.getNumElements());
 				System.out.println("Number of probes: " + table.getProbe());
@@ -137,6 +138,8 @@ public class DataParser {
 				
 				countIdx++;
 			}
+			System.out.println("saddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
+
 			
 			dataFile.seek(offset); //Bring the pointer back to beginning of the line after reading from the gisRecordsUpdate
 			
