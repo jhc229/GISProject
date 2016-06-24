@@ -14,8 +14,14 @@ class KVpair<Key, E> {
 	
 	KVpair(Key k, E e){
 		this.k = k;
-		this.e =e	
+		this.e =e;
 	}
 	
+	public Key key(){
+		return k;
+	}
+	public E value(){
+		return e;
+	}
 	
 }
