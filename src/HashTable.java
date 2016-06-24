@@ -94,7 +94,7 @@ public class HashTable<Key, E> {
 			rehash();
 		}
 		tableList[index].addValue(r);
-		//	tableList[index] = new KVpair<Key, E>(k, r);
+		tableList[index] = new KVpair<Key, E>(k, r);
 		
 	//	numbElements++;
 		// if the space exists
