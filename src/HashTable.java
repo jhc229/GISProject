@@ -113,8 +113,9 @@ public class HashTable<Key, E> {
 	public String hashToString(){
 		
 		String output = "";
+		//((NameIndex) tableList[i]. getKey()).nameIndexToString()
 		for (int i = 0; i<size; i++){
-			if (tableList[i] != null) output+= i +":  [" + tableList[i].getKey(). + "] \n";
+			if (tableList[i] != null) output+= i +":  [" + ((NameIndex) tableList[i]. getKey()).nameIndexToString()+ "] \n";
 			
 		}
 		return output;
