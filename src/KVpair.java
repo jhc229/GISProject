@@ -1,5 +1,10 @@
-
-
+/**
+ * Source code from spring 2016 CS3114.
+ * @author sean
+ *
+ * @param <Key>
+ * @param <E>
+ */
 class KVpair<Key, E> {
 
 	private Key k;
