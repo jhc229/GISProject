@@ -29,7 +29,7 @@ public class HashTable<Key, E> {
 		
 	}
 	
-	public int availSlot(Key, k){
+	public int availSlot(Key k){
 		int index = key.hashCode() % capacity;
 		int offset = 1;
 
