@@ -67,13 +67,13 @@ public class DataParser {
 		
 		BufferedReader gisRecord = new BufferedReader(new FileReader(gisRecordFile)); 
 		String str = "";
-		if (count > 0){
-			gisRecord.readLine();
+		/*if (count > 0){
+			str =gisRecord.readLine();
 			//offset = endOffset + 265;
-			//dataFile.seek(offset);
-			System.out.println(count);
-		}
-		while ((str=gisRecord.readLine()) != null) { 
+			//dataFile.seek(endOffset);
+			System.out.println(str);
+		}*/
+		while ((gisRecord.readLine()) != null) { 
 
 		//	System.out.println(endOffset);
 			str = gisRecord.readLine();
