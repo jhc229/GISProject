@@ -79,6 +79,7 @@ public class GISRecordParser {
 			GeoFeatures.ELEV_IN_FT = Integer.parseInt(items[16]);
 			GeoFeatures.MAP_NAME = items[17];
 			GeoFeatures.DATE_CREATED = items[18];
+			System.out.println(x);
 			
 			if (items.length == 20) GeoFeatures.DATE_EDITED = items[19];
 			
