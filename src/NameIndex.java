@@ -60,7 +60,7 @@ public class NameIndex {
 			hashValue &= ~hiBits; // clear high nybble
 		}
 		return (int) hashValue;
-		*
+		*/
 	}
 
 }
