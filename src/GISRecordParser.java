@@ -35,7 +35,7 @@ public class GISRecordParser {
 		// stat = result;
 		//read.seek(0); // initialize the pointer in the record to the beginning.
 		this.endOffset = endoffset;
-		offset = read.readLine().length() + 1; // Start at the second line.
+		//offset = read.readLine().length() + 1; // Start at the second line.
 
 	}
 
@@ -82,7 +82,7 @@ public class GISRecordParser {
 			
 			if (items.length == 20) GeoFeatures.DATE_EDITED = items[19];
 			*/
-			read.seek(0);
+		//	read.seek(0);
 		}
 		else {
 			if (((parserOffset >= 0) && (parserOffset < 265) ) || ((int)read.readByte() != 10)){
