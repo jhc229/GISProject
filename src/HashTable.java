@@ -72,7 +72,7 @@ public class HashTable<Key, E> {
 		int index = k.hashCode() % size;
 		int offset = 1;
 
-		while (table[index] != null && !index[index].getKey().equals(k)){
+		while (table[index] != null && !table[index].getKey().equals(k)){
 			//pos = (home + step(k, i)) % table.length;
 			//count++;
 		//	i++;
@@ -89,7 +89,7 @@ public class HashTable<Key, E> {
 		}
 		longestProbe = Math.max(count, longestProbe);
 		numbElements++;
-		table[pos] = new KVpair<Key, E>(k, e);
+		table[index] = new KVpair<Key, E>(k, e);
 	}
 	
 	private int step(Key k, int a){
