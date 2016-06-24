@@ -1,3 +1,4 @@
+import random.KVpair;
 
 /**
  * Your table will use quadratic probing to resolve collisions, with the quadratic function (n^2+ n)/2 to compute the step size. 
@@ -31,7 +32,7 @@ public class HashTable<Key, E> {
 	/*
 	 * insert element into hashtable
 	 */
-	public void insertHash(Key k, E e){
+	/*public void insertHash(Key k, E e){
 		
 	//	int home;
 		//int pos = home = k.hashCode() % size;  
@@ -40,7 +41,7 @@ public class HashTable<Key, E> {
 		}
 		fInsertHash(tableList, k, e);
 	//	numbElements++;
-		}
+		}*/
 	
 	/*
 		for (int i =1; tableList[pos] != null; i++){
@@ -49,7 +50,7 @@ public class HashTable<Key, E> {
 		}
 		tableList[pos] = new KVpair<Key, E>(k, e);
 	}*/
-	
+	/*
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void rehash(){
 	
@@ -62,7 +63,7 @@ public class HashTable<Key, E> {
 		}
 		tableList = newTable;
 		
-	}
+	}*/
 	
 	private void fInsertHash(KVpair[] table, Key k, E e){
 		int home; 
@@ -93,7 +94,7 @@ public class HashTable<Key, E> {
 		// if the space does not exist, increase capacity size
 		else {
 			tableList[index] = new KVpair<Key, E>(k, r);
-			if (size++ > size * .7) {
+			if (numbElements++ > numbElements * .7) {
 				rehash();
 			}
 		}
@@ -114,6 +115,21 @@ public class HashTable<Key, E> {
 			}
 			return index;
 		}
+		@SuppressWarnings("unchecked")
+		private void rehash() {
+				size *= size;
+				//capacityIndex++;
+				//M = capacityList[capacityIndex];
+
+				@SuppressWarnings("rawtypes")
+				KVpair[] old = tableList;
+				tableList = new KVpair[size];
+				for (int i = 0; i < old.length; i++) {
+					if (old[i] != null) {
+						reInsert((Key) old[i].getKey(), old[i].getValues());
+					}
+				}
+			}
 	
 	private int step(Key k, int a){
 		return  (a * a + a)/2;
