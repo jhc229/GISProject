@@ -82,7 +82,7 @@ public class GISRecordParser {
 			
 			if (items.length == 20) GeoFeatures.DATE_EDITED = items[19];
 			*/
-			
+			read.seek(0);
 		}
 		else {
 			if (((parserOffset >= 0) && (parserOffset < 265) ) || ((int)read.readByte() != 10)){
