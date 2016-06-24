@@ -146,7 +146,10 @@ public class DataParser {
 			
 			
 		}
-		System.out.println("toString:     " + table.hashToString());
+		System.out.println("Number of elements: " + table.getNumElements());
+		System.out.println("Number of probes: " + table.getProbe());
+		System.out.println("Current table size: " + table.getCurrentSize());
+		System.out.println("toString:     \n" + table.hashToString());
 		stat.write("\n");
 		// dataFile.close();
 		
