@@ -44,7 +44,8 @@ public class GISRecordParser {
 			read.seek(parserOffset);
 			String[] items = read.readLine().split("\\|");
 			
-			System.out.println("ID:  " + GeoFeatures.FEATURE_ID );
+			//System.out.println("ID:  " + GeoFeatures.FEATURE_ID );
+			System.out.println("Offset " +parserOffset );
 			GeoFeatures.FEATURE_ID = Integer.parseInt(items[0]);
 			GeoFeatures.FEATURE_NAME = items[1];
 			GeoFeatures.FEATURE_CLASS = items[2];
