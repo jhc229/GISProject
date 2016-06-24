@@ -8,7 +8,7 @@ import java.util.Scanner;
 import java.io.RandomAccessFile;
 
 /**
- *
+ * Parse the data records with given offsets.
  * @author Jung Hyun Choi (jhc229)
  * @version 05.23.2016
  */
@@ -17,19 +17,21 @@ public class GISRecordParser {
 	private RandomAccessFile read = null;
 	private long offset = 0;
 	private long endOffset = 0;
-	//private FileWriter stat = null;
-	// private Stats stat = null;
 
+	
+	
 	// ~ Constructor
 	/**
 	 * Create a new DataBase object.
 	 * 
 	 * @throws IOException
 	 */
-	public GISRecordParser(RandomAccessFile dataFile) throws IOException {
+	public GISRecordParser(RandomAccessFile dataFile, long endoffset) throws IOException {
 		read = dataFile;
 		//stat = result;
-		offset = read.readLine().length() + 1;
+		read.seek(0); // initialize the pointer in the record to the beginning.
+		this.endOffset = endoffset;
+		offset = read.readLine().length() + 1; // Start at the second line.
 		
 	}
 
@@ -39,14 +41,37 @@ public class GISRecordParser {
 		while (read.readLine() != null) {
 
 			//System.out.println("	" + offset + "   " + id(offset));
-			stat.append("\n    "+ offset + "   " + id(offset));
+			//stat.append("\n    "+ offset + "   " + id(offset));
 			read.seek(offset);
 			endOffset = offset;
 			offset += read.readLine().length() + 1;
 			// stat.append("\nshow classes: " + id);
 		}
-		stat.append("\n");
+	//stat.append("\n");
 		// read.close();
+	}
+	
+	public void gisRecordsUpdate(long parserOffset) throws IOException{
+		if ((parserOffset >= 265) && (parserOffset <= endOffset)){
+			read.seek(parserOffset);
+			String line = read.readLine();
+			String[] items = line.split("\\|");
+			
+		}
+		else {
+			if ((parserOffset >= 0) && (parserOffset < 265)){
+				
+				return;
+			}
+			else if (parserOffset > offset){
+				return;
+			}
+			return;
+		}
+
+	//	int result = Integer.parseInt(items[0]);
+		
+		
 	}
 
 	/*
@@ -81,18 +106,18 @@ public class GISRecordParser {
 
 			String[] items = read.readLine().split("\\|");
 			// int result = Integer.parseInt(items[0]);
-			stat.append("\n   " + items[1] + "  items 7 and 8  " + items[7].charAt(items[7].length() - 1) +" " + items[9]);
+		//	stat.append("\n   " + items[1] + "  items 7 and 8  " + items[7].charAt(items[7].length() - 1) +" " + items[9]);
 			return items[1];
 		} else {
 			if ((parserOffset >= 0) && (parserOffset < 265)){
-				stat.append("\n   Unaligned offset");
+			//	stat.append("\n   Unaligned offset");
 				return null;
 			}
 			else if (parserOffset > offset){
-				stat.append("\n   Offset too large");
+				//stat.append("\n   Offset too large");
 				return null;
 			}
-			stat.append("\n   Offset is not positive");
+		//	stat.append("\n   Offset is not positive");
 			return null;
 		}
 	}
@@ -114,7 +139,7 @@ public class GISRecordParser {
 			read.seek(parserOffset);
 			String[] items = read.readLine().split("\\|");
 			if (decLatitude(items[9]) == 0) {
-				stat.append("\n   Coordinate not given");
+			//	stat.append("\n   Coordinate not given");
 				return null;
 			} 
 			String direction = "" + items[7].charAt(items[7].length() - 1);
@@ -127,19 +152,19 @@ public class GISRecordParser {
 				break;
 			}
 			// int result = Integer.parseInt(items[0]);
-			stat.append("\n   " + items[7].substring(0, 2) + "d " + Integer.parseInt(items[7].substring(2, 4)) + "m " + Integer.parseInt(items[7].substring(4, 6)) + "s " + direction + "items[15] and items[16]@" + items[15]+ "@" + items[16] + "@");
+		//	stat.append("\n   " + items[7].substring(0, 2) + "d " + Integer.parseInt(items[7].substring(2, 4)) + "m " + Integer.parseInt(items[7].substring(4, 6)) + "s " + direction + "items[15] and items[16]@" + items[15]+ "@" + items[16] + "@");
 			return "";
 		} 
 		else {
 			if ((parserOffset >= 0) && (parserOffset < 265)){
-				stat.append("\n   Unaligned offset");
+				//stat.append("\n   Unaligned offset");
 				return null;
 			}
 			else if (parserOffset > offset){
-				stat.append("\n   Offset too large");
+			//	stat.append("\n   Offset too large");
 				return null;
 			}
-			stat.append("\n   Offset is not positive");
+		//	stat.append("\n   Offset is not positive");
 			return null;
 		}
 
@@ -157,7 +182,7 @@ public class GISRecordParser {
 			// String line = read.readLine();
 			 String[] items = read.readLine().split("\\|");
 			if (decLatitude(items[10]) == 0) {
-				stat.append("\n   Coordinate not given");
+		//		stat.append("\n   Coordinate not given");
 				return null;
 			} 
 			String direction = "" + items[8].charAt(items[8].length() - 1);
@@ -170,19 +195,19 @@ public class GISRecordParser {
 				break;
 			}
 			// int result = Integer.parseInt(items[0]);
-			stat.append("\n   " + items[8].substring(0, 3) + "d " + Integer.parseInt(items[8].substring(3, 5)) + "m " + Integer.parseInt(items[8].substring(5, 7)) + "s " + direction);
+	//		stat.append("\n   " + items[8].substring(0, 3) + "d " + Integer.parseInt(items[8].substring(3, 5)) + "m " + Integer.parseInt(items[8].substring(5, 7)) + "s " + direction);
 			return "";
 		} 
 		else {
 			if ((parserOffset >= 0) && (parserOffset < 265)){
-				stat.append("\n   Unaligned offset");
+				//stat.append("\n   Unaligned offset");
 				return null;
 			}
 			else if (parserOffset > offset){
-				stat.append("\n   Offset too large");
+			//	stat.append("\n   Offset too large");
 				return null;			
 			}
-			stat.append("\n   Offset is not positive");
+		//	stat.append("\n   Offset is not positive");
 			return null;
 		}
 
@@ -203,24 +228,24 @@ public class GISRecordParser {
 			// String line = read.readLine();
 			 String[] items = read.readLine().split("\\|");
 			if (items[16] == null) {
-				stat.append("\n   Elevation not given");
+		//		stat.append("\n   Elevation not given");
 				return -1;
 			}
-			stat.append("\n   " + items[16]);
+	//		stat.append("\n   " + items[16]);
 			return Integer.parseInt(items[16]);
 
 		}
 		
 		else {
 			if ((parserOffset >= 0) && (parserOffset < 265)){
-				stat.append("\n   Unaligned offset");
+				//stat.append("\n   Unaligned offset");
 				return -1;
 			}
 			else if (parserOffset > offset){
-				stat.append("\n   Offset too large");
+			//	stat.append("\n   Offset too large");
 				return -1;			
 			}
-			stat.append("\n   Offset is not positive");
+		//	stat.append("\n   Offset is not positive");
 		}
 		return -1;
 	}
@@ -297,9 +322,9 @@ public class GISRecordParser {
 	 * @throws IOException
 	 */
 	public void quit() throws IOException {
-		stat.append("\n   Exiting");
+	//	stat.append("\n   Exiting");
 		read.close();
-		stat.close();
+	//	stat.close();
 
 	}
 

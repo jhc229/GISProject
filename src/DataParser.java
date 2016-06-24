@@ -19,10 +19,12 @@ import java.io.Reader;
 public class DataParser {
 	// ~ Fields
 	private RandomAccessFile dataFile = null;
-	//private long offset= 0 ;
-	//private long endOffset = 0;
+	//private File dataFile = null;
+	
+	private long offset= 0 ;
+	private long endOffset = 0;
 	private BufferedWriter stat = null;
-	private GISRecordParser gisRecords =null;
+	private GISRecordParser gisRecords =null; // GIS  record parts
 	
 	private int wLong, eLong , sLat , nLat; //boundary
 	
@@ -40,12 +42,13 @@ public class DataParser {
 	 * 
 	 * @throws IOException
 	 */
-	public DataParser(File gis, BufferedWriter result)  {
+	public DataParser(File dataFile, BufferedWriter result)  {
 		
 		
 		try {
-			dataFile = new RandomAccessFile(gis, "rw");
+			this.dataFile = new RandomAccessFile(dataFile, "rw");
 			stat = result;
+			
 			//pool = new BufferPool();
 			//table = new HashTable<NameIndex, Integer>(1024);
 			//offset  = 0;
@@ -61,14 +64,16 @@ public class DataParser {
 	public void appendFile(String gisRecordFile, int count) throws IOException {
 		
 		BufferedReader gisRecord = new BufferedReader(new FileReader(gisRecordFile)); 
-		if (count >0){
-			gisRecord.readLine(); // Moves the pointer to next line
-		}
 		String str = "";
 		while ((str= gisRecord.readLine()) != null) { 
+			if (count >0){ // second time called
+				gisRecord.readLine(); //Moves the pointer to next line
+			}
+			endOffset +=str.length() +1;
 			System.out.println((str).getBytes());
 			dataFile.write((str +"\n").getBytes());
 		}
+		dataFile.seek(0); // reset the pointer in the file to 0;
 		gisRecord.close();
 		stat.write("\n");
 		
@@ -99,13 +104,19 @@ public class DataParser {
 		return coord = new DMScoordinates(degree, Minute, Second, direction);
 	}
 
-	public void importFile(String string) throws IOException {
+	/**
+	 * 
+	 * @param string
+	 * @throws IOException
+	 */
+	public void importFile() throws IOException {
 		
+		gisRecords = new GISRecordParser(dataFile, endOffset); // Begin at the second line where records start.
 		
 		
 		while (dataFile.readLine() != null) {
 
-			NameIndex name = new NameIndex( )
+			NameIndex name = new NameIndex(gisRecords.name(offset), gisRecords.s)
 			
 			
 		}
