@@ -34,7 +34,7 @@ public class NameIndex {
 	/**
 	 *@return a hashcode for this specific container
 	 */
-	public long hashCode() {
+	public int hashCode() {
 		
 		long hashValue = 0;
 		for (int Pos = 0; Pos < str.length(); Pos++) { // use all elements
@@ -48,7 +48,7 @@ public class NameIndex {
 
 			hashValue &= ~hiBits; // clear high nybble
 		}
-		return hashValue;
+		return (int) hashValue;
 	}
 
 }
