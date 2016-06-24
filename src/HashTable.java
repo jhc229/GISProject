@@ -66,14 +66,20 @@ public class HashTable<Key, E> {
 	private void fInsertHash(KVpair[] table, Key k, E e){
 		int home; 
 		int count = 0; //update probe
-		int pos = home = Math.abs(((NameIndex) k).hashCode() % table.length); 
+		//int pos = home = Math.abs(((NameIndex) k).hashCode() % table.length); 
 		//for (int i =0; tableList[pos] != null; i++){ // check duplicates?
 		//for (int i = 0; i < table.length; i++){
-		int i =0;
-		while (table[pos] != null && !table[pos].getKey().equals(k)){
-			pos = (home + step(k, i)) % table.length;
+		int index = k.hashCode() % size;
+		int offset = 1;
+
+		while (table[index] != null && !index[pos].getKey().equals(k)){
+			//pos = (home + step(k, i)) % table.length;
+			//count++;
+		//	i++;
+			index += offset; // +1, +3, +5, +7, +9
+			offset += 2;
+			index %= size;
 			count++;
-			i++;
 			//if (table[pos] == null){
 		//		table[pos] = new KVpair<Key, E>(k, e);
 		//		break;
