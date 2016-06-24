@@ -78,6 +78,10 @@ public class HashTable<Key, E> {
 		return  (a * a + a)/2;
 	}
 	
+	/**
+	 * Get the number of probes
+	 * @return
+	 */
 	public int getProbe(){
 		return longestProbe;
 	}
