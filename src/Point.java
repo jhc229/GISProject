@@ -10,9 +10,13 @@ public class Point implements Compare2D<Point> {
       ycoord = 0;
    }
 
-   public Point(long x, long y) {
+   public Point(long x, long y, int off) {
       xcoord = x;
       ycoord = y;
+      offsets = new Vector<Integer>(off);
+      if (o != -1) {
+			offsets.add(o);
+		}
    }
 
    public long getX() {
@@ -22,6 +26,19 @@ public class Point implements Compare2D<Point> {
    public long getY() {
       return ycoord;
    }
+	/**
+	 * insert a list of offsets into the container
+	 */
+	public void addOffsets(Vector<Integer> offs) {
+		offsets.addAll(offs);
+	}
+
+	/**
+	 * @return the list of offsets
+	 */
+	public Vector<Integer> getOffsets() {
+		return offsets;
+	}
    
    public Direction directionFrom(long X, long Y) { 
 		if ( xcoord <= X && ycoord > Y){
