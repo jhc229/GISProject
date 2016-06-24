@@ -115,9 +115,9 @@ public class DataParser {
 
 		String str = "";
 		while ((str = dataFile.readLine()) != null) {
-			offset += dataFile.length() +1;
 			//System.out.println(gisRecords.gisRecordsUpdate());
 			System.out.println("offset: " + offset);
+			offset += dataFile.length() +1;
 			//NameIndex name = new NameIndex(gisRecords.name(offset), gisRecords.s)
 			
 			

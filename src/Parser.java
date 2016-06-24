@@ -89,8 +89,9 @@ public class Parser {
 	 * 
 	 * @throws NumberFormatException
 	 *             Format error.
+	 * @throws GISRecordException 
 	 */
-	public void parsing() throws NumberFormatException {
+	public void parsing() throws NumberFormatException, GISRecordException {
 	//	BufferedWriter brRecord = null;
 		BufferedReader brCommand = null;
 

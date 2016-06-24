@@ -37,7 +37,7 @@ public class GIS {
 	 * exists it should be truncated or deleted and recreated.
 
 	 */
-    public static void main(String[] args) throws IOException
+    public static void main(String[] args) throws IOException, NumberFormatException, GISRecordException
     {
         // This checks the number of arguments
         // to see if user typed in proper command; java Main {file-name}
