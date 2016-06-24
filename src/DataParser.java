@@ -127,9 +127,9 @@ public class DataParser {
 			
 			if (pos.inBox(wLong, eLong , sLat , nLat)){
 				table.insertHash(names, (int) offset);
-			//	System.out.println("Number of elements: " + table.getNumElements());
-				//System.out.println("Number of probes: " + table.getProbe());
-				//System.out.println("Current table size: " + table.getCurrentSize());
+				System.out.println("Number of elements: " + table.getNumElements());
+				System.out.println("Number of probes: " + table.getProbe());
+				System.out.println("Current table size: " + table.getCurrentSize());
 				//quadTree.insert(pos);
 				
 				countIdx++;
@@ -146,9 +146,9 @@ public class DataParser {
 			
 			
 		}
-		System.out.println("Number of elements: " + table.getNumElements());
-		System.out.println("Number of probes: " + table.getProbe());
-		System.out.println("Current table size: " + table.getCurrentSize());
+		//System.out.println("Number of elements: " + table.getNumElements());
+		//System.out.println("Number of probes: " + table.getProbe());
+	//	System.out.println("Current table size: " + table.getCurrentSize());
 		System.out.println("toString:     \n" + table.hashToString());
 		stat.write("\n");
 		// dataFile.close();
