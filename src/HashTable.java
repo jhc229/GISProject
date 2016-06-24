@@ -126,7 +126,7 @@ public class HashTable<Key, E> {
 				tableList = new KVpair[size];
 				for (int i = 0; i < old.length; i++) {
 					if (old[i] != null) {
-						reInsert((Key) old[i].getKey(), old[i].getValues());
+						reInsert((Key) old[i].getKey(), old[i].getValue());
 					}
 				}
 			}
