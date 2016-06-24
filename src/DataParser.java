@@ -74,7 +74,8 @@ public class DataParser {
 			//System.out.println((str).getBytes());
 			dataFile.write((str +"\n").getBytes());
 		}
-		dataFile.seek(265); // reset the pointer in the file to 0;
+		//dataFile.seek(265); // reset the pointer in the file to 0;
+		dataFile.seek(0);
 		gisRecord.close();
 		stat.write("\n");
 		
