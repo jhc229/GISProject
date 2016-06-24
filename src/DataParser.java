@@ -111,17 +111,21 @@ public class DataParser {
 	 */
 	public void importFile() throws IOException {
 		
-		gisRecords = new GISRecordParser(dataFile, endOffset); // Begin at the second line where records start.
-		
-		
-		while (dataFile.readLine() != null) {
+		try {
+			gisRecords = new GISRecordParser(dataFile, endOffset); // Begin at the second line where records start.
 
-			//NameIndex name = new NameIndex(gisRecords.name(offset), gisRecords.s)
-			
-			
+			while (dataFile.readLine() != null) {
+
+				//NameIndex name = new NameIndex(gisRecords.name(offset), gisRecords.s)
+				
+				
+			}
+			stat.write("\n");
+			// dataFile.close();
+		} catch (GISRecordException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		stat.write("\n");
-		// dataFile.close();
 		
 	}
 

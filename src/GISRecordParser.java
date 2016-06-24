@@ -51,14 +51,9 @@ public class GISRecordParser {
 		// read.close();
 	}
 	
-	public void gisRecordsUpdate(long parserOffset) {
+	public void gisRecordsUpdate(long parserOffset) throws IOException {
 		if ((parserOffset >= 265) && (parserOffset <= endOffset)){
-			try {
-				read.seek(parserOffset);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			read.seek(parserOffset);
 			String line = read.readLine();
 			String[] items = line.split("\\|");
 			
@@ -66,12 +61,12 @@ public class GISRecordParser {
 		else {
 			if ((parserOffset >= 0) && (parserOffset < 265)){
 				
-				return;
+				throw new GISRecordException(" Unaligned offset");
 			}
 			else if (parserOffset > offset){
-				return;
+				throw new GISRecordException("Offset too large");
 			}
-			return;
+			throw new GISRecordException("Offset is not positive");
 		}
 
 	//	int result = Integer.parseInt(items[0]);
