@@ -1,4 +1,5 @@
-import random.KVpair;
+import java.util.Vector;
+
 
 /**
  * Your table will use quadratic probing to resolve collisions, with the quadratic function (n^2+ n)/2 to compute the step size. 
@@ -88,15 +89,11 @@ public class HashTable<Key, E> {
 		int index = quadProbe(k);
 
 		// if the space exists
-		if (tableList[index] != null) {
+		//if (tableList[index] != null) {
 			tableList[index].addValue(r);
-		}
+		//}
 		// if the space does not exist, increase capacity size
-		else {
-			tableList[index] = new KVpair<Key, E>(k, r);
-			if (numbElements++ > numbElements * .7) {
-				rehash();
-			}
+
 		}
 	}
 	 private int quadProbe(Key k) {
@@ -130,6 +127,15 @@ public class HashTable<Key, E> {
 					}
 				}
 			}
+		public void reInsert(Key k, Vector<E> elements) {
+
+			int index = quadProbe(k);
+			if (tableList[index] == null) {
+				size++;
+				tableList[index] = new KVpair<Key, E>(k, null);
+				tableList[index].setValues(elements);
+			}
+		}
 	
 	private int step(Key k, int a){
 		return  (a * a + a)/2;
