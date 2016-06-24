@@ -58,6 +58,23 @@ public class HashTable<Key, E> {
 		}
 		return index;
 	}
+	//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+	public static int elfHash(String str) {
+		long hashCode = 0;
+		for (int Pos = 0; Pos < str.length(); Pos++) { // use all elements
+
+			hashCode = (hashCode << 4) + str.charAt(Pos); // shift/mix
+
+			long hiBits = hashCode & 0xF0000000L; // get high nybble
+
+			if (hiBits != 0)
+				hashCode ^= hiBits >> 24; // xor high nybble with second nybble
+
+			hashCode &= ~hiBits; // clear high nybble
+		}
+
+		return (int) (hashCode);
+	}
 	
 	
 }
