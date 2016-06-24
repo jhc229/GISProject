@@ -32,7 +32,7 @@ public class NameIndex {
 		return state;
 	}
 	
-	public Sring nameIndexToString(){
+	public String nameIndexToString(){
 		return str;
 	}
 
