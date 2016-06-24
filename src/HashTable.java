@@ -93,12 +93,13 @@ public class HashTable<Key, E> {
 		if(tableList[index] != null){
 			tableList[index].addValue(r);
 			//tableList[index] = new KVpair<Key, E>(k, r);
-			numbElements++;
 		}
 		else{ 
 			tableList[index] = new KVpair<Key, E>(k, r);
 			if ((numbElements/tableList.length) > .7) rehash();
 		}
+		numbElements++;
+
 		//tableList[index].addValue(r);
 		//tableList[index] = new KVpair<Key, E>(k, r);
 		//numbElements++;
