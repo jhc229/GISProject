@@ -68,7 +68,9 @@ public class GISRecordParser {
 			GeoFeatures.SOURCE_LAT_DMS = null;
 			GeoFeatures.SOURCE_LONG_DMS = null;
 			
-			GeoFeatures.SOURCE_LAT_DEC =Double.parseDouble(items[13]);
+			if (!items[13].equals("")){
+				GeoFeatures.SOURCE_LAT_DEC =Double.parseDouble(items[13]);
+			}
 			GeoFeatures.SOURCE_LONG_DEC =Double.parseDouble(items[14]);
 			GeoFeatures.ELEV_IN_M = Integer.parseInt(items[15]);
 			GeoFeatures.ELEV_IN_FT = Integer.parseInt(items[16]);
