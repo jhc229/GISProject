@@ -34,7 +34,7 @@ public class HashTable<Key, E> {
 		
 	//	int home;
 		//int pos = home = k.hashCode() % size;  
-		if ((numbElements/tableList.length) > .7){
+		if ((numbElements/size) > .7){
 			rehash();
 		}
 		fInsertHash(tableList, k, e);
