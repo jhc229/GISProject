@@ -1,10 +1,10 @@
-
+import java.util.Vector;
 
 public class Point implements Compare2D<Point> {
 
    private long xcoord;
    private long ycoord;
-	private Vector<Integer> offsets;
+	private Vector<Long> offsets;
 
    
    public Point() {
@@ -15,7 +15,7 @@ public class Point implements Compare2D<Point> {
    public Point(long x, long y, int off) {
       xcoord = x;
       ycoord = y;
-      offsets = new Vector<Integer>(off);
+      offsets = new Vector<Long>(off);
       if (o != -1) {
 			offsets.add(o);
 		}
@@ -31,14 +31,14 @@ public class Point implements Compare2D<Point> {
 	/**
 	 * insert a list of offsets into the container
 	 */
-	public void addOffsets(Vector<Integer> offs) {
+	public void addOffsets(Vector<Long> offs) {
 		offsets.addAll(offs);
 	}
 
 	/**
 	 * @return the list of offsets
 	 */
-	public Vector<Integer> getOffsets() {
+	public Vector<Long> getOffsets() {
 		return offsets;
 	}
    
