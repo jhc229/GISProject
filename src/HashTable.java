@@ -14,25 +14,36 @@ public class HashTable<Key, E> {
 	
 	private KVpair<Key, E>[] tableList;
 	private int longestProbe = 0;
+	private int size = 0;
 	
 	
-	// Constructor
+	/*
+	 *  Constructor
+	 */
 	public HashTable(int size){
 		
 		tableList = new KVpair[size];
+		this.size = size;
 	}
 
+	/*
+	 * insert element into hashtable
+	 */
 	public void insertHash(Key k, E e){
 		
 		int home;
 		int pos = home = availSlot(k);
 		
+		for (int i = 1; tableList[pos] != null; i++){
+			pos = (home + p(k, i)) % size;
+			assert tableList[pos].key().compareTo(k) != 0: "duplicates not allowed";
+		}
+		
 	}
 	
 	public int availSlot(Key k){
-		int index = key.hashCode() % capacity;
+		int index = k.hashCode() % size;
 		int offset = 1;
-
 		int count = 0;
 
 		// keep looking if the space exists and the key is not already in there
