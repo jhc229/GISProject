@@ -66,7 +66,7 @@ public class HashTable<Key, E> {
 	private void fInsertHash(KVpair[] table, Key k, E e){
 		int home; 
 		int count = 0; //update probe
-		int pos = home = Math.abs(((NameIndex) k).hashCode() % table.length); 
+		int pos = home = Math.abs(k.hashCode() % table.length); 
 		for (int i =0; tableList[pos] != null; i++){ // check duplicates?
 		//for (int i = 0; i < table.length; i++){
 			if (table[pos] == null){
