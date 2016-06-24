@@ -114,7 +114,7 @@ public class HashTable<Key, E> {
 		
 		String output = "";
 		for (int i = 0; i<size; i++){
-			if (tableList[i] != null) output+= i +":  [" + tableList[i].kvPairtoString() + "] \n";
+			if (tableList[i] != null) output+= i +":  [" + (NameIndex)tableList[i].getKey() + "] \n";
 			
 		}
 		return output;
