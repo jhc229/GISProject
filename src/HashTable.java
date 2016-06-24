@@ -38,7 +38,7 @@ public class HashTable<Key, E> {
 			pos = (home + p(k, i)) % size;
 			assert tableList[pos].key().compareTo(k) != 0: "duplicates not allowed";
 		}
-		
+		tableList[pos] = new KVpair<Key, E>(k, e);
 	}
 	
 	public int availSlot(Key k){
