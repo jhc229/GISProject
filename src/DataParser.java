@@ -21,7 +21,7 @@ public class DataParser {
 	private RandomAccessFile dataFile = null;
 	//private File dataFile = null;
 	
-	private long offset= 0 ;
+	private long offset;
 	private long endOffset = 0;
 	private BufferedWriter stat = null;
 	private GISRecordParser gisRecords =null; // GIS  record parts
@@ -48,7 +48,7 @@ public class DataParser {
 		try {
 			this.dataFile = new RandomAccessFile(dataFile, "rw");
 			stat = result;
-			
+			offset = 265;
 			//pool = new BufferPool();
 			//table = new HashTable<NameIndex, Integer>(1024);
 			//offset  = 0;
@@ -73,7 +73,7 @@ public class DataParser {
 			System.out.println((str).getBytes());
 			dataFile.write((str +"\n").getBytes());
 		}
-		dataFile.seek(0); // reset the pointer in the file to 0;
+		dataFile.seek(265); // reset the pointer in the file to 0;
 		gisRecord.close();
 		stat.write("\n");
 		
@@ -113,11 +113,13 @@ public class DataParser {
 		
 		gisRecords = new GISRecordParser(dataFile, endOffset); // Begin at the second line where records start.
 
-		String str = "";
-		while ((str = dataFile.readLine()) != null) {
+		while (dataFile.readLine() != null) {
 			//System.out.println(gisRecords.gisRecordsUpdate());
-			System.out.println("offset: " + offset);
-			offset += dataFile.length() +1;
+			dataFile.seek(offset);
+			//System.out.println("offset: " + offset);
+			gisRecords.gisRecordsUpdate(offset);
+			System.out.println(GeoFeatures.COUNTY_NAME);
+			offset += dataFile.readLine().length() +1;
 			//NameIndex name = new NameIndex(gisRecords.name(offset), gisRecords.s)
 			
 			

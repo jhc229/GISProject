@@ -75,7 +75,7 @@ public class GISRecordParser {
 			
 		}
 		else {
-			if (((parserOffset >= 0) && (parserOffset < 265) ) || ((int)read.readByte() == 10)){
+			if (((parserOffset >= 0) && (parserOffset < 265) ) || ((int)read.readByte() != 10)){
 				
 				throw new GISRecordException(" Unaligned offset");
 			}
