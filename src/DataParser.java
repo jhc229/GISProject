@@ -34,7 +34,7 @@ public class DataParser {
 
 	//public prQuadTree<Point> quadTree;
 //	public BufferPool pool;
-	//public HashTable<>
+	public HashTable<NameIndex, Integer>
 	
 	// ~ Constructor
 	/**
@@ -122,11 +122,11 @@ public class DataParser {
 			gisRecords.gisRecordsUpdate(offset);
 			System.out.println(GeoFeatures.FEATURE_NAME);
 			NameIndex name = new NameIndex(GeoFeatures.FEATURE_NAME, GeoFeatures.STATE_ALPHA);
-			Point pos = new Point(GeoFeatures.PRIM_LONG_DMS, GeoFeatures.PRIMARY_LAT_DMS, offset);
+			Point pos = new Point(GeoFeatures.PRIM_LONG_DMS.toSeconds(), GeoFeatures.PRIMARY_LAT_DMS.toSeconds(), (int) offset);
 			
 			if (pos.inBox(wLong, eLong , sLat , nLat)){
 				table.insert(pos);
-				quadTree.insert(name, offset);
+				//quadTree.insert(name, offset);
 				
 				countIdx++;
 			}
