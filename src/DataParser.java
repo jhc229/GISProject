@@ -73,9 +73,9 @@ public class DataParser {
 		}
 		while ((str=gisRecord.readLine()) != null) { 
 
-			//System.out.println(endOffset);
+			System.out.println(endOffset);
 			//str = gisRecord.readLine();
-			System.out.println(str);
+			//System.out.println(str);
 			endOffset +=str.length() +1;
 			dataFile.write((str +"\n").getBytes());
 		}
