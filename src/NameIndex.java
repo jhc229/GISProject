@@ -1,5 +1,5 @@
 /**
- *  Feature Name and stat
+ *  Feature Name and state
  * @author sean
  *
  */
@@ -8,7 +8,6 @@ public class NameIndex {
 	private String featureName;
 	private String state; 
 	private String str;
-
 
 	/*
 	 * 
@@ -20,14 +19,14 @@ public class NameIndex {
 	}
 
 	/*
-	 * 
+	 *  return feature name.
 	 */
 	public String getName() {
-		return fName;
+		return featureName;
 	}
 
 	/*
-	 * 
+	 * return state (abbreviation)
 	 */
 	public String getState() {
 		return state;
@@ -36,6 +35,7 @@ public class NameIndex {
 
 	/*
 	 * Source code from course notes.
+	 * (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
 	public int hashCode() {
