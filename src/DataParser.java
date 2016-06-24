@@ -116,7 +116,7 @@ public class DataParser {
 		
 		while (dataFile.readLine() != null) {
 
-			NameIndex name = new NameIndex(gisRecords.name(offset), gisRecords.s)
+			//NameIndex name = new NameIndex(gisRecords.name(offset), gisRecords.s)
 			
 			
 		}

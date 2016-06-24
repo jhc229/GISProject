@@ -51,9 +51,14 @@ public class GISRecordParser {
 		// read.close();
 	}
 	
-	public void gisRecordsUpdate(long parserOffset) throws IOException{
+	public void gisRecordsUpdate(long parserOffset) {
 		if ((parserOffset >= 265) && (parserOffset <= endOffset)){
-			read.seek(parserOffset);
+			try {
+				read.seek(parserOffset);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			String line = read.readLine();
 			String[] items = line.split("\\|");
 			
