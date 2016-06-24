@@ -72,7 +72,7 @@ public class HashTable<Key, E> {
 		int index = k.hashCode() % size;
 		int offset = 1;
 
-		while (table[index] != null && !index[pos].getKey().equals(k)){
+		while (table[index] != null && !index[index].getKey().equals(k)){
 			//pos = (home + step(k, i)) % table.length;
 			//count++;
 		//	i++;
