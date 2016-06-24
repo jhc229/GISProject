@@ -66,18 +66,23 @@ public class DataParser {
 	
 	public void appendFile(String gisRecordFile, int count) throws IOException {
 		
-		BufferedReader gisRecord = new BufferedReader(new FileReader(gisRecordFile)); 
+		//BufferedReader gisRecord = new BufferedReader(new FileReader(gisRecordFile)); 
+		RandomAccessFile gisRecord = new RandomAccessFile(gisRecordFile, "r");
 		String str = "";
 		if (count > 0){
 			gisRecord.readLine();
 		}
 		while ((str =gisRecord.readLine()) != null) { 
 
+			dataFile.writeBytes(str + "\n");
 			System.out.println(str);
 			//endOffset +=str.length() +1;
+		//	endOffset = offset;
+			//offset += dataFile.readLine().length() +1;
 			dataFile.write((str +"\n").getBytes());
 		}
 		ct++;
+		gisRecord.mark((offset);
 		//dataFile.seek(265); // reset the pointer in the file to 0;
 		gisRecord.close();
 		stat.write("\n");
