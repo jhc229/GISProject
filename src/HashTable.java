@@ -73,6 +73,7 @@ public class HashTable<Key, E> {
 		while (table[pos] != null && !table[pos].getKey().equals(k)){
 			pos = (home + step(k, i)) % table.length;
 			count++;
+			i++;
 			//if (table[pos] == null){
 		//		table[pos] = new KVpair<Key, E>(k, e);
 		//		break;
