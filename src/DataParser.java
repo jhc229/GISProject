@@ -70,20 +70,18 @@ public class DataParser {
 		RandomAccessFile gisRecord = new RandomAccessFile(gisRecordFile, "r");
 		String str = "";
 		if (count > 0){
-			gisRecord.readLine();
+			gisRecord.seek(265);
 		}
 		while ((str =gisRecord.readLine()) != null) { 
-
+			//dataFile.write((str +"\n").getBytes());
 			dataFile.writeBytes(str + "\n");
 			System.out.println(str);
 			//endOffset +=str.length() +1;
 		//	endOffset = offset;
 			//offset += dataFile.readLine().length() +1;
-			dataFile.write((str +"\n").getBytes());
+		//	dataFile.write((str +"\n").getBytes());
 		}
-		ct++;
-		gisRecord.mark((offset);
-		//dataFile.seek(265); // reset the pointer in the file to 0;
+		dataFile.seek(265); // reset the pointer in the file to 0;
 		gisRecord.close();
 		stat.write("\n");
 		
