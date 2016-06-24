@@ -86,6 +86,10 @@ public class HashTable<Key, E> {
 		return longestProbe;
 	}
 
+	/**
+	 * Get the number of elements in the list.
+	 * @return
+	 */
 	public int getNumElements(){
 		return numbElements;
 	}
