@@ -40,7 +40,7 @@ public class GISRecordParser {
 	}
 
 	public void gisRecordsUpdate(long parserOffset) throws IOException, GISRecordException {
-		if ((parserOffset >= 265) && (parserOffset <= endOffset)){
+		if ((parserOffset >= 265) && (parserOffset <= endOffset)){ //&& ((int)read.readByte() == 10)
 			read.seek(parserOffset);
 			String line = read.readLine();
 			String[] items = line.split("\\|");
@@ -54,7 +54,7 @@ public class GISRecordParser {
 			GeoFeatures.COUNTY_NAME = items[5];
 			GeoFeatures.COUNTY_NUMERIC = Double.parseDouble(items[6]);
 			
-			GeoFeatures.PRIMARY_LAT_DMS = new DMScoordinates(Integer.parseInt(items[7].substring(0, 3)), Integer.parseInt(items[7].substring(3, 5)), Integer.parseInt(items[7].substring(5, 7)), items[7].substring(7));
+			GeoFeatures.PRIMARY_LAT_DMS = new DMScoordinates(Integer.parseInt(items[7].substring(0, 2)), Integer.parseInt(items[7].substring(2, 4)), Integer.parseInt(items[7].substring(4, 6)), items[7].substring(6));
 			GeoFeatures.PRIM_LONG_DMS = new DMScoordinates(Integer.parseInt(items[8].substring(0, 2)), Integer.parseInt(items[8].substring(2, 4)), Integer.parseInt(items[8].substring(4, 6)), items[8].substring(6));
 			
 			GeoFeatures.PRIM_LAT_DEC = Double.parseDouble(items[9]);
