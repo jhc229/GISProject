@@ -1,0 +1,29 @@
+; Script 1
+;
+; Specify boundaries of coordinate space:
+world	0793730W	0793000W	382230N	383000N
+;
+; Import some data:
+import	Monterey.txt
+;debug	world
+;
+; Check the location indices:
+debug	quad
+debug	hash
+;
+; Let's try some single-match location searches:
+what_is_at	382957N	0793304W
+what_is_at	382812N	0793157W
+what_is_at	382704N	0793142W
+;
+; Let's check the buffer pool:
+debug	pool
+;
+; Let's try a two-match location search:
+what_is_at	382856N	0793032W
+;
+; Let's check the buffer pool:
+debug	pool
+;
+; Exit
+quit	
