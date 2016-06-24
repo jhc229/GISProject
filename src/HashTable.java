@@ -29,7 +29,56 @@ public class HashTable<Key, E> {
 		tableList = new KVpair[size];
 		this.size = size;
 	}
+    public void insert(Key k, E e) {
+        // check the load factor and decide whether or not to reallocate the
+        // hash table.
+        if (((double) numbElements / tableList.length) > .7) {
+        	reallocate();
+        }
+        KVpair[] result;
+        // check to see whether the size should be increased.
+        if ((result = insertHelper(tableList, k, e)) == null) {
+        	numbElements++;
+        }
+    }
 
+    private KVpair[] insertHelper(KVpair[] tb, Key k, E elem) {
+        // the home slot for the current element
+        int home = Math.abs(elem.hashCode() % tb.length);
+        // declare the i outside the for loop because it will be used to count
+        // the longest probing.
+        int i;
+        // try to probe for a place to put the new element
+        for (i = 0;; i++) {
+            int pos = (home + (i * i + i) / 2) % tb.length;
+            // the slot is empty, the place to put it is found
+            if (tb[pos] == null) {
+                tb[pos] = elem;
+                break;
+            }
+            // if the position is holding a duplicate, return this duplicate.
+            if (tb[pos].equals(elem)) {
+                return tb[pos];
+            }
+        }
+        longestProbe = Math.max(i, longestProbe);
+        return null;
+
+    }
+    private void reallocate() {
+        sizeIndex++;
+        @SuppressWarnings("unchecked")
+        // create the new table with bigger size
+        T[] newTable = (T[]) new Object[sizes[sizeIndex]];
+        // traverse the old table and copy every element to the new table
+        for (T elem : table) {
+            if (elem != null) {
+                insertHelper(newTable, elem);
+            }
+        }
+
+        table = newTable;
+    }
 	/*
 	 * insert element into hashtable
 	 */
@@ -85,6 +134,7 @@ public class HashTable<Key, E> {
 		numbElements++;
 		table[pos] = new KVpair<Key, E>(k, e);
 	}
+	/*
 	public void insert(Key k, E r){
 		int index = quadProbe(k);
 
@@ -122,8 +172,6 @@ public class HashTable<Key, E> {
 			int offset = 1;
 			int count = 0;
 			while (tableList[index] != null && !tableList[index].getKey().equals(k)){
-				System.out.println(index); // pos = (home + step(k, i)) % table.length;
-
 				index += offset; // +1, +3, +5, +7, +9
 				offset += 2;
 				index %= size;
@@ -131,7 +179,7 @@ public class HashTable<Key, E> {
 			}
 			longestProbe = Math.max(count, longestProbe);
 			return index;
-		}
+		}*/
 
 	@SuppressWarnings("unchecked")
 	private void rehash() {
