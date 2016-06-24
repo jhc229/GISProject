@@ -1,3 +1,5 @@
+import java.util.Vector;
+
 /**
  * Your table will use quadratic probing to resolve collisions, with the quadratic function (n^2+ n)/2 to compute the step size. 
  * The hash table must use a contiguous physical structure (array). The initial size of the table will be 1024, and the table will
@@ -62,7 +64,7 @@ public class HashTable<Key, E> {
 		
 	}
 	
-	private void fInsertHash(KVpair[] table, Key k, E e){
+	private void fInsertHash(KVpair[] table, Key k, Vector<E> e){
 		int home; 
 		int count = 0;
 		int pos = home = Math.abs(e.hashCode() % table.length); 
