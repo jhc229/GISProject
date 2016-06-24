@@ -38,7 +38,7 @@ public class HashTable<Key, E> {
 			rehash();
 		}
 		fInsertHash(tableList, k, e);
-		numbElements++;
+	//	numbElements++;
 		}
 	
 	/*
@@ -65,7 +65,7 @@ public class HashTable<Key, E> {
 	
 	private void fInsertHash(KVpair[] table, Key k, E e){
 		int home; 
-		int count = 0;
+		int count = 0; //update probe
 		int pos = home = Math.abs(e.hashCode() % table.length); 
 		//for (int i =1; tableList[pos] != null; i++){ // check duplicates?
 		for (int i = 0; i < table.length; i++){
@@ -77,8 +77,8 @@ public class HashTable<Key, E> {
 			count++;
 		}
 		longestProbe = Math.max(count, longestProbe);
-		return;
-		//	table[pos] = new KVpair<Key, E>(k, e);
+		numbElements++;
+		table[pos] = new KVpair<Key, E>(k, e);
 	}
 	
 	private int step(Key k, int a){
