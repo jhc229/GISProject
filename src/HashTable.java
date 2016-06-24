@@ -90,13 +90,14 @@ public class HashTable<Key, E> {
 
 		//	int home;
 		//int pos = home = k.hashCode() % size;  
-		if ((numbElements/tableList.length) > .7){
-			rehash();
-		}
-		else if(tableList[index] != null){
-			//tableList[index].addValue(r);
-			tableList[index] = new KVpair<Key, E>(k, r);
+		if(tableList[index] != null){
+			tableList[index].addValue(r);
+			//tableList[index] = new KVpair<Key, E>(k, r);
 			numbElements++;
+		}
+		else{ 
+			tableList[index] = new KVpair<Key, E>(k, r);
+			if ((numbElements/tableList.length) > .7) rehash();
 		}
 		//tableList[index].addValue(r);
 		//tableList[index] = new KVpair<Key, E>(k, r);
