@@ -69,13 +69,14 @@ public class DataParser {
 		String str = "";
 		if (count > 0){
 			gisRecord.readLine();
-			offset = endOffset + 265;
-			endOffset += 265 +1;
+			//offset = endOffset + 265;
+			//dataFile.seek(offset);
+			System.out.println(count);
 		}
 		while ((str=gisRecord.readLine()) != null) { 
 
-			System.out.println(endOffset);
-			//str = gisRecord.readLine();
+		//	System.out.println(endOffset);
+			str = gisRecord.readLine();
 			//System.out.println(str);
 			endOffset +=str.length() +1;
 			dataFile.write((str +"\n").getBytes());
