@@ -44,8 +44,9 @@ public class GISRecordParser {
 			read.seek(parserOffset);
 			//String line = read.readLine();
 			String[] items = read.readLine().split("\\|");
-			
-			System.out.println(items[0]);
+		
+			System.out.println(items[0] + "  " + items[1]);
+			/*
 			GeoFeatures.FEATURE_ID = Integer.parseInt(items[0]);
 			GeoFeatures.FEATURE_NAME = items[1];
 			GeoFeatures.FEATURE_CLASS = items[2];
@@ -80,7 +81,7 @@ public class GISRecordParser {
 			GeoFeatures.DATE_CREATED = items[18];
 			
 			if (items.length == 20) GeoFeatures.DATE_EDITED = items[19];
-			
+			*/
 			
 		}
 		else {
