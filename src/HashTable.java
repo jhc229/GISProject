@@ -67,8 +67,8 @@ public class HashTable<Key, E> {
 		int home; 
 		int count = 0; //update probe
 		int pos = home = Math.abs(e.hashCode() % table.length); 
-		//for (int i =1; tableList[pos] != null; i++){ // check duplicates?
-		for (int i = 0; i < table.length; i++){
+		for (int i =1; tableList[pos] != null; i++){ // check duplicates?
+		//for (int i = 0; i < table.length; i++){
 			if (table[pos] == null){
 				table[pos] = new KVpair<Key, E>(k, e);
 				break;
