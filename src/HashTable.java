@@ -1,3 +1,5 @@
+import random.KVpair;
+
 /**
  * Your table will use quadratic probing to resolve collisions, with the quadratic function (n^2+ n)/2 to compute the step size. 
  * The hash table must use a contiguous physical structure (array). The initial size of the table will be 1024, and the table will
@@ -66,31 +68,53 @@ public class HashTable<Key, E> {
 	private void fInsertHash(KVpair[] table, Key k, E e){
 		int home; 
 		int count = 0; //update probe
-		//int pos = home = Math.abs(((NameIndex) k).hashCode() % table.length); 
+		int pos = home = Math.abs(((NameIndex) k).hashCode() % table.length); 
 		//for (int i =0; tableList[pos] != null; i++){ // check duplicates?
-		//for (int i = 0; i < table.length; i++){
-		int index = k.hashCode() % size;
-		int offset = 1;
-
-		while (table[index] != null && !table[index].getKey().equals(k)){
+		for (int i = 0; i < table.length; i++){
 			//pos = (home + step(k, i)) % table.length;
 			//count++;
-		//	i++;
-			index += offset; // +1, +3, +5, +7, +9
-			offset += 2;
-			index %= size;
+			if (table[pos] == null){
+			table[pos] = new KVpair<Key, E>(k, e);
+				break;
+			}
+			pos = (home + step(k, i)) % table.length;
 			count++;
-			//if (table[pos] == null){
-		//		table[pos] = new KVpair<Key, E>(k, e);
-		//		break;
-		//	}
-			//pos = (home + step(k, i)) % table.length;
-			//count++;
 		}
 		longestProbe = Math.max(count, longestProbe);
 		numbElements++;
-		table[index] = new KVpair<Key, E>(k, e);
+		table[pos] = new KVpair<Key, E>(k, e);
 	}
+	public void insert(Key k, E r){
+		int index = quadProbe(k);
+
+		// if the space exists
+		if (tableList[index] != null) {
+			tableList[index].addValue(r);
+		}
+		// if the space does not exist, increase capacity size
+		else {
+			tableList[index] = new KVpair<Key, E>(k, r);
+			if (size++ > size * .7) {
+				rehash();
+			}
+		}
+	}
+	 private int quadProbe(Key k) {
+
+			int index = k.hashCode() % size;
+			int offset = 1;
+			int count = 0;
+			while (tableList[index] != null && !tableList[index].getKey().equals(k)){
+				index += offset; // +1, +3, +5, +7, +9
+				offset += 2;
+				index %= size;
+				count++;
+			}
+			if (count > longestProbe) {
+				longestProbe = count;
+			}
+			return index;
+		}
 	
 	private int step(Key k, int a){
 		return  (a * a + a)/2;
