@@ -73,7 +73,7 @@ public class DataParser {
 			//dataFile.seek(endOffset);
 			System.out.println(str);
 		}*/
-		if(count == 0){
+		if(count == 1){
 			
 			System.out.println("111111111111111111111111111111111111111");
 
