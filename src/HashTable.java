@@ -47,9 +47,13 @@ public class HashTable<Key, E> {
 		int count = 0;
 
 		while (tableList[index] != null && !tableList[index].getKey().equals(k)) {
-			index += offset; // +1, +3, +5, +7, +9
+			index += offset; // +1, +3, +5, +7, +9        
 			offset += 2;
 			index %= size;
+			
+			// index = index +offset
+			// offset+2
+			
 			count++;
 
 		}
@@ -58,8 +62,13 @@ public class HashTable<Key, E> {
 		}
 		return index;
 	}
-	//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-	public static int elfHash(String str) {
+	/**
+	 * Source code from course notes.
+	 * 
+	 * @param str
+	 * @return
+	 */
+	public static long elfHash(String str) {
 		long hashCode = 0;
 		for (int Pos = 0; Pos < str.length(); Pos++) { // use all elements
 
@@ -73,7 +82,7 @@ public class HashTable<Key, E> {
 			hashCode &= ~hiBits; // clear high nybble
 		}
 
-		return (int) (hashCode);
+		return hashCode;
 	}
 	
 	

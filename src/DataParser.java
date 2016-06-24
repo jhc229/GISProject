@@ -34,7 +34,7 @@ public class DataParser {
 
 	//public prQuadTree<Point> quadTree;
 //	public BufferPool pool;
-	public HashTable<NameIndex, Integer>
+	public HashTable<NameIndex, Integer> table;
 	
 	// ~ Constructor
 	/**
@@ -57,6 +57,7 @@ public class DataParser {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		table = new HashTable<NameIndex, Integer>(1024)
 
 	}
 
@@ -121,12 +122,12 @@ public class DataParser {
 			
 			gisRecords.gisRecordsUpdate(offset);
 			System.out.println(GeoFeatures.FEATURE_NAME);
-			NameIndex name = new NameIndex(GeoFeatures.FEATURE_NAME, GeoFeatures.STATE_ALPHA);
+			NameIndex names = new NameIndex(GeoFeatures.FEATURE_NAME, GeoFeatures.STATE_ALPHA);
 			Point pos = new Point(GeoFeatures.PRIM_LONG_DMS.toSeconds(), GeoFeatures.PRIMARY_LAT_DMS.toSeconds(), (int) offset);
 			
 			if (pos.inBox(wLong, eLong , sLat , nLat)){
-				table.insert(pos);
-				//quadTree.insert(name, offset);
+				table.insertHash(names, (int) offset);
+				//quadTree.insert(pos);
 				
 				countIdx++;
 			}
