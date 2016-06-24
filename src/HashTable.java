@@ -119,7 +119,7 @@ public class HashTable<Key, E> {
 			int offset = 1;
 			int count = 0;
 			while (tableList[index] != null && !tableList[index].getKey().equals(k)){
-				index  = (index + step(k, count)) % size;
+				index  = (index + step(k, offset)) % size;
 				offset++;
 				count++;
 			}
