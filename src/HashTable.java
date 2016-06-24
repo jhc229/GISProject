@@ -93,7 +93,7 @@ public class HashTable<Key, E> {
 		if ((numbElements/tableList.length) > .7){
 			rehash();
 		}
-		else{
+		else if(tableList[index] != null){
 			tableList[index].addValue(r);
 			//tableList[index] = new KVpair<Key, E>(k, r);
 			numbElements++;
