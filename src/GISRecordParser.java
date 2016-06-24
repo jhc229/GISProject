@@ -86,8 +86,6 @@ public class GISRecordParser {
 		}
 
 	//	int result = Integer.parseInt(items[0]);
-		
-		
 	}
 
 	/*
