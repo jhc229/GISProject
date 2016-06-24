@@ -69,7 +69,10 @@ public class HashTable<Key, E> {
 		int pos = home = Math.abs(e.hashCode() % table.length); 
 		//for (int i =1; tableList[pos] != null; i++){ // check duplicates?
 		for (int i = 0; i < table.length; i++){
-			if (table[pos] == null)
+			if (table[pos] == null){
+				table[pos] = e;
+				break;
+			}
 			pos = (home + step(k, i)) % size;
 			count++;
 		}
