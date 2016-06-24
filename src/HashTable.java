@@ -107,7 +107,7 @@ public class HashTable<Key, E> {
 	}
 	 private int quadProbe(Key k) {
 
-			int index = Math.abs(k.hashCode() % size);
+			int index =  Math.abs(((NameIndex) k).hashCode() % size);
 			int offset = 1;
 			int count = 0;
 			while (tableList[index] != null && !tableList[index].getKey().equals(k)){
