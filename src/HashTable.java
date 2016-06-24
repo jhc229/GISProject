@@ -215,6 +215,7 @@ public class HashTable<Key, E> {
 		}
 	}********************************/
 
+	/*
 	public static int elfHash(String str) {
 		long hashValue = 0;
 		for (int Pos = 0; Pos < str.length(); Pos++) { // use all elements
@@ -229,7 +230,7 @@ public class HashTable<Key, E> {
 			hashValue &= ~hiBits; // clear high nybble
 		}
 		return (int) hashValue;
-	}
+	}*/
 	
 	private int step(Key k, int a){
 		return  (a * a + a)/2;
