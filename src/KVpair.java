@@ -31,4 +31,9 @@ class KVpair<Key, E> {
 		return offset;
 	}
 	
+	public String kvPairtoString(){
+		String output = "";
+		output = k.
+	}
+	
 }
