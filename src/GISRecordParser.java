@@ -42,8 +42,8 @@ public class GISRecordParser {
 	public void gisRecordsUpdate(long parserOffset) throws IOException, GISRecordException {
 		if ((parserOffset >= 265) && (parserOffset <= endOffset)){ //&& ((int)read.readByte() == 10)
 			read.seek(parserOffset);
-			String line = read.readLine();
-			String[] items = line.split("\\|");
+			//String line = read.readLine();
+			String[] items = read.readLine().split("\\|");
 			
 			
 			GeoFeatures.FEATURE_ID = Integer.parseInt(items[0]);
