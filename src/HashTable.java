@@ -75,7 +75,7 @@ public class HashTable<Key, E> {
 			//if (table[pos] == null){
 		//		table[pos] = new KVpair<Key, E>(k, e);
 		//		break;
-			}
+		//	}
 			//pos = (home + step(k, i)) % table.length;
 			//count++;
 		}
