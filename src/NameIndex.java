@@ -31,6 +31,10 @@ public class NameIndex {
 	public String getState() {
 		return state;
 	}
+	
+	public Sring nameIndexToString(){
+		return str;
+	}
 
 
 	/*
