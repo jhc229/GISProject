@@ -33,7 +33,7 @@ class KVpair<Key, E> {
 	
 	public String kvPairtoString(){
 		String output = "";
-		return output += (NameIndex)getKey() + ", " + getValue();
+		return output += getKey() + ", " + getValue();
 	}
 	
 }
