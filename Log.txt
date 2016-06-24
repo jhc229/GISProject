@@ -3,7 +3,7 @@
 ; Very basic testing of the simple search commands with a tiny DB.
 ;
 ; Specify boundaries of coordinate space:
-world: 0794130W 0792630W 381500N 383000N
+-286890 -285990 137700 138600world: 0794130W 0792630W 381500N 383000N
 
 ;
 ; Import some data:
