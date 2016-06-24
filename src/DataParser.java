@@ -89,7 +89,7 @@ public class DataParser {
 		nLat = toCoord(Integer.parseInt(northLat.substring(0, 2)), Integer.parseInt(northLat.substring(2, 4)), Integer.parseInt(northLat.substring(4, 6)), northLat.substring(6)).toSeconds();
 
 	//	quadTree = new prQuadTree<Point>(wLong, eLong , sLat , nLat);
-		System.out.println("world to seconds                                     " + wLong+ " "+ eLong +" "+ sLat +" "+ nLat);
+		System.out.println("world to seconds:" + wLong+ " "+ eLong +" "+ sLat +" "+ nLat);
 		stat.write(wLong+ " "+ eLong +" "+ sLat +" "+ nLat);
 		
 	}
@@ -125,14 +125,14 @@ public class DataParser {
 			//System.out.println(GeoFeatures.FEATURE_NAME);
 			NameIndex names = new NameIndex(GeoFeatures.FEATURE_NAME, GeoFeatures.STATE_ALPHA);
 			Point pos = new Point(GeoFeatures.PRIM_LONG_DMS.toSeconds(), GeoFeatures.PRIMARY_LAT_DMS.toSeconds(), (int) offset);
-			table.insertHash(names, (int) offset);
-			System.out.println("Number of elements: " + table.getNumElements());
-			System.out.println("Number of probes: " + table.getProbe());
+			//table.insertHash(names, (int) offset);
+			//System.out.println("Number of elements: " + table.getNumElements());
+			//System.out.println("Number of probes: " + table.getProbe());
 			
 			if (pos.inBox(wLong, eLong , sLat , nLat)){
 				table.insertHash(names, (int) offset);
-			//	System.out.println("Number of elements: " + table.getNumElements());
-			//	System.out.println("Number of probes: " + table.getProbe());
+				System.out.println("Number of elements: " + table.getNumElements());
+				System.out.println("Number of probes: " + table.getProbe());
 
 				//quadTree.insert(pos);
 				
