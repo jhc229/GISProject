@@ -43,7 +43,7 @@ public class NameIndex {
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
-	public int hashCode() {
+	public long hashCode() {
 		
 		long hashValue = 0;
 		for (int Pos = 0; Pos < str.length(); Pos++) { // use all elements
@@ -57,7 +57,7 @@ public class NameIndex {
 
 			hashValue &= ~hiBits; // clear high nybble
 		}
-		return (int) hashValue;
+		return hashValue;
 	}
 
 }
