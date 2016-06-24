@@ -42,7 +42,8 @@ public class HashTable<Key, E> {
         }
     }
 
-    private KVpair insertHelper(KVpair[] tb, Key k, E elem) {
+    @SuppressWarnings("rawtypes")
+	private KVpair insertHelper(KVpair<Key, E>[] tb, Key k, E vector) {
         // the home slot for the current element
         int home = Math.abs(k.hashCode() % tb.length);
         // declare the i outside the for loop because it will be used to count
@@ -53,11 +54,11 @@ public class HashTable<Key, E> {
             int pos = (home + (i * i + i) / 2) % tb.length;
             // the slot is empty, the place to put it is found
             if (tb[pos] == null) {
-                tb[pos].addValue(elem);
+                tb[pos].addValue(vector);
                 break;
             }
             // if the position is holding a duplicate, return this duplicate.
-            if (tb[pos].equals(elem)) {
+            if (tb[pos].equals(vector)) {
                 return tb[pos];
             }
         }
@@ -65,12 +66,13 @@ public class HashTable<Key, E> {
         return null;
 
     }
-    private void reallocate() {
+    @SuppressWarnings("unchecked")
+	private void reallocate() {
         @SuppressWarnings("unchecked")
         // create the new table with bigger size
         KVpair[] newTable = (KVpair[] ) new Object[size*size];
         // traverse the old table and copy every element to the new table
-        for (KVpair elem : tableList) {
+        for (KVpair<Key, E> elem : tableList) {
             if (elem != null) {
                 insertHelper(newTable, elem.getKey(), elem.getValue());
             }

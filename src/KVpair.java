@@ -23,8 +23,8 @@ class KVpair<Key, E> {
 		this.offset = new Vector<E>();
 		this.offset.add(offset);
 	}
-	public void addValue(E vector) {
-		offset.add(vector);
+	public void addValue(Vector<E> vector) {
+		offset.addAll(vector);
 	}
 	public void setValues(Vector<E> e) {
 		offset = e;
