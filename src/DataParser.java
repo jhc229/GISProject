@@ -9,6 +9,8 @@ import java.util.Scanner;
 
 import java.io.RandomAccessFile;
 import java.io.Reader;
+import quadTree.*;
+
 
 /**
  *
