@@ -3,6 +3,7 @@ package Minor.P3.DS;
 import java.util.Vector;
 
 import Minor.P3.Client.Point;
+import Minor.P3.DS.prQuadTree;
 //import Minor.P3.DS.prQuadTree.prQuadInternal;
 //import Minor.P3.DS.prQuadTree.prQuadLeaf;
 //import Minor.P3.DS.prQuadTree.prQuadNode;
