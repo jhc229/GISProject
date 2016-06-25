@@ -48,28 +48,31 @@ public class HashTable<Key, E> {
 		}
 		fInsertHash(tableList, k, e);
 		}
+	
 	/*
-	 * Linear time,  inserting N items costs
+	 * Linear time, inserting N items costs
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private void rehash(){
+	private void rehash() {
 		size *= 2;
-		KVpair[] old  = tableList;		// Contains the original entries
-		tableList = new KVpair[size]; //Allocate new size
+		KVpair[] old = tableList; // Contains the original entries
+		tableList = new KVpair[size]; // Allocate new size
 
-		for (int i = 0; i < old.length; i++){		// old entries into the new one
-			Key k = (Key) old[i].getKey();
-			Vector<E> e = old[i].getValue();
-			if (k != null){
-				findEntry(k);
-				tableList[index_flag].addValue(e);
+		for (int i = 0; i < old.length; i++) { // old entries into the new one
+			Key k = (Key) old[i].getKey(); // old k value
+			Vector<E> e = old[i].getValue(); // old e value
+
+			if (k != null) { // when it contains some value
+				if (findEntry(k) == 1)
+					tableList[index_flag] new KVpair<Key, E>(k, null);
+				tableList[index_flag].setValues(e);
 			}
 		}
 	}
 	
 	/*
 	 * index_flag holds the index of the given key.
-	 * Return 0 when nothing is found that matches;
+	 * Return 0 when nothing is found but its available for storage.
 	 * 				 1 when there is key found given key entry.
 	 * @param k
 	 * @return
@@ -88,9 +91,12 @@ public class HashTable<Key, E> {
 		for (int i = 0; i<size; i++ ){
 			Key entry1 = (Key) tableList[pos];
 			
-			if (entry1.equals(k)l){
+			if (entry1.equals(k)){
 				index_flag= pos;			//index_flag will hold the key found
 				return 1;	//Found
+			}
+			if (index_flag < 0){
+				index_flag = pos;
 			}
 			pos = (home + step(k, i)) % size; // Next index
 		}
@@ -100,15 +106,20 @@ public class HashTable<Key, E> {
 	/*
 	 *  Get Key
 	 */
-	public Key getEntry(Key k){
+	public NameIndex getNameIndex(Key k){
 		int a = findEntry(k);
 		if (a <= 0) return null;
-		return tableList[index_flag].getKey();
+		return (NameIndex) tableList[index_flag].getKey();
 	}
-			
+	
 	/*
-	 * Get 
+	 * Get Vector<E>
 	 */
+	public Vector<E> getEntries(Key k){
+		int a = findEntry(k);
+		if (a <= 0) return null;
+		return tableList[index_flag].getValue();
+	}
 
 	/*
 	 *  (n^2  + n) /2
@@ -136,121 +147,8 @@ public class HashTable<Key, E> {
 	//	table[pos] = new KVpair<Key, E>(k, e);
 	}
 
-/*
-	
-	private int quadProbe(Key k) {
 
-		int index =  Math.abs(((NameIndex) k).hashCode() % size);
-		//System.out.println(tableList[1]);
-		//System.out.println(index); // pos = (home + step(k, i)) % table.length;
-		//index +
-		int offset = 1;
-		int count = 0;
-		while (tableList[index] != null && !tableList[index].getKey().equals(k)){
-			index += offset; // +1, +3, +5, +7, +9
-			offset += 2;
-			index %= size;
-			count++;
-		}
-		longestProbe = Math.max(count, longestProbe);
-		return index;
-	}*/
 
-	/*
-		for (int i =1; tableList[pos] != null; i++){
-			pos = (home + p(k, i)) % size;
-			assert tableList[pos].key().compareTo(k) != 0: "duplicates not allowed";
-		}
-		tableList[pos] = new KVpair<Key, E>(k, e);
-	}*/
-	/*
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private void rehash(){
-	
-		size *= 2;
-		KVpair[] newTable  = new KVpair[size];
-		//tableList = new KVpair[size];
-		for (int i = 0; tableList[i] != null; i++){
-		//for (int i = 0; i < tableList.length; i++)
-			fInsertHash(newTable, tableList[i].getKey(), tableList[i].getValue().firstElement());
-		}
-		tableList = newTable;
-		
-	}*/
-	
-
-	/*****************************************
-	public void insert(Key k, E r){
-		int index = quadProbe(k);
-
-		//	int home;
-		//int pos = home = k.hashCode() % size;  
-		if(tableList[index] != null){
-			tableList[index].addValue(r);
-			//tableList[index] = new KVpair<Key, E>(k, r);
-		}
-		else{ 
-			tableList[index] = new KVpair<Key, E>(k, r);
-			if ((numbElements/tableList.length) > .7) rehash();
-		}
-		numbElements++;
-
-		//tableList[index].addValue(r);
-		//tableList[index] = new KVpair<Key, E>(k, r);
-		//numbElements++;
-		
-	//	numbElements++;
-		// if the space//exists
-		//if (tableList[index] != null) {
-		//}
-		// if the space does not exist, increase capacity size
-
-	//	}
-	}
-
-	private int quadProbe(Key k) {
-
-			int index =  Math.abs(((NameIndex) k).hashCode() % size);
-			//System.out.println(tableList[1]);
-			//System.out.println(index); // pos = (home + step(k, i)) % table.length;
-			//index +
-			int offset = 1;
-			int count = 0;
-			while (tableList[index] != null && !tableList[index].getKey().equals(k)){
-				index += offset; // +1, +3, +5, +7, +9
-				offset += 2;
-				index %= size;
-				count++;
-			}
-			longestProbe = Math.max(count, longestProbe);
-			return index;
-		}
-
-	@SuppressWarnings("unchecked")
-	private void rehash() {
-		size *= size;
-		// capacityIndex++;
-		// M = capacityList[capacityIndex];
-
-		@SuppressWarnings("rawtypes")
-		KVpair[] old = tableList;
-		tableList = new KVpair[size];
-		for (int i = 0; i < old.length; i++) {
-			if (old[i] != null) {
-				reInsert((Key) old[i].getKey(), old[i].getValue());
-			}
-		}
-	}
-
-	public void reInsert(Key k, Vector<E> elements) {
-
-		int index = quadProbe(k);
-		if (tableList[index] == null) {
-			size++;
-			tableList[index] = new KVpair<Key, E>(k, null);
-			tableList[index].setValues(elements);
-		}
-	}********************************/
 
 	/*
 	public static int elfHash(String str) {
