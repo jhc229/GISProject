@@ -40,7 +40,13 @@ public class Point implements Compare2D<Point> {
 		return ycoord;
 	}
 	
+	public void addOffset(Vector<Long> offset){
+		this.offsets.addAll(offset);
+	}
 	
+	public Vector<Long> getOffset(){
+		 return offsets;
+	}
 	   
 	 public Direction directionFrom(int X, int Y) { 
 			if ( xcoord <= X && ycoord > Y){
