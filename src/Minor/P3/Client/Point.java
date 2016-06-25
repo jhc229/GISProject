@@ -4,7 +4,8 @@ import Minor.P3.Client.*;
 import Minor.P3.DS.Compare2D.class;
 
 import Minor.P3.Client.Point;
-import Minor.P3.Client.
+import Minor..package;
+
 public class Point implements Compare2D<Point> {
 
 	   private long xcoord;
