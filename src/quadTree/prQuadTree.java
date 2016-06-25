@@ -128,15 +128,17 @@ private prQuadNode fInsert(prQuadNode rt, T elem, double xMin, double xMax,
 			prQuadLeaf leafNode = (prQuadLeaf) rt;
 			
 			if (leafNode.Elements.size() < bucketSize){ // Check the number of leafs
-				
-					return bucketSplit(leafNode, elem);
-						
+					
+				insert_Flag =true;
+				return bucketSplit(leafNode, elem);
 						
 			}
 			
 			// For Leaf splitting, the original leafnode will be inserted into
 			// current internal node then the new element will be added.
 			internalNode = (prQuadInternal) fInsert(internalNode, leafNode.Elements.firstElement() , xMin, xMax, yMin, yMax);
+			
+			
 			return internalNode = (prQuadInternal) fInsert(internalNode, elem , xMin, xMax, yMin, yMax);
 
 		}
@@ -157,10 +159,10 @@ private prQuadNode fInsert(prQuadNode rt, T elem, double xMin, double xMax,
 		   }
 		   else{
 			   insert_Flag = false;
-			   leafNode.Elements.addElement(elem);
 		   }
-	   }while ( i <leafNode.Elements.size());
-	   return leafNode;
+	   }while ( i <leafNode.Elements.size() && insert_Flag == true);
+		   leafNode.Elements.addElement(elem);
+		   return leafNode;
    }
 
    // Pre:  elem != null
