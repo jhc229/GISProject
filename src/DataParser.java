@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
-import Minor.P3.*;
+import Minor.P3.DS.prQuadTree.MyClass;
 
 import java.io.RandomAccessFile;
 import java.io.Reader;
@@ -20,7 +20,6 @@ public class DataParser {
 	// ~ Fields
 	private RandomAccessFile dataFile = null;
 	private File data = null;
-	private Po
 	
 	private long offset;
 	private long endOffset = 0;
