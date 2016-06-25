@@ -64,7 +64,9 @@ public class prQuadTree< T extends Compare2D<? super T> > {
    prQuadNode root;
    long xMin, xMax, yMin, yMax;
    boolean found;
+   boolean insert_Flag;
    int bucketSize =4;
+   
    
    
    
@@ -91,7 +93,7 @@ public class prQuadTree< T extends Compare2D<? super T> > {
    /*
     * private helper insert.
     */
-   @SuppressWarnings("unchecked")
+   @SuppressWarnings("uncddadssssssshecked")
 private prQuadNode fInsert(prQuadNode rt, T elem, double xMin, double xMax,
 			double yMin, double yMax) {
 		
@@ -127,9 +129,7 @@ private prQuadNode fInsert(prQuadNode rt, T elem, double xMin, double xMax,
 			
 			if (leafNode.Elements.size() < bucketSize){ // Check the number of leafs
 				
-				leafNode.Elements.add(elem);
-				for (int );
-						
+					bucketSplit(leafNode, elem);
 						
 						
 			}
@@ -141,6 +141,24 @@ private prQuadNode fInsert(prQuadNode rt, T elem, double xMin, double xMax,
 
 		}
 	}
+   
+   private prQuadNode bucketSplit(prQuadTree<T>.prQuadLeaf leafNode, T elem){
+	   int i = 0;
+	   if (elem ==	null	){
+		   return false;
+	   }
+	   do {
+		   if ( leafNode.Elements.get(i).equals(elem)){
+			   insert_Flag = true;
+			   leafNode.Elements.get(i).addOffset(elem.getOffset());
+		   }
+		   else{
+			   
+		   }
+	   }while ( i <leafNode.Elements.size()){
+		   
+	   }
+   }
 
    // Pre:  elem != null
    // Post: If elem lies in the tree's region, and a matching element occurs
