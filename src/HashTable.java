@@ -63,13 +63,22 @@ public class HashTable<Key, E> {
 		size *= 2;
 		KVpair[] newTable  = new KVpair[size];
 		//tableList = new KVpair[size];
-		for (int i = 0; tableList[i] != null; i++){
-		//for (int i = 0; i < tableList.length; i++)
-			fInsertHash(newTable, tableList[i].getKey(), tableList[i].getValue().firstElement());
+		//for (int i = 0; tableList[i] != null; i++){
+		for (int i = 0; i < tableList.length; i++){
+			reInsert(newTable, tableList[i].getKey(), tableList[i].getValue());
 		}
 		tableList = newTable;
-		
 	}
+	public void reInsert(KVpair[] table, Key k, Vector<E> vector) {
+
+		int index = quadProbe(k);
+		if (table[index] == null) {
+			size++;
+			table[index] = new KVpair<K, V>(k, null);
+			table[index].setValues(vector);
+		}
+	}	
+
 	/*
 	 *  (n^2  + n) /2
 	 *  0 
