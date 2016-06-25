@@ -11,8 +11,8 @@ import java.util.Vector;
  */
 public class Point implements Compare2D<Point> {
 
-	private int  				xcoord;
-	private int					ycoord;
+	private int  						xcoord;
+	private int						ycoord;
 	private Vector<Long>		 offsets;
 	
 	public Point(){
