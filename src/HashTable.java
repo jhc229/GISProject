@@ -60,8 +60,8 @@ public class HashTable<Key, E> {
 		for (int i = 0; i < old.length; i++){		// old entries into the new one
 			Key k = (Key) old[i].getKey();
 			Vector<E> e = old[i].getValue();
-			if (old[i] != null){
-				findEntry((Key) old[i].getKey());
+			if (k != null){
+				findEntry(k);
 				tableList[index_flag].addValue(e);
 			}
 		}
