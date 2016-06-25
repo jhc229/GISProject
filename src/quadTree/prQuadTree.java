@@ -136,6 +136,8 @@ private prQuadNode fInsert(prQuadNode rt, T elem, double xMin, double xMax,
 			
 			// For Leaf splitting, the original leafnode will be inserted into
 			// current internal node then the new element will be added.
+			
+			internalNode = bucketSplit((prQuadInternal) fInsert(internalNode, leafNode.Elements.firstElement() , xMin, xMax, yMin, yMax));
 			internalNode = (prQuadInternal) fInsert(internalNode, leafNode.Elements.firstElement() , xMin, xMax, yMin, yMax);
 			
 			
