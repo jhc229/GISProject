@@ -1,19 +1,36 @@
 package quadTree;
 
+import java.util.Vector;
+
+/**
+ * Store a geographic coordinate and a collection of the file offsets of the matching
+ * GIS records in the database file.
+ * 
+ * @author sean
+ *
+ */
 public class Point implements Compare2D<Point> {
 
-	   private long xcoord;
-	   private long ycoord;
-	   
-	   public Point() {
-	      xcoord = 0;
-	      ycoord = 0;
-	   }
-
-	   public Point(long x, long y) {
-	      xcoord = x;
-	      ycoord = y;
-	   }
+	private double  				xcoord;
+	private double					ycoord;
+	private Vector<Integer>	offsets;
+	
+	public Point(){
+		xcoord = 0;
+		ycoord = 0;
+		offsets 	= 0;
+	}
+	
+	public Point(double x, double y){
+		xcoord = x;
+		ycoord = y;
+	}
+	
+	public Point(double x, double y, long z){
+		xcoord = x;
+		ycoord = y;
+		
+	}
 
 	   public long getX() {
 	      return xcoord;
