@@ -19,13 +19,12 @@ import java.io.Reader;
 public class DataParser {
 	// ~ Fields
 	private RandomAccessFile dataFile = null;
-	//private File dataFile = null;
+	private File data = null;
 	
 	private long offset;
 	private long endOffset = 0;
 	private BufferedWriter stat = null;
 	private GISRecordParser gisRecords =null; // GIS  record parts
-	private int ct;
 	
 	private int wLong, eLong , sLat , nLat; //boundary
 	
@@ -47,6 +46,7 @@ public class DataParser {
 		
 		
 		try {
+			data = dataFile;
 			this.dataFile = new RandomAccessFile(dataFile, "rw");
 			stat = result;
 			offset = 265;
@@ -71,14 +71,22 @@ public class DataParser {
 		String str = "";
 		if (count > 0){
 			gisRecord.readLine();
+			dataFile.seek(endOffset);
+		}
+		if (count == 0){
+			data.createNewFile();
+			dataFile = new RandomAccessFile(data, "rw");
 		}
 		while ((str =gisRecord.readLine()) != null) { 
 			//dataFile.write((str +"\n").getBytes());
-			System.out.println(str);
+			//System.out.println(str);
 			dataFile.write((str + "\n").getBytes());
-			
+			//System.out.println(str.length());
+
 		}
+		endOffset = dataFile.getFilePointer();
 		dataFile.seek(265);
+
 		gisRecord.close();
 		stat.write("\n");
 		
@@ -124,8 +132,10 @@ public class DataParser {
 			//System.out.println(gisRecords.gisRecordsUpdate());
 			dataFile.seek(offset);
 			//System.out.println("offset: " + offset);
-			
+
 			gisRecords.gisRecordsUpdate(offset);
+
+			//System.out.println("offset: " + offset);
 			
 			NameIndex names = new NameIndex(GeoFeatures.FEATURE_NAME, GeoFeatures.STATE_ALPHA);
 			Point pos = new Point(GeoFeatures.PRIM_LONG_DMS.toSeconds(), GeoFeatures.PRIMARY_LAT_DMS.toSeconds(), (int) offset);
@@ -151,6 +161,7 @@ public class DataParser {
 			//NameIndex name = new NameIndex(gisRecords.name(offset), gisRecords.s)
 			
 		}
+		System.out.println("current pointer : " + dataFile.getFilePointer());
 		System.out.println("Number of elements: " + table.getNumElements());
 		System.out.println("Number of probes: " + table.getProbe());
 		System.out.println("Current table size: " + table.getCurrentSize());
