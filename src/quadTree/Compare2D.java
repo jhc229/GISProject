@@ -1,12 +1,20 @@
 package quadTree;
 
+import java.util.Vector;
+
 // The interface Compare2D is intended to supply facilities that are useful in
 // supporting the the use of a generic spatial structure with a user-defined
 // data type.
 //
 public interface Compare2D<T> {
 	
-   // Returns the x-coordinate field of the user data object.
+	// Adds the new value to the user data object.
+	public void addOffset(Vector<Long> offset);
+	
+	// Returns the offset field of the user data object.
+	public Vector<Long> getOffset();
+	
+	// Returns the x-coordinate field of the user data object.
    public int getX();
    
    // Returns the y-coordinate field of the user data object.
