@@ -129,7 +129,7 @@ private prQuadNode fInsert(prQuadNode rt, T elem, double xMin, double xMax,
 			
 			if (leafNode.Elements.size() < bucketSize){ // Check the number of leafs
 				
-					bucketSplit(leafNode, elem);
+					return bucketSplit(leafNode, elem);
 						
 						
 			}
@@ -143,23 +143,24 @@ private prQuadNode fInsert(prQuadNode rt, T elem, double xMin, double xMax,
 	}
    
    private prQuadNode bucketSplit(prQuadLeaf leafNode, T elem){
-	    prQuadLeaf leaf= new prQuadLeaf();
-	    leaf = leafNode;
+	  //  prQuadLeaf leaf= new prQuadLeaf();
+	   // leaf = leafNode;
 	    int i = 0;
 	   if (elem ==	null	){
 		   return null;
 	   }
 	   do {
-		   if ( leaf.Elements.get(i).equals(elem)){
+		   if ( leafNode.Elements.get(i).equals(elem)){
 			   insert_Flag = true;
 			   leafNode.Elements.get(i).addOffset(elem.getOffset());
 			   i++;
 		   }
 		   else{
 			   insert_Flag = false;
-			   leaf.Elements.addElement(elem);
+			   leafNode.Elements.addElement(elem);
 		   }
 	   }while ( i <leafNode.Elements.size());
+	   return leafNode;
    }
 
    // Pre:  elem != null
