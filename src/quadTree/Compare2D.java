@@ -7,10 +7,10 @@ package quadTree;
 public interface Compare2D<T> {
 	
    // Returns the x-coordinate field of the user data object.
-   public long getX();
+   public int getX();
    
    // Returns the y-coordinate field of the user data object.
-   public long getY();
+   public int getY();
    
    // Returns indicator of the direction to the user data object from the 
    // location (X, Y) specified by the parameters.
