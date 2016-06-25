@@ -1,5 +1,7 @@
 package quadTree;
 
+import java.util.Vector;
+
 //On my honor:
 //
 //- I have not discussed the Java language code in my program with
@@ -62,6 +64,9 @@ public class prQuadTree< T extends Compare2D<? super T> > {
    prQuadNode root;
    long xMin, xMax, yMin, yMax;
    boolean found;
+   int bucketSize =4;
+   
+   
    
    // Initialize quadtree to empty state, representing the specified region.
    public prQuadTree(long xMin, long xMax, long yMin, long yMax) {
@@ -78,7 +83,7 @@ public class prQuadTree< T extends Compare2D<? super T> > {
    //        present in the tree, elem has been inserted into the tree.
    // Return true iff elem is inserted into the tree. 
    public boolean insert(T elem) {
-	   if (find(elem) != null || !elem.inBox(xMin, xMax, yMin, yMax)) return false;
+	   if (elem != 0 && !elem.inBox(xMin, xMax, yMin, yMax)) return false; //duplicates allowed
 	   root = fInsert(root, elem, xMin, xMax, yMin, yMax);
 	   return true;
    }
@@ -119,6 +124,15 @@ private prQuadNode fInsert(prQuadNode rt, T elem, double xMin, double xMax,
 		else{
 			prQuadInternal	internalNode =  new prQuadInternal(); // create an internal node
 			prQuadLeaf leafNode = (prQuadLeaf) rt;
+			
+			if (leafNode.Elements.size() < bucketSize){ // Check the number of leafs
+				
+				leafNode.Elements.add(elem);
+				for (int );
+						
+						
+						
+			}
 			
 			// For Leaf splitting, the original leafnode will be inserted into
 			// current internal node then the new element will be added.
