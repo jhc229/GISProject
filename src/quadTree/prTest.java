@@ -1,4 +1,4 @@
-package quadTree
+package quadTree;
 
 
 import java.util.Vector;
