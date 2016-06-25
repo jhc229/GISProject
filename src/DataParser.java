@@ -50,7 +50,7 @@ public class DataParser {
 			this.dataFile = new RandomAccessFile(dataFile, "rw");
 			stat = result;
 			offset = 265;
-			endOffset = 265;
+			//endOffset = 265;
 			//pool = new BufferPool();
 			//table = new HashTable<NameIndex, Integer>(1024);
 			//offset  = 0;
@@ -78,6 +78,7 @@ public class DataParser {
 			dataFile.write((str + "\n").getBytes());
 			
 		}
+		dataFile.seek(265);
 		gisRecord.close();
 		stat.write("\n");
 		
