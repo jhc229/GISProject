@@ -39,8 +39,10 @@ public class Point implements Compare2D<Point> {
 	public int getY(){
 		return ycoord;
 	}
+	
+	
 	   
-	   public Direction directionFrom(long X, long Y) { 
+	 public Direction directionFrom(int X, int Y) { 
 			if ( xcoord <= X && ycoord > Y){
 				return Direction.NW;
 			}
@@ -56,8 +58,8 @@ public class Point implements Compare2D<Point> {
 			return Direction.NOQUADRANT;
 	   }
 	   
-	   public Direction inQuadrant(double xLo, double xHi, 
-	                               double yLo, double yHi) { 
+	   public Direction inQuadrant(int xLo, int xHi, 
+	                               int yLo, int yHi) { 
 			if ( !inBox(xLo, xHi, yLo, yHi)){
 				return Direction.NOQUADRANT;
 			}
@@ -72,8 +74,8 @@ public class Point implements Compare2D<Point> {
 			return dir;
 	   }
 
-	   public boolean inBox(double xLo, double xHi, 
-	                          double yLo, double yHi) { 
+	   public boolean inBox(int xLo, int xHi, 
+	                          int yLo, int yHi) { 
 			if ( xcoord < xLo || xcoord > xHi || ycoord < yLo || ycoord > yHi){
 				return false;
 			}
@@ -94,4 +96,23 @@ public class Point implements Compare2D<Point> {
 			}
 			return false;
 	   }
+
+	@Override
+	public Direction directionFrom(long X, long Y) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Direction inQuadrant(double xLo, double xHi, double yLo,
+			double yHi) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean inBox(double xLo, double xHi, double yLo, double yHi) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	}
