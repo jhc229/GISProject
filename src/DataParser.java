@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
-import Minor.P3.DS.prQuadTree.MyClass;
 
 import java.io.RandomAccessFile;
 import java.io.Reader;
