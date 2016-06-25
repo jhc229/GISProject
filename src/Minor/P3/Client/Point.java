@@ -1,9 +1,8 @@
 package Minor.P3.Client;
 
 import Minor.P3.Client.*;
-
 import Minor.P3.DS.Compare2D;
-import Minor.P3.DS.Direction;
+
 
 public class Point implements Compare2D<Point> {
 
