@@ -16,10 +16,10 @@ import java.util.Vector;
 public class HashTable<Key, E> {
 	
 	private KVpair<Key, E>[] tableList;
+	private int index_flag;
 	private int longestProbe = 0;
 	private int size = 0;
 	private int numbElements = 0;
-	
 	
 	/*
 	 *  Constructor
@@ -29,67 +29,95 @@ public class HashTable<Key, E> {
 		tableList = new KVpair[size];
 		this.size = size;
 	}
+	
+	
+	/*
+	 * 
+	 */
+	private int step(Key k, int a){
+		return  (a * a + a)/2;
+	}
+	
 	/*
 	 * insert element into hashtable
 	 */
 	public void insertHash(Key k, E e){
-		/**int index = quadProbe(k);
-
-		//	int home;
-		//int pos = home = k.hashCode() % size;  
-		if(tableList[index] != null){
-			tableList[index].addValue(r);
-			//tableList[index] = new KVpair<Key, E>(k, r);
-		}
-		else{ 
-			tableList[index] = new KVpair<Key, E>(k, r);
-			if ((numbElements/tableList.length) > .7) rehash();
-		}
-		numbElements++;**/
 		
-	//	int home;
-		//int pos = home = k.hashCode() % size;  
 		if ((numbElements/tableList.length) > .7){
-			rehash();
+			rehash(); // Rehash the table when it reaches 70% full
 		}
 		fInsertHash(tableList, k, e);
-	//	numbElements++;
 		}
-	
-	
+	/*
+	 * Linear time,  inserting N items costs
+	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void rehash(){
-	
 		size *= 2;
-		KVpair[] newTable  = new KVpair[size];
-		//tableList = new KVpair[size];
-		//for (int i = 0; tableList[i] != null; i++){
-		for (int i = 0; i < tableList.length; i++){
-			reInsert(newTable, tableList[i].getKey(), tableList[i].getValue());
-		}
-		tableList = newTable;
-	}
-	public void reInsert(KVpair[] table, Key k, Vector<E> vector) {
+		KVpair[] old  = tableList;		// Contains the original entries
+		tableList = new KVpair[size]; //Allocate new size
 
-		int index = quadProbe(k);
-		if (table[index] == null) {
-			size++;
-			table[index] = new KVpair<K, V>(k, null);
-			table[index].setValues(vector);
+		for (int i = 0; i < old.length; i++){		// old entries into the new one
+			Key k = (Key) old[i].getKey();
+			Vector<E> e = old[i].getValue();
+			if (old[i] != null){
+				findEntry((Key) old[i].getKey());
+				tableList[index_flag].addValue(e);
+			}
 		}
-	}	
+	}
+	
+	/*
+	 * index_flag holds the index of the given key.
+	 * Return 0 when nothing is found that matches;
+	 * 				 1 when there is key found given key entry.
+	 * @param k
+	 * @return
+	 */
+	public int findEntry(Key k){
+		index_flag = -1;
+		
+		if (k == null){
+			index_flag = -1;
+			return -1;
+		}
+		int home; 
+		
+		int pos = home = (Math.abs(k.hashCode()) % size); 
+				
+		for (int i = 0; i<size; i++ ){
+			Key entry1 = (Key) tableList[pos];
+			
+			if (entry1.equals(k)l){
+				index_flag= pos;			//index_flag will hold the key found
+				return 1;	//Found
+			}
+			pos = (home + step(k, i)) % size; // Next index
+		}
+		return 0; //Not found
+	}
+	
+	/*
+	 *  Get Key
+	 */
+	public Key getEntry(Key k){
+		int a = findEntry(k);
+		if (a <= 0) return null;
+		return tableList[index_flag].getKey();
+	}
+			
+	/*
+	 * Get 
+	 */
 
 	/*
 	 *  (n^2  + n) /2
-	 *  0 
+	 *  
 	 */
 	private void fInsertHash(KVpair[] table, Key k, E e){
 		int home; // initial position
 		int count = 0; //update probe
-		//int pos = home = Math.abs(((NameIndex) k).hashCode() % table.length); 
 		int pos = home = (Math.abs(k.hashCode()) % table.length); 
-		//System.out.println(pos);
-		//for (int i =0; tableList[pos] != null; i++){ // check duplicates?
 		for (int i = 0; i < table.length; i++){
 
 			if (table[pos] == null){
@@ -240,10 +268,6 @@ public class HashTable<Key, E> {
 		}
 		return (int) hashValue;
 	}*/
-	
-	private int step(Key k, int a){
-		return  (a * a + a)/2;
-	}
 	
 	/**
 	 * Get the number of probes
