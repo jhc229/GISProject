@@ -1,5 +1,5 @@
 import Minor.P3.Client.Point;
-import Minor.P3.DS.prQuadTree;
+package Minor.P3.Client; 
 
 public class prTest {
 
