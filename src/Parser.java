@@ -126,7 +126,7 @@ public class Parser {
 				// append existing datafile
 				else if (str[0].matches("import")) {
 					
-					if (count == 0) dataFile.createNewFile();
+					if (count == 0) db = new DataParser(dataFile, stat);
 
 					db.appendFile((str[1]), count); // Add all the valid GIS records in the specified file to the database file.
 					db.importFile();
