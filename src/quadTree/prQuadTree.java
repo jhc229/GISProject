@@ -142,22 +142,24 @@ private prQuadNode fInsert(prQuadNode rt, T elem, double xMin, double xMax,
 		}
 	}
    
-   private prQuadNode bucketSplit(prQuadTree<T>.prQuadLeaf leafNode, T elem){
-	   int i = 0;
+   private prQuadNode bucketSplit(prQuadLeaf leafNode, T elem){
+	    prQuadLeaf leaf= new prQuadLeaf();
+	    leaf = leafNode;
+	    int i = 0;
 	   if (elem ==	null	){
-		   return false;
+		   return null;
 	   }
 	   do {
-		   if ( leafNode.Elements.get(i).equals(elem)){
+		   if ( leaf.Elements.get(i).equals(elem)){
 			   insert_Flag = true;
 			   leafNode.Elements.get(i).addOffset(elem.getOffset());
+			   i++;
 		   }
 		   else{
-			   
+			   insert_Flag = false;
+			   leaf.Elements.addElement(elem);
 		   }
-	   }while ( i <leafNode.Elements.size()){
-		   
-	   }
+	   }while ( i <leafNode.Elements.size());
    }
 
    // Pre:  elem != null
