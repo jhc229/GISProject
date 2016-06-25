@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
-
+import Minor.P3.*;
 
 import java.io.RandomAccessFile;
 import java.io.Reader;
@@ -20,6 +20,7 @@ public class DataParser {
 	// ~ Fields
 	private RandomAccessFile dataFile = null;
 	private File data = null;
+	private Po
 	
 	private long offset;
 	private long endOffset = 0;
@@ -139,28 +140,24 @@ public class DataParser {
 			//System.out.println("offset: " + offset);
 			
 			NameIndex names = new NameIndex(GeoFeatures.FEATURE_NAME, GeoFeatures.STATE_ALPHA);
-			Point pos = new Point(GeoFeatures.PRIM_LONG_DMS.toSeconds(), GeoFeatures.PRIMARY_LAT_DMS.toSeconds(), (int) offset);
+			Point dmsPoints = new Point(GeoFeatures.PRIM_LONG_DMS.toSeconds(), GeoFeatures.PRIMARY_LAT_DMS.toSeconds(), (int) offset);
 			
-			if (pos.inBox(wLong, eLong , sLat , nLat)){
-				//table.insertHash(names, (int) offset);
+			if (dmsPoints.inBox(wLong, eLong , sLat , nLat)){
 				table.insertHash(names, (int) offset);
+				quadTree.insert(dmsPoints);
+				
 				//System.out.println("Number of elements: " + table.getNumElements());
 				//System.out.println("Number of probes: " + table.getProbe());
 				//System.out.println("Current table size: " + table.getCurrentSize());
-				//quadTree.insert(pos);
 				
 				countIdx++;
 			}
-			
 			dataFile.seek(offset); //Bring the pointer back to beginning of the line after reading from the gisRecordsUpdate
-			
 			//System.out.println("name: " + gisRecords.name(offset));
-
 			//System.out.println("offset: " + offset);
 			//System.out.println(GeoFeatures.COUNTY_NAME);
 			offset += dataFile.readLine().length() +1; // Next line
 			//NameIndex name = new NameIndex(gisRecords.name(offset), gisRecords.s)
-			
 		}
 		System.out.println("current pointer : " + dataFile.getFilePointer());
 		System.out.println("Number of elements: " + table.getNumElements());
@@ -170,6 +167,7 @@ public class DataParser {
 		stat.write("\n");
 		// dataFile.close();
 		//dataFile.seek(265);
+		System.out.println("Pointer: "+ dataFile.getFilePointer());
 	}
 
 	public void whatIsAt(String string) {

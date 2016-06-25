@@ -59,14 +59,18 @@ public class HashTable<Key, E> {
 		tableList = new KVpair[size]; // Allocate new size
 
 		for (int i = 0; i < old.length; i++) { // old entries into the new one
-			Key k = (Key) old[i].getKey(); // old k value
-			Vector<E> e = old[i].getValue(); // old e value
+			//Key k = (Key) old[i].getKey(); // old k value
+			//Vector<E> e = old[i].getValue(); // old e value
 
-			if (k != null) { // when it contains some value
-				if (findEntry(k) == 1)
-					tableList[index_flag] new KVpair<Key, E>(k, null);
-				tableList[index_flag].setValues(e);
+			if (old[i] != null) { // when it contains some value
+				if (findEntry((Key) old[i] .getKey()) == 1){
+				tableList[index_flag] = new KVpair<Key, E>((Key) old[i] .getKey(), null);
+				tableList[index_flag].setValues(old[i] .getValue());
+				}
+				//System.out.println(((NameIndex) old[i].getKey()).nameIndexToString() + "");
+
 			}
+			
 		}
 	}
 	
@@ -80,7 +84,7 @@ public class HashTable<Key, E> {
 	public int findEntry(Key k){
 		index_flag = -1;
 		
-		if (k == null){
+		if (k == ""){
 			index_flag = -1;
 			return -1;
 		}
@@ -88,7 +92,7 @@ public class HashTable<Key, E> {
 		
 		int pos = home = (Math.abs(k.hashCode()) % size); 
 				
-		for (int i = 0; i<size; i++ ){
+		for (int i = 0; tableList[pos] != null; i++ ){
 			Key entry1 = (Key) tableList[pos];
 			
 			if (entry1.equals(k)){
@@ -125,6 +129,7 @@ public class HashTable<Key, E> {
 	 *  (n^2  + n) /2
 	 *  
 	 */
+	@SuppressWarnings("rawtypes")
 	private void fInsertHash(KVpair[] table, Key k, E e){
 		int home; // initial position
 		int count = 0; //update probe
