@@ -67,6 +67,7 @@ public class DataParser {
 	public void appendFile(String gisRecordFile, int count) throws IOException {
 		
 		BufferedReader gisRecord = new BufferedReader(new FileReader(gisRecordFile)); 
+		//dataFile = new RandomAccessFile(data, "rw");
 		//RandomAccessFile gisRecord = new RandomAccessFile(gisRecordFile, "r");
 		String str = "";
 		if (count > 0){
@@ -74,8 +75,8 @@ public class DataParser {
 			dataFile.seek(endOffset);
 		}
 		if (count == 0){
-			data.createNewFile();
-			dataFile = new RandomAccessFile(data, "rw");
+		//	data.createNewFile();
+			//dataFile = new RandomAccessFile(data, "rw");
 		}
 		while ((str =gisRecord.readLine()) != null) { 
 			//dataFile.write((str +"\n").getBytes());
