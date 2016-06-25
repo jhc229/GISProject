@@ -7,8 +7,6 @@
 
 ;
 ; Import a smallish DB file:
-
-
 import: VA_Highland.txt
 
 ;
@@ -19,8 +17,6 @@ debug: hash
 
 ;
 ; Import another smallish DB file:
-
-
 import: VA_Bath.txt
 
 ;

@@ -75,8 +75,8 @@ public class DataParser {
 			dataFile.seek(endOffset);
 		}
 		if (count == 0){
-		//	data.createNewFile();
-			//dataFile = new RandomAccessFile(data, "rw");
+			data.createNewFile();
+			dataFile = new RandomAccessFile(data, "rw");
 		}
 		while ((str =gisRecord.readLine()) != null) { 
 			//dataFile.write((str +"\n").getBytes());
