@@ -11,8 +11,8 @@ import java.util.Vector;
  */
 public class Point implements Compare2D<Point> {
 
-	private double  				xcoord;
-	private double					ycoord;
+	private int  				xcoord;
+	private int					ycoord;
 	private Vector<Long>		 offsets;
 	
 	public Point(){
@@ -20,25 +20,25 @@ public class Point implements Compare2D<Point> {
 		ycoord = 0;
 	}
 	
-	public Point(double x, double y){
+	public Point(int x, int y){
 		xcoord = x;
 		ycoord = y;
 	}
 	
-	public Point(double x, double y, long z){
+	public Point(int x, int y, long z){
 		xcoord = x;
 		ycoord = y;
 		offsets = new Vector<Long>();
-		offset.add(z);
+		offsets.add(z);
+	}
+	
+	public int getX(){
+		return xcoord;
 	}
 
-	   public long getX() {
-	      return xcoord;
-	   }
-
-	   public long getY() {
-	      return ycoord;
-	   }
+	public int getY(){
+		return ycoord;
+	}
 	   
 	   public Direction directionFrom(long X, long Y) { 
 			if ( xcoord <= X && ycoord > Y){
