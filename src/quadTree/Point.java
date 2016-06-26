@@ -64,10 +64,12 @@ public class Point implements Compare2D<Point> {
 	   }
 
 	   public boolean inBox(double xLo, double xHi, double yLo, double yHi) { 
-			if ( xcoord < xLo || xcoord > xHi || ycoord < yLo || ycoord > yHi){
+			/*if ( xcoord < xLo || xcoord > xHi || ycoord < yLo || ycoord > yHi){
 				return false;
 			}
-			return true;
+			return true;*/
+			
+			return xcoord < xLo || xcoord > xHi || ycoord < yLo || ycoord > yHi;
 	   }
 
 	   public String toString() {
