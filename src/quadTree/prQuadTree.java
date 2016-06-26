@@ -328,14 +328,13 @@ private T fFind(prQuadNode rt, T elem, double xMin, double xMax,
 		    // and rewind the recursive.
 			prQuadLeaf leafNode = (prQuadLeaf) rt;
 			
-			for (T element)
-			
-			if (leafNode.Elements.firstElement().equals(elem)){
-				return elem;
+			for (T element : leafNode.Elements){
+				if (element.equals(elem)){
+					return element;
+				}
 			}
-			return null;
 	   }
-	   return elem;
+		return null;
    }
  
    // Pre:  xLo, xHi, yLo and yHi define a rectangular region
@@ -388,9 +387,13 @@ private T fFind(prQuadNode rt, T elem, double xMin, double xMax,
 		
 		else { // when the node reaches leaf node, simply adds the element and
 			   // and rewind the recursive.
+			
 			prQuadLeaf leafNode = (prQuadLeaf) rt;
-			if (leafNode.Elements.firstElement().inBox(x1, x2, y1, y2)){
-				 res.add(leafNode.Elements.firstElement());
+
+			for (T element : leafNode.Elements){
+				if (element.inBox(x1, x2, y1, y2)){
+					 res.add(leafNode.Elements.firstElement());
+				}
 			}
 			return res;
 		}
