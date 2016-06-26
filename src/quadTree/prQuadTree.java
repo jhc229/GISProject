@@ -188,7 +188,7 @@ private prQuadNode fInsert(prQuadNode rt, T elem, double xMin, double xMax,
    private prQuadNode fDelete(prQuadNode rt, T elem, double xMin, double xMax,
 			double yMin, double yMax){
 	  
-	   if (rt == null) return rt;  //When nothing found
+	   if (rt == null) return null;  //When nothing found
 
 	   if (rt.getClass().equals(prQuadInternal.class)){
 		   
