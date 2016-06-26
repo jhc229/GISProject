@@ -85,7 +85,7 @@ public class prQuadTree< T extends Compare2D<? super T> > {
    //        present in the tree, elem has been inserted into the tree.
    // Return true iff elem is inserted into the tree. 
    public boolean insert(T elem) {
-	   if (elem != 0 && !elem.inBox(xMin, xMax, yMin, yMax)) return false; //duplicates allowed
+	   if (!elem.inBox(xMin, xMax, yMin, yMax)) return false; //duplicates allowed
 	   root = fInsert(root, elem, xMin, xMax, yMin, yMax);
 	   return true;
    }
