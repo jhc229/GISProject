@@ -86,7 +86,7 @@ public class prQuadTree< T extends Compare2D<? super T> > {
    // Return true iff elem is inserted into the tree. 
    public boolean insert(T elem) {
 	   if (!elem.inBox(xMin, xMax, yMin, yMax)) return false; //duplicates allowed
-		System.out.println("point:  " +elem.getX() +" " + elem.getY() + " " + elem.getOffset());
+		//System.out.println("point:  " +elem.getX() +" " + elem.getY() + " " + elem.getOffset());
 
 	   root = fInsert(root, elem, xMin, xMax, yMin, yMax);
 	   return true;
@@ -131,22 +131,9 @@ private prQuadNode fInsert(prQuadNode rt, T elem, double xMin, double xMax,
 			
 			if (leafNode.Elements.size() < bucketSize){ // Check the number of leafs
 					
-				//insert_Flag =true;
-				//bucketSplit(leafNode, elem);
+				insert_Flag =true;
+				bucketSplit(leafNode, elem);
 				// check for repeats
-				boolean same = false;
-				for (int i = 0; i < leafNode.Elements.size(); i++) {
-					// if the location exists
-					if (leafNode.Elements.get(i).equals(elem)) {
-						same = true;
-						leafNode.Elements.get(i).addOffset(elem.getOffset());
-					}
-				}
-				// add the new element into leaf if its not full
-				if (!same) {
-					leafNode.Elements.addElement(elem);
-				}
-				return leafNode;
 						
 			}else{
 			// For Leaf splitting, the original leafnode will be inserted into
@@ -163,7 +150,7 @@ private prQuadNode fInsert(prQuadNode rt, T elem, double xMin, double xMax,
    /*
     * private helper when duplicates found or leafNodes still < bucketSize
     */
-   private prQuadNode bucketSplit(prQuadLeaf leafNode, T elem){
+   private prQuadLeaf bucketSplit(prQuadLeaf leafNode, T elem){
 	  //  prQuadLeaf leaf= new prQuadLeaf();
 	   // leaf = leafNode;
 	    int i = 0;

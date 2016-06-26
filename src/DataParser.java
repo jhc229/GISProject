@@ -104,7 +104,7 @@ public class DataParser {
 		sLat =  toCoord(Integer.parseInt(southLat.substring(0, 2)), Integer.parseInt(southLat.substring(2, 4)), Integer.parseInt(southLat.substring(4, 6)), southLat.substring(6)).toSeconds();
 		nLat = toCoord(Integer.parseInt(northLat.substring(0, 2)), Integer.parseInt(northLat.substring(2, 4)), Integer.parseInt(northLat.substring(4, 6)), northLat.substring(6)).toSeconds();
 
-	//	quadTree = new prQuadTree<Point>(wLong, eLong , sLat , nLat);
+		quadTree = new prQuadTree<Point>(wLong, eLong , sLat , nLat);
 		System.out.println("world to seconds:" + wLong+ " "+ eLong +" "+ sLat +" "+ nLat);
 		stat.write(wLong+ " "+ eLong +" "+ sLat +" "+ nLat);
 		
