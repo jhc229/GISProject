@@ -93,7 +93,7 @@ public class prQuadTree< T extends Compare2D<? super T> > {
    /*
     * private helper insert.
     */
-   @SuppressWarnings("uncddadssssssshecked")
+   @SuppressWarnings("unchecked")
 private prQuadNode fInsert(prQuadNode rt, T elem, double xMin, double xMax,
 			double yMin, double yMax) {
 		
@@ -156,12 +156,13 @@ private prQuadNode fInsert(prQuadNode rt, T elem, double xMin, double xMax,
 	   }
 	   do {
 		   if ( leafNode.Elements.get(i).equals(elem)){
-			   insert_Flag = true;
 			   leafNode.Elements.get(i).addOffset(elem.getOffset());
+			   insert_Flag = true;
 			   i++;
 		   }
 		   else{
 			   insert_Flag = false;
+			   i++;
 		   }
 	   }while ( i <leafNode.Elements.size() && insert_Flag == true);
 		   leafNode.Elements.addElement(elem);
