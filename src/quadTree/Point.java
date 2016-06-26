@@ -64,26 +64,30 @@ public class Point implements Compare2D<Point> {
 	   }
 
 	   public boolean inBox(double xLo, double xHi, double yLo, double yHi) { 
-			if ( xcoord < xLo || xcoord > xHi || ycoord < yLo || ycoord > yHi){
+			/*if ( xcoord < xLo || xcoord > xHi || ycoord < yLo || ycoord > yHi){
 				return false;
 			}
-			return true;
-			
-			//return xcoord >= xLo && xcoord <= xHi && ycoord >= yLo && ycoord <= yHi;
+			return true;*/
+			return xcoord >= xLo && xcoord <= xHi && ycoord >= yLo && ycoord <= yHi;
 	   }
 
-	   public String toString() {
-		   return "X:" + xcoord + " Y:" +  ycoord;
-	   }
-	   
 	   public boolean equals(Object o) { 
-			if ( !o.getClass().equals(this.getClass())){
-	    		return false;
+			if ( o.getClass().equals(this.getClass())){
+	    		return this.getClass().cast(o).directionFrom(xcoord, ycoord) == Direction.NOQUADRANT;
 	    	}
-			if (this.getClass().cast(o).directionFrom(xcoord, ycoord) == Direction.NOQUADRANT){
+			return false;
+			/*
+			 * 	if ( !o.getClass().equals(this.getClass())) return false;
+			 * if (this.getClass().cast(o).directionFrom(xcoord, ycoord) == Direction.NOQUADRANT){
 				return true;
 			}
-			return false;
+			return false;*/
+
 	   }
+	   
+	   public String toString() {
+		   return "[( "+ xcoord+ ", " + ycoord + ")," + offsets.toString() + "]";
+	   }
+	   
 
 	}
