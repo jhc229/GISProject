@@ -34,7 +34,7 @@ public class DataParser {
 	// private Stats stat = null;
 
 	public prQuadTree<Point> quadTree;
-	public BufferPool pool;
+	//public BufferPool pool;
 	public HashTable<NameIndex, Integer> table;
 	
 	// ~ Constructor
@@ -61,7 +61,7 @@ public class DataParser {
 			e.printStackTrace();
 		}
 		table = new HashTable<NameIndex, Integer>(1024);
-		pool = new BufferPool();
+		//pool = new BufferPool();
 		
 
 	}
