@@ -327,6 +327,9 @@ private T fFind(prQuadNode rt, T elem, double xMin, double xMax,
 	   else{// when the node reaches leaf node, simply returns that element
 		    // and rewind the recursive.
 			prQuadLeaf leafNode = (prQuadLeaf) rt;
+			
+			for (T element)
+			
 			if (leafNode.Elements.firstElement().equals(elem)){
 				return elem;
 			}
