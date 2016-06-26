@@ -86,6 +86,8 @@ public class prQuadTree< T extends Compare2D<? super T> > {
    // Return true iff elem is inserted into the tree. 
    public boolean insert(T elem) {
 	   if (!elem.inBox(xMin, xMax, yMin, yMax)) return false; //duplicates allowed
+		System.out.println("point:  " +elem.getX() +" " + elem.getY() + " " + elem.getOffset());
+
 	   root = fInsert(root, elem, xMin, xMax, yMin, yMax);
 	   return true;
    }
@@ -137,7 +139,7 @@ private prQuadNode fInsert(prQuadNode rt, T elem, double xMin, double xMax,
 					// if the location exists
 					if (leafNode.Elements.get(i).equals(elem)) {
 						same = true;
-						leafNode.Elements.get(i).addOffsets(elem.getOffset());
+						leafNode.Elements.get(i).addOffset(elem.getOffset());
 					}
 				}
 				// add the new element into leaf if its not full

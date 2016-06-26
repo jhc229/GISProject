@@ -24,7 +24,7 @@ public class Point implements Compare2D<Point> {
 		ycoord = y;
 	}
 	
-	public Point(long x, long y, long z){
+	public Point(int x, int y, long z){
 		xcoord = x;
 		ycoord = y;
 		offsets = new Vector<Long>();
