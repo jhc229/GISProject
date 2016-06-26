@@ -10,7 +10,7 @@ import java.util.Vector;
  */
 public class Point implements Compare2D<Point> {
 
-	private long  						xcoord;
+	private long  					xcoord;
 	private long						ycoord;
 	private Vector<Long>		 offsets;
 	
