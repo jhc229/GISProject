@@ -236,19 +236,21 @@ private prQuadNode fInsert(prQuadNode rt, T elem, double xMin, double xMax,
 		   
 			prQuadLeaf leafNode = (prQuadLeaf) rt;
 			for (int i = 0; i < leafNode.Elements.size(); i++){
+				
 				if (leafNode.Elements.get(i).equals(elem)){ // element found
-					if (leafNode.Elements.size() ==1){
-						leafNode.Elements.remove(i);
+						if (leafNode.Elements.size() ==1){
+							leafNode.Elements.remove(i);
+							found = true;
+							return null;
+						}
 						found = true;
-						return null;
-					}
-					found = true;
-					leafNode.Elements.remove(i);
-					break;
+						leafNode.Elements.remove(i);
+						break;
 				}
+				found = false;
 			}
-			return null;
 	   }
+	   return null;
    }
 
    /*
