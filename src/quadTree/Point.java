@@ -69,7 +69,7 @@ public class Point implements Compare2D<Point> {
 			}
 			return true;*/
 			
-			return xcoord < xLo || xcoord > xHi || ycoord < yLo || ycoord > yHi;
+			return ycoord >= xLo || ycoord <= xHi || xcoord >= yLo || xcoord <= yHi;
 	   }
 
 	   public String toString() {
