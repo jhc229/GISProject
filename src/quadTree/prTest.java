@@ -1,9 +1,6 @@
 package quadTree;
 
-
 import java.util.Vector;
-
-
 
 public class prTest {
 
@@ -14,22 +11,22 @@ public class prTest {
 		prQuadTree<Point> tree = new prQuadTree<Point>(-8, 8, -8, 8);
 		
 		System.out.println("insertion:");
-		System.out.println(	tree.insert(new Point(-4,4)) ); //true
-		System.out.println(	tree.insert(new Point(-2,4)) ); //true
-		System.out.println(	tree.insert(new Point(1,7)) ); //true
-		System.out.println(	tree.insert(new Point(2,2)) ); //true
-		System.out.println(	tree.insert(new Point(3,7)) ); //true
-		System.out.println(	tree.insert(new Point(5,6)) ); //true
-		System.out.println(	tree.insert(new Point(-4,-2)) ); //true
-		System.out.println(	tree.insert(new Point(2,-4)) ); //true
-		System.out.println(	tree.insert(new Point(4,-6)) ); //true
-		System.out.println(	tree.insert(new Point(-1,-2)) ); //true
+		System.out.println(	tree.insert(new Point(-4,4, 1212123)) ); //true
+		System.out.println(	tree.insert(new Point(-2,4, 121221123)) ); //true
+		System.out.println(	tree.insert(new Point(1,7, 12112123)) ); //true
+		System.out.println(	tree.insert(new Point(2,2, 121231222)) ); //true
+		System.out.println(	tree.insert(new Point(3,7, 212)) ); //true
+		System.out.println(	tree.insert(new Point(5,6, 121222)) ); //true
+		System.out.println(	tree.insert(new Point(-4,-2, 1212223)) ); //true
+		System.out.println(	tree.insert(new Point(2,-4, 1212111113)) ); //true
+		System.out.println(	tree.insert(new Point(4,-6, 121212123)) ); //true
+		System.out.println(	tree.insert(new Point(-1,-2, 121212123)) ); //true
 		System.out.println(	tree.insert(new Point(1,7, 12123)) ); //false
 		System.out.println("");
 		System.out.println("find:");
-		System.out.println( tree.find(new Point(-4,4)) ); // null
-		System.out.println( tree.find(new Point(-2,4)) ); //X:-2 Y:4
-		System.out.println(	tree.find(new Point(1,7)) ); //true
+		System.out.println( tree.find(new Point(-4,4, 1212123)) ); // null
+		System.out.println( tree.find(new Point(-2,7, 1212123)) ); //X:-2 Y:4
+	/*	System.out.println(	tree.find(new Point(1,7)) ); //true
 		System.out.println(	tree.find(new Point(2,2)) ); //true
 		System.out.println(	tree.find(new Point(3,7)) ); //true
 		System.out.println(	tree.find(new Point(5,6)) ); //true
@@ -80,7 +77,7 @@ public class prTest {
         boolean b = true;
         boolean c = false;
         boolean d = false;
-		boolean e = a || b || c || d;
+		boolean e = a || b || c || d;  */
        // System.out.println("" + e);
         
 		/*
