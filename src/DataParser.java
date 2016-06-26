@@ -146,8 +146,9 @@ public class DataParser {
 			
 			if (dmsPoints.inBox(wLong, eLong , sLat , nLat)){
 				table.insertHash(names, (int) offset);
+				
 				System.out.println(dmsPoints.getX() +" " + dmsPoints.getY() + " " + dmsPoints.getOffset());
-				//quadTree.insert(dmsPoints);
+				quadTree.insert(dmsPoints);
 				
 				//System.out.println("Number of elements: " + table.getNumElements());
 				//System.out.println("Number of probes: " + table.getProbe());
