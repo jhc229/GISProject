@@ -24,7 +24,7 @@ public class prTest {
 		System.out.println(	tree.insert(new Point(2,-4)) ); //true
 		System.out.println(	tree.insert(new Point(4,-6)) ); //true
 		System.out.println(	tree.insert(new Point(-1,-2)) ); //true
-		System.out.println(	tree.insert(new Point(1,7)) ); //false
+		System.out.println(	tree.insert(new Point(1,7, 12123)) ); //false
 		System.out.println("");
 		System.out.println("find:");
 		System.out.println( tree.find(new Point(-4,4)) ); // null
