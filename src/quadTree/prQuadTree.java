@@ -397,6 +397,5 @@ private T fFind(prQuadNode rt, T elem, double xMin, double xMax,
 			}
 			return res;
 		}
-		
    }
 }
