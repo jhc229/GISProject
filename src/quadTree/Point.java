@@ -48,16 +48,15 @@ public class Point implements Compare2D<Point> {
 	}
 	   
 	 public Direction directionFrom(long X, long Y) { 
-			if ( xcoord <= X && ycoord > Y){
-				return Direction.NW;
-			}
+			if ( xcoord <= X && ycoord > Y) return Direction.NW;
+
 			else if(xcoord > X && ycoord >= Y){
 				return Direction.NE;
 			}
 			else if(xcoord < X && ycoord <= Y){
 				return Direction.SW;
 			}
-			else if(xcoord >= X && ycoord < Y){
+			else if(ycoord < Y && xcoord >= X){
 				return Direction.SE;
 			}
 			return Direction.NOQUADRANT;
