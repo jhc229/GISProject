@@ -133,11 +133,11 @@ private prQuadNode fInsert(prQuadNode rt, T elem, double xMin, double xMax,
 				//bucketSplit(leafNode, elem);
 				// check for repeats
 				boolean same = false;
-				for (int i = 0; i < leafNode.numElements(); i++) {
+				for (int i = 0; i < leafNode.Elements.size(); i++) {
 					// if the location exists
 					if (leafNode.Elements.get(i).equals(elem)) {
 						same = true;
-						leafNode.Elements.get(i).addOffsets(elem.getOffsets());
+						leafNode.Elements.get(i).addOffsets(elem.getOffset());
 					}
 				}
 				// add the new element into leaf if its not full
