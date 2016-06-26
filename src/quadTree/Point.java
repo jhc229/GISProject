@@ -45,27 +45,22 @@ public class Point implements Compare2D<Point> {
 	 public Direction directionFrom(long X, long Y) { 
 			if ( xcoord <= X && ycoord > Y) return Direction.NW;
 
-			else if(xcoord > X && ycoord >= Y){
-				return Direction.NE;
-			}
-			else if(xcoord < X && ycoord <= Y){
-				return Direction.SW;
-			}
-			else if(ycoord < Y && xcoord >= X){
-				return Direction.SE;
-			}
+			else if(xcoord > X && ycoord >= Y) return Direction.NE;
+			
+			else if(ycoord < Y && xcoord >= X) return Direction.SE;
+
+			else if(xcoord < X && ycoord <= Y) return Direction.SW;
+			
 			return Direction.NOQUADRANT;
 	   }
 	   
-	   public Direction inQuadrant(double xLo, double xHi, 
-			   double yLo, double yHi) { 
-			if ( !inBox(xLo, xHi, yLo, yHi)){
-				return Direction.NOQUADRANT;
-			}
+	   public Direction inQuadrant(double xLo, double xHi,  double yLo, double yHi) { 
+			if ( !inBox(xLo, xHi, yLo, yHi)) return Direction.NOQUADRANT;
+			
 			long xCenter = (long) ((xLo + xHi)/2);
 			long yCenter = (long) ((yLo + yHi)/2);
 			
-			Direction dir = directionFrom(xCenter, yCenter);
+			Direction dir = directionFrom((long) (xLo + xHi)/2, (long) (yLo + yHi)/2);
 			
 			if(dir == Direction.NOQUADRANT){
 				return Direction.NE;
@@ -73,8 +68,7 @@ public class Point implements Compare2D<Point> {
 			return dir;
 	   }
 
-	   public boolean inBox(double xLo, double xHi, 
-			   double yLo, double yHi) { 
+	   public boolean inBox(double xLo, double xHi, double yLo, double yHi) { 
 			if ( xcoord < xLo || xcoord > xHi || ycoord < yLo || ycoord > yHi){
 				return false;
 			}
