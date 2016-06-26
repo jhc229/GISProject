@@ -15,10 +15,10 @@ public interface Compare2D<T> {
 	public Vector<Long> getOffset();
 	
 	// Returns the x-coordinate field of the user data object.
-   public int getX();
+   public long getX();
    
    // Returns the y-coordinate field of the user data object.
-   public int getY();
+   public long getY();
    
    // Returns indicator of the direction to the user data object from the 
    // location (X, Y) specified by the parameters.

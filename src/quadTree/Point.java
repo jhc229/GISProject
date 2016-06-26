@@ -1,5 +1,4 @@
 package quadTree;
-
 import java.util.Vector;
 
 /**
@@ -11,8 +10,8 @@ import java.util.Vector;
  */
 public class Point implements Compare2D<Point> {
 
-	private int  						xcoord;
-	private int						ycoord;
+	private long  						xcoord;
+	private long						ycoord;
 	private Vector<Long>		 offsets;
 	
 	public Point(){
@@ -25,18 +24,18 @@ public class Point implements Compare2D<Point> {
 		ycoord = y;
 	}
 	
-	public Point(int x, int y, long z){
+	public Point(long x, long y, long z){
 		xcoord = x;
 		ycoord = y;
 		offsets = new Vector<Long>();
 		offsets.add(z);
 	}
 	
-	public int getX(){
+	public long getX(){
 		return xcoord;
 	}
 
-	public int getY(){
+	public long getY(){
 		return ycoord;
 	}
 	
@@ -48,7 +47,7 @@ public class Point implements Compare2D<Point> {
 		 return offsets;
 	}
 	   
-	 public Direction directionFrom(int X, int Y) { 
+	 public Direction directionFrom(long X, long Y) { 
 			if ( xcoord <= X && ycoord > Y){
 				return Direction.NW;
 			}
@@ -64,8 +63,8 @@ public class Point implements Compare2D<Point> {
 			return Direction.NOQUADRANT;
 	   }
 	   
-	   public Direction inQuadrant(int xLo, int xHi, 
-	                               int yLo, int yHi) { 
+	   public Direction inQuadrant(double xLo, double xHi, 
+			   double yLo, double yHi) { 
 			if ( !inBox(xLo, xHi, yLo, yHi)){
 				return Direction.NOQUADRANT;
 			}
@@ -80,8 +79,8 @@ public class Point implements Compare2D<Point> {
 			return dir;
 	   }
 
-	   public boolean inBox(int xLo, int xHi, 
-	                          int yLo, int yHi) { 
+	   public boolean inBox(double xLo, double xHi, 
+			   double yLo, double yHi) { 
 			if ( xcoord < xLo || xcoord > xHi || ycoord < yLo || ycoord > yHi){
 				return false;
 			}
@@ -96,29 +95,10 @@ public class Point implements Compare2D<Point> {
 			if ( !o.getClass().equals(this.getClass())){
 	    		return false;
 	    	}
-			// it is equal if the directionFrom returns an NOQUADRANT
 			if (this.getClass().cast(o).directionFrom(xcoord, ycoord) == Direction.NOQUADRANT){
 				return true;
 			}
 			return false;
 	   }
 
-	@Override
-	public Direction directionFrom(long X, long Y) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Direction inQuadrant(double xLo, double xHi, double yLo,
-			double yHi) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean inBox(double xLo, double xHi, double yLo, double yHi) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 	}
