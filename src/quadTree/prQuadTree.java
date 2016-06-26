@@ -132,7 +132,7 @@ private prQuadNode fInsert(prQuadNode rt, T elem, double xMin, double xMax,
 			if (leafNode.Elements.size() < bucketSize){ // Check the number of leafs
 					
 				insert_Flag =true;
-				bucketSplit(leafNode, elem);
+				leafNode = bucketSplit(leafNode, elem);
 				// check for repeats
 						
 			}else{
