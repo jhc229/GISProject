@@ -56,16 +56,11 @@ public class Point implements Compare2D<Point> {
 	   
 	   public Direction inQuadrant(double xLo, double xHi,  double yLo, double yHi) { 
 			if ( !inBox(xLo, xHi, yLo, yHi)) return Direction.NOQUADRANT;
-			
-			long xCenter = (long) ((xLo + xHi)/2);
-			long yCenter = (long) ((yLo + yHi)/2);
-			
-			Direction dir = directionFrom((long) (xLo + xHi)/2, (long) (yLo + yHi)/2);
-			
-			if(dir == Direction.NOQUADRANT){
-				return Direction.NE;
+			else{
+				Direction dir = directionFrom((long) (xLo + xHi)/2, (long) (yLo + yHi)/2);
+				if(dir == Direction.NOQUADRANT) return Direction.NE;
+				return dir;
 			}
-			return dir;
 	   }
 
 	   public boolean inBox(double xLo, double xHi, double yLo, double yHi) { 
