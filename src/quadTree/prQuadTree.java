@@ -133,9 +133,7 @@ private prQuadNode fInsert(prQuadNode rt, T elem, double xMin, double xMax,
 					
 				insert_Flag =true;
 				return bucketSplit(leafNode, elem);
-				//leafNode = bucketSplit(leafNode, elem);
-				// check for repeats
-						
+
 			}else{
 			// For Leaf splitting, the original leafnode will be inserted into
 			// current internal node then the new element will be added.			
