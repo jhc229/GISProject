@@ -33,8 +33,8 @@ public class DataParser {
 	private DMScoordinates coord;
 	// private Stats stat = null;
 
-	//public prQuadTree<Point> quadTree;
-//	public BufferPool pool;
+	public prQuadTree<Point> quadTree;
+	public BufferPool pool;
 	public HashTable<NameIndex, Integer> table;
 	
 	// ~ Constructor
@@ -45,22 +45,24 @@ public class DataParser {
 	 */
 	public DataParser(File dataFile, BufferedWriter result)  {
 		
-		
+		// endOffset = 265;
+		// pool = new BufferPool();
+		// table = new HashTable<NameIndex, Integer>(1024);
+		// offset = 0;
+		offset = 265;
 		try {
 			data = dataFile;
 			this.dataFile = new RandomAccessFile(dataFile, "rw");
 			stat = result;
-			offset = 265;
-			//endOffset = 265;
-			//pool = new BufferPool();
-			//table = new HashTable<NameIndex, Integer>(1024);
-			//offset  = 0;
+
 
 			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		table = new HashTable<NameIndex, Integer>(1024);
+		pool = new BufferPool();
+		
 
 	}
 
