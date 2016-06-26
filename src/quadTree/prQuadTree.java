@@ -233,14 +233,22 @@ private prQuadNode fInsert(prQuadNode rt, T elem, double xMin, double xMax,
 	   }
 	   
 	   else if (rt.getClass().equals(prQuadLeaf.class)){
+		   
 			prQuadLeaf leafNode = (prQuadLeaf) rt;
-			if (leafNode.Elements.firstElement().equals(elem)){ // element found
-				found = true;
-				return null;
+			for (int i = 0; i < leafNode.Elements.size(); i++){
+				if (leafNode.Elements.get(i).equals(elem)){ // element found
+					if (leafNode.Elements.size() ==1){
+						leafNode.Elements.remove(i);
+						found = true;
+						return null;
+					}
+					found = true;
+					leafNode.Elements.remove(i);
+					break;
+				}
 			}
-			found = false; // not found
+			return null;
 	   }
-		return null;
    }
 
    /*
