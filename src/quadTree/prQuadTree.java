@@ -144,6 +144,9 @@ private prQuadNode fInsert(prQuadNode rt, T elem, double xMin, double xMax,
 		}
 	}
    
+   /*
+    * private helper when duplicates found or leafNodes still < bucketSize
+    */
    private prQuadNode bucketSplit(prQuadLeaf leafNode, T elem){
 	  //  prQuadLeaf leaf= new prQuadLeaf();
 	   // leaf = leafNode;
@@ -171,7 +174,7 @@ private prQuadNode fInsert(prQuadNode rt, T elem, double xMin, double xMax,
    // Returns true iff a matching element has been removed from the tree.
    public boolean delete(T Elem) {
 	   if (Elem.inBox(xMin, xMax, yMin, yMax)){
-		   found = true;
+		   found = false;
 		   root = fDelete(root, Elem, xMin, xMax, yMin, yMax);
 		   return found == true;
 	   }
@@ -185,10 +188,8 @@ private prQuadNode fInsert(prQuadNode rt, T elem, double xMin, double xMax,
    private prQuadNode fDelete(prQuadNode rt, T elem, double xMin, double xMax,
 			double yMin, double yMax){
 	  
-	   if (rt == null){
-		   found = false;  //When nothing found
-		   return null;
-	   }
+	   if (rt == null) return rt;  //When nothing found
+
 	   if (rt.getClass().equals(prQuadInternal.class)){
 		   
 			prQuadInternal	internalNode = (prQuadInternal) rt;
