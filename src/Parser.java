@@ -140,11 +140,10 @@ public class Parser {
 				
 				else if (str[0].matches("what_is_at")) {
 					
+					System.out.println("what_is_at: "+ str[1] +" " + str[2] +"\n" );
+					stat.write("what_is_at: "+ str[1] +" " + str[2] + "\n" + "\n" );
 					db.whatIsAt(str[1], str[2]); // geographic coordinate "382812N	0793156W "
 					
-					
-					System.out.println("what_is_at: "+ str[1] +" " + str[2] );
-					stat.write("what_is_at: "+ str[1] +" " + str[2] + "\n" + "\n" );
 					cmdCount++;
 
 				} 
