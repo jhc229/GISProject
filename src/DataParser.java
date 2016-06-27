@@ -134,7 +134,7 @@ public class DataParser {
 		int countIdx = 0;
 		while (dataFile.readLine() != null) {
 			//System.out.println(gisRecords.gisRecordsUpdate());
-			dataFile.seek(offset);
+			//dataFile.seek(offset);
 			//System.out.println("offset: " + offset);
 
 			gisRecords.gisRecordsUpdate(offset);
@@ -146,8 +146,10 @@ public class DataParser {
 			
 			if (dmsPoints.inBox(wLong, eLong , sLat , nLat)){
 				table.insertHash(names, (int) offset);
-				
-				System.out.println("point "+ countIdx+": "+ dmsPoints.getX() +" " + dmsPoints.getY() + " " + dmsPoints.getOffset());
+			//	System.out.println("Number of probes: " + table.getProbe());
+			//	System.out.println("table size: " + table.getCurrentSize());
+
+				//System.out.println("point "+ countIdx+": "+ dmsPoints.getX() +" " + dmsPoints.getY() + " " + dmsPoints.getOffset());
 				quadTree.insert(dmsPoints);
 				
 				//System.out.println("Number of elements: " + table.getNumElements());
@@ -165,13 +167,13 @@ public class DataParser {
 		}
 		System.out.println("current pointer : " + dataFile.getFilePointer());
 		System.out.println("Number of elements: " + table.getNumElements());
-		System.out.println("Number of probes: " + table.getProbe());
+		//System.out.println("Number of probes: " + table.getProbe());
 		System.out.println("Current table size: " + table.getCurrentSize());
 		System.out.println("toString:     \n" + table.hashToString());
 		stat.write("\n");
 		// dataFile.close();
 		//dataFile.seek(265);
-		System.out.println("Pointer: "+ dataFile.getFilePointer());
+	//	System.out.println("Pointer: "+ dataFile.getFilePointer());
 	}
 
 	public void whatIsAt(String string) {

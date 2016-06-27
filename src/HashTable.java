@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Vector;
 
 
@@ -32,7 +33,7 @@ public class HashTable<Key, E> {
 	
 	
 	/*
-	 * 
+	 * quadratic function (n^2+ n)/2
 	 */
 	private int step(Key k, int a){
 		return  (a * a + a)/2;
@@ -42,22 +43,27 @@ public class HashTable<Key, E> {
 	 * insert element into hashtable
 	 */
 	public void insertHash(Key k, E e){
-		
-		if ((numbElements/tableList.length) > .7){
+		//System.out.println("probe?? " + longestProbe);
+		longestProbe =  Math.max(fInsertHash(tableList, k, e), longestProbe); 
+		System.out.println("probe:   " + longestProbe);
+
+		numbElements++;
+		if ( ((double)numbElements/ (double)size) >= .70){
+			System.out.println("size???  " + size );
 			rehash(); // Rehash the table when it reaches 70% full
 		}
-		fInsertHash(tableList, k, e);
-		}
+	}
 	
 	/*
 	 * Linear time, inserting N items costs
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void rehash() {
-		size *= 2;
+		/*size *= 2;
 		KVpair[] old = tableList; // Contains the original entries
 		tableList = new KVpair[size]; // Allocate new size
 
+		
 		for (int i = 0; i < old.length; i++) { // old entries into the new one
 			//Key k = (Key) old[i].getKey(); // old k value
 			//Vector<E> e = old[i].getValue(); // old e value
@@ -67,10 +73,28 @@ public class HashTable<Key, E> {
 				tableList[index_flag] = new KVpair<Key, E>((Key) old[i] .getKey(), null);
 				tableList[index_flag].setValues(old[i] .getValue());
 				}
+				//numbElements++;
 				//System.out.println(((NameIndex) old[i].getKey()).nameIndexToString() + "");
-
 			}
-			
+		}*/
+		
+		ArrayList<KVpair<Key, E>> oldTable = new ArrayList<KVpair<Key, E>>();
+
+		for(int i = 0; i < size; i++){
+			if(tableList[i] != null){
+				oldTable.add(tableList[i]);
+			}
+		}
+		// Create new table for the function
+		size *= 2;
+		tableList = new KVpair[size];
+		System.out.println("newsize: "+ tableList.length);
+		
+		// Rehash all the elements into the new table
+		for(KVpair<Key, E> x : oldTable){
+			if(x != null){
+				fInsertHash(tableList, x.getKey(), x.getValue().firstElement());
+			}
 		}
 	}
 	
@@ -130,33 +154,40 @@ public class HashTable<Key, E> {
 	 *  
 	 */
 	@SuppressWarnings("rawtypes")
-	private void fInsertHash(KVpair[] table, Key k, E e){
+	private int fInsertHash(KVpair[] table, Key k, E e){
 		int home; // initial position
-		int count = 0; //update probe
-		int pos = home = (Math.abs(k.hashCode()) % table.length); 
-		for (int i = 0; i < table.length; i++){
-
+		int probeCount = 0; //update probe
+		int pos = home = Math.abs((elfHash( ((NameIndex) k).nameIndexToString() )) % table.length); 
+							//System.out.println("home: " + home + ",size:  " + table.length );
+		for (int i = 0; i < table.length/2; i++){
+			//int pos = Math.abs((elfHash (((NameIndex) k).nameIndexToString())) + (i *i + i)/2) % size;
+		//	pos = (home + (probeCount * probeCount + probeCount) / 2) % size;
+								//System.out.print("pos:" + pos +" ");
 			if (table[pos] == null){
 				table[pos] = new KVpair<Key, E>(k, e);
-				break;
+				//numElements++;
+							//System.out.println(" ");
+				return probeCount;
 			}
 			else if (table[pos].getKey().equals(k)){ // Duplicates
 				table[pos].addValue(e);
-				break;
+				//numElements++;
+							//System.out.println(" ");
+				return probeCount;
 			}
-			pos = (home + step(k, i)) % table.length;
-			count++;
+			probeCount++;
+			//pos = home + (probeCount * probeCount + probeCount) / 2
+			pos = home + step(k, probeCount);
+		    if (pos >= table.length){
+				pos = pos % table.length; 
+			}
 		}
-		longestProbe = Math.max(count, longestProbe);
-		numbElements++;
+		return -1;
 	//	table[pos] = new KVpair<Key, E>(k, e);
 	}
 
-
-
-
-	/*
-	public static int elfHash(String str) {
+	
+	private static int elfHash(String str) {
 		long hashValue = 0;
 		for (int Pos = 0; Pos < str.length(); Pos++) { // use all elements
 
@@ -170,7 +201,7 @@ public class HashTable<Key, E> {
 			hashValue &= ~hiBits; // clear high nybble
 		}
 		return (int) hashValue;
-	}*/
+	}
 	
 	/**
 	 * Get the number of probes
