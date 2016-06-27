@@ -179,7 +179,7 @@ public class DataParser {
 		
 		Point p = quadTree.find(new Point(geo.getlongitude().toSeconds(),  geo.getlatitude().toSeconds()));
 
-		System.out.println("whatisat???????:        " +geo.getlongitude().toSeconds()+"  "+ geo.getlatitude().toSeconds() );
+		//System.out.println("whatisat???????:        " +geo.getlongitude().toSeconds()+"  "+ geo.getlatitude().toSeconds() );
 	//	System.out.println("whatisat???????:        " + quadTree.find(p) );
 		 
 		
@@ -187,8 +187,8 @@ public class DataParser {
 		// Vector<Records> records = new Vector<Records>(0);
 		 if (p != null){
 			 Vector<Long> offset = p.getOffset();
-			 System.out.println("found   " + p.getOffset());
-			 
+			 //System.out.println("found   " + p.getOffset());
+			 System.out.println("found   " +  pool.get(p.getOffset()));
 			 
 			 
 			 

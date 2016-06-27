@@ -27,6 +27,7 @@ public class GeoFeatures {
 	public static String  				MAP_NAME;
 	public static String  				DATE_CREATED;
 	public static String  				DATE_EDITED;
+	public static int 						OFFSET = 0;
 
 
 
