@@ -1,74 +1,49 @@
-; Script 1
+; Script 5
 ;
-; Very basic testing of the simple search commands with a tiny DB.
+; Test of "extreme" region searches with a larger database file.
 ;
 ; Specify boundaries of coordinate space:
--286890 -285990 137700 138600world: 0794130W 0792630W 381500N 383000N
+-290700 -288000 133200 135900world: 0804500W 0800000W 370000N 374500N
 
 ;
-; Import some data:
+; Import a smallish DB file:
 
 
-import: VA_Monterey.txt
-
-;
-; Let's take a look at our data set... this is NOT a required feature
-; and you may comment the following command out:
-debug: world
+import: VA_Montgomery.txt
 
 ;
-; Check the location and name/state indices:
-debug: quad
+; Check the location and name/state indices if you dare:
+;
+; And a few region searches:
+what_is_in : 370359N 0802626W 10
 
-debug: hash
+what_is_in : 370359N 0802626W 30
+
+what_is_in : 370930N 0801859W 10
+
+what_is_in : 370930N 0801859W 30
+
+what_is_in : 371347N 0802514W 5
+
+what_is_in : 371347N 0802514W 10
 
 ;
-; Let's try a single-match name/state search:
-what_is: Trimble Knob  VA
+; And one that extends outside the region (that IS fair):
+what_is_in : 370157N 0802908W 240
 
 ;
-; Let's check the buffer pool:
-debug: pool
+; And one really small one:
+what_is_in : 371347N 0802514W 1
 
 ;
-; Let's try a single-match location search:
-what_is_at: 382812N 0793156W
+; And two really skinny ones, one East-West and one North-South:
+what_is_in : 371347N 0802514W 2
+
+what_is_in : 371347N 0802514W 360
 
 ;
-; Let's check the buffer pool:
-debug: pool
-
-;
-; Let's try a few more name/state searches:
-what_is: Swope Hollow  VA
-
-what_is: Possum Trot  VA
-
-what_is: Blue Grass  VA
-
-;
-; Let's check the buffer pool:
-debug: pool
-
-;
-; Let's try a few more location searches:
-what_is_at: 382145N 0793031W
-
-what_is_at: 382442N 0793451W
-
-what_is_at: 382607N 0793312W
-
-;
-; Let's check the buffer pool:
-debug: pool
-
-;
-; Let's try a two-match location search:
-what_is_at: 382856N 0793031W
-
-;
-; Let's check the buffer pool:
-debug: pool
+; And just to push the limits:
+what_is_in : 371002N 0802042W 10
 
 ;
 ; Exit
