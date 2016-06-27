@@ -7,28 +7,40 @@
  * @author sean
  *
  */
-public class GeoCoordinates {
-	public static String dataFileName;
-	public static int cacheHits = 0;
-	public static long elapsedTime = 0;
+public class GeoCoordinates implements Point{
 	
-	/**
-	 * 
-	 * @return
-	 */
-	public static String formattedOutput() {
-		String s = "Heap sort statistics";
-		s += "\nData file name: " + dataFileName;
-		s += "\nCache hits: " + cacheHits;
-	//	s += "\nCache misses: " + cacheMisses;
-		//s += "\nDisk reads: " + diskReads;
-	//	s += "\nDisk writes: " + diskWrites;
-		s += "\nSort elapsed time: " + elapsedTime + "ms";
-		s += "\n\n";
-		
-		return s;
-	} 
+	
+	private DMScoordinates latitude; // latitude
+	private DMScoordinates longitude;// longitude
 
+	
+	public GeoCoordinates(DMScoordinates dmsLatitude, DMScoordinates dmsLongitude) {
+		latitude = dmsLatitude;
+		longitude = dmsLongitude;
+	}
+
+	public DMScoordinates getlatitude(){
+		return latitude;
+	}
+	
+	public DMScoordinates getlongitude(){
+		return longitude;
+	}
+	
+	public String toString(){
+		return "(" + latitude + ", " + longitude + ")";
+		
+		
+	}
+
+	public boolean equals(Object o) {
+		if (o == null) return false;
+		if (this.getClass().equals(o)) {
+			GeoCoordinates temp = (GeoCoordinates) o;
+			return (temp.getlatitude().equals( latitude) && temp.getlongitude().equals( longitude));
+		}
+		return false;
+	}
 	
 
 
