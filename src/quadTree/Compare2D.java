@@ -9,10 +9,10 @@ import java.util.Vector;
 public interface Compare2D<T> {
 	
 	// Adds the new value to the user data object.
-	public void addOffset(Vector<Long> offset);
+	public void addOffset(Vector<Integer> offset);
 	
 	// Returns the offset field of the user data object.
-	public Vector<Long> getOffset();
+	public Vector<Integer> getOffset();
 	
 	// Returns the x-coordinate field of the user data object.
    public long getX();
