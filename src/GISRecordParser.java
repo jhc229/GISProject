@@ -39,7 +39,7 @@ public class GISRecordParser {
 
 	}
 
-	public void gisRecordsUpdate(long parserOffset) throws IOException, GISRecordException {
+	public GeoFeatures gisRecordsUpdate(long parserOffset) throws IOException, GISRecordException {
 		if ((parserOffset >= 265) && (parserOffset <= endOffset)){ //&& ((int)read.readByte() == 10)
 			read.seek(parserOffset);
 			String[] items = read.readLine().split("\\|");
@@ -80,7 +80,7 @@ public class GISRecordParser {
 			GeoFeatures.DATE_CREATED = items[18];
 			
 			if (items.length == 20) GeoFeatures.DATE_EDITED = items[19];
-			GeoFeatures.OFFSET = parserOffset;
+			GeoFeatures.OFFSET = (int) parserOffset;
 		}
 		else {
 			if (((parserOffset >= 0) && (parserOffset < 265) ) || ((int)read.readByte() != 10)){
