@@ -41,46 +41,48 @@ public class GISRecordParser {
 
 	public GeoFeatures gisRecordsUpdate(long parserOffset) throws IOException, GISRecordException {
 		if ((parserOffset >= 265) && (parserOffset <= endOffset)){ //&& ((int)read.readByte() == 10)
+			GeoFeatures dataRec = new GeoFeatures();
 			read.seek(parserOffset);
 			String[] items = read.readLine().split("\\|");
 			
 			//System.out.println("ID:  " + GeoFeatures.FEATURE_ID );
 		//	System.out.println("Offset " +items[0] );
-			GeoFeatures.FEATURE_ID = Integer.parseInt(items[0]);
-			GeoFeatures.FEATURE_NAME = items[1];
-			GeoFeatures.FEATURE_CLASS = items[2];
-			GeoFeatures.STATE_ALPHA= items[3];
-			GeoFeatures.STATE_NUMERIC = Double.parseDouble(items[4]);
-			GeoFeatures.COUNTY_NAME = items[5];
-			GeoFeatures.COUNTY_NUMERIC = Double.parseDouble(items[6]);
+			dataRec.FEATURE_ID = Integer.parseInt(items[0]);
+			dataRec.FEATURE_NAME = items[1];
+			dataRec.FEATURE_CLASS = items[2];
+			dataRec.STATE_ALPHA= items[3];
+			dataRec.STATE_NUMERIC = Double.parseDouble(items[4]);
+			dataRec.COUNTY_NAME = items[5];
+			dataRec.COUNTY_NUMERIC = Double.parseDouble(items[6]);
 			
-			GeoFeatures.PRIMARY_LAT_DMS = new DMScoordinates(Integer.parseInt(items[7].substring(0, 2)), Integer.parseInt(items[7].substring(2, 4)), Integer.parseInt(items[7].substring(4, 6)), items[7].substring(6));
-			GeoFeatures.PRIM_LONG_DMS = new DMScoordinates(Integer.parseInt(items[8].substring(0, 3)), Integer.parseInt(items[8].substring(3, 5)), Integer.parseInt(items[8].substring(5, 7)), items[8].substring(7));
+			dataRec.PRIMARY_LAT_DMS = new DMScoordinates(Integer.parseInt(items[7].substring(0, 2)), Integer.parseInt(items[7].substring(2, 4)), Integer.parseInt(items[7].substring(4, 6)), items[7].substring(6));
+			dataRec.PRIM_LONG_DMS = new DMScoordinates(Integer.parseInt(items[8].substring(0, 3)), Integer.parseInt(items[8].substring(3, 5)), Integer.parseInt(items[8].substring(5, 7)), items[8].substring(7));
 			
-			GeoFeatures.PRIM_LAT_DEC = Double.parseDouble(items[9]);
-			GeoFeatures.PRIM_LONG_DEC =Double.parseDouble(items[10]);
+			dataRec.PRIM_LAT_DEC = Double.parseDouble(items[9]);
+			dataRec.PRIM_LONG_DEC =Double.parseDouble(items[10]);
 			
 			if (!items[11].equals("")){
-				GeoFeatures.SOURCE_LAT_DMS = new DMScoordinates(Integer.parseInt(items[11].substring(0, 2)), Integer.parseInt(items[11].substring(2, 4)), Integer.parseInt(items[11].substring(4, 6)), items[11].substring(6));
-				GeoFeatures.SOURCE_LONG_DMS = new DMScoordinates(Integer.parseInt(items[12].substring(0, 3)), Integer.parseInt(items[12].substring(3, 5)), Integer.parseInt(items[12].substring(5, 7)), items[12].substring(7));
+				dataRec.SOURCE_LAT_DMS = new DMScoordinates(Integer.parseInt(items[11].substring(0, 2)), Integer.parseInt(items[11].substring(2, 4)), Integer.parseInt(items[11].substring(4, 6)), items[11].substring(6));
+				dataRec.SOURCE_LONG_DMS = new DMScoordinates(Integer.parseInt(items[12].substring(0, 3)), Integer.parseInt(items[12].substring(3, 5)), Integer.parseInt(items[12].substring(5, 7)), items[12].substring(7));
 			}
-			GeoFeatures.SOURCE_LAT_DMS = null;
-			GeoFeatures.SOURCE_LONG_DMS = null;
+			dataRec.SOURCE_LAT_DMS = null;
+			dataRec.SOURCE_LONG_DMS = null;
 			
 			if (!items[13].equals("")){
-				GeoFeatures.SOURCE_LAT_DEC =Double.parseDouble(items[13]);
-				GeoFeatures.SOURCE_LONG_DEC =Double.parseDouble(items[14]);
+				dataRec.SOURCE_LAT_DEC =Double.parseDouble(items[13]);
+				dataRec.SOURCE_LONG_DEC =Double.parseDouble(items[14]);
 			}
-			GeoFeatures.SOURCE_LAT_DEC = 0;
-			GeoFeatures.SOURCE_LONG_DEC =0;
+			dataRec.SOURCE_LAT_DEC = 0;
+			dataRec.SOURCE_LONG_DEC =0;
 			
 			if (!items[15].equals("")) GeoFeatures.ELEV_IN_M = Integer.parseInt(items[15]);
 			if (!items[16].equals("")) GeoFeatures.ELEV_IN_FT = Integer.parseInt(items[16]);
-			GeoFeatures.MAP_NAME = items[17];
-			GeoFeatures.DATE_CREATED = items[18];
+			dataRec.MAP_NAME = items[17];
+			dataRec.DATE_CREATED = items[18];
 			
 			if (items.length == 20) GeoFeatures.DATE_EDITED = items[19];
-			GeoFeatures.OFFSET = (int) parserOffset;
+			dataRec.OFFSET = (int) parserOffset;
+			return dataRec;
 		}
 		else {
 			if (((parserOffset >= 0) && (parserOffset < 265) ) || ((int)read.readByte() != 10)){
