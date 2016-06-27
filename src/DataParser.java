@@ -188,7 +188,7 @@ public class DataParser {
 		 if (p != null){
 			 Vector<Long> offset = p.getOffset();
 			 //System.out.println("found   " + p.getOffset());
-			 System.out.println("found   " +  pool.get(p.getOffset()));
+			 System.out.println("found   " +  pool.checkRecord(p.getOffset()));
 			 
 			 
 			 
