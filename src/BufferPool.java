@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class BufferPool {
 
 	private ArrayList<GeoFeatures> list; // records within the pool are kept in a
-	// arraylist
+	private int size;
 
 	/**
 	 * construct a new BufferPool of size 20
@@ -17,6 +17,7 @@ public class BufferPool {
 	 */
 	public  BufferPool() {
 		list = new ArrayList<GeoFeatures>(10);
+		size = 0;
 	}
 
 	/**
@@ -31,6 +32,7 @@ public class BufferPool {
 			GeoFeatures founcRecord = list.get(i);
 			if (founcRecord.OFFSET == offset) {
 				list.add(list.remove(i));
+				
 				return founcRecord;
 			}
 		}
@@ -47,6 +49,10 @@ public class BufferPool {
 			list.remove(0);
 		}
 		list.add(record);
+		size++;
+	}
+	public int size(){
+		return size;
 	}
 
 	/**

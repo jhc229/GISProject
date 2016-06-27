@@ -188,18 +188,26 @@ public class DataParser {
 		// Vector<Records> records = new Vector<Records>(0);
 		 if (p != null){
 			 Vector<Integer> offset = p.getOffset();
-			 for (GeoFeatures name : poolOffset(offset)){
-				 System.out.println("found   " +  name.OFFSET + ":	" + name.FEATURE_NAME + " " + name.COUNTY_NAME + " "+name.STATE_ALPHA);
-			 }
+			 System.out.println(poolOffset(offset));
+			 System.out.println(pool.toString());
+			 //Vector<GeoFeatures> name = poolOffset(offset);
+			// for (GeoFeatures gf : name){
+			//	 System.out.println("found   " +  gf.OFFSET + ":	" + gf.FEATURE_NAME + " " + gf.COUNTY_NAME + " "+gf.STATE_ALPHA);
+			
+			// }
+				//for (int a = 0; a < name.size(); a++) {
+					//System.out.println("rec:" + name.get(a).OFFSET);
+				//}
 			 
 		 }
 	}
 	
-	private Vector<GeoFeatures> poolOffset(Vector<Integer> off)
+	private String poolOffset(Vector<Integer> off)
 			throws Exception {
 
 		Vector<GeoFeatures> records = new Vector<GeoFeatures>();
 		gisRecords = new GISRecordParser(dataFile, endOffset);
+		String str = "";
 		for (int i = 0; i < off.size(); i++) {
 			int currentOffset = off.get(i);
 			// System.out.println("currentOffset" + currentOffset);
@@ -207,24 +215,21 @@ public class DataParser {
 			GeoFeatures poolRec = pool.checkRecord(currentOffset);
 			if (poolRec != null) {
 				// found record within pool
+				
 				records.add(poolRec);
 			} else {
 				// add record to pool is its not already there
 				// GeoFeatures dataRec = new GeoFeatures();
 				GeoFeatures dataRec = new GeoFeatures();
 				dataRec= gisRecords.gisRecordsUpdate(currentOffset);
-				System.out.println("current name:" + dataRec.OFFSET);
-				
+				str +=dataRec.OFFSET +  ":	" + dataRec.FEATURE_NAME + " " + dataRec.COUNTY_NAME + " "+dataRec.STATE_ALPHA + "\n";
 				records.add(dataRec);
-				for (int a = 0; a < records.size(); a++) {
-					System.out.println("rec:" + records.get(a));
-				}
 				pool.add(dataRec);
+				//System.out.println("pool:" + pool.size());
 				// records.add(dataRec);
-
 			}
 		}
-		return records;
+		return str;
 	}
 
 	/*
