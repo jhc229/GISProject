@@ -19,6 +19,11 @@ public class Point implements Compare2D<Point> {
 		xcoord = 0;
 		ycoord = 0;
 	}
+	
+	public Point(int x, int y){
+		xcoord = x;
+		ycoord = y;
+	}
 
 	public Point(int x, int y, long z) {
 		xcoord = x;

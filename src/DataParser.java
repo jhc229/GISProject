@@ -169,10 +169,12 @@ public class DataParser {
 		
 		// geographic coordinate "382812N	0793156W "
 		// create new Coords class for latitude and longitude
-		int lat =  toCoord(Integer.parseInt(x.substring(0, 2)), Integer.parseInt(x.substring(2, 4)), Integer.parseInt(x.substring(4, 6)), x.substring(6)).toSeconds();
-		 int lon = toCoord(Integer.parseInt(y.substring(0, 3)), Integer.parseInt(y.substring(3, 5)), Integer.parseInt(y.substring(5, 7)), y.substring(7)).toSeconds();
+		DMScoordinates latitude =  toCoord(Integer.parseInt(x.substring(0, 2)), Integer.parseInt(x.substring(2, 4)), Integer.parseInt(x.substring(4, 6)), x.substring(6));
+		DMScoordinates longitude = toCoord(Integer.parseInt(y.substring(0, 3)), Integer.parseInt(y.substring(3, 5)), Integer.parseInt(y.substring(5, 7)), y.substring(7));
 		
-		 Point p = quadTree.find(new Point(lat, lon, -1));
+		GeoCoordinates geo = new GeoCoordinates(latitude, longitude);
+		
+		 Point p = quadTree.find(new Point(geo.getlongitude().toSeconds(),  geo.getlongitude().toSeconds()));
 		 /*
 		 if (p != null){
 			 Vector<Integer> offset = p.getOffset();
@@ -199,14 +201,69 @@ public class DataParser {
 		
 	}
 
+	/*
+	 * what_is<tab><feature name><tab><state abbreviation> 
+	 * 	For every GIS record in the database file that matches the given <feature name> and <state
+	 * abbreviation>, log the offset at which the record was found, and the
+	 * county name, the primary latitude, and the primary longitude. Do not log
+	 * any other data from the matching records.
+	 */
 	public void whatIs(String string, String string2) {
-		// TODO Auto-generated method stub
-		
-	}
+		Vector<Records> records = new Vector<Records>(0);
 
-	public void whatIsInL(String string, String string2, String string3) {
-		// TODO Auto-generated method stub
+		// find the record within the HashTable
+		Vector<Integer> offsets = (Vector<Integer>) table.find(nameIn);
+
+		gPar = new GISParser(dataFile);
+		// check if the offset exists
+		if (offsets != null) {
+			records = poolOffset(offsets);
+		}
+		return records		
+	}
+/*
+ * what_is_in<tab>-l<tab><geographic coordinate><tab><half-height><tab><half-width>
+ * For every GIS record in the database file whose coordinates fall within the closed rectangle with the specified height
+	and width, centered at the <geographic coordinate>,  
+	empty 
+	log every important non-empty field, nicely formatted
+	and labeled. See the posted log files for an example. Do not log any empty fields. The half-height and half-width are
+	specified as seconds.
+	-l
+	 log every important non-empty field, nicely formatted
+	and labeled. See the posted log files for an example. Do not log any empty fields. The half-height and half-width are
+	specified as seconds.
+	-c
+	Do not log any data from the records themselves. The half-height and half-width are specified as seconds.
+
+ */
+	public void whatIsIn(String string, String string2, String string3) {
 		
+		int lat =  toCoord(Integer.parseInt(x.substring(0, 2)), Integer.parseInt(x.substring(2, 4)), Integer.parseInt(x.substring(4, 6)), x.substring(6)).toSeconds();
+		int lon = toCoord(Integer.parseInt(y.substring(0, 3)), Integer.parseInt(y.substring(3, 5)), Integer.parseInt(y.substring(5, 7)), y.substring(7)).toSeconds();
+		
+		 Point p = quadTree.find(new Point(lat, lon, -1));
+		
+		Vector<Records> records = new Vector<Records>(0);
+		Vector<Integer> offsets = new Vector<Integer>(0);
+		// create new holder class for storing
+		Point p = new Point(coord.getLong().getTotalSeconds(), coord.getLat()
+				.getTotalSeconds(), -1);
+		// call the find function from PRQuadTree, finding all records within
+		// the boundary
+		Vector<Point> points = tree.find(p.getX() - width, p.getX() + width,
+				p.getY() - height, p.getY() + height);
+
+		if (points != null) {
+			// get all the offset of those records
+			for (int i = 0; i < points.size(); i++) {
+				offsets.addAll(points.get(i).getOffsets());
+			}
+
+			gPar = new GISParser(dataFile);
+			records = poolOffset(offsets);
+		}
+		return records;		
 	}
 
 	public void whatIsInC(String string, String string2, String string3) {
