@@ -162,6 +162,10 @@ public class DataParser {
 
 	/**
 	 * Find record using the coordinates.
+	 * For every GIS record in the database file that matches the given <geographic coordinate>, log the offset at
+		which the record was found, and the feature name, county name, and state abbreviation. Do not log any other data
+		from the matching records.
+
 	 * @param x is lat
 	 * @param y is long
 	 */
@@ -175,31 +179,15 @@ public class DataParser {
 		GeoCoordinates geo = new GeoCoordinates(latitude, longitude);
 		
 		 Point p = quadTree.find(new Point(geo.getlongitude().toSeconds(),  geo.getlongitude().toSeconds()));
-		 /*
+		
+		// Vector<Records> records = new Vector<Records>(0);
 		 if (p != null){
-			 Vector<Integer> offset = p.getOffset();
-			 gpar =
+			 Vector<Long> offset = p.getOffset();
+
+			System.out.println("whatisat???????")
 		 }
-		//Vector<Records> records = Controller.getInstance().whatIsAt(geoC);
-
-		if (records.size() == 0) {
-		
-		if (records.size() == 0) {
-			out = "\tNothing was found at " + lo + "	" + la + "\n";
-		} else {
-			out = "\tThe following features were found at " + lo + "	" + la
-					+ ":\n";
-
-			for (int i = 0; i < records.size(); i++) {
-				Records rec = records.get(i);
-
-				out += rec.getOffset() + ":  " + rec.getfName() + "  "
-						+ rec.getCounty() + "  " + rec.getfState() + "\n";
-			}
-		}
-		out += "--------------------------------------------------------------------------------\n";*/
-		
 	}
+	
 
 	/*
 	 * what_is<tab><feature name><tab><state abbreviation> 
@@ -209,17 +197,18 @@ public class DataParser {
 	 * any other data from the matching records.
 	 */
 	public void whatIs(String string, String string2) {
-		Vector<Records> records = new Vector<Records>(0);
+		Vector<GeoFeatures> records = new Vector<GeoFeatures>(0);
 
+		Point p = 
 		// find the record within the HashTable
-		Vector<Integer> offsets = (Vector<Integer>) table.find(nameIn);
+		/*Vector<Integer> offsets = (Vector<Integer>) table.find(nameIn);
 
 		gPar = new GISParser(dataFile);
 		// check if the offset exists
 		if (offsets != null) {
 			records = poolOffset(offsets);
 		}
-		return records		
+		return records		*?
 	}
 /*
  * what_is_in<tab>-l<tab><geographic coordinate><tab><half-height><tab><half-width>
@@ -237,7 +226,8 @@ public class DataParser {
 	Do not log any data from the records themselves. The half-height and half-width are specified as seconds.
 
  */
-	public void whatIsIn(String string, String string2, String string3) {
+				/*
+	public void whatIsIn(String string, String string2, String string3,) {
 		
 		int lat =  toCoord(Integer.parseInt(x.substring(0, 2)), Integer.parseInt(x.substring(2, 4)), Integer.parseInt(x.substring(4, 6)), x.substring(6)).toSeconds();
 		int lon = toCoord(Integer.parseInt(y.substring(0, 3)), Integer.parseInt(y.substring(3, 5)), Integer.parseInt(y.substring(5, 7)), y.substring(7)).toSeconds();
@@ -279,7 +269,7 @@ public class DataParser {
 	public void debug(String string) {
 		// TODO Auto-generated method stub
 		
-	}
+	}*/
 
 
 

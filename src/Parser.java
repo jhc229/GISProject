@@ -150,11 +150,12 @@ public class Parser {
 				} 
 				else if (str[0].matches("what_is")) {
 					
-					//db.whatIs(str[1], str[2]); //<feature name> and <state abbreviation>
+					//<feature name> and <state abbreviation>
 					String featureName = "";
 					for (int i =1; i<str.length-1; i++){
 						featureName += str[i] + " ";
 					}
+					db.whatIs(featureName, str[str.length-1]); // <feature name> and <state abbreviation> in string
 					System.out.println("what_is: "+ featureName +" "+ str[str.length-1]);
 					stat.write("what_is: "+ featureName +" "+ str[str.length-1] + "\n" + "\n");
 					cmdCount++;
@@ -172,7 +173,7 @@ public class Parser {
 					}
 					else if (str[1].matches("-c")) {
 					//		db.whatIsInC(str[2], str[3], Integer.parseInt(str[4]), Integer.parseInt(str[5]));
-						System.out.println("what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] + " "+  str[5] ); );
+						System.out.println("what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] + " "+  str[5] ) ;
 						stat.write("what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4]+ " "+  str[5]  + "\n"  + "\n");
 
 					}
