@@ -80,7 +80,7 @@ public class GISRecordParser {
 			GeoFeatures.DATE_CREATED = items[18];
 			
 			if (items.length == 20) GeoFeatures.DATE_EDITED = items[19];
-			
+			GeoFeatures.OFFSET = parserOffset;
 		}
 		else {
 			if (((parserOffset >= 0) && (parserOffset < 265) ) || ((int)read.readByte() != 10)){
