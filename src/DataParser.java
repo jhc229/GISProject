@@ -188,13 +188,32 @@ public class DataParser {
 		 if (p != null){
 			 Vector<Long> offset = p.getOffset();
 			 //System.out.println("found   " + p.getOffset());
-			 System.out.println("found   " +  pool.checkRecord(p.getOffset()));
-			 
-			 
+			 System.out.println("found   " +  poolOffset(offset));
 			 
 		 }
 	}
 	
+	private Vector<Records> poolOffset(Vector<Integer> offsets)
+			throws Exception {
+		Vector<GeoFeatures> records = new Vector<GeoFeatures>(0);
+
+		for (int i = 0; i < offsets.size(); i++) {
+			int currentOffset = offsets.get(i);
+
+			// Check buffer pool for record
+			GeoFeatures poolRec = pool.checkRecord(currentOffset);
+			if (poolRec != null) {
+				// found record within pool
+				records.add(poolRec);
+			} else {
+				// add record to pool is its not already there
+				Records dataRec = gPar.getRecord(currentOffset);
+				records.add(dataRec);
+				Controller.getInstance().pool.add(dataRec);
+			}
+		}
+		return records;
+	}
 
 	/*
 	 * what_is<tab><feature name><tab><state abbreviation> 
