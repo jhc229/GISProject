@@ -170,21 +170,20 @@ public class DataParser {
 	 * @param y is long
 	 */
 	public void whatIsAt(String x, String y) {
-		
 		// geographic coordinate "382812N	0793156W "
 		// create new Coords class for latitude and longitude
 		DMScoordinates latitude =  toCoord(Integer.parseInt(x.substring(0, 2)), Integer.parseInt(x.substring(2, 4)), Integer.parseInt(x.substring(4, 6)), x.substring(6));
 		DMScoordinates longitude = toCoord(Integer.parseInt(y.substring(0, 3)), Integer.parseInt(y.substring(3, 5)), Integer.parseInt(y.substring(5, 7)), y.substring(7));
-		
+		//System.out.println("whatisat???????" + longitude.);
 		GeoCoordinates geo = new GeoCoordinates(latitude, longitude);
-		
+		System.out.println("whatisat???????" + quadTree.find(latitude.toSeconds(), longitude.toSeconds(), -1));
 		 Point p = quadTree.find(new Point(geo.getlongitude().toSeconds(),  geo.getlongitude().toSeconds()));
-		
+		 System.out.println("whatisat???????" );
 		// Vector<Records> records = new Vector<Records>(0);
 		 if (p != null){
 			 Vector<Long> offset = p.getOffset();
 
-			System.out.println("whatisat???????")
+			System.out.println("whatisat???????");
 		 }
 	}
 	
@@ -196,10 +195,10 @@ public class DataParser {
 	 * county name, the primary latitude, and the primary longitude. Do not log
 	 * any other data from the matching records.
 	 */
-	public void whatIs(String string, String string2) {
-		Vector<GeoFeatures> records = new Vector<GeoFeatures>(0);
+	//public void whatIs(String string, String string2) {
+		//Vector<GeoFeatures> records = new Vector<GeoFeatures>(0);
 
-		Point p = 
+	//	Point p = 
 		// find the record within the HashTable
 		/*Vector<Integer> offsets = (Vector<Integer>) table.find(nameIn);
 
