@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
-
+import java.util.Vector;
 import java.io.RandomAccessFile;
 import java.io.Reader;
 import quadTree.*;
@@ -176,8 +176,42 @@ public class DataParser {
 	//	System.out.println("Pointer: "+ dataFile.getFilePointer());
 	}
 
-	public void whatIsAt(String string) {
-		// TODO Auto-generated method stub
+	/**
+	 * Find record using the coordinates.
+	 * @param x is lat
+	 * @param y is long
+	 */
+	public void whatIsAt(String x, String y) {
+		
+		// geographic coordinate "382812N	0793156W "
+		// create new Coords class for latitude and longitude
+		int lat =  toCoord(Integer.parseInt(x.substring(0, 3)), Integer.parseInt(x.substring(3, 5)), Integer.parseInt(x.substring(5, 7)), x.substring(7)).toSeconds();
+		 int lon = toCoord(Integer.parseInt(y.substring(0, 3)), Integer.parseInt(y.substring(3, 5)), Integer.parseInt(y.substring(5, 7)), y.substring(7)).toSeconds();
+		
+		 Point p = quadTree.find(new Point(lat, lon, -1));
+
+		 if (p != null){
+			 Vector<Integer> offset = p.getOffset();
+			 gpar =
+		 }
+		//Vector<Records> records = Controller.getInstance().whatIsAt(geoC);
+
+		if (records.size() == 0) {
+		
+		if (records.size() == 0) {
+			out = "\tNothing was found at " + lo + "	" + la + "\n";
+		} else {
+			out = "\tThe following features were found at " + lo + "	" + la
+					+ ":\n";
+
+			for (int i = 0; i < records.size(); i++) {
+				Records rec = records.get(i);
+
+				out += rec.getOffset() + ":  " + rec.getfName() + "  "
+						+ rec.getCounty() + "  " + rec.getfState() + "\n";
+			}
+		}
+		out += "--------------------------------------------------------------------------------\n";
 		
 	}
 
