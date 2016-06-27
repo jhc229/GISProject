@@ -29,7 +29,7 @@ public class Point implements Compare2D<Point> {
 		xcoord = x;
 		ycoord = y;
 		offsets = new Vector<Integer>();
-		offsets.add(z);
+		offsets.add((int) z);
 	}
 
 	public long getX() {
