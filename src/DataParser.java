@@ -60,7 +60,7 @@ public class DataParser {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		table = new HashTable<NameIndex, Integer>(1024);
+		table = new HashTable<NameIndex, Integer>(1019);
 		pool = new BufferPool();
 		
 

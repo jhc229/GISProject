@@ -162,7 +162,7 @@ public class HashTable<Key, E> {
 		for (int i = 0; i < table.length/2; i++){
 			//int pos = Math.abs((elfHash (((NameIndex) k).nameIndexToString())) + (i *i + i)/2) % size;
 		//	pos = (home + (probeCount * probeCount + probeCount) / 2) % size;
-								//System.out.print("pos:" + pos +" ");
+								//System.out.println("pos:" + pos +" ");
 			if (table[pos] == null){
 				table[pos] = new KVpair<Key, E>(k, e);
 				//numElements++;
@@ -172,7 +172,7 @@ public class HashTable<Key, E> {
 			else if (table[pos].getKey().equals(k)){ // Duplicates
 				table[pos].addValue(e);
 				//numElements++;
-							//System.out.println(" ");
+							System.out.println(" iooihiohiohihohoiuohiuoihoihiohioh");
 				return probeCount;
 			}
 			probeCount++;
