@@ -133,37 +133,21 @@ public class DataParser {
 		gisRecords = new GISRecordParser(dataFile, endOffset); // Begin at the second line where records start.
 		int countIdx = 0;
 		while (dataFile.readLine() != null) {
-			//System.out.println(gisRecords.gisRecordsUpdate());
-			//dataFile.seek(offset);
-			//System.out.println("offset: " + offset);
 
 			gisRecords.gisRecordsUpdate(offset);
 
-			//System.out.println("offset: " + offset);
-			
 			NameIndex names = new NameIndex(GeoFeatures.FEATURE_NAME, GeoFeatures.STATE_ALPHA);
 			Point dmsPoints = new Point(GeoFeatures.PRIM_LONG_DMS.toSeconds(), GeoFeatures.PRIMARY_LAT_DMS.toSeconds(), offset);
 			
 			if (dmsPoints.inBox(wLong, eLong , sLat , nLat)){
 				table.insertHash(names, (int) offset);
-			//	System.out.println("Number of probes: " + table.getProbe());
-			//	System.out.println("table size: " + table.getCurrentSize());
 
-				//System.out.println("point "+ countIdx+": "+ dmsPoints.getX() +" " + dmsPoints.getY() + " " + dmsPoints.getOffset());
 				quadTree.insert(dmsPoints);
-				
-				//System.out.println("Number of elements: " + table.getNumElements());
-				//System.out.println("Number of probes: " + table.getProbe());
-				//System.out.println("Current table size: " + table.getCurrentSize());
-				
+
 				countIdx++;
 			}
 			dataFile.seek(offset); //Bring the pointer back to beginning of the line after reading from the gisRecordsUpdate
-			//System.out.println("name: " + gisRecords.name(offset));
-			//System.out.println("offset: " + offset);
-			//System.out.println(GeoFeatures.COUNTY_NAME);
 			offset += dataFile.readLine().length() +1; // Next line
-			//NameIndex name = new NameIndex(gisRecords.name(offset), gisRecords.s)
 		}
 		System.out.println("current pointer : " + dataFile.getFilePointer());
 		System.out.println("Number of elements: " + table.getNumElements());
@@ -185,11 +169,11 @@ public class DataParser {
 		
 		// geographic coordinate "382812N	0793156W "
 		// create new Coords class for latitude and longitude
-		int lat =  toCoord(Integer.parseInt(x.substring(0, 3)), Integer.parseInt(x.substring(3, 5)), Integer.parseInt(x.substring(5, 7)), x.substring(7)).toSeconds();
+		int lat =  toCoord(Integer.parseInt(x.substring(0, 2)), Integer.parseInt(x.substring(2, 4)), Integer.parseInt(x.substring(4, 6)), x.substring(6)).toSeconds();
 		 int lon = toCoord(Integer.parseInt(y.substring(0, 3)), Integer.parseInt(y.substring(3, 5)), Integer.parseInt(y.substring(5, 7)), y.substring(7)).toSeconds();
 		
 		 Point p = quadTree.find(new Point(lat, lon, -1));
-
+		 /*
 		 if (p != null){
 			 Vector<Integer> offset = p.getOffset();
 			 gpar =
@@ -211,7 +195,7 @@ public class DataParser {
 						+ rec.getCounty() + "  " + rec.getfState() + "\n";
 			}
 		}
-		out += "--------------------------------------------------------------------------------\n";
+		out += "--------------------------------------------------------------------------------\n";*/
 		
 	}
 

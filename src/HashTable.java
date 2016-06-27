@@ -45,11 +45,11 @@ public class HashTable<Key, E> {
 	public void insertHash(Key k, E e){
 		//System.out.println("probe?? " + longestProbe);
 		longestProbe =  Math.max(fInsertHash(tableList, k, e), longestProbe); 
-		System.out.println("probe:   " + longestProbe);
+		//System.out.println("probe:   " + longestProbe);
 
 		numbElements++;
 		if ( ((double)numbElements/ (double)size) >= .70){
-			System.out.println("size???  " + size );
+			//System.out.println("size???  " + size );
 			rehash(); // Rehash the table when it reaches 70% full
 		}
 	}
@@ -88,7 +88,7 @@ public class HashTable<Key, E> {
 		// Create new table for the function
 		size *= 2;
 		tableList = new KVpair[size];
-		System.out.println("newsize: "+ tableList.length);
+	//	System.out.println("newsize: "+ tableList.length);
 		
 		// Rehash all the elements into the new table
 		for(KVpair<Key, E> x : oldTable){
@@ -173,7 +173,7 @@ public class HashTable<Key, E> {
 			if (table[pos].getKey().equals(k)){ // Duplicates
 				table[pos].addValue(e);
 				//numElements++;
-							System.out.println(" iooihiohiohihohoiuohiuoihoihiohioh");
+							//System.out.println(" iooihiohiohihohoiuohiuoihoihiohioh");
 				return probeCount;
 			}
 			probeCount++;
