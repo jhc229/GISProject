@@ -168,8 +168,9 @@ public class DataParser {
 
 	 * @param x is lat
 	 * @param y is long
+	 * @throws Exception 
 	 */
-	public void whatIsAt(String x, String y) {
+	public void whatIsAt(String x, String y) throws Exception {
 		// geographic coordinate "382812N	0793156W "
 		// create new Coords class for latitude and longitude
 		DMScoordinates latitude=  toCoord(Integer.parseInt(x.substring(0, 2)), Integer.parseInt(x.substring(2, 4)), Integer.parseInt(x.substring(4, 6)), x.substring(6));
@@ -186,14 +187,14 @@ public class DataParser {
 		// System.out.println("whatisat???????" );
 		// Vector<Records> records = new Vector<Records>(0);
 		 if (p != null){
-			 Vector<Long> offset = p.getOffset();
+			 Vector<Integer> offset = p.getOffset();
 			 //System.out.println("found   " + p.getOffset());
 			 System.out.println("found   " +  poolOffset(offset));
 			 
 		 }
 	}
 	
-	private Vector<Records> poolOffset(Vector<Integer> offsets)
+	private Vector<GeoFeatures> poolOffset(Vector<Integer> offsets)
 			throws Exception {
 		Vector<GeoFeatures> records = new Vector<GeoFeatures>(0);
 
