@@ -86,12 +86,9 @@ public class Parser {
 	 * Parses the file and execute commands. Throws the exception when user
 	 * tries to access unspecified elements for instance, when user enters
 	 * search "someName" "x y w h".
-	 * 
-	 * @throws NumberFormatException
-	 *             Format error.
-	 * @throws GISRecordException 
+	 * @throws Exception 
 	 */
-	public void parsing() throws NumberFormatException, GISRecordException {
+	public void parsing() throws Exception {
 	//	BufferedWriter brRecord = null;
 		BufferedReader brCommand = null;
 

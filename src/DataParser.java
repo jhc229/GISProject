@@ -188,19 +188,21 @@ public class DataParser {
 		// Vector<Records> records = new Vector<Records>(0);
 		 if (p != null){
 			 Vector<Integer> offset = p.getOffset();
-			 //System.out.println("found   " + p.getOffset());
-			 System.out.println("found   " +  poolOffset(offset));
+			 for (GeoFeatures name : poolOffset(offset)){
+				 System.out.println("found   " +  name.OFFSET + ":	" + name.FEATURE_NAME + " " + name.COUNTY_NAME + " "+name.STATE_ALPHA);
+			 }
 			 
 		 }
 	}
 	
-	private Vector<GeoFeatures> poolOffset(Vector<Integer> offsets)
+	private Vector<GeoFeatures> poolOffset(Vector<Integer> off)
 			throws Exception {
-		Vector<GeoFeatures> records = new Vector<GeoFeatures>(0);
 
-		for (int i = 0; i < offsets.size(); i++) {
-			int currentOffset = offsets.get(i);
-
+		Vector<GeoFeatures> records = new Vector<GeoFeatures>();
+		gisRecords = new GISRecordParser(dataFile, endOffset);
+		for (int i = 0; i < off.size(); i++) {
+			int currentOffset = off.get(i);
+			// System.out.println("currentOffset" + currentOffset);
 			// Check buffer pool for record
 			GeoFeatures poolRec = pool.checkRecord(currentOffset);
 			if (poolRec != null) {
@@ -208,17 +210,26 @@ public class DataParser {
 				records.add(poolRec);
 			} else {
 				// add record to pool is its not already there
-				Records dataRec = gPar.getRecord(currentOffset);
+				// GeoFeatures dataRec = new GeoFeatures();
+				GeoFeatures dataRec = new GeoFeatures();
+				dataRec= gisRecords.gisRecordsUpdate(currentOffset);
+				System.out.println("current name:" + dataRec.OFFSET);
+				
 				records.add(dataRec);
-				Controller.getInstance().pool.add(dataRec);
+				for (int a = 0; a < records.size(); a++) {
+					System.out.println("rec:" + records.get(a));
+				}
+				pool.add(dataRec);
+				// records.add(dataRec);
+
 			}
 		}
 		return records;
 	}
 
 	/*
-	 * what_is<tab><feature name><tab><state abbreviation> 
-	 * 	For every GIS record in the database file that matches the given <feature name> and <state
+	 * what_is<tab><feature name><tab><state abbreviation> For every GIS record
+	 * in the database file that matches the given <feature name> and <state
 	 * abbreviation>, log the offset at which the record was found, and the
 	 * county name, the primary latitude, and the primary longitude. Do not log
 	 * any other data from the matching records.
