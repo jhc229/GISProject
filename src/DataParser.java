@@ -158,6 +158,7 @@ public class DataParser {
 							countIdx++;
 						}	
 		        }
+			//	System.out.println("current pointer: " + offset) ;
 				offset += line.length() +1; // Next line
 			} 
 		}catch (Exception e) {
