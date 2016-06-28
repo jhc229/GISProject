@@ -81,9 +81,7 @@ yHi) {
 > yHi){
 		 * return false; } return true;
 		 */
-		return xcoord >= xLo && xcoord <= xHi && ycoord >= yLo && 
-
-ycoord <= yHi;
+		return xcoord >= xLo && xcoord <= xHi && ycoord >= yLo && ycoord <= yHi;
 	}
 
 	public boolean equals(Object o) {
