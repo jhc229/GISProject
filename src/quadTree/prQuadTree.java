@@ -141,7 +141,9 @@ private prQuadNode fInsert(prQuadNode rt, T elem, double xMin, double xMax,
 					internalNode = (prQuadInternal) fInsert(internalNode, element , xMin, xMax, yMin, yMax);
 				}
 				
-				for (int i =0; i < leafNode.Elements.size();i++)
+				for (int i =0; i < leafNode.Elements.size();i++){
+					internalNode = (prQuadInternal) fInsert(internalNode, leafNode.Elements.get(i) , xMin, xMax, yMin, yMax);
+				}
 				return internalNode = (prQuadInternal) fInsert(internalNode, elem , xMin, xMax, yMin, yMax);
 				
 			}
