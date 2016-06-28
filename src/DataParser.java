@@ -272,12 +272,16 @@ public class DataParser {
 
 			try {
 				Vector<Integer> newSets = new Vector<Integer>(0);
-				System.out.println("	The following " + pts.size() + " features were found in (" + y + " +/-" + halfHeight+", " + x + " +/-" + halfWidth + ")");
+				//System.out.println("	The following " + pts.size() + " features were found in (" + y + " +/-" + halfHeight+", " + x + " +/-" + halfWidth + ")");
 				//System.out.println("tree coordinates:   " + pts);
-					for (int i =0; i< pts.size(); i++){
+				int count= 1;
+				for (int i =0; i< pts.size(); ++i){
 				 		newSets.addAll(pts.get(i).getOffset());
+				 		count++;
 				 	}
-				 	
+					System.out.println("	The following " + count + " features were found in (" + y + " +/-" + halfHeight+", " + x + " +/-" + halfWidth + ")");
+
+					
 					for(GeoFeatures a : poolOffset(newSets)){
 						 	
 				 		System.out.println(a.OFFSET + ":  " + a.FEATURE_NAME + " " + a.STATE_ALPHA  + " "+a.PRIMARY_LAT_DMS.toString()+" "+ a.PRIM_LONG_DMS.toString());
@@ -293,15 +297,12 @@ public class DataParser {
 		else{
 			System.out.println("     Nothing was found in (" + y + " +/-" + halfHeight+", " + x + " +/-" + halfWidth + ")");
 		}
-
 		System.out.println("--------------------------------------------------------------------------------");
-
 	}
 
 	public void whatIsInC(String x, String y, String halfHeight, String halfWidth) {
 
 		Vector<Point> pts = whatIsInHelper(x, y, Integer.parseInt(halfHeight), Integer.parseInt(halfWidth));
-
 		
 		if (pts.size() > 0) {
 			
@@ -382,17 +383,13 @@ public class DataParser {
 		
 		DMScoordinates latitude=  toCoord(Integer.parseInt(x.substring(0, 2)), Integer.parseInt(x.substring(2, 4)), Integer.parseInt(x.substring(4, 6)), x.substring(6));
 		DMScoordinates longitude = toCoord(Integer.parseInt(y.substring(0, 3)), Integer.parseInt(y.substring(3, 5)), Integer.parseInt(y.substring(5, 7)), y.substring(7));
-		
-		//GeoCoordinates geo = new GeoCoordinates(latitude, longitude);
-		//System.out.println(geo.toString());
-		
-		
+
 		Point p = new Point(longitude.toSeconds(), latitude.toSeconds());
-		long minX = p.getX() - halfWidth ;
-		long maxX = p.getX() + halfWidth ;
-		long minY = p.getY() -halfHeight ;
-		long maxY = p.getY() +halfHeight;
-		 System.out.println("" + minX+" " + maxX+" " + minY+" " + maxY);
+		int minX = p.getX() - halfWidth ;
+		int maxX = p.getX() + halfWidth ;
+		int minY = p.getY() -halfHeight ;
+		int maxY = p.getY() +halfHeight;
+		/* System.out.println("" + minX+" " + maxX+" " + minY+" " + maxY);
 		//371352N  802513W
 		// -289519 -289509 134022 134032
 		int y1 = toCoord(37, 05, 21, "N").toSeconds() - halfWidth; //370521N
@@ -404,10 +401,10 @@ public class DataParser {
 		
 		int a =  toCoord(80, 25, 13, "W").toSeconds(); //0803020W
 		int b = toCoord(37, 13, 52, "N").toSeconds(); //370521N
-		System.out.println("x " + a +" y "+b  );
+		System.out.println("x " + a +" y "+b  );*/
 		
 		// Vector<Point>pts = quadTree.find(b - halfWidth, b+ halfWidth,a -halfHeight, a +halfHeight);
-		 Vector<Point>pts = quadTree.find(p.getX() - halfWidth, p.getX() + halfWidth, p.getY() -halfHeight, p.getY() +halfHeight);
+		 Vector<Point>pts = quadTree.find(minX, maxX, minY, maxY);
 		
 		 System.out.println("number of records" + pts.size());
 		 System.out.println("tree coordinates:   " + pts);
@@ -436,7 +433,6 @@ public class DataParser {
 		System.out.println("--------------------------------------------------------------------------------");
 
 	}
-
 
 	/**
 	 * 
