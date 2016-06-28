@@ -1,25 +1,28 @@
-; Script 9
+; Script 3
 ;
-; Test of search failures with a large database file.
+; Test of multiple import commands with a couple of tiny DB files.
 ;
 ; Specify boundaries of coordinate space:
-world: 0860000W 0750000W 320000N 430000N
+world: 0800400W 0792100W 375230N 383530N
 ;
-; Import a large DB file:
-Command  1:	import: VA_All.txt
+; Import a smallish DB file:
+Command  1:	import: VA_Highland.txt
 
 ;
-; Check the location and name/state indices if you dare:
+; Check the location and name/state indices:
+debug: quad
+debug: hash
 ;
-; Try a few name/state searches for nonexistent features:
-Command  2:	what_is: Bleaksburg VA
-Command  3:	what_is: Nova VA
-Command  4:	what_is: Wet Run VA
+; Import another smallish DB file:
+Command  4:	import: VA_Bath.txt
+
 ;
-; Try a location search for an empty location:
-Command  5:	what_is_at: 383340N 0793423W
+; Check the location and name/state indices:
+debug: quad
+debug: hash
 ;
-; And a search for an empty region:
-Command  6:	what_is_in : -l 363206N 0804752W 6 6
+; Try a couple of range searches:
+Command  7:	what_is_in : -l 381257N 0794039W 60 60
+Command  8:	what_is_in : -l 381257N 0794039W 120 60
 ;
 ; Exit

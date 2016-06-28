@@ -157,8 +157,8 @@ public class DataParser {
 							quadTree.insert(dmsPoints);
 							countIdx++;
 						}	
-					offset += line.length() +1; // Next line
 		        }
+				offset += line.length() +1; // Next line
 			} 
 		}catch (Exception e) {
 		    e.printStackTrace();
