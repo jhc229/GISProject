@@ -151,11 +151,10 @@ public class HashTable<Key, E> {
 		//System.out.println("compare " +   tableList[1012].getKey());
 		//System.out.println("compare " +   key);
 		
-		//index =1012; 
 		// keep looking if the space exists and the key is not already in there
-		while (tableList[index] != null && !tableList[index].getKey().equals(key)) {
+		while (tableList[index] != null) {
 			//System.out.println("quadprobe arg" +   ((NameIndex) tableList[index].getKey()).nameIndexToString());
-
+			if (tableList[index].getKey().equals(key)) return index
 			probeCount++;
 			index = home + ((probeCount * probeCount + probeCount)/2);;
 			if (index >= size){

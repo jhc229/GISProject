@@ -213,7 +213,7 @@ public class DataParser {
 		NameIndex names = new NameIndex(fName, sState);
 	//	System.out.println("whatis: ");
 		Vector<Integer> off = (Vector<Integer>) table.find(names);
-		
+		//Vector<Integer> off = table.getEntries(names);
 		System.out.println("whatis offset?: "+  off);
 		
 		if (off != null){
