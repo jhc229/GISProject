@@ -124,7 +124,6 @@ public class GISRecordParser {
 		System.out.println(line);
 		return null;
 		
-		
 	}
 
 	/**
