@@ -195,7 +195,7 @@ public class DataParser {
 			
 		 }
 		 else{
-				System.out.println("     Nothing was found at " + y + "		"  + x );
+				System.out.println("     Nothing was found at " + y + " "  + x );
 		 }
 	}
 	
@@ -220,7 +220,8 @@ public class DataParser {
 				 
 				 for(GeoFeatures a : poolOffset(off)){
 						 System.out.println(a.OFFSET + ":  " + a.COUNTY_NAME + " " + a.PRIM_LONG_DMS.toString() + " "+a.PRIMARY_LAT_DMS.toString());
-					 }
+						 
+				 }
 				
 			} catch (Exception e) {
 				
@@ -229,7 +230,7 @@ public class DataParser {
 			
 		}
 		 else{
-				System.out.println("No records matcht  " + fName + " and "  + sState );
+				System.out.println("No records match  " + fName + " and "  + sState );
 		 }
 	}
 /*
@@ -254,21 +255,29 @@ public class DataParser {
 
 		if (pts.size() > 0) {
 		
-			System.out.println("size:   " + pts);
+		//	System.out.println("size:   " + pts);
 
-			/*try {
-				 
-				System.out.println("The following " + numb + " features were found in ");
-				 	for(GeoFeatures a : poolOffset(off)){
-						 	System.out.println(a.OFFSET + ":  " + a.COUNTY_NAME + " " + a.PRIM_LONG_DMS.toString() + " "+a.PRIMARY_LAT_DMS.toString());
-					 	}
-					 }
+			try {
+				Vector<Integer> newSets = new Vector<Integer>(0);
+				System.out.println("	The following " + pts.size() + " features were found in ");
+				//System.out.println("size:   " + pts);
+					for (int i =0; i< pts.size(); i++){
+				 		newSets.addAll(pts.get(i).getOffset());
+				 	}
+				 	
+				 	
+					for(GeoFeatures a : poolOffset(newSets)){
+						 	
+				 		System.out.println(a.OFFSET + ":  " + a.FEATURE_NAME + " " + a.STATE_ALPHA  + " "+a.PRIMARY_LAT_DMS.toString()+" "+ a.PRIM_LONG_DMS.toString());
+				
+					}
 				
 				} catch (Exception e) {
 				
 					e.printStackTrace();
-				}*/
+				}
 			}
+	
 		else{
 			System.out.println("     Nothing was found in (" + y + " +/-" + halfHeight+", " + x + " +/-" + halfWidth + ")");
 		}
