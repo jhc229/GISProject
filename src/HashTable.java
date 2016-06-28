@@ -147,12 +147,12 @@ public class HashTable<Key, E> {
 
 		int probeCount = 0;
 		System.out.println("quadprobe arg1 " + ((NameIndex) key).nameIndexToString());
-	//	System.out.println("quadprobe arg2 " +   ((NameIndex) tableList[831].getKey()).nameIndexToString());
+		System.out.println("quadprobe arg2 " +   ((NameIndex) tableList[1012].getKey()).nameIndexToString());
 
 		//index =1012; 
 		// keep looking if the space exists and the key is not already in there
 		while (tableList[index] != null && !tableList[index].getKey().equals(key)) {
-			System.out.println("quadprobe arg" +   ((NameIndex) tableList[index].getKey()).nameIndexToString());
+			//System.out.println("quadprobe arg" +   ((NameIndex) tableList[index].getKey()).nameIndexToString());
 
 			probeCount++;
 			index = home + ((probeCount * probeCount + probeCount)/2);;
@@ -206,7 +206,7 @@ public class HashTable<Key, E> {
 		int probeCount = 0; //update probe
 		int pos = home = Math.abs((elfHash( ((NameIndex) k).nameIndexToString() )) % table.length); 
 							//System.out.println("home: " + home + ",size:  " + table.length );
-		for (int i = 0; i < table.length/2; i++){
+		for (int i = 0; i < table.length; i++){
 			//int pos = Math.abs((elfHash (((NameIndex) k).nameIndexToString())) + (i *i + i)/2) % size;
 		//	pos = (home + (probeCount * probeCount + probeCount) / 2) % size;
 								//System.out.println("pos:" + pos +" ");
