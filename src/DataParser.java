@@ -220,7 +220,7 @@ public class DataParser {
 			try {
 				 
 				 for(GeoFeatures a : poolOffset(off)){
-						 System.out.println(a.OFFSET + ":  " + a.COUNTY_NAME + " " + a.PRIMARY_LAT_DMS + " "+a.PRIM_LONG_DMS);
+						 System.out.println(a.OFFSET + ":  " + a.COUNTY_NAME + " " + a.PRIM_LONG_DMS.toString() + " "+a.PRIMARY_LAT_DMS.toString());
 					 }
 				
 			} catch (Exception e) {

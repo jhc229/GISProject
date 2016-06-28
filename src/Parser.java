@@ -186,8 +186,8 @@ public class Parser {
 				
 				else if (str[0].matches("debug")) {
 					
-					db.debug(str[1]);
 					System.out.println("debug: "+ str[1] );
+					db.debug(str[1]);
 					stat.write("debug: "+ str[1] + "\n" + "\n");
 					cmdCount++;
 
