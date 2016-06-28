@@ -189,7 +189,7 @@ public class DataParser {
 		 if (p != null){
 			 Vector<Integer> offset = p.getOffset();
 			 System.out.println(poolOffset(offset));
-			 System.out.println(pool.toString());
+		//	 System.out.println(pool.toString());
 			 //Vector<GeoFeatures> name = poolOffset(offset);
 			// for (GeoFeatures gf : name){
 			//	 System.out.println("found   " +  gf.OFFSET + ":	" + gf.FEATURE_NAME + " " + gf.COUNTY_NAME + " "+gf.STATE_ALPHA);
@@ -212,19 +212,19 @@ public class DataParser {
 			int currentOffset = off.get(i);
 			// System.out.println("currentOffset" + currentOffset);
 			// Check buffer pool for record
-			GeoFeatures poolRec = pool.checkRecord(currentOffset);
-			if (poolRec != null) {
+			//GeoFeatures poolRec = pool.checkRecord(currentOffset);
+			if ( pool.checkRecord(currentOffset) != false) {
 				// found record within pool
-				
-				records.add(poolRec);
+				//str+=dataRec.OFFSET +  ":	" + dataRec.FEATURE_NAME + " " + dataRec.COUNTY_NAME + " "+dataRec.STATE_ALPHA + "\n";
+				//records.add(poolRec);
 			} else {
 				// add record to pool is its not already there
 				// GeoFeatures dataRec = new GeoFeatures();
 				GeoFeatures dataRec = new GeoFeatures();
 				dataRec= gisRecords.gisRecordsUpdate(currentOffset);
 				str +=dataRec.OFFSET +  ":	" + dataRec.FEATURE_NAME + " " + dataRec.COUNTY_NAME + " "+dataRec.STATE_ALPHA + "\n";
-				records.add(dataRec);
-				pool.add(dataRec);
+				//records.add(dataRec);
+				pool.add(dataRec.OFFSET, dataRec.FEATURE_NAME, dataRec.COUNTY_NAME);
 				//System.out.println("pool:" + pool.size());
 				// records.add(dataRec);
 			}
@@ -308,11 +308,19 @@ public class DataParser {
 		// TODO Auto-generated method stub
 		
 	}
-
-	public void debug(String string) {
-		// TODO Auto-generated method stub
+ */
+	public void debug(String arg) {
+		if (arg.matches("pool")){
+			System.out.println(pool.toString());
+		}
+		else if(arg.matches("hash")){
+			//
+		}
+		else if(arg.matches("quad")){
+			//
+		}
 		
-	}*/
+	}
 
 
 

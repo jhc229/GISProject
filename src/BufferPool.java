@@ -67,7 +67,7 @@ public class BufferPool {
 	 * 
 	 * @param record
 	 */
-	public void add(String offset, String featureName, String countyName) {
+	public void add(int offset, String featureName, String countyName) {
 		if (list.size() >= 10) {
 			list.remove(0);
 		}
@@ -85,8 +85,8 @@ public class BufferPool {
 	public String toString() {
 		String out = "MRU\n";
 		for (int i = list.size() - 1; i >= 0; i--) {
-			GeoFeatures record = list.get(i);
-			out += record.OFFSET + ":  " + record.MAP_NAME + "\n";
+			Buffer record = list.get(i);
+			out += record.getOff() + ":  " + record.getFeatureName() +" "+ record.getCountyName()+"\n";
 		}
 		out += "LRU \n";
 		return out;
