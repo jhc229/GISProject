@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.Buffer;
+import java.time.LocalDateTime;
 import java.util.Vector;
 
 import quadTree.Point;
@@ -105,8 +106,9 @@ public class DataParser {
 		nLat = toCoord(Integer.parseInt(northLat.substring(0, 2)), Integer.parseInt(northLat.substring(2, 4)), Integer.parseInt(northLat.substring(4, 6)), northLat.substring(6)).toSeconds();
 
 		quadTree = new prQuadTree<Point>(wLong, eLong , sLat , nLat);
-		System.out.println("world to seconds:" + wLong+ " "+ eLong +" "+ sLat +" "+ nLat);
-		stat.write(wLong+ " "+ eLong +" "+ sLat +" "+ nLat);
+		System.out.println("\t\t\t" +  sLat + "\n\t" + wLong + "\t\t\t" + eLong + "\n\t\t\t"+ nLat);
+		System.out.println("--------------------------------------------------------------------------------\n");
+		//stat.write(wLong+ " "+ eLong +" "+ sLat +" "+ nLat);
 		
 	}
 	
@@ -433,6 +435,9 @@ public class DataParser {
 	 * @throws IOException
 	 */
 	public void quit() throws IOException {
+		System.out.println("Terminating execution of commands.\n" +LocalDateTime.now());
+		
+		
 		stat.write("\n   Exiting");
 		dataFile.close();
 		stat.close();

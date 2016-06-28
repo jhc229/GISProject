@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 import java.io.RandomAccessFile;
+import java.time.LocalDateTime;
 
 /**
  * 
@@ -113,8 +114,20 @@ public class Parser {
 				
 				else if (str[0].matches("world")) {  // 4 coordinates westlong eastlong southlat northlat
 					System.out.println("world: "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] );
-					db.world(str[1], str[2], str[3], str[4]);
 					stat.write("world: "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] + "\n" );
+					
+					System.out.println("\nGIS Program\n");
+					System.out.println("dbFile:\t"  +dataFile.getName());
+					System.out.println("script:\t" + commandFile.getEncoding() );
+					System.out.println("log:\t" + stat);
+					System.out.println("\nGIS Program\n");
+					System.out.println("Start time: " + LocalDateTime.now() );
+					System.out.println("Quadtree children are printed in the order SW  SE  NE  NW");
+					System.out.println("--------------------------------------------------------------------------------\n");
+					System.out.println("Latitude/longitude values in index entries are shown as signed integers, in total seconds.\n");
+					System.out.println("World boundaries are set to:");
+					db.world(str[1], str[2], str[3], str[4]);
+
 					//cmd.diskReads =2;
 					//System.out.println("stat check: " + cmd.cacheHits + " " +cmd.diskReads);
 					
@@ -191,13 +204,15 @@ public class Parser {
 				}
 				else if (str[0].matches("quit")) {
 					
-					System.out.println("quit: " );
+					System.out.println("Command "+ cmdCount + ":  quit" );
+					db.quit();
+					
 					stat.write("quit \n");
 
 					//stat.append("\n quit");
 					//db.quit();
 					stat.close();
-					
+					cmdCount++;
 				}
 			}
 		} catch (IOException e) {
