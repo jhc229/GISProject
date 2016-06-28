@@ -125,8 +125,8 @@ private prQuadNode fInsert(prQuadNode rt, T elem, double xMin, double xMax,
 			return internalNode;
 			
 		}// when it's leaf
-		else{
-			prQuadInternal	internalNode =  new prQuadInternal(); // create an internal node
+		else{/*
+			/*prQuadInternal	internalNode =  new prQuadInternal(); // create an internal node
 			prQuadLeaf leafNode = (prQuadLeaf) rt;
 			
 			if (leafNode.Elements.size() < bucketSize){ // Check the number of leafs
@@ -141,7 +141,42 @@ private prQuadNode fInsert(prQuadNode rt, T elem, double xMin, double xMax,
 							element, xMin, xMax, yMin, yMax);
 				}
 				return internalNode = (prQuadInternal) fInsert(internalNode, elem , xMin, xMax, yMin, yMax);
+			}*/
+			prQuadLeaf leaf = (prQuadLeaf) node;
+
+			// see if the leaf is full
+			if (leaf.Elements.size() < bucketSize) {
+
+				// check for repeats
+				boolean same = false;
+				for (int i = 0; i < leaf.Elements.size(); i++) {
+					// if the location exists
+					if (leaf.Elements.get(i).equals(elem)) {
+						same = true;
+						leaf.Elements.get(i).addOffsets(elem.getOffset());
+					}
+				}
+				// add the new element into leaf if its not full
+				if (!same) {
+					leaf.Elements.addElement(elem);
+				}
+				return leaf;
 			}
+			// leaf is full
+
+			// create a new internal node
+			prQuadNode internal = new prQuadInternal();
+
+			for (int i = 0; i < leaf.numElements(); i++) {
+
+				// add the original leaf node into the internal node
+				internal = recInsert(internal, leaf.getElement(i), rec);
+
+			}
+			// add the new leaf node with element elem into the internal node
+			internal = recInsert(internal, elem, rec);
+
+			return internal;
 		}
 	}
    
