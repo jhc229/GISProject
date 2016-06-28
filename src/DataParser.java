@@ -3,16 +3,13 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
+import java.io.RandomAccessFile;
+import java.nio.Buffer;
 import java.util.Vector;
 
-import BufferPool.Buffer;
-
-import java.io.RandomAccessFile;
-import java.io.Reader;
-import quadTree.*;
+import quadTree.Point;
+import quadTree.prQuadTree;
 
 
 /**
@@ -216,9 +213,9 @@ public class DataParser {
 			// System.out.println("currentOffset" + currentOffset);
 			// Check buffer pool for record
 			//GeoFeatures poolRec = pool.checkRecord(currentOffset);
-			Buffer inPool = pool.checkRecord(currentOffset);
+			BufferPool.Buffer inPool = pool.checkRecord(currentOffset);
 			if ( inPool != null) { // is found
-				String str +=inPool.getOff() +  ":	" + inPool.getFeatureName()() + " " + inPool.getCountyName() + " "+ "\n";
+				str += inPool.getOff() +  ":	" + inPool.getFeatureName() + " " + inPool.getCountyName() + " "+  inPool.getstateName()+  "\n";
 				
 			} else {
 				// add record to pool is its not already there
@@ -227,7 +224,7 @@ public class DataParser {
 				dataRec= gisRecords.gisRecordsUpdate(currentOffset);
 				str +=dataRec.OFFSET +  ":	" + dataRec.FEATURE_NAME + " " + dataRec.COUNTY_NAME + " "+dataRec.STATE_ALPHA + "\n";
 				//records.add(dataRec);
-				pool.add(dataRec.OFFSET, dataRec.FEATURE_NAME, dataRec.COUNTY_NAME);
+				pool.add(dataRec.OFFSET, dataRec.FEATURE_NAME, dataRec.COUNTY_NAME, dataRec.STATE_ALPHA);
 				//System.out.println("pool:" + pool.size());
 				// records.add(dataRec);
 			}

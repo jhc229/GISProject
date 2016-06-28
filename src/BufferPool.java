@@ -34,6 +34,10 @@ public class BufferPool {
 		public String getCountyName() {
 			return cName;
 		}
+		
+		public String getstateName() {
+			return sName;
+		}
 	}
 
 	private ArrayList<Buffer> list; // records within the pool are kept in a
