@@ -206,11 +206,8 @@ public class Parser {
 					
 					System.out.println("Command "+ cmdCount + ":  quit\n" );
 					db.quit();
-					stat.write("quit \n");
-
 					//stat.append("\n quit");
 					//db.quit();
-					stat.close();
 					cmdCount++;
 				}
 			}

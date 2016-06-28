@@ -34,4 +34,5 @@ Command  11:	what_is_in : 371347N 0802514W 360 2
 Command  12:	what_is_in : 371002N 0802042W 10 60000
 ;
 ; Exit
-quit 
+
+   Exiting
