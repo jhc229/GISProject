@@ -92,6 +92,7 @@ public class GISRecordParser {
 			
 			if (items.length == 20) dataRec.DATE_EDITED = items[19];
 			dataRec.OFFSET = (int) parserOffset;
+			read.seek(parserOffset);
 			return dataRec;
 		}
 		else {
@@ -155,7 +156,6 @@ public class GISRecordParser {
 		
 		if (items.length == 20) dataRec.DATE_EDITED = items[19];
 		dataRec.OFFSET = (int) parserOffset;
-		read.seek(parserOffset);
 		return dataRec;
 		
 		}
