@@ -146,9 +146,11 @@ public class HashTable<Key, E> {
 		//int offset = 1;
 
 		int probeCount = 0;
-		System.out.println("quadprobe arg1 " + ((NameIndex) key).nameIndexToString());
-		System.out.println("quadprobe arg2 " +   ((NameIndex) tableList[1012].getKey()).nameIndexToString());
-		System.out.println("compare " +   tableList[index].getKey());
+		//System.out.println("quadprobe arg1 " + ((NameIndex) key).nameIndexToString());
+		//System.out.println("quadprobe arg2 " +   ((NameIndex) tableList[1012].getKey()).nameIndexToString());
+		//System.out.println("compare " +   tableList[1012].getKey());
+		//System.out.println("compare " +   key);
+		
 		//index =1012; 
 		// keep looking if the space exists and the key is not already in there
 		while (tableList[index] != null && !tableList[index].getKey().equals(key)) {
@@ -159,9 +161,9 @@ public class HashTable<Key, E> {
 			if (index >= size){
 				index = index % size;
 			}
-			
 
 		}
+		System.out.println(index);
 	//	System.out.println("quadprobe arg" +   ((NameIndex) tableList[index].getKey()).nameIndexToString());
 
 		// helper code for getting the length of time spending on find the

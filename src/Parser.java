@@ -152,6 +152,7 @@ public class Parser {
 						featureName += " "+ str[i];
 					}
 					db.whatIs(featureName, str[str.length-1]); // <feature name> and <state abbreviation> in string
+					System.out.println(("what_is : " + featureName+ str[str.length-1]);
 					stat.write("what_is: "+ featureName +" "+ str[str.length-1] + "\n" + "\n");
 					cmdCount++;
 
