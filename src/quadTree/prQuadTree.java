@@ -155,7 +155,7 @@ private prQuadNode fInsert(prQuadNode rt, T elem, double xMin, double xMax,
 					// if the location exists
 					if (leaf.Elements.get(i).equals(elem)) {
 						same = true;
-						leaf.Elements.get(i).addOffset(elem.getOffset());
+						leaf.Elements.get(i).addOffsets(elem.getOffsets());
 					}
 				}
 				// add the new element into leaf if its not full
@@ -190,7 +190,7 @@ private prQuadNode fInsert(prQuadNode rt, T elem, double xMin, double xMax,
 		}
 	   do {
 		   if ( leafNode.Elements.get(i).equals(elem)){
-			   leafNode.Elements.get(i).addOffset(elem.getOffset());
+			   leafNode.Elements.get(i).addOffsets(elem.getOffsets());
 			   insert_Flag = true;
 			   i++;
 		   }
