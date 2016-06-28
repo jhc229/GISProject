@@ -194,43 +194,9 @@ public class DataParser {
 			// for (GeoFeatures gf : name){
 			//	 System.out.println("found   " +  gf.OFFSET + ":	" + gf.FEATURE_NAME + " " + gf.COUNTY_NAME + " "+gf.STATE_ALPHA);
 			
-			// }
-				//for (int a = 0; a < name.size(); a++) {
-					//System.out.println("rec:" + name.get(a).OFFSET);
-				//}
-			 
 		 }
 	}
 	
-	private String poolOffset(Vector<Integer> off)
-			throws Exception {
-
-		//Vector<GeoFeatures> records = new Vector<GeoFeatures>();
-		gisRecords = new GISRecordParser(dataFile, endOffset);
-		String str = "";
-		for (int i = 0; i < off.size(); i++) {
-			int currentOffset = off.get(i);
-			// System.out.println("currentOffset" + currentOffset);
-			// Check buffer pool for record
-			//GeoFeatures poolRec = pool.checkRecord(currentOffset);
-			BufferPool.Buffer inPool = pool.checkRecord(currentOffset);
-			if ( inPool != null) { // is found
-				str += inPool.getOff() +  ":	" + inPool.getFeatureName() + " " + inPool.getCountyName() + " "+  inPool.getStateName() +  "\n";
-				
-			} else {
-				// add record to pool is its not already there
-				// GeoFeatures dataRec = new GeoFeatures();
-				GeoFeatures dataRec = new GeoFeatures();
-				dataRec= gisRecords.gisRecordsUpdate(currentOffset);
-				str +=dataRec.OFFSET +  ":	" + dataRec.FEATURE_NAME + " " + dataRec.COUNTY_NAME + " "+dataRec.STATE_ALPHA + "\n";
-				//records.add(dataRec);
-				pool.add(dataRec.OFFSET, dataRec.FEATURE_NAME, dataRec.COUNTY_NAME, dataRec.STATE_ALPHA);
-				//System.out.println("pool:" + pool.size());
-				// records.add(dataRec);
-			}
-		}
-		return str;
-	}
 
 	/*
 	 * what_is<tab><feature name><tab><state abbreviation> For every GIS record
@@ -239,19 +205,27 @@ public class DataParser {
 	 * county name, the primary latitude, and the primary longitude. Do not log
 	 * any other data from the matching records.
 	 */
-	//public void whatIs(String string, String string2) {
-		//Vector<GeoFeatures> records = new Vector<GeoFeatures>(0);
+	public void whatIs(String fName, String sState) {
+	//	Vector<GeoFeatures> records = new Vector<GeoFeatures>(0);
 
-	//	Point p = 
 		// find the record within the HashTable
-		/*Vector<Integer> offsets = (Vector<Integer>) table.find(nameIn);
-
-		gPar = new GISParser(dataFile);
-		// check if the offset exists
-		if (offsets != null) {
-			records = poolOffset(offsets);
+		
+		NameIndex names = new NameIndex(fName, sState);
+		
+		Vector<Integer> off = table.getEntries((names));
+		System.out.println("whatis: "+ off.get(0));
+		
+		if (off != null){
+			try {
+				System.out.println(poolOffset(off));
+				
+				
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+			}
+			
 		}
-		return records		*?
 	}
 /*
  * what_is_in<tab>-l<tab><geographic coordinate><tab><half-height><tab><half-width>
@@ -333,6 +307,36 @@ public class DataParser {
 		dataFile.close();
 		stat.close();
 
+	}
+	private String poolOffset(Vector<Integer> off)
+			throws Exception {
+
+		//Vector<GeoFeatures> records = new Vector<GeoFeatures>();
+		gisRecords = new GISRecordParser(dataFile, endOffset);
+		String str = "";
+		for (int i = 0; i < off.size(); i++) {
+			int currentOffset = off.get(i);
+			// System.out.println("currentOffset" + currentOffset);
+			// Check buffer pool for record
+			//GeoFeatures poolRec = pool.checkRecord(currentOffset);
+			BufferPool.Buffer inPool = pool.checkRecord(currentOffset);
+			if ( inPool != null) { // is found
+				str += inPool.getOff() +  ":	" + inPool.getFeatureName() + " " + inPool.getCountyName() +  inPool.getStateName() + "\n";
+				// inPool.getStateName();
+				 
+			} else {
+				// add record to pool is its not already there
+				// GeoFeatures dataRec = new GeoFeatures();
+				GeoFeatures dataRec = new GeoFeatures();
+				dataRec= gisRecords.gisRecordsUpdate(currentOffset);
+				str +=dataRec.OFFSET +  ":	" + dataRec.FEATURE_NAME + " " + dataRec.COUNTY_NAME + " "+dataRec.STATE_ALPHA + "\n";
+				//records.add(dataRec);
+				pool.add(dataRec.OFFSET, dataRec.FEATURE_NAME, dataRec.COUNTY_NAME, dataRec.STATE_ALPHA);
+				//System.out.println("pool:" + pool.size());
+				// records.add(dataRec);
+			}
+		}
+		return str;
 	}
 
 
