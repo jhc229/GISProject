@@ -1,0 +1,33 @@
+; Script 3
+;
+; Test of multiple import commands with a couple of tiny DB files.
+;
+; Specify boundaries of coordinate space:
+-288240 -285660 136350 138930world: 0800400W 0792100W 375230N 383530N
+
+;
+; Import a smallish DB file:
+
+
+Command  2:	import: VA_Highland.txt
+
+;
+; Check the location and name/state indices:
+debug: quad
+debug: hash
+;
+; Import another smallish DB file:
+
+
+Command  5:	import: VA_Bath.txt
+
+;
+; Check the location and name/state indices:
+debug: quad
+debug: hash
+;
+; Try a couple of range searches:
+;
+; Exit
+quit 
+
