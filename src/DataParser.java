@@ -136,6 +136,7 @@ public class DataParser {
 		
 		gisRecords = new GISRecordParser(dataFile, endOffset); // Begin at the second line where records start.
 		int countIdx = 0;
+		
 		BufferedReader br = new BufferedReader(new FileReader(data));
 		List<String> aisLines = new ArrayList<String>();
 		String line, cvsSplitBy = ",";
@@ -143,22 +144,19 @@ public class DataParser {
 			
 			while ((line = br.readLine()) != null) {
 
-				GeoFeatures newRec = gisRecords.gisUpdate(line);
-				/*if(line.charAt(0) == '!') {
-		            String[] cols = line.split(cvsSplitBy);
-		            if(cols.length>=8) {
-		                line = "";
-		                for(int i=0; i<cols.length-1; i++) {
-		                    if(i == cols.length-2) {
-		                        line = line + cols[i];
-		                    } else {
-		                        line = line + cols[i] + ",";
-		                    }
-		                }
-		                aisLines.add(line);
-		            } else {
-		                aisLines.add(line);
-		            }*/
+				GeoFeatures newRec = gisRecords.gisUpdate(line ,offset);
+				
+				if (newRec !=null){
+					NameIndex names = new NameIndex(newRec.FEATURE_NAME, newRec.STATE_ALPHA);
+					Point dmsPoints = new Point(newRec.PRIM_LONG_DMS.toSeconds(), newRec.PRIMARY_LAT_DMS.toSeconds(), offset);
+				
+					if (dmsPoints.inBox(wLong, eLong , sLat , nLat)){
+						table.insertHash(names, (int) offset);
+
+						quadTree.insert(dmsPoints);
+						countIdx++;
+				
+				offset += line.length() +1; // Next line
 		        }
 		    
 		} catch (Exception e) {
