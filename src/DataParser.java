@@ -138,30 +138,36 @@ public class DataParser {
 		int countIdx = 0;
 		
 		BufferedReader br = new BufferedReader(new FileReader(data));
+		br.readLine();
 		List<String> aisLines = new ArrayList<String>();
 		String line, cvsSplitBy = ",";
 		try {
 			
 			while ((line = br.readLine()) != null) {
 
-				GeoFeatures newRec = gisRecords.gisUpdate(line ,offset);
+				GeoFeatures newRec = gisRecords.gisUpdate(line , (int) offset);
 				
 				if (newRec !=null){
 					NameIndex names = new NameIndex(newRec.FEATURE_NAME, newRec.STATE_ALPHA);
 					Point dmsPoints = new Point(newRec.PRIM_LONG_DMS.toSeconds(), newRec.PRIMARY_LAT_DMS.toSeconds(), offset);
 				
-					if (dmsPoints.inBox(wLong, eLong , sLat , nLat)){
-						table.insertHash(names, (int) offset);
-
-						quadTree.insert(dmsPoints);
-						countIdx++;
-				
-				offset += line.length() +1; // Next line
+						if (dmsPoints.inBox(wLong, eLong , sLat , nLat)){
+							table.insertHash(names, (int) offset);
+	
+							quadTree.insert(dmsPoints);
+							countIdx++;
+						}	
+					offset += line.length() +1; // Next line
 		        }
-		    
-		} catch (Exception e) {
+			} 
+		}catch (Exception e) {
 		    e.printStackTrace();
 		}
+		System.out.println("");
+		System.out.println("Imported Features by name: " + countIdx);
+		System.out.println("Longest probe sequence:     " + table.getProbe());
+		System.out.println("Imported Locations:         " + countIdx);
+		System.out.println("--------------------------------------------------------------------------------");
 		/*
 		while (dataFile.readLine() != null) {
 
