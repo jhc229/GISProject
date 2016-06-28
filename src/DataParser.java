@@ -509,7 +509,6 @@ public class DataParser {
 			
 			}
 		}
-		dataFile.seek(265);
 		return temp;
 	}
 

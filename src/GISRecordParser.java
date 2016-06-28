@@ -107,7 +107,7 @@ public class GISRecordParser {
 	}
 
 	
-	public GeoFeatures gisUpdate(String line, int parserOffset){
+	public GeoFeatures gisUpdate(String line, int parserOffset) throws GISRecordException, IOException{
 		GeoFeatures dataRec = new GeoFeatures();
 		if ((parserOffset >= 265) && (parserOffset <= endOffset)){ //&& ((int)read.readByte() == 10)
 
@@ -154,7 +154,7 @@ public class GISRecordParser {
 		if (items.length == 20) dataRec.DATE_EDITED = items[19];
 		dataRec.OFFSET = (int) parserOffset;
 		return dataRec;
-		
+		}
 		else {
 			if (((parserOffset >= 0) && (parserOffset < 265) ) || ((int)read.readByte() != 10)){
 				
