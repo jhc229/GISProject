@@ -8,32 +8,37 @@ import java.util.ArrayList;
  */
 public class BufferPool {
 
-	private ArrayList<Buffer> list; // records within the pool are kept in a
-	private int size;
-
-	public class Buffer{
+	public class Buffer {
 		private final int offset;
 		private final String name;
 		private final String cName;
-		
-		public Buffer(int off, String name, String cName)	{
+		private final String sName;
+
+		public Buffer(int off, String name, String cName, String sName) {
 			offset = off;
 			this.name = name;
 			this.cName = cName;
-			
+			this.sName = sName;
+
 		}
-		
-		public int getOff(){
+
+		public int getOff() {
 			return offset;
 		}
-		public String getFeatureName(){
+
+		public String getFeatureName() {
 			return name;
-			
-		}		
-		public String getCountyName(){
+
+		}
+
+		public String getCountyName() {
 			return cName;
 		}
 	}
+
+	private ArrayList<Buffer> list; // records within the pool are kept in a
+	private int size;
+
 	/**
 	 * construct a new BufferPool of size 20
 	 * @return 
@@ -67,11 +72,11 @@ public class BufferPool {
 	 * 
 	 * @param record
 	 */
-	public void add(int offset, String featureName, String countyName) {
+	public void add(int offset, String featureName, String countyName, String stateName) {
 		if (list.size() >= 10) {
 			list.remove(0);
 		}
-		Buffer record = new Buffer(offset, featureName, countyName);
+		Buffer record = new Buffer(offset, featureName, countyName, stateName);
 		list.add(record);
 		size++;
 	}
