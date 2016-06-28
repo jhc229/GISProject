@@ -45,7 +45,7 @@ public class GISRecordParser {
 		if ((parserOffset >= 265) && (parserOffset <= endOffset)){ //&& ((int)read.readByte() == 10)
 			GeoFeatures dataRec = new GeoFeatures();
 			System.out.println("current pointer" + read.getFilePointer());
-			read.seek(parserOffset + 256);
+			read.seek(parserOffset);
 			System.out.println("current pointer" + read.getFilePointer());
 			String line= read.readLine();
 			
