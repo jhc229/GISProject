@@ -214,7 +214,7 @@ public class DataParser {
 	//	System.out.println("whatis: ");
 		Vector<Integer> off = (Vector<Integer>) table.find(names);
 		
-		System.out.println("whatis: "+  off);
+		System.out.println("whatis offset?: "+  off);
 		
 		if (off != null){
 			try {
