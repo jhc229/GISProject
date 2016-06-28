@@ -117,6 +117,15 @@ public class GISRecordParser {
 		return result;
 
 	}
+	
+	
+	public GeoFeatures gisUpdate(String line){
+		
+		System.out.println(line);
+		return null;
+		
+		
+	}
 
 	/**
 	 * Feature name string standard name of feature

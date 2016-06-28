@@ -1,0 +1,25 @@
+; Script 9
+;
+; Test of search failures with a large database file.
+;
+; Specify boundaries of coordinate space:
+world: 0860000W 0750000W 320000N 430000N
+;
+; Import a large DB file:
+Command  1:	import: VA_All.txt
+
+;
+; Check the location and name/state indices if you dare:
+;
+; Try a few name/state searches for nonexistent features:
+Command  2:	what_is: Bleaksburg VA
+Command  3:	what_is: Nova VA
+Command  4:	what_is: Wet Run VA
+;
+; Try a location search for an empty location:
+Command  5:	what_is_at: 383340N 0793423W
+;
+; And a search for an empty region:
+Command  6:	what_is_in : -l 363206N 0804752W 6 6
+;
+; Exit
