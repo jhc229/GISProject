@@ -189,7 +189,7 @@ public class DataParser {
 		// Vector<Records> records = new Vector<Records>(0);
 		 if (p != null){
 			 Vector<Integer> offset = p.getOffset();
-			System.out.println("   The following features were found at	" + x +" " + y);
+			System.out.println("   The following features were found at	" + y +" " + x);
 			 for(GeoFeatures a : poolOffset(offset)){
 				 System.out.println(a.OFFSET + ":  " + a.FEATURE_NAME + " " + a.COUNTY_NAME + " "+a.STATE_ALPHA);
 			 }

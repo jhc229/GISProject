@@ -6,9 +6,9 @@
 -290700 -288000 133200 135900world: 0804500W 0800000W 370000N 374500N
 ;
 ; Import a smallish DB file:
-
-
 Command  1:	import: VA_Montgomery.txt
+
+
 ;
 ; Check the location and name/state indices if you dare:
 ;
