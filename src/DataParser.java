@@ -7,6 +7,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.Vector;
+
+import BufferPool.Buffer;
+
 import java.io.RandomAccessFile;
 import java.io.Reader;
 import quadTree.*;
@@ -205,7 +208,7 @@ public class DataParser {
 	private String poolOffset(Vector<Integer> off)
 			throws Exception {
 
-		Vector<GeoFeatures> records = new Vector<GeoFeatures>();
+		//Vector<GeoFeatures> records = new Vector<GeoFeatures>();
 		gisRecords = new GISRecordParser(dataFile, endOffset);
 		String str = "";
 		for (int i = 0; i < off.size(); i++) {
@@ -213,10 +216,10 @@ public class DataParser {
 			// System.out.println("currentOffset" + currentOffset);
 			// Check buffer pool for record
 			//GeoFeatures poolRec = pool.checkRecord(currentOffset);
-			if ( pool.checkRecord(currentOffset) != false) {
-				// found record within pool
-				//str+=dataRec.OFFSET +  ":	" + dataRec.FEATURE_NAME + " " + dataRec.COUNTY_NAME + " "+dataRec.STATE_ALPHA + "\n";
-				//records.add(poolRec);
+			Buffer inPool = pool.checkRecord(currentOffset);
+			if ( inPool != null) { // is found
+				String str +=inPool.getOff() +  ":	" + inPool.getFeatureName()() + " " + inPool.getCountyName() + " "+ "\n";
+				
 			} else {
 				// add record to pool is its not already there
 				// GeoFeatures dataRec = new GeoFeatures();

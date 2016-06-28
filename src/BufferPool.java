@@ -50,16 +50,16 @@ public class BufferPool {
 	 *            the location on database file
 	 * @return the record if found, null otherwise
 	 */
-	public boolean checkRecord(int offset) {
+	public Buffer checkRecord(int offset) {
 		for (int i = 0; i < list.size(); i++) {
 			Buffer founcRecord = list.get(i);
 			if (founcRecord.getOff() == offset) {
 				list.add(list.remove(i));
 				
-				return true;
+				return founcRecord;
 			}
 		}
-		return false;
+		return null;
 	}
 
 	/**
