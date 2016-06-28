@@ -107,30 +107,72 @@ public class HashTable<Key, E> {
 	 */
 	public int findEntry(Key k){
 		index_flag = -1;
-		
+		int probeCount = 0; //update probe
+
 		if (k == ""){
 			index_flag = -1;
 			return -1;
 		}
 		int home; 
 		
-		int pos = home = (Math.abs(k.hashCode()) % size); 
-				
-		for (int i = 0; tableList[pos] != null; i++ ){
-			Key entry1 = (Key) tableList[pos];
-			
-			if (entry1.equals(k)){
+	//	int pos = home = (Math.abs(k.hashCode()) % size); 
+		int pos = home = Math.abs((elfHash( ((NameIndex) k).nameIndexToString() )) % size); 
+		for (int i = 0; i < size; i++){
+			//Key entry1 = tableList[pos].getKey();
+			//System.out.println(size);
+			//System.out.println(tableList[pos]);
+			if (tableList[pos] == null){
+				//System.out.println("skip");
+			}
+			else if (tableList[pos].getKey().equals(k)){
 				index_flag= pos;			//index_flag will hold the key found
 				return 1;	//Found
 			}
-			if (index_flag < 0){
+			else if (index_flag < 0){
 				index_flag = pos;
 			}
-			pos = (home + step(k, i)) % size; // Next index
+			probeCount++;
+			pos = home + step(k, probeCount);
+			if (pos >= size){
+				pos = pos % size;
+			}
 		}
 		return 0; //Not found
 	}
 	
+	public int quadProbe(Key key) {
+		int home;
+		int index = home = Math.abs((elfHash( ((NameIndex) key).nameIndexToString() )) % size); 
+		//int offset = 1;
+
+		int probeCount = 0;
+		System.out.println(((NameIndex) key).nameIndexToString());
+		System.out.println(  ((NameIndex) tableList[1012].getKey()).nameIndexToString());
+		index =1012; 
+		// keep looking if the space exists and the key is not already in there
+		while (tableList[index] != null && !tableList[index].getKey().equals(key)) {
+
+			probeCount++;
+			index = home + ((probeCount * probeCount + probeCount)/2);;
+			if (index >= size){
+				index = index % size;
+			}
+
+		}
+		// helper code for getting the length of time spending on find the
+		// correct space
+		if (probeCount > longestProbe) {
+			longestProbe = probeCount;
+		}
+		return index;
+	}
+	public Object find(Key key) {
+		KVpair<Key, E> entry = tableList[quadProbe(key)];
+		if (entry != null) {
+			return entry.getValue();
+		}
+		return null;
+	}
 	/*
 	 *  Get Key
 	 */

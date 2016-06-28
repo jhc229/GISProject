@@ -211,9 +211,10 @@ public class DataParser {
 		// find the record within the HashTable
 		
 		NameIndex names = new NameIndex(fName, sState);
+		System.out.println("whatis: ");
+		Vector<Integer> off = (Vector<Integer>) table.find(names);
 		
-		Vector<Integer> off = table.getEntries((names));
-		System.out.println("whatis: "+ off.get(0));
+		System.out.println("whatis: "+  off);
 		
 		if (off != null){
 			try {
