@@ -134,10 +134,11 @@ public class DataParser {
 		int countIdx = 0;
 		while (dataFile.readLine() != null) {
 
-			gisRecords.gisRecordsUpdate(offset);
+			GeoFeatures newRec = gisRecords.gisRecordsUpdate(offset);
 
-			NameIndex names = new NameIndex(GeoFeatures.FEATURE_NAME, GeoFeatures.STATE_ALPHA);
-			Point dmsPoints = new Point(GeoFeatures.PRIM_LONG_DMS.toSeconds(), GeoFeatures.PRIMARY_LAT_DMS.toSeconds(), offset);
+			
+			NameIndex names = new NameIndex(newRec.FEATURE_NAME, newRec.STATE_ALPHA);
+			Point dmsPoints = new Point(newRec.PRIM_LONG_DMS.toSeconds(), newRec.PRIMARY_LAT_DMS.toSeconds(), offset);
 			
 			if (dmsPoints.inBox(wLong, eLong , sLat , nLat)){
 				table.insertHash(names, (int) offset);

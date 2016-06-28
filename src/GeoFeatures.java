@@ -7,7 +7,7 @@
  *
  */
 public class GeoFeatures {
-	public  int 						FEATURE_ID = 0;
+	public final  int 						FEATURE_ID = 0;
 	public  String					FEATURE_NAME;
 	public  String 					FEATURE_CLASS;
 	public  String 					STATE_ALPHA;
