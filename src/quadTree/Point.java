@@ -99,9 +99,7 @@ yHi) {
 	}
 
 	public String toString() {
-		return "[( " + xcoord + ", " + ycoord + ")," + 
-
-offsets.toString() + "]";
+		return "[( " + xcoord + ", " + ycoord + ")," + offsets.toString() + "]";
 	}
 
 }
