@@ -146,7 +146,7 @@ public class DataParser {
 			while ((line = br.readLine()) != null) {
 
 				GeoFeatures newRec = gisRecords.gisUpdate(line , (int) offset);
-				System.out.println("import Line 	 " + offset);
+				//System.out.println("import Line 	 " + offset);
 				if (newRec !=null){
 					NameIndex names = new NameIndex(newRec.FEATURE_NAME, newRec.STATE_ALPHA);
 					Point dmsPoints = new Point(newRec.PRIM_LONG_DMS.toSeconds(), newRec.PRIMARY_LAT_DMS.toSeconds(), offset);
