@@ -146,7 +146,6 @@ public class DataParser {
 					table.insertHash(names, (int) offset);
 
 					quadTree.insert(dmsPoints);
-
 					countIdx++;
 				}
 				dataFile.seek(offset); //Bring the pointer back to beginning of the line after reading from the gisRecordsUpdate
