@@ -88,14 +88,14 @@ public class Point implements Compare2D<Point> {
 	/**
 	 * determine which quadrant is the current position in
 	 */
-	public Direction inQuadrant(int xLo, int xHi, 
-			int yLo, int yHi) { 
+	public Direction inQuadrant(double  xLo, double xHi, 
+			double yLo, double yHi) { 
 		//if xcoord or ycoord is outside of the rectangle
 		if ( !inBox(xLo, xHi, yLo, yHi)){
 			return Direction.NOQUADRANT;
 		}
-		int xCenter = ((xLo + xHi)/2);
-		int yCenter = ((yLo + yHi)/2);
+		long xCenter = (long) ((xLo + xHi)/2);
+		long yCenter =(long) ((yLo + yHi)/2);
 		
 		Direction dir = directionFrom(xCenter, yCenter);
 		
@@ -107,8 +107,8 @@ public class Point implements Compare2D<Point> {
 	/**
 	 * @return whether if current position is within a quadrant
 	 */
-	public boolean inBox(int xLo, int xHi, 
-			int yLo, int yHi) { 
+	public boolean inBox(double xLo, double xHi, 
+			double yLo, double yHi) { 
 		if ( xcoord < xLo || xcoord > xHi || ycoord < yLo || ycoord > yHi){
 			return false;
 		}
