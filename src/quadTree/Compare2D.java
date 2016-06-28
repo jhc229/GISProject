@@ -30,7 +30,7 @@ public interface Compare2D<T> {
 	// SE: same as above, but direction is in the range [270, 360)
 	// NOQUADRANT: location of user object is equal to (X, Y)
 	//
-	public Direction directionFrom(int X, int Y);
+	public Direction directionFrom(long X, long Y);
 
 	// Returns indicator of which quadrant of the rectangle specified by the
 	// parameters that user data object lies in.

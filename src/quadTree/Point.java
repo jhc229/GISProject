@@ -69,17 +69,17 @@ public class Point implements Compare2D<Point> {
 	/**
 	 * get direction from current position to desired position
 	 */
-	public Direction directionFrom(int X, int Y) { 
-		if ( xcoord <= X && ycoord > Y){
+	public Direction directionFrom(long xcoord2, long ycoord2) { 
+		if ( xcoord <= xcoord2 && ycoord > ycoord2){
 			return Direction.NW;
 		}
-		else if(xcoord > X && ycoord >= Y){
+		else if(xcoord > xcoord2 && ycoord >= ycoord2){
 			return Direction.NE;
 		}
-		else if(xcoord < X && ycoord <= Y){
+		else if(xcoord < xcoord2 && ycoord <= ycoord2){
 			return Direction.SW;
 		}
-		else if(xcoord >= X && ycoord < Y){
+		else if(xcoord >= xcoord2 && ycoord < ycoord2){
 			return Direction.SE;
 		}
         return Direction.NOQUADRANT;
@@ -94,8 +94,8 @@ public class Point implements Compare2D<Point> {
 		if ( !inBox(xLo, xHi, yLo, yHi)){
 			return Direction.NOQUADRANT;
 		}
-		float xCenter = ((xLo + xHi)/2);
-		float yCenter = ((yLo + yHi)/2);
+		int xCenter = ((xLo + xHi)/2);
+		int yCenter = ((yLo + yHi)/2);
 		
 		Direction dir = directionFrom(xCenter, yCenter);
 		
