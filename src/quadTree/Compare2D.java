@@ -47,11 +47,11 @@ public interface Compare2D<T> {
 	// y-axis, but not the positive x-axis
 	// NOQUADRANT: user data object lies outside the specified rectangle
 	//
-	public Direction inQuadrant(int xLo, int xHi, int yLo, int yHi);
+	public Direction inQuadrant(double xLo, double xHi, double yLo, double yHi);
 
 	// Returns true iff the user data object lies within or on the boundaries
 	// of the rectangle specified by the parameters.
-	public boolean inBox(int xLo, int xHi, int yLo, int yHi);
+	public boolean inBox(double xLo, double xHi, double yLo, double yHi);
 
 	// Overrides the user data object's inherited equals() method with an
 	// appropriate definition; it is necessary to place this in the interface
