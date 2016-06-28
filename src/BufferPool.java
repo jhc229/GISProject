@@ -40,7 +40,7 @@ public class BufferPool {
 		}
 	}
 
-	private ArrayList<Buffer> list; // records within the pool are kept in a
+	private ArrayList<GeoFeatures> list; // records within the pool are kept in a
 	private int size;
 
 	/**
@@ -48,7 +48,7 @@ public class BufferPool {
 	 * @return 
 	 */
 	public  BufferPool() {
-		list = new ArrayList<Buffer>(10);
+		list = new ArrayList<GeoFeatures>(10);
 		size = 0;
 	}
 
@@ -59,10 +59,10 @@ public class BufferPool {
 	 *            the location on database file
 	 * @return the record if found, null otherwise
 	 */
-	public Buffer checkRecord(int offset) {
+	public GeoFeatures checkRecord(int offset) {
 		for (int i = 0; i < list.size(); i++) {
-			Buffer founcRecord = list.get(i);
-			if (founcRecord.getOff() == offset) {
+			GeoFeatures founcRecord = list.get(i);
+			if (founcRecord.OFFSET == offset) {
 				list.add(list.remove(i));
 				
 				return founcRecord;
@@ -80,7 +80,8 @@ public class BufferPool {
 		if (list.size() >= 10) {
 			list.remove(0);
 		}
-		Buffer record = new Buffer(offset, featureName, countyName, stateName);
+		GeoFeatures record = new GeoFeatures();
+				//Buffer(offset, featureName, countyName, stateName);
 		list.add(record);
 		size++;
 	}
@@ -94,7 +95,7 @@ public class BufferPool {
 	public String toString() {
 		String out = "MRU\n";
 		for (int i = list.size() - 1; i >= 0; i--) {
-			Buffer record = list.get(i);
+			GeoFeatures record = list.get(i);
 			out += record.getOff() + ":  " + record.getFeatureName() +" "+ record.getCountyName()+"\n";
 		}
 		out += "LRU \n";

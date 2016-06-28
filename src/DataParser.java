@@ -212,14 +212,13 @@ public class DataParser {
 	//	System.out.println(fName +sState);
 		NameIndex names = new NameIndex(fName, sState);
 	//	System.out.println("whatis: ");
-		Vector<Integer> off = (Vector<Integer>) table.find(names);
+		Vector<Integer> off = (Vector<Integer>) table.getEntries(names);
 		//Vector<Integer> off = table.getEntries(names);
-		System.out.println("whatis offset?: "+  off);
+		//System.out.println("whatis offset?: "+  off);
 		
 		if (off != null){
 			try {
-				System.out.println("   saddsadasdsadasscasddasasda   " +poolOffset(off));
-				
+				 System.out.println(poolOffset(off));
 				
 			} catch (Exception e) {
 				

@@ -105,7 +105,44 @@ public class HashTable<Key, E> {
 	 * @param k
 	 * @return
 	 */
-	public int findEntry(Key k){
+	public int findEntry(Key key) {
+		int home;
+		int index = home = Math.abs((elfHash( ((NameIndex) key).nameIndexToString() )) % size); 
+		int probeCount = 0;
+		//System.out.println("quadprobe arg1 " + ((NameIndex) key).nameIndexToString());
+		//System.out.println("quadprobe arg2 " +   ((NameIndex) tableList[1012].getKey()).nameIndexToString());
+		//System.out.println("compare " +   tableList[1012].getKey());
+		//System.out.println("compare " +   key);
+		
+		// keep looking if the space exists and the key is not already in there
+		while (tableList[index] != null) {
+			//System.out.println("quadprobe arg1 " + ((NameIndex) key).nameIndexToString());
+			//System.out.println("quadprobe arg2 " +   ((NameIndex) tableList[index].getKey()).nameIndexToString());
+			//System.out.println("compare1 " +   key);
+			//System.out.println("compare2 " +   tableList[index].getKey());
+
+			if ( (((NameIndex) tableList[index].getKey()).nameIndexToString()).equals( ((NameIndex) key).nameIndexToString())) {
+				//System.out.println("matching arg " +   ((NameIndex) tableList[index].getKey()).nameIndexToString());
+				index_flag =index;
+				return 1;
+			}
+			probeCount++;
+			index = home + ((probeCount * probeCount + probeCount)/2);;
+			if (index >= size){
+				index = index % size;
+			}
+		}
+		return 0;
+	}
+	/*public Object find(Key key) {
+		KVpair<Key, E> entry = tableList[quadProbe(key)];
+		if (entry != null) {
+			return entry.getValue();
+		}
+		return null;
+	}
+	
+		public int findEntry(Key k){
 		index_flag = -1;
 		int probeCount = 0; //update probe
 
@@ -140,45 +177,8 @@ public class HashTable<Key, E> {
 		return 0; //Not found
 	}
 	
-	public int quadProbe(Key key) {
-		int home;
-		int index = home = Math.abs((elfHash( ((NameIndex) key).nameIndexToString() )) % size); 
-		//int offset = 1;
-
-		int probeCount = 0;
-		//System.out.println("quadprobe arg1 " + ((NameIndex) key).nameIndexToString());
-		//System.out.println("quadprobe arg2 " +   ((NameIndex) tableList[1012].getKey()).nameIndexToString());
-		//System.out.println("compare " +   tableList[1012].getKey());
-		//System.out.println("compare " +   key);
-		
-		// keep looking if the space exists and the key is not already in there
-		while (tableList[index] != null) {
-			//System.out.println("quadprobe arg" +   ((NameIndex) tableList[index].getKey()).nameIndexToString());
-			if (tableList[index].getKey().equals(key)) return index
-			probeCount++;
-			index = home + ((probeCount * probeCount + probeCount)/2);;
-			if (index >= size){
-				index = index % size;
-			}
-
-		}
-		System.out.println(index);
-	//	System.out.println("quadprobe arg" +   ((NameIndex) tableList[index].getKey()).nameIndexToString());
-
-		// helper code for getting the length of time spending on find the
-		// correct space
-		if (probeCount > longestProbe) {
-			longestProbe = probeCount;
-		}
-		return index;
-	}
-	public Object find(Key key) {
-		KVpair<Key, E> entry = tableList[quadProbe(key)];
-		if (entry != null) {
-			return entry.getValue();
-		}
-		return null;
-	}
+	
+	*/
 	/*
 	 *  Get Key
 	 */
