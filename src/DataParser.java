@@ -483,7 +483,7 @@ public class DataParser {
 		//System.out.println("current pointer" + dataFile.getFilePointer());
 		Vector<GeoFeatures> temp = new Vector<GeoFeatures>();
 		//gisRecords = new GISRecordParser(dataFile, endOffset);
-		GISRecordParser gisRecord = new GISRecordParser(dataFile, endOffset);
+		GISRecordParser gisRecord = new GISRecordParser(data, endOffset);
 		//System.out.println("current pointer" + dataFile.getFilePointer());
 		String str = "";
 		for (int i = 0; i < off.size(); i++) {
