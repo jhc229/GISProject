@@ -152,6 +152,8 @@ public class DataParser {
 					Point dmsPoints = new Point(newRec.PRIM_LONG_DMS.toSeconds(), newRec.PRIMARY_LAT_DMS.toSeconds(), offset);
 				
 						if (dmsPoints.inBox(wLong, eLong , sLat , nLat)){
+							
+							System.out.println("importOffset: " + offset);
 							table.insertHash(names, (int) offset);
 	
 							quadTree.insert(dmsPoints);
