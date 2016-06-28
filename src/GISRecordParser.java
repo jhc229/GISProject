@@ -131,7 +131,7 @@ public class GISRecordParser {
 		dataRec.LINE = line;
 		//System.out.println("ID:  " + GeoFeatures.FEATURE_ID );
 		//System.out.println("LINE " + line );
-		System.out.println("off " + parserOffset );
+		//System.out.println("off " + parserOffset );
 		//System.out.println("item 0 	 " + items[0]);
 		dataRec.FEATURE_ID = Integer.parseInt(items[0]);
 		dataRec.FEATURE_NAME = items[1];
