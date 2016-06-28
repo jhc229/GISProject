@@ -1,7 +1,18 @@
+package quadTree;
+
+import java.util.Vector;
+
+/**
+ * Store a geographic coordinate and a collection of the file offsets of the
+ * matching GIS records in the database file.
+ * 
+ * @author sean
+ *
+ */
 public class Point implements Compare2D<Point> {
 
-	private float xcoord;
-	private float ycoord;
+	private long xcoord;
+	private long ycoord;
 	private Vector<Integer> offsets;
 	
 	/**
@@ -19,8 +30,8 @@ public class Point implements Compare2D<Point> {
 	 * @param o the offset
 	 */
 	public Point(float x, float y, int o) {
-		xcoord = x;
-		ycoord = y;
+		xcoord = (long)x;
+		ycoord = (long)y;
 		offsets = new Vector<Integer>(0);
 		if (o != -1) {
 			offsets.add(o);
@@ -30,14 +41,14 @@ public class Point implements Compare2D<Point> {
 	/**
 	 * @return the longitude coordinate
 	 */
-	public float getX() {
+	public long getX() {
 		return xcoord;
 	}
 
 	/**
 	 * @return the latitude coordinate
 	 */
-	public float getY() {
+	public long getY() {
 		return ycoord;
 	}
 
