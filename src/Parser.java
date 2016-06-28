@@ -147,9 +147,9 @@ public class Parser {
 				else if (str[0].matches("what_is")) {
 					
 					//<feature name> and <state abbreviation>
-					String featureName = "";
-					for (int i =1; i<str.length-1; i++){
-						featureName += str[i] + " ";
+					String featureName = str[1] + " ";
+					for (int i =2; i<str.length-1; i++){
+						featureName += str[i];
 					}
 					db.whatIs(featureName, str[str.length-1]); // <feature name> and <state abbreviation> in string
 					System.out.println( featureName+ str[str.length-1]);
