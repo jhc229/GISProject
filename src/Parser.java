@@ -4,8 +4,11 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Date;
 import java.util.Scanner;
 import java.io.RandomAccessFile;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 
 /**
@@ -50,6 +53,8 @@ public class Parser {
 
 	// private File theRecord = null;
 	private DataParser db = null;
+	DateFormat date;
+	Date newDate;
 
 	// ~ Parser Constructor
 	// ................................................................
@@ -65,8 +70,9 @@ public class Parser {
 		// Takes the input stream file from the main class parse through each
 		// individual line.
 		try {
-			this.dataFile = new File(dataFile);
+			date = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			
+			this.dataFile = new File(dataFile);
 			this.commandFile = new FileReader(commandFile);
 			stat = new BufferedWriter(new FileWriter(logFile, false));
 			
@@ -97,7 +103,7 @@ public class Parser {
 		try {
 			//brRecord = new BufferedWriter(new FileWriter(dataFile));
 			brCommand = new BufferedReader(commandFile);
-
+			newDate = new Date();
 
 			int cmdCount = 1;
 			int count = 0;
@@ -121,7 +127,7 @@ public class Parser {
 					System.out.println("script:\t" + commandFile.getEncoding() );
 					System.out.println("log:\t" + stat);
 					System.out.println("\nGIS Program\n");
-					System.out.println("Start time: " + LocalDateTime.now() );
+					System.out.println("Start time: " + date.format(newDate) );
 					System.out.println("Quadtree children are printed in the order SW  SE  NE  NW");
 					System.out.println("--------------------------------------------------------------------------------\n");
 					System.out.println("Latitude/longitude values in index entries are shown as signed integers, in total seconds.\n");
@@ -205,7 +211,12 @@ public class Parser {
 				else if (str[0].matches("quit")) {
 					
 					System.out.println("Command "+ cmdCount + ":  quit\n" );
+					System.out.println("Terminating execution of commands.\n" +LocalDateTime.now());
+
+					newDate = new Date();
+					System.out.println("End time:  " + date.format(newDate) );
 					db.quit();
+					
 					//stat.append("\n quit");
 					//db.quit();
 					cmdCount++;
