@@ -46,6 +46,7 @@ public class GISRecordParser {
 			GeoFeatures dataRec = new GeoFeatures();
 			System.out.println("current pointer" + read.getFilePointer());
 			read.seek(parserOffset);
+			System.out.println("current pointer" + dataFile.getFilePointer());
 			String line= read.readLine();
 			
 			String items[] = line.split("\\|");
