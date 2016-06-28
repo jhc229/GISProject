@@ -57,6 +57,10 @@ public class DMScoordinates {
 		 return (degree*3600 + minute * 60 + second) * -1;
 		
 	}
+	
+	public String toString(){
+		return ""+ degree+""+minute+""+second+direction;
+	}
 		
 		
 }

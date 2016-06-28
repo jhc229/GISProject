@@ -9,7 +9,7 @@
 ; Import some data:
 
 
-import: VA_Monterey.txt
+Command  2:	import: VA_Monterey.txt
 
 ;
 ; Let's take a look at our data set... this is NOT a required feature
@@ -24,7 +24,7 @@ debug: hash
 
 ;
 ; Let's try a single-match name/state search:
-what_is: Trimble Knob VA
+Command  6:	what_is: Trimble Knob VA
 
 ;
 ; Let's check the buffer pool:
@@ -32,7 +32,7 @@ debug: pool
 
 ;
 ; Let's try a single-match location search:
-what_is_at: 382812N 0793156W
+Command  8:	what_is_at: 382812N 0793156W
 
 ;
 ; Let's check the buffer pool:
@@ -40,11 +40,11 @@ debug: pool
 
 ;
 ; Let's try a few more name/state searches:
-what_is: Swope Hollow VA
+Command  10:	what_is: Swope Hollow VA
 
-what_is: Possum Trot VA
+Command  11:	what_is: Possum Trot VA
 
-what_is: Blue Grass VA
+Command  12:	what_is: Blue Grass VA
 
 ;
 ; Let's check the buffer pool:
@@ -52,11 +52,11 @@ debug: pool
 
 ;
 ; Let's try a few more location searches:
-what_is_at: 382145N 0793031W
+Command  14:	what_is_at: 382145N 0793031W
 
-what_is_at: 382442N 0793451W
+Command  15:	what_is_at: 382442N 0793451W
 
-what_is_at: 382607N 0793312W
+Command  16:	what_is_at: 382607N 0793312W
 
 ;
 ; Let's check the buffer pool:
@@ -64,7 +64,7 @@ debug: pool
 
 ;
 ; Let's try a two-match location search:
-what_is_at: 382856N 0793031W
+Command  18:	what_is_at: 382856N 0793031W
 
 ;
 ; Let's check the buffer pool:

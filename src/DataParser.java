@@ -218,7 +218,10 @@ public class DataParser {
 		
 		if (off != null){
 			try {
-				 System.out.println(poolOffset(off));
+				 
+				 for(GeoFeatures a : poolOffset(off)){
+						 System.out.println(a.OFFSET + ":  " + a.COUNTY_NAME + " " + a.PRIMARY_LAT_DMS + " "+a.PRIM_LONG_DMS);
+					 }
 				
 			} catch (Exception e) {
 				
