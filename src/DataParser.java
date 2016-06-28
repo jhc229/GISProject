@@ -149,11 +149,7 @@ public class DataParser {
 			dataFile.seek(offset); //Bring the pointer back to beginning of the line after reading from the gisRecordsUpdate
 			offset += dataFile.readLine().length() +1; // Next line
 		}
-		System.out.println("current pointer : " + dataFile.getFilePointer());
-		System.out.println("Number of elements: " + table.getNumElements());
-		//System.out.println("Number of probes: " + table.getProbe());
-		System.out.println("Current table size: " + table.getCurrentSize());
-		System.out.println("toString:     \n" + table.hashToString());
+
 		stat.write("\n");
 	}
 
@@ -291,7 +287,10 @@ public class DataParser {
 			System.out.println(pool.toString());
 		}
 		else if(arg.matches("hash")){
-			//
+			//System.out.println("Number of probes: " + table.getProbe());
+			System.out.println("Current table size: " + table.getCurrentSize());
+			System.out.println("Number of elements: " + table.getNumElements());
+			System.out.println("toString:     \n" + table.hashToString());
 		}
 		else if(arg.matches("quad")){
 			//
