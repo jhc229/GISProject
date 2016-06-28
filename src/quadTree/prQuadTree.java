@@ -400,12 +400,12 @@ private T fFind(prQuadNode rt, T elem, double xMin, double xMax,
 				}
 			}
 			
-			
+			/*
 			for (T element : leafNode.Elements){
 				if (element.inBox(x1, x2, y1, y2)){
 					 res.add(leafNode.Elements.firstElement());
 				}
-			}
+			}*/
 			return res;
 		}
    }
