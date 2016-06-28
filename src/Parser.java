@@ -178,7 +178,7 @@ public class Parser {
 						//db.whatIsIn(str[1], str[2],  Integer.parseInt(str[3]), Integer.parseInt(str[4]));
 						System.out.println("Command  "+ cmdCount+":	" + "what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4]);
 						stat.write("Command  "+ cmdCount+":	" + "what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4]+ "\n" + "\n");
-						db.whatIsIn(str[2], str[3], str[4], str[5]);
+						db.whatIsIn(str[1], str[2], str[3], str[4]);
 
 					}
 					cmdCount++;

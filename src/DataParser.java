@@ -271,7 +271,7 @@ public class DataParser {
 		
 		if (pts != null) {
 			
-			System.out.println("size:   "pts.size());
+			System.out.println("size:   " + pts.size());
 			/*
 			try {
 				 
