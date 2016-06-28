@@ -295,9 +295,7 @@ public class DataParser {
 		else if(arg.matches("quad")){
 			//
 		}
-		
 	}
-
 
 
 	/**
@@ -324,7 +322,6 @@ public class DataParser {
 			if ( newRecord != null) { // is found
 				//str += inPool.getOff() +  ":	" + inPool.getFeatureName() + " " + inPool.getCountyName() +  inPool.getStateName() + "\n";
 
-				
 				temp.add(newRecord);
 			} 
 			else {
