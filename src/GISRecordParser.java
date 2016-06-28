@@ -119,10 +119,50 @@ public class GISRecordParser {
 	}
 	
 	
-	public GeoFeatures gisUpdate(String line){
+	public GeoFeatures gisUpdate(String line, int parserOffset){
+		GeoFeatures dataRec = new GeoFeatures();
+
+		String items[] = line.split("\\|");
+		dataRec.LINE = line;
+		//System.out.println("ID:  " + GeoFeatures.FEATURE_ID );
+	//	System.out.println("Offset " +items[0] );
+		dataRec.FEATURE_ID = Integer.parseInt(items[0]);
+		dataRec.FEATURE_NAME = items[1];
+		dataRec.FEATURE_CLASS = items[2];
+		dataRec.STATE_ALPHA= items[3];
+		dataRec.STATE_NUMERIC = Double.parseDouble(items[4]);
+		dataRec.COUNTY_NAME = items[5];
+		dataRec.COUNTY_NUMERIC = Double.parseDouble(items[6]);
+		if( Double.parseDouble(items[9]) == 0){
+			return null;
+		}
+		dataRec.PRIMARY_LAT_DMS = new DMScoordinates(Integer.parseInt(items[7].substring(0, 2)), Integer.parseInt(items[7].substring(2, 4)), Integer.parseInt(items[7].substring(4, 6)), items[7].substring(6));
+		dataRec.PRIM_LONG_DMS = new DMScoordinates(Integer.parseInt(items[8].substring(0, 3)), Integer.parseInt(items[8].substring(3, 5)), Integer.parseInt(items[8].substring(5, 7)), items[8].substring(7));
+
+		dataRec.PRIM_LAT_DEC = Double.parseDouble(items[9]);
+		dataRec.PRIM_LONG_DEC =Double.parseDouble(items[10]);
+		if (!items[11].equals("")){
+			dataRec.SOURCE_LAT_DMS = new DMScoordinates(Integer.parseInt(items[11].substring(0, 2)), Integer.parseInt(items[11].substring(2, 4)), Integer.parseInt(items[11].substring(4, 6)), items[11].substring(6));
+			dataRec.SOURCE_LONG_DMS = new DMScoordinates(Integer.parseInt(items[12].substring(0, 3)), Integer.parseInt(items[12].substring(3, 5)), Integer.parseInt(items[12].substring(5, 7)), items[12].substring(7));
+		}
+		dataRec.SOURCE_LAT_DMS = null;
+		dataRec.SOURCE_LONG_DMS = null;
 		
-		System.out.println("asdasdasasdasd:"+ line);
-		return null;
+		if (!items[13].equals("")){
+			dataRec.SOURCE_LAT_DEC =Double.parseDouble(items[13]);
+			dataRec.SOURCE_LONG_DEC =Double.parseDouble(items[14]);
+		}
+		dataRec.SOURCE_LAT_DEC = 0;
+		dataRec.SOURCE_LONG_DEC =0;
+		
+		if (!items[15].equals("")) dataRec.ELEV_IN_M = Integer.parseInt(items[15]);
+		if (!items[16].equals("")) dataRec.ELEV_IN_FT = Integer.parseInt(items[16]);
+		dataRec.MAP_NAME = items[17];
+		dataRec.DATE_CREATED = items[18];
+		
+		if (items.length == 20) dataRec.DATE_EDITED = items[19];
+		dataRec.OFFSET = (int) parserOffset;
+		return dataRec;
 		
 	}
 
