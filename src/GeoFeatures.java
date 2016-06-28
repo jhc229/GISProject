@@ -22,11 +22,11 @@ public class GeoFeatures {
 	public  DMScoordinates SOURCE_LONG_DMS;
 	public  double  				SOURCE_LAT_DEC = 0.0;
 	public  double 				SOURCE_LONG_DEC = 0.0;
-	public static  int 						ELEV_IN_M = 0;
-	public static  int 						ELEV_IN_FT = 0;
+	public  int 						ELEV_IN_M = 0;
+	public  int 						ELEV_IN_FT = 0;
 	public  String  				MAP_NAME;
 	public  String  				DATE_CREATED;
-	public static  String  				DATE_EDITED;
+	public  String  				DATE_EDITED;
 	public  int 						OFFSET = 0;
 	public  String					LINE = "";
 

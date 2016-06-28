@@ -230,7 +230,6 @@ public class DataParser {
 				 
 				 for(GeoFeatures a : poolOffset(off)){
 						 System.out.println(a.OFFSET + ":  " + a.COUNTY_NAME + " " + a.PRIM_LONG_DMS.toString() + " "+a.PRIMARY_LAT_DMS.toString());
-						 
 				 }
 				
 			} catch (Exception e) {
@@ -267,33 +266,25 @@ public class DataParser {
 		Vector<Point> pts = whatIsInHelper(x, y, Integer.parseInt(halfHeight), Integer.parseInt(halfWidth));
 
 		if (pts.size() > 0) {
-		
-		//	System.out.println("size:   " + pts);
-
 			try {
 				Vector<Integer> newSets = new Vector<Integer>(0);
 				//System.out.println("	The following " + pts.size() + " features were found in (" + y + " +/-" + halfHeight+", " + x + " +/-" + halfWidth + ")");
 				//System.out.println("tree coordinates:   " + pts);
-				int count= 1;
-				for (int i =0; i< pts.size(); ++i){
-				 		newSets.addAll(pts.get(i).getOffset());
-				 		count++;
-				 	}
-					System.out.println("	The following " + count + " features were found in (" + y + " +/-" + halfHeight+", " + x + " +/-" + halfWidth + ")");
-
-					
-					for(GeoFeatures a : poolOffset(newSets)){
-						 	
-				 		System.out.println(a.OFFSET + ":  " + a.FEATURE_NAME + " " + a.STATE_ALPHA  + " "+a.PRIMARY_LAT_DMS.toString()+" "+ a.PRIM_LONG_DMS.toString());
-				
+					int i;
+					for (i = 0; i < pts.size(); ++i) {
+						newSets.addAll(pts.get(i).getOffset());
 					}
-				
+					i++;
+					System.out.println("	The following " +  i+ " features were found in (" + y + " +/-" + halfHeight + ", " + x + " +/-" + halfWidth + ")");
+					for (GeoFeatures a : poolOffset(newSets)) {
+	
+						System.out.println(a.OFFSET + ":  " + a.FEATURE_NAME + " " + a.STATE_ALPHA + " " + a.PRIMARY_LAT_DMS.toString() + " " + a.PRIM_LONG_DMS.toString());
+					}
+					
 				} catch (Exception e) {
-				
 					e.printStackTrace();
 				}
 			}
-	
 		else{
 			System.out.println("     Nothing was found in (" + y + " +/-" + halfHeight+", " + x + " +/-" + halfWidth + ")");
 		}
@@ -305,57 +296,60 @@ public class DataParser {
 		Vector<Point> pts = whatIsInHelper(x, y, Integer.parseInt(halfHeight), Integer.parseInt(halfWidth));
 		
 		if (pts.size() > 0) {
-			
-			System.out.println("size:   " + pts.size());
-			/*
 			try {
-				 
-				System.out.println("The following " + numb + " features were found in ");
-				 for(GeoFeatures a : poolOffset(off)){
-						 System.out.println(a.OFFSET + ":  " + a.COUNTY_NAME + " " + a.PRIM_LONG_DMS.toString() + " "+a.PRIMARY_LAT_DMS.toString());
-					 }
-				
-				} catch (Exception e) {
-				
-				e.printStackTrace();
+				Vector<Integer> newSets = new Vector<Integer>(0);
+				int count= 1;
+				for (int i = 0; i < pts.size(); ++i) {
+					newSets.addAll(pts.get(i).getOffset());
+					count++;
 				}
-			}*/
-		}
+				System.out.println(count + " features were found in (" + y + " +/-" + halfHeight + ", " + x + " +/-" + halfWidth + ")");
+				poolOffset(newSets);
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 		else{
 			System.out.println("     Nothing was found in (" + y + " +/-" + halfHeight+", " + x + " +/-" + halfWidth + ")");
 		}
-
 		System.out.println("--------------------------------------------------------------------------------");
 
 	}
 	
 	public void whatIsInL(String x, String y, String halfHeight, String halfWidth) {
-
-		
-		
 		Vector<Point> pts = whatIsInHelper(x, y, Integer.parseInt(halfHeight), Integer.parseInt(halfWidth));
 		
 		if (pts.size() > 0) {
-			System.out.println("size:   " + pts.size());
-
-			/*
 			try {
-				 
-				System.out.println("The following " + numb + " features were found in ");
-				 for(GeoFeatures a : poolOffset(off)){
-						 System.out.println(a.OFFSET + ":  " + a.COUNTY_NAME + " " + a.PRIM_LONG_DMS.toString() + " "+a.PRIMARY_LAT_DMS.toString());
-					 }
-				
+				Vector<Integer> newSets = new Vector<Integer>(0);
+					int i;
+					for (i = 0; i < pts.size(); ++i) {
+						newSets.addAll(pts.get(i).getOffset());
+					}
+					i++;
+					System.out.println("	The following " +  i+ " features were found in (" + y + " +/-" + halfHeight + ", " + x + " +/-" + halfWidth + ")");
+					for (GeoFeatures a : poolOffset(newSets)) {
+	
+						System.out.println("  Feature ID   : "+ a.FEATURE_ID);
+						System.out.println("  Feature Name : "+ a.FEATURE_ID);
+						System.out.println("  Feature Cat  : "+ a.FEATURE_ID);
+						System.out.println("  State        : "+ a.FEATURE_ID);
+						System.out.println("  County       : "+ a.FEATURE_ID);
+						System.out.println("  Latitude     :  "+ a.FEATURE_ID);
+						System.out.println("  Longitude    : "+ a.FEATURE_ID);
+						System.out.println("  Elev in ft   : "+ a.FEATURE_ID);
+						System.out.println("  USGS Quad    : "+ a.FEATURE_ID);
+						System.out.println("  Date created : "+ a.FEATURE_ID);
+					}
+					
 				} catch (Exception e) {
-				
-				e.printStackTrace();
+					e.printStackTrace();
 				}
-		}*/
-		}
+			}
 		else{
 			System.out.println("     Nothing was found in (" + y + " +/-" + halfHeight+", " + x + " +/-" + halfWidth + ")");
 		}
-
 		System.out.println("--------------------------------------------------------------------------------");
 	}
 		
