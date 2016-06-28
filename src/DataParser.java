@@ -332,15 +332,15 @@ public class DataParser {
 					for (GeoFeatures a : poolOffset(newSets)) {
 	
 						System.out.println("  Feature ID   : "+ a.FEATURE_ID);
-						System.out.println("  Feature Name : "+ a.FEATURE_ID);
-						System.out.println("  Feature Cat  : "+ a.FEATURE_ID);
-						System.out.println("  State        : "+ a.FEATURE_ID);
-						System.out.println("  County       : "+ a.FEATURE_ID);
-						System.out.println("  Latitude     :  "+ a.FEATURE_ID);
-						System.out.println("  Longitude    : "+ a.FEATURE_ID);
-						System.out.println("  Elev in ft   : "+ a.FEATURE_ID);
-						System.out.println("  USGS Quad    : "+ a.FEATURE_ID);
-						System.out.println("  Date created : "+ a.FEATURE_ID);
+						System.out.println("  Feature Name : "+ a.FEATURE_NAME);
+						System.out.println("  Feature Cat  : "+ a.FEATURE_CLASS);
+						System.out.println("  State        : "+ a.STATE_ALPHA);
+						System.out.println("  County       : "+ a.COUNTY_NAME);
+						System.out.println("  Latitude     :  "+ a.PRIMARY_LAT_DMS.toString());
+						System.out.println("  Longitude    : "+ a.PRIM_LONG_DMS.toString());
+						System.out.println("  Elev in ft   : "+ a.ELEV_IN_FT);
+						System.out.println("  USGS Quad    : "+ a.MAP_NAME);
+						System.out.println("  Date created : "+ a.DATE_CREATED);
 					}
 					
 				} catch (Exception e) {

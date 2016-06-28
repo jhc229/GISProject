@@ -77,12 +77,12 @@ public class GISRecordParser {
 			dataRec.SOURCE_LAT_DEC = 0;
 			dataRec.SOURCE_LONG_DEC =0;
 			
-			if (!items[15].equals("")) GeoFeatures.ELEV_IN_M = Integer.parseInt(items[15]);
-			if (!items[16].equals("")) GeoFeatures.ELEV_IN_FT = Integer.parseInt(items[16]);
+			if (!items[15].equals("")) dataRec.ELEV_IN_M = Integer.parseInt(items[15]);
+			if (!items[16].equals("")) dataRec.ELEV_IN_FT = Integer.parseInt(items[16]);
 			dataRec.MAP_NAME = items[17];
 			dataRec.DATE_CREATED = items[18];
 			
-			if (items.length == 20) GeoFeatures.DATE_EDITED = items[19];
+			if (items.length == 20) dataRec.DATE_EDITED = items[19];
 			dataRec.OFFSET = (int) parserOffset;
 			return dataRec;
 		}
