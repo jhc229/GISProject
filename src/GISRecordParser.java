@@ -48,7 +48,7 @@ public class GISRecordParser {
 			//read.seek(265);
 			//System.out.println("seek 265" + read.getFilePointer());
 			read.seek(parserOffset);
-			//System.out.println("parser pointer" + read.getFilePointer());
+			System.out.println("parser pointer" + read.getFilePointer());
 			String line= read.readLine();
 			
 			String items[] = line.split("\\|");
