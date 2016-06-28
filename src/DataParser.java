@@ -209,7 +209,7 @@ public class DataParser {
 	//	Vector<GeoFeatures> records = new Vector<GeoFeatures>(0);
 
 		// find the record within the HashTable
-		
+		System.out.println(fName +sState);
 		NameIndex names = new NameIndex(fName, sState);
 	//	System.out.println("whatis: ");
 		Vector<Integer> off = (Vector<Integer>) table.find(names);

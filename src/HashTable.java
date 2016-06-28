@@ -147,7 +147,7 @@ public class HashTable<Key, E> {
 
 		int probeCount = 0;
 		System.out.println("quadprobe arg1 " + ((NameIndex) key).nameIndexToString());
-		System.out.println("quadprobe arg2 " +   ((NameIndex) tableList[751].getKey()).nameIndexToString());
+		System.out.println("quadprobe arg2 " +   ((NameIndex) tableList[831].getKey()).nameIndexToString());
 
 		//index =1012; 
 		// keep looking if the space exists and the key is not already in there
