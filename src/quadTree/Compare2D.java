@@ -1,3 +1,5 @@
+package quadTree;
+
 import java.util.Vector;
 
 // The interface Compare2D is intended to supply facilities that are useful in
@@ -11,10 +13,10 @@ public interface Compare2D<T> {
 	public Vector<Integer> getOffsets();
 
 	// Returns the x-coordinate field of the user data object.
-	public float getX();
+	public long getX();
 
 	// Returns the y-coordinate field of the user data object.
-	public float getY();
+	public long getY();
 
 	// Returns indicator of the direction to the user data object from the
 	// location (X, Y) specified by the parameters.
