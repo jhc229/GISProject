@@ -29,9 +29,9 @@ public class GISRecordParser {
 	 * 
 	 * @throws IOException
 	 */
-	public GISRecordParser(RandomAccessFile dataFile, long endoffset)
+	public GISRecordParser(File fil, long endoffset)
 			throws IOException {
-		read = dataFile;
+		read = new RandomAccessFile(fil, "r");
 		// stat = result;
 		read.seek(0); // initialize the pointer in the record to the beginning.
 		this.endOffset = endoffset;
