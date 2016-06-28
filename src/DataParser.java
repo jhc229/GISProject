@@ -138,19 +138,20 @@ public class DataParser {
 
 			GeoFeatures newRec = gisRecords.gisRecordsUpdate(offset);
 
+			if (newRec !=null){
+				NameIndex names = new NameIndex(newRec.FEATURE_NAME, newRec.STATE_ALPHA);
+				Point dmsPoints = new Point(newRec.PRIM_LONG_DMS.toSeconds(), newRec.PRIMARY_LAT_DMS.toSeconds(), offset);
 			
-			NameIndex names = new NameIndex(newRec.FEATURE_NAME, newRec.STATE_ALPHA);
-			Point dmsPoints = new Point(newRec.PRIM_LONG_DMS.toSeconds(), newRec.PRIMARY_LAT_DMS.toSeconds(), offset);
-			
-			if (dmsPoints.inBox(wLong, eLong , sLat , nLat)){
-				table.insertHash(names, (int) offset);
+				if (dmsPoints.inBox(wLong, eLong , sLat , nLat)){
+					table.insertHash(names, (int) offset);
 
-				quadTree.insert(dmsPoints);
+					quadTree.insert(dmsPoints);
 
-				countIdx++;
+					countIdx++;
+				}
+				dataFile.seek(offset); //Bring the pointer back to beginning of the line after reading from the gisRecordsUpdate
+				offset += dataFile.readLine().length() +1; // Next line
 			}
-			dataFile.seek(offset); //Bring the pointer back to beginning of the line after reading from the gisRecordsUpdate
-			offset += dataFile.readLine().length() +1; // Next line
 		}
 
 		System.out.println("");
