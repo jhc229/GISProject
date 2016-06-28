@@ -46,7 +46,7 @@ public class GISRecordParser {
 			GeoFeatures dataRec = new GeoFeatures();
 			System.out.println("current pointer" + read.getFilePointer());
 			read.seek(parserOffset);
-			System.out.println("current pointer" + dataFile.getFilePointer());
+			System.out.println("current pointer" + read.getFilePointer());
 			String line= read.readLine();
 			
 			String items[] = line.split("\\|");
@@ -131,7 +131,7 @@ public class GISRecordParser {
 		dataRec.LINE = line;
 		//System.out.println("ID:  " + GeoFeatures.FEATURE_ID );
 		//System.out.println("LINE " + line );
-		System.out.println("LINE " + parserOffset );
+		//System.out.println("LINE " + parserOffset );
 		dataRec.FEATURE_ID = Integer.parseInt(items[0]);
 		dataRec.FEATURE_NAME = items[1];
 		dataRec.FEATURE_CLASS = items[2];
