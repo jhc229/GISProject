@@ -492,7 +492,7 @@ public class DataParser {
 			} 
 			else {
 				System.out.println("Record:" + off);
-				System.out.println("curoff :" + currentOffset)
+				System.out.println("curoff :" + currentOffset);
 				GeoFeatures dataRec = new GeoFeatures();
 				dataRec= gisRecord.gisRecordsUpdate(currentOffset);
 				
