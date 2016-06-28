@@ -482,7 +482,8 @@ public class DataParser {
 			throws Exception {
 		//System.out.println("current pointer" + dataFile.getFilePointer());
 		Vector<GeoFeatures> temp = new Vector<GeoFeatures>();
-		gisRecords = new GISRecordParser(dataFile, endOffset);
+		//gisRecords = new GISRecordParser(dataFile, endOffset);
+		GISRecordParser gisRecord = new GISRecordParser(dataFile, endOffset);
 		//System.out.println("current pointer" + dataFile.getFilePointer());
 		String str = "";
 		for (int i = 0; i < off.size(); i++) {
@@ -497,7 +498,7 @@ public class DataParser {
 			else {
 				System.out.println("Record:" + off);
 				GeoFeatures dataRec = new GeoFeatures();
-				dataRec= gisRecords.gisRecordsUpdate(currentOffset);
+				dataRec= gisRecord.gisRecordsUpdate(currentOffset);
 				
 				temp.add(dataRec);
 				pool.add(dataRec);

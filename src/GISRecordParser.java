@@ -106,26 +106,10 @@ public class GISRecordParser {
 	//	int result = Integer.parseInt(items[0]);
 	}
 
-	/*
-	 * Feature ID (FID) non-negative integer unique identifier for this
-	 * geographic feature
-	 */
-	public int id(long parserOffset) throws IOException {
-		// offset = parserOffset;
-		read.seek(parserOffset);
-		String line = read.readLine();
-
-		String[] items = line.split("\\|");
-		int result = Integer.parseInt(items[0]);
-		// System.out.println("delimiter: " + s.delimiter());
-		// String token1 = s.next();
-		return result;
-
-	}
-	
 	
 	public GeoFeatures gisUpdate(String line, int parserOffset){
 		GeoFeatures dataRec = new GeoFeatures();
+		if ((parserOffset >= 265) && (parserOffset <= endOffset)){ //&& ((int)read.readByte() == 10)
 
 		String items[] = line.split("\\|");
 		dataRec.LINE = line;
@@ -171,8 +155,35 @@ public class GISRecordParser {
 		dataRec.OFFSET = (int) parserOffset;
 		return dataRec;
 		
-	}
+		else {
+			if (((parserOffset >= 0) && (parserOffset < 265) ) || ((int)read.readByte() != 10)){
+				
+				throw new GISRecordException(" Unaligned offset");
+			}
+			else if (parserOffset > offset){
+				throw new GISRecordException("Offset too large");
+			}
+			throw new GISRecordException("Offset is not positive");
+		}
 
+		
+	}
+		/*
+		 * Feature ID (FID) non-negative integer unique identifier for this
+		 * geographic feature
+		 */
+		public int id(long parserOffset) throws IOException {
+			// offset = parserOffset;
+			read.seek(parserOffset);
+			String line = read.readLine();
+
+			String[] items = line.split("\\|");
+			int result = Integer.parseInt(items[0]);
+			// System.out.println("delimiter: " + s.delimiter());
+			// String token1 = s.next();
+			return result;
+
+		}
 	/**
 	 * Feature name string standard name of feature
 	 * 
