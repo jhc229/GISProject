@@ -194,6 +194,9 @@ public class DataParser {
 			//	 System.out.println("found   " +  gf.OFFSET + ":	" + gf.FEATURE_NAME + " " + gf.COUNTY_NAME + " "+gf.STATE_ALPHA);
 			
 		 }
+		 else{
+				System.out.println("     Nothing was found at " + y + "		"  + x );
+		 }
 	}
 	
 
@@ -225,6 +228,9 @@ public class DataParser {
 			}
 			
 		}
+		 else{
+				System.out.println("No records matcht  " + fName + " and "  + sState );
+		 }
 	}
 /*
  * what_is_in<tab>-l<tab><geographic coordinate><tab><half-height><tab><half-width>
@@ -246,9 +252,10 @@ public class DataParser {
 		
 		Vector<Point> pts = whatIsInHelper(x, y, Integer.parseInt(halfHeight), Integer.parseInt(halfWidth));
 
-		if (pts != null) {
+		if (pts.size() > 0) {
 		
-			
+			System.out.println("size:   " + pts);
+
 			/*try {
 				 
 				System.out.println("The following " + numb + " features were found in ");
@@ -262,6 +269,9 @@ public class DataParser {
 					e.printStackTrace();
 				}*/
 			}
+		else{
+			System.out.println("     Nothing was found in (" + y + " +/-" + halfHeight+", " + x + " +/-" + halfWidth + ")");
+		}
 	}
 
 	public void whatIsInC(String x, String y, String halfHeight, String halfWidth) {
@@ -269,7 +279,7 @@ public class DataParser {
 		Vector<Point> pts = whatIsInHelper(x, y, Integer.parseInt(halfHeight), Integer.parseInt(halfWidth));
 
 		
-		if (pts != null) {
+		if (pts.size() > 0) {
 			
 			System.out.println("size:   " + pts.size());
 			/*
@@ -286,6 +296,9 @@ public class DataParser {
 				}
 			}*/
 		}
+		else{
+			System.out.println("     Nothing was found in (" + y + " +/-" + halfHeight+", " + x + " +/-" + halfWidth + ")");
+		}
 	}
 	
 	public void whatIsInL(String x, String y, String halfHeight, String halfWidth) {
@@ -294,8 +307,9 @@ public class DataParser {
 		
 		Vector<Point> pts = whatIsInHelper(x, y, Integer.parseInt(halfHeight), Integer.parseInt(halfWidth));
 		
-		if (pts != null) {
-			
+		if (pts.size() > 0) {
+			System.out.println("size:   " + pts.size());
+
 			/*
 			try {
 				 
@@ -310,6 +324,10 @@ public class DataParser {
 				}
 		}*/
 		}
+		else{
+			System.out.println("     Nothing was found in (" + y + " +/-" + halfHeight+", " + x + " +/-" + halfWidth + ")");
+		}
+		
 		
 	}
 		
