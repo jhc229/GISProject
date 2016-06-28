@@ -121,7 +121,7 @@ public class GISRecordParser {
 	
 	public GeoFeatures gisUpdate(String line){
 		
-		System.out.println(line);
+		System.out.println("asdasdasasdasd:"ine);
 		return null;
 		
 	}
