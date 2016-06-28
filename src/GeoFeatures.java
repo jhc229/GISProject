@@ -8,25 +8,25 @@
  */
 public class GeoFeatures {
 	public  int 						FEATURE_ID = 0;
-	public  String					FEATURE_NAME;
+	public static  String					FEATURE_NAME;
 	public  String 					FEATURE_CLASS;
-	public  String 					STATE_ALPHA;
+	public static  String 					STATE_ALPHA;
 	public  double  				STATE_NUMERIC = 0.0;
 	public  String 					COUNTY_NAME;
 	public  double  				COUNTY_NUMERIC = 0.0;
-	public  DMScoordinates PRIMARY_LAT_DMS;
-	public  DMScoordinates PRIM_LONG_DMS;
+	public static  DMScoordinates PRIMARY_LAT_DMS;
+	public static  DMScoordinates PRIM_LONG_DMS;
 	public  double 				PRIM_LAT_DEC = 0.0;
 	public  double 				PRIM_LONG_DEC = 0.0;
 	public  DMScoordinates SOURCE_LAT_DMS;
 	public  DMScoordinates SOURCE_LONG_DMS;
 	public  double  				SOURCE_LAT_DEC = 0.0;
 	public  double 				SOURCE_LONG_DEC = 0.0;
-	public  int 						ELEV_IN_M = 0;
-	public  int 						ELEV_IN_FT = 0;
+	public static  int 						ELEV_IN_M = 0;
+	public static  int 						ELEV_IN_FT = 0;
 	public  String  				MAP_NAME;
 	public  String  				DATE_CREATED;
-	public  String  				DATE_EDITED;
+	public static  String  				DATE_EDITED;
 	public  int 						OFFSET = 0;
 	public  String					LINE = "";
 
