@@ -383,14 +383,20 @@ public class DataParser {
 		DMScoordinates latitude=  toCoord(Integer.parseInt(x.substring(0, 2)), Integer.parseInt(x.substring(2, 4)), Integer.parseInt(x.substring(4, 6)), x.substring(6));
 		DMScoordinates longitude = toCoord(Integer.parseInt(y.substring(0, 3)), Integer.parseInt(y.substring(3, 5)), Integer.parseInt(y.substring(5, 7)), y.substring(7));
 		
-		GeoCoordinates geo = new GeoCoordinates(latitude, longitude);
-		System.out.println(geo.toString());
+		//GeoCoordinates geo = new GeoCoordinates(latitude, longitude);
+		//System.out.println(geo.toString());
 		
 		
-		Point p = new Point(geo.getlongitude().toSeconds(), geo.getlatitude().toSeconds());
+		Point p = new Point(longitude.toSeconds(), latitude.toSeconds());
+		long minX = p.getX() - halfWidth ;
+		long maxX = p.getX() + halfWidth ;
+		long minY = p.getY() -halfHeight ;
+		long maxY = p.getY() +halfHeight;
+		 System.out.println("" + minX+" " + maxX+" " + minY+" " + maxY);
+
 		 Vector<Point>pts = quadTree.find(p.getX() - halfWidth, p.getX() + halfWidth, p.getY() -halfHeight, p.getY() +halfHeight);
 		
-		 
+		 System.out.println("number of records" + pts.size());
 		 System.out.println("tree coordinates:   " + pts);
 		 
 		///Vector<GeoFeatures> records = new Vector<GeoFeatures>(0);
