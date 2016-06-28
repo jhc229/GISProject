@@ -37,11 +37,13 @@ public class GISRecordParser {
 		this.endOffset = endoffset;
 		//offset = read.readLine().length() + 1; // Start at the second line.
 	}
+	
+	
 	public GISRecordParser(long endoffset){
 		this.endOffset = endoffset;
 	}
 
-	private GeoFeatures gisRecordsUpdate(long parserOffset) throws IOException, GISRecordException {
+	public GeoFeatures gisRecordsUpdate(long parserOffset) throws IOException, GISRecordException {
 		if ((parserOffset >= 265) && (parserOffset <= endOffset)){ //&& ((int)read.readByte() == 10)
 			GeoFeatures dataRec = new GeoFeatures();
 			//System.out.println("current pointer" + read.getFilePointer());
@@ -117,7 +119,7 @@ public class GISRecordParser {
 		//System.out.println("ID:  " + GeoFeatures.FEATURE_ID );
 		//System.out.println("LINE " + line );
 		//System.out.println("off " + parserOffset );
-		//System.out.println("item 0 	 " + items[0]);
+		System.out.println("item 0 	 " + items[0]);
 		dataRec.FEATURE_ID = Integer.parseInt(items[0]);
 		dataRec.FEATURE_NAME = items[1];
 		dataRec.FEATURE_CLASS = items[2];
