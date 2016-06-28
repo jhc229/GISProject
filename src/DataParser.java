@@ -142,7 +142,7 @@ public class DataParser {
 		try {
 			
 			while ((line = br.readLine()) != null) {
-		      
+
 				GeoFeatures newRec = gisRecords.gisUpdate(line);
 				/*if(line.charAt(0) == '!') {
 		            String[] cols = line.split(cvsSplitBy);
@@ -164,7 +164,7 @@ public class DataParser {
 		} catch (Exception e) {
 		    e.printStackTrace();
 		}
-		
+		/*
 		while (dataFile.readLine() != null) {
 
 			GeoFeatures newRec = gisRecords.gisRecordsUpdate(offset);
@@ -191,7 +191,7 @@ public class DataParser {
 		System.out.println("--------------------------------------------------------------------------------");
 
 		
-		stat.write("\n");
+		stat.write("\n");*/
 	}
 
 	/**

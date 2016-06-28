@@ -144,7 +144,7 @@ public class Parser {
 					stat.write("Command  "+ cmdCount+":	" + "import: "+ str[1]  + "\n"  );
 					System.out.println("Command  "+ cmdCount+":	" + "import: "+ str[1] );
 					db.appendFile((str[1]), count); // Add all the valid GIS records in the specified file to the database file.
-					//db.importFile();
+					db.importFile();
 					count++; // # of import calls.
 					cmdCount++;
 					
