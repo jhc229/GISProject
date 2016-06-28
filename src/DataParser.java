@@ -395,9 +395,17 @@ public class DataParser {
 		 System.out.println("" + minX+" " + maxX+" " + minY+" " + maxY);
 		//371352N  802513W
 		// -289519 -289509 134022 134032
-		int a = toCoord(37, 05, 21, "N").toSeconds(); //370521N
-		int b =  toCoord(80, 30, 20, "W").toSeconds(); //0803020W
-		System.out.println("" + a+" " + b+" " );
+		int y1 = toCoord(37, 05, 21, "N").toSeconds() - halfWidth; //370521N
+		int y2 = toCoord(37, 05, 21, "N").toSeconds() + halfWidth; //370521N
+		int x1 =  toCoord(80, 30, 20, "W").toSeconds()- halfWidth; //0803020W
+		int x2 =  toCoord(80, 30, 20, "W").toSeconds()+ halfWidth; //0803020W
+		
+		System.out.println("" + x1 +" "+x2 +" " + y1 +" " + y2 );
+		
+		int a =  toCoord(80, 25, 13, "W").toSeconds(); //0803020W
+		int b = toCoord(37, 13, 52, "N").toSeconds(); //370521N
+		System.out.println("x " + a +" y "+b  );
+		
 		// Vector<Point>pts = quadTree.find(b - halfWidth, b+ halfWidth,a -halfHeight, a +halfHeight);
 		 Vector<Point>pts = quadTree.find(p.getX() - halfWidth, p.getX() + halfWidth, p.getY() -halfHeight, p.getY() +halfHeight);
 		
