@@ -36,7 +36,10 @@ public class GISRecordParser {
 		read.seek(0); // initialize the pointer in the record to the beginning.
 		this.endOffset = endoffset;
 		//offset = read.readLine().length() + 1; // Start at the second line.
-
+	}
+	public GISRecordParser(long endoffset){
+		read.seek(0); // initialize the pointer in the record to the beginning.
+		this.endOffset = endoffset;
 	}
 
 	public GeoFeatures gisRecordsUpdate(long parserOffset) throws IOException, GISRecordException {
