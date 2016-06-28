@@ -211,14 +211,14 @@ public class DataParser {
 		// find the record within the HashTable
 		
 		NameIndex names = new NameIndex(fName, sState);
-		System.out.println("whatis: ");
+	//	System.out.println("whatis: ");
 		Vector<Integer> off = (Vector<Integer>) table.find(names);
 		
-		System.out.println("whatis: "+  off);
+		//System.out.println("whatis: "+  off);
 		
 		if (off != null){
 			try {
-				System.out.println(poolOffset(off));
+				System.out.println("   saddsadasdsadassa   " +poolOffset(off));
 				
 				
 			} catch (Exception e) {
