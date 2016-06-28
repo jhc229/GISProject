@@ -44,11 +44,11 @@ public class GISRecordParser {
 	public GeoFeatures gisRecordsUpdate(long parserOffset) throws IOException, GISRecordException {
 		if ((parserOffset >= 265) && (parserOffset <= endOffset)){ //&& ((int)read.readByte() == 10)
 			GeoFeatures dataRec = new GeoFeatures();
-			System.out.println("current pointer" + read.getFilePointer());
-			read.seek(265);
-			System.out.println("seek 265" + read.getFilePointer());
+			//System.out.println("current pointer" + read.getFilePointer());
+			//read.seek(265);
+			//System.out.println("seek 265" + read.getFilePointer());
 			read.seek(parserOffset);
-			System.out.println("parser pointer" + read.getFilePointer());
+			//System.out.println("parser pointer" + read.getFilePointer());
 			String line= read.readLine();
 			
 			String items[] = line.split("\\|");
