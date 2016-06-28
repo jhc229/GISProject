@@ -402,19 +402,19 @@ private T fFind(prQuadNode rt, T elem, double xMin, double xMax,
 			// Where this one compares new argument of minimum x and y values with
 			// the original maximum x and y values. If true, recursive through
 			// the relevent region for further search.
-			if (!(x1 > ((xMin + xMax)/2) || x2 < xMin || y1 > yMax || y2 < ((yMin+yMax)/2))){ 
+			if (x1 <= ((xMin + xMax)/2) || x2 >= xMin || y1 <= yMax || y2 >= ((yMin+yMax)/2)){ 
 				res.addAll(fFindRegion(internalNode.NW, xMin, ((xMin + xMax)/2), ((yMin+yMax)/2), yMax, x1, x2, y1, y2));
 			}
 			
-			if (!(x1 > xMax || x2 < ((xMin + xMax)/2) || y1 > yMax || y2 < ((yMin+yMax)/2))){ 
+			if (x1 <= xMax || x2 >= ((xMin + xMax)/2) || y1 <= yMax || y2 >= ((yMin+yMax)/2)){ 
 				res.addAll(fFindRegion(internalNode.NE, ((xMin + xMax)/2), xMax, ((yMin+yMax)/2), yMax, x1, x2, y1, y2));
 			}
 			
-			if (!(x1 > ((xMin + xMax)/2) || x2 < xMin || y1 > ((yMin+yMax)/2) || y2 < yMin)){ 
+			if (x1 <= ((xMin + xMax)/2) || x2 >= xMin || y1 <= ((yMin+yMax)/2) || y2 >= yMin){ 
 				res.addAll(fFindRegion(internalNode.SW, xMin, ((xMin + xMax)/2), yMin, ((yMin+yMax)/2), x1, x2, y1, y2));
 			}
 			
-			if (!(x1 > xMax || x2 < ((xMin + xMax)/2) || y1 > ((yMin+yMax)/2) || y2 < yMin)){
+			if (x1 <= xMax || x2 >= ((xMin + xMax)/2) || y1 <= ((yMin+yMax)/2) || y2 >= yMin){
 				res.addAll(fFindRegion(internalNode.SE, ((xMin + xMax)/2), xMax, yMin, ((yMin+yMax)/2), x1, x2, y1, y2));
 			}
 			return res;

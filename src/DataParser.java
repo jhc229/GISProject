@@ -388,11 +388,12 @@ public class DataParser {
 		
 		
 		Point p = new Point(longitude.toSeconds(), latitude.toSeconds());
-		long minX = p.getX() - halfWidth ;
-		long maxX = p.getX() + halfWidth ;
-		long minY = p.getY() -halfHeight ;
-		long maxY = p.getY() +halfHeight;
-		 System.out.println("" + minX+" " + maxX+" " + minY+" " + maxY);
+		//long minX = p.getX() - halfWidth ;
+		//long maxX = p.getX() + halfWidth ;
+		//long minY = p.getY() -halfHeight ;
+		//long maxY = p.getY() +halfHeight;
+		 //System.out.println("" + minX+" " + maxX+" " + minY+" " + maxY);
+		
 
 		 Vector<Point>pts = quadTree.find(p.getX() - halfWidth, p.getX() + halfWidth, p.getY() -halfHeight, p.getY() +halfHeight);
 		
