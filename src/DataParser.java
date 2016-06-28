@@ -135,7 +135,7 @@ public class DataParser {
 	public void importFile() throws IOException, GISRecordException {
 		
 		//gisRecords = new GISRecordParser(dataFile, endOffset); // Begin at the second line where records start.
-		gisRecords = new GISRecordParser(endOffset)
+		gisRecords = new GISRecordParser(endOffset);
 		int countIdx = 0;
 		
 		BufferedReader br = new BufferedReader(new FileReader(data));
@@ -478,10 +478,10 @@ public class DataParser {
 	}
 	private Vector<GeoFeatures> poolOffset(Vector<Integer> off)
 			throws Exception {
-
+		System.out.println("current pointer" + dataFile.getFilePointer());
 		Vector<GeoFeatures> temp = new Vector<GeoFeatures>();
 		gisRecords = new GISRecordParser(dataFile, endOffset);
-		
+		System.out.println("current pointer" + dataFile.getFilePointer());
 		String str = "";
 		for (int i = 0; i < off.size(); i++) {
 			int currentOffset = off.get(i);
@@ -506,6 +506,7 @@ public class DataParser {
 			
 			}
 		}
+		dataFile.seek(265);
 		return temp;
 	}
 

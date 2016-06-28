@@ -38,7 +38,6 @@ public class GISRecordParser {
 		//offset = read.readLine().length() + 1; // Start at the second line.
 	}
 	public GISRecordParser(long endoffset){
-		read.seek(0); // initialize the pointer in the record to the beginning.
 		this.endOffset = endoffset;
 	}
 
@@ -52,7 +51,7 @@ public class GISRecordParser {
 			dataRec.LINE = line;
 			//System.out.println("ID:  " + GeoFeatures.FEATURE_ID );
 			//System.out.println("Offset " +items[0] );
-			System.out.println("Offset " + line);
+			System.out.println("line 	 " + line);
 			dataRec.FEATURE_ID = Integer.parseInt(items[0]);
 			dataRec.FEATURE_NAME = items[1];
 			dataRec.FEATURE_CLASS = items[2];
