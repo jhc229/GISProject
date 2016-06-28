@@ -163,21 +163,22 @@ public class Parser {
 					// -l		<geographic coordinate>		<half-height>		<half-width>
 					// -c		<geographic coordinate>		<half-height>		<half-width>
 					if  (str[1].matches("-l")){
-					//	db.whatIsInL(str[2], str[3], Integer.parseInt(str[4]), Integer.parseInt(str[5]));
 						System.out.println("Command  "+ cmdCount+":	" + "what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] + " "+  str[5] );
 						stat.write("Command  "+ cmdCount+":	" +"what_is_in : "+ str[1] +" " + str[2] +" " + (str[3]) +" " + (str[4]) + " "+  str[5]   + "\n" + "\n");
+						db.whatIsInL(str[2], str[3], str[4], str[5]);
 
 					}
 					else if (str[1].matches("-c")) {
-					//		db.whatIsInC(str[2], str[3], Integer.parseInt(str[4]), Integer.parseInt(str[5]));
 						System.out.println("Command  "+ cmdCount+":	" + "what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] + " "+  str[5] ) ;
 						stat.write("Command  "+ cmdCount+":	" +  "what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4]+ " "+  str[5]  + "\n"  + "\n");
+						db.whatIsInC(str[2], str[3], str[4], str[5]);
 
 					}
 					else {
 						//db.whatIsIn(str[1], str[2],  Integer.parseInt(str[3]), Integer.parseInt(str[4]));
 						System.out.println("Command  "+ cmdCount+":	" + "what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4]);
 						stat.write("Command  "+ cmdCount+":	" + "what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4]+ "\n" + "\n");
+						db.whatIsIn(str[2], str[3], str[4], str[5]);
 
 					}
 					cmdCount++;

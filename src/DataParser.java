@@ -231,57 +231,107 @@ public class DataParser {
  * For every GIS record in the database file whose coordinates fall within the closed rectangle with the specified height
 	and width, centered at the <geographic coordinate>,  
 	empty 
-	log every important non-empty field, nicely formatted
-	and labeled. See the posted log files for an example. Do not log any empty fields. The half-height and half-width are
-	specified as seconds.
+		log every important non-empty field, nicely formatted
+		and labeled. See the posted log files for an example. Do not log any empty fields. The half-height and half-width are
+		specified as seconds.
 	-l
-	 log every important non-empty field, nicely formatted
-	and labeled. See the posted log files for an example. Do not log any empty fields. The half-height and half-width are
-	specified as seconds.
+		 log every important non-empty field, nicely formatted
+		and labeled. See the posted log files for an example. Do not log any empty fields. The half-height and half-width are
+		specified as seconds.
 	-c
-	Do not log any data from the records themselves. The half-height and half-width are specified as seconds.
+		Do not log any data from the records themselves. The half-height and half-width are specified as seconds.
 
- */
-				/*
-	public void whatIsIn(String string, String string2, String string3,) {
+ 	*/
+	public void whatIsIn(String x, String y, String halfHeight, String halfWidth) {
 		
-		int lat =  toCoord(Integer.parseInt(x.substring(0, 2)), Integer.parseInt(x.substring(2, 4)), Integer.parseInt(x.substring(4, 6)), x.substring(6)).toSeconds();
-		int lon = toCoord(Integer.parseInt(y.substring(0, 3)), Integer.parseInt(y.substring(3, 5)), Integer.parseInt(y.substring(5, 7)), y.substring(7)).toSeconds();
-		
-		 Point p = quadTree.find(new Point(lat, lon, -1));
-		
-		Vector<Records> records = new Vector<Records>(0);
-		Vector<Integer> offsets = new Vector<Integer>(0);
-		// create new holder class for storing
-		Point p = new Point(coord.getLong().getTotalSeconds(), coord.getLat()
-				.getTotalSeconds(), -1);
-		// call the find function from PRQuadTree, finding all records within
-		// the boundary
-		Vector<Point> points = tree.find(p.getX() - width, p.getX() + width,
-				p.getY() - height, p.getY() + height);
+		Vector<Point> pts = whatIsInHelper(x, y, Integer.parseInt(halfHeight), Integer.parseInt(halfWidth));
 
-		if (points != null) {
-			// get all the offset of those records
-			for (int i = 0; i < points.size(); i++) {
-				offsets.addAll(points.get(i).getOffsets());
+		if (pts != null) {
+		
+			
+			/*try {
+				 
+				System.out.println("The following " + numb + " features were found in ");
+				 	for(GeoFeatures a : poolOffset(off)){
+						 	System.out.println(a.OFFSET + ":  " + a.COUNTY_NAME + " " + a.PRIM_LONG_DMS.toString() + " "+a.PRIMARY_LAT_DMS.toString());
+					 	}
+					 }
+				
+				} catch (Exception e) {
+				
+					e.printStackTrace();
+				}*/
 			}
-
-			gPar = new GISParser(dataFile);
-			records = poolOffset(offsets);
-		}
-		return records;		
 	}
 
-	public void whatIsInC(String string, String string2, String string3) {
-		// TODO Auto-generated method stub
+	public void whatIsInC(String x, String y, String halfHeight, String halfWidth) {
+
+		Vector<Point> pts = whatIsInHelper(x, y, Integer.parseInt(halfHeight), Integer.parseInt(halfWidth));
+
 		
+		if (pts != null) {
+			
+			System.out.println("size:   "pts.size());
+			/*
+			try {
+				 
+				System.out.println("The following " + numb + " features were found in ");
+				 for(GeoFeatures a : poolOffset(off)){
+						 System.out.println(a.OFFSET + ":  " + a.COUNTY_NAME + " " + a.PRIM_LONG_DMS.toString() + " "+a.PRIMARY_LAT_DMS.toString());
+					 }
+				
+				} catch (Exception e) {
+				
+				e.printStackTrace();
+				}
+			}*/
+		}
 	}
 	
-	public void whatIsIn(String string, String string2, String string3) {
-		// TODO Auto-generated method stub
+	public void whatIsInL(String x, String y, String halfHeight, String halfWidth) {
+
+		
+		
+		Vector<Point> pts = whatIsInHelper(x, y, Integer.parseInt(halfHeight), Integer.parseInt(halfWidth));
+		
+		if (pts != null) {
+			
+			/*
+			try {
+				 
+				System.out.println("The following " + numb + " features were found in ");
+				 for(GeoFeatures a : poolOffset(off)){
+						 System.out.println(a.OFFSET + ":  " + a.COUNTY_NAME + " " + a.PRIM_LONG_DMS.toString() + " "+a.PRIMARY_LAT_DMS.toString());
+					 }
+				
+				} catch (Exception e) {
+				
+				e.printStackTrace();
+				}
+		}*/
+		}
 		
 	}
- */
+		
+		
+	private Vector<Point> whatIsInHelper(String x, String y, int halfHeight, int halfWidth){
+		
+		DMScoordinates latitude=  toCoord(Integer.parseInt(x.substring(0, 2)), Integer.parseInt(x.substring(2, 4)), Integer.parseInt(x.substring(4, 6)), x.substring(6));
+		DMScoordinates longitude = toCoord(Integer.parseInt(y.substring(0, 3)), Integer.parseInt(y.substring(3, 5)), Integer.parseInt(y.substring(5, 7)), y.substring(7));
+		
+		GeoCoordinates geo = new GeoCoordinates(latitude, longitude);
+		
+		 Point p = new Point(geo.getlongitude().toSeconds(), geo.getlatitude().toSeconds());
+		 
+		 Vector<Point>pts = quadTree.find(p.getX() - halfWidth, p.getX() + halfWidth, p.getY() -halfHeight, p.getY() +halfHeight);
+		
+		Vector<GeoFeatures> records = new Vector<GeoFeatures>(0);
+		Vector<Integer> offsets = new Vector<Integer>(0);
+		
+		return pts;
+		
+	}
+ 
 	public void debug(String arg) {
 		if (arg.matches("pool")){
 			System.out.println(pool.toString());
