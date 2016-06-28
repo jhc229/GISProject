@@ -1,37 +1,28 @@
-; Script 2
+; Script 3
 ;
-; Very basic testing of the region search commands with a tiny DB.
+; Test of multiple import commands with a couple of tiny DB files.
 ;
 ; Specify boundaries of coordinate space:
-world: 0794130W 0792630W 381500N 383000N
+world: 0800400W 0792100W 375230N 383530N
 ;
-; Import some data:
-Command  1:	import: VA_Monterey.txt
+; Import a smallish DB file:
+Command  1:	import: VA_Highland.txt
 
 ;
-; Check the location indices:
+; Check the location and name/state indices:
 debug: quad
 debug: hash
 ;
-; Let's try some variations of a single-match region search with a square region:
-Command  4:	what_is_in : -c 382148N 0793109W 15 15
-Command  5:	what_is_in : 382148N 0793109W 15 15
-Command  6:	what_is_in : -l 382148N 0793109W 15 15
+; Import another smallish DB file:
+Command  4:	import: VA_Bath.txt
+
 ;
-; Let's check the buffer pool:
-debug: pool
+; Check the location and name/state indices:
+debug: quad
+debug: hash
 ;
-; Let's try increasing the size of the region:
-Command  8:	what_is_in : 382148N 0793109W 60 60
-Command  9:	what_is_in : 382148N 0793109W 120 120
-Command  10:	what_is_in : 382148N 0793109W 180 180
-;
-; Let's check the buffer pool:
-debug: pool
-; Now let's try a non-square region:
-Command  12:	what_is_in : 382957N 0793303W 240 60
-;
-; And another one:
-Command  13:	what_is_in : 382957N 0793303W 60 240
+; Try a couple of range searches:
+Command  7:	what_is_in : -l 381257N 0794039W 60 60
+Command  8:	what_is_in : -l 381257N 0794039W 120 60
 ;
 ; Exit

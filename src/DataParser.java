@@ -142,11 +142,9 @@ public class DataParser {
 		List<String> aisLines = new ArrayList<String>();
 		String line, cvsSplitBy = ",";
 		try {
-			
 			while ((line = br.readLine()) != null) {
 
 				GeoFeatures newRec = gisRecords.gisUpdate(line , (int) offset);
-				
 				if (newRec !=null){
 					NameIndex names = new NameIndex(newRec.FEATURE_NAME, newRec.STATE_ALPHA);
 					Point dmsPoints = new Point(newRec.PRIM_LONG_DMS.toSeconds(), newRec.PRIMARY_LAT_DMS.toSeconds(), offset);
@@ -164,6 +162,7 @@ public class DataParser {
 		}catch (Exception e) {
 		    e.printStackTrace();
 		}
+		dataFile.seek(265);
 		System.out.println("");
 		System.out.println("Imported Features by name: " + countIdx);
 		System.out.println("Longest probe sequence:     " + table.getProbe());

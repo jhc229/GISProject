@@ -126,7 +126,7 @@ public class GISRecordParser {
 		String items[] = line.split("\\|");
 		dataRec.LINE = line;
 		//System.out.println("ID:  " + GeoFeatures.FEATURE_ID );
-		System.out.println("Offset " + items[0] );
+		System.out.println("Offset " + line );
 		dataRec.FEATURE_ID = Integer.parseInt(items[0]);
 		dataRec.FEATURE_NAME = items[1];
 		dataRec.FEATURE_CLASS = items[2];
