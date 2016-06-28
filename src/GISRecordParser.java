@@ -56,7 +56,7 @@ public class GISRecordParser {
 			dataRec.STATE_NUMERIC = Double.parseDouble(items[4]);
 			dataRec.COUNTY_NAME = items[5];
 			dataRec.COUNTY_NUMERIC = Double.parseDouble(items[6]);
-			if( Double.parseDouble(items[9]) != 0){
+			if( Double.parseDouble(items[9]) == 0){
 					dataRec.PRIMARY_LAT_DMS = new DMScoordinates(Integer.parseInt(items[7].substring(0, 2)), Integer.parseInt(items[7].substring(2, 4)), Integer.parseInt(items[7].substring(4, 6)), items[7].substring(6));
 					dataRec.PRIM_LONG_DMS = new DMScoordinates(Integer.parseInt(items[8].substring(0, 3)), Integer.parseInt(items[8].substring(3, 5)), Integer.parseInt(items[8].substring(5, 7)), items[8].substring(7));
 			
