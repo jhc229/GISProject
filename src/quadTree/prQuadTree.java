@@ -62,7 +62,7 @@ public class prQuadTree< T extends Compare2D<? super T> > {
    // ~ prQuadTree
    // .........................................................................  
    prQuadNode root;
-   long xMin, xMax, yMin, yMax;
+   int xMin, xMax, yMin, yMax;
    boolean found;
    boolean insert_Flag;
    int bucketSize =4;
@@ -71,7 +71,7 @@ public class prQuadTree< T extends Compare2D<? super T> > {
    
    
    // Initialize quadtree to empty state, representing the specified region.
-   public prQuadTree(long xMin, long xMax, long yMin, long yMax) {
+   public prQuadTree(int xMin, int xMax, int yMin, int yMax) {
 	   this.xMin = xMin;
 	   this.xMax = xMax;
 	   this.yMin = yMin;
@@ -96,8 +96,8 @@ public class prQuadTree< T extends Compare2D<? super T> > {
     * private helper insert.
     */
    @SuppressWarnings("unchecked")
-private prQuadNode fInsert(prQuadNode rt, T elem, double xMin, double xMax,
-			double yMin, double yMax) {
+private prQuadNode fInsert(prQuadNode rt, T elem, int xMin, int xMax,
+		int yMin, int yMax) {
 		
 		if (rt == null) return new prQuadLeaf(elem); // when it's empty
 		
@@ -220,8 +220,8 @@ private prQuadNode fInsert(prQuadNode rt, T elem, double xMin, double xMax,
     * private helper delete.
     */
    @SuppressWarnings("unchecked")
-   private prQuadNode fDelete(prQuadNode rt, T elem, double xMin, double xMax,
-			double yMin, double yMax){
+   private prQuadNode fDelete(prQuadNode rt, T elem, int xMin, int xMax,
+		   int yMin, int yMax){
 	  
 	   if (rt == null) return null;  //When nothing found
 
@@ -338,8 +338,8 @@ private prQuadNode fInsert(prQuadNode rt, T elem, double xMin, double xMax,
     * private helper find element.
     */
    @SuppressWarnings("unchecked")
-private T fFind(prQuadNode rt, T elem, double xMin, double xMax,
-			double yMin, double yMax){
+private T fFind(prQuadNode rt, T elem, int xMin, int xMax,
+		int yMin, int yMax){
 	   if (rt == null) return null;
 	   if (rt.getClass().equals(prQuadInternal.class)){
 		   
@@ -376,7 +376,7 @@ private T fFind(prQuadNode rt, T elem, double xMin, double xMax,
    // Returns a collection of (references to) all elements x such that x is 
    //in the tree and x lies at coordinates within the defined rectangular 
    // region, including the boundary of the region.
-   public Vector<T> find(long xLo, long xHi, long yLo, long yHi) {
+   public Vector<T> find(int xLo, int xHi, int yLo, int yHi) {
       //return ffindElements(rt, )      
 	   return fFindRegion(root, xMin, xMax, yMin, yMax, xLo, xHi, yLo, yHi);
    }
@@ -386,8 +386,8 @@ private T fFind(prQuadNode rt, T elem, double xMin, double xMax,
     */
 	@SuppressWarnings("unchecked")
 	private Vector<T> fFindRegion(prQuadNode rt, 
-			double xMin, double xMax, double yMin, double yMax, 
-			double x1, double x2, double y1, double y2) {
+			int xMin, int xMax, int yMin, int yMax, 
+			int x1, int x2, int y1, int y2) {
 	   
 		Vector<T> res = new Vector<T>();
 		if (rt == null) return res;

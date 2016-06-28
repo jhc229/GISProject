@@ -81,16 +81,19 @@ public class Point implements Compare2D<Point> {
 	}
 
 	public boolean equals(Object o) {
-		if (o.getClass().equals(this.getClass())) {
+		/*if (o.getClass().equals(this.getClass())) {
 			return this.getClass().cast(o).directionFrom(xcoord,
 					ycoord) == Direction.NOQUADRANT;
 		}
+		return false;*/
+		
+		if (!o.getClass().equals(this.getClass()))
+			return false;
+		if (this.getClass().cast(o).directionFrom(xcoord,
+				ycoord) == Direction.NOQUADRANT) {
+			return true;
+		}
 		return false;
-		/*
-		 * if ( !o.getClass().equals(this.getClass())) return false; if
-		 * (this.getClass().cast(o).directionFrom(xcoord, ycoord) ==
-		 * Direction.NOQUADRANT){ return true; } return false;
-		 */
 
 	}
 
