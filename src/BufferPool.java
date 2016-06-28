@@ -35,7 +35,7 @@ public class BufferPool {
 			return cName;
 		}
 		
-		public String getstateName() {
+		public String getStateName() {
 			return sName;
 		}
 	}

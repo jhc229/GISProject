@@ -215,7 +215,7 @@ public class DataParser {
 			//GeoFeatures poolRec = pool.checkRecord(currentOffset);
 			BufferPool.Buffer inPool = pool.checkRecord(currentOffset);
 			if ( inPool != null) { // is found
-				str += inPool.getOff() +  ":	" + inPool.getFeatureName() + " " + inPool.getCountyName() + " "+  inPool.getstateName()+  "\n";
+				str += inPool.getOff() +  ":	" + inPool.getFeatureName() + " " + inPool.getCountyName() + " "+  inPool.getStateName() +  "\n";
 				
 			} else {
 				// add record to pool is its not already there
