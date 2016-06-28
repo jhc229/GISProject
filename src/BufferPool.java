@@ -42,7 +42,7 @@ public class BufferPool {
 		}
 	}
 */
-	private ArrayList<GeoFeatures> list; // records within the pool are kept in a
+	private ArrayList<GeoFeatures> list; 
 	private int size;
 
 	/**
@@ -99,7 +99,7 @@ public class BufferPool {
 		String out = "MRU\n";
 		for (int i = list.size() - 1; i >= 0; i--) {
 			GeoFeatures record = list.get(i);
-			out += record.OFFSET + ":  " + record.FEATURE_NAME +" "+ record.COUNTY_NAME+"\n";
+			out += record.OFFSET + ":  " + record.LINE +"\n";
 		}
 		out += "LRU \n";
 		return out;

@@ -304,11 +304,12 @@ public class DataParser {
 		stat.close();
 
 	}
-	private String poolOffset(Vector<Integer> off)
+	private Vector<GeoFeatures> poolOffset(Vector<Integer> off)
 			throws Exception {
 
-		//Vector<GeoFeatures> records = new Vector<GeoFeatures>();
+		Vector<GeoFeatures> temp = new Vector<GeoFeatures>();
 		gisRecords = new GISRecordParser(dataFile, endOffset);
+		
 		String str = "";
 		for (int i = 0; i < off.size(); i++) {
 			int currentOffset = off.get(i);
@@ -316,24 +317,24 @@ public class DataParser {
 			GeoFeatures newRecord = pool.checkRecord(currentOffset); 
 			if ( newRecord != null) { // is found
 				//str += inPool.getOff() +  ":	" + inPool.getFeatureName() + " " + inPool.getCountyName() +  inPool.getStateName() + "\n";
-				 
+
 				
-			
+				temp.add(newRecord);
 			} 
-			
 			else {
 				GeoFeatures dataRec = new GeoFeatures();
 				dataRec= gisRecords.gisRecordsUpdate(currentOffset);
 				
-				System.out.println("Record:" + dataRec.OFFSET);
+				temp.add(dataRec);
+				pool.add(dataRec);
+				//System.out.println("Record:" + dataRec.OFFSET);
 				
 				//str +=dataRec.OFFSET +  ":	" + dataRec.FEATURE_NAME + " " + dataRec.COUNTY_NAME + " "+dataRec.STATE_ALPHA + "\n";
 				//pool.add(dataRec.OFFSET, dataRec.FEATURE_NAME, dataRec.COUNTY_NAME, dataRec.STATE_ALPHA);
 			
-			
 			}
 		}
-		return str;
+		return temp;
 	}
 
 

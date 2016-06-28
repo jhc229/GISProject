@@ -28,8 +28,8 @@ public class GeoFeatures {
 	public static String  				DATE_CREATED;
 	public static String  				DATE_EDITED;
 	public static int 						OFFSET = 0;
-	public static Sring					line = "";
+	public static String					LINE = "";
 
-
+	
 
 }
