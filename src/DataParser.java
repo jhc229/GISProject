@@ -440,11 +440,6 @@ public class DataParser {
 		// Vector<Point>pts = quadTree.find(b - halfWidth, b+ halfWidth,a -halfHeight, a +halfHeight);
 		 Vector<Point>pts = quadTree.find(minX, maxX, minY, maxY);
 		
-		// System.out.println("number of records" + pts.size());
-	//	 System.out.println("tree coordinates:   " + pts);
-		 
-		///Vector<GeoFeatures> records = new Vector<GeoFeatures>(0);
-		//Vector<Integer> offsets = new Vector<Integer>(0);
 		
 		return pts;
 		
@@ -497,6 +492,7 @@ public class DataParser {
 			} 
 			else {
 				System.out.println("Record:" + off);
+				System.out.println("curoff :" + currentOffset)
 				GeoFeatures dataRec = new GeoFeatures();
 				dataRec= gisRecord.gisRecordsUpdate(currentOffset);
 				
