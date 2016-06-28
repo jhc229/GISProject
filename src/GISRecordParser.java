@@ -112,8 +112,6 @@ public class GISRecordParser {
 	
 	public GeoFeatures gisUpdate(String line, int parserOffset) throws GISRecordException, IOException{
 		GeoFeatures dataRec = new GeoFeatures();
-		if ((parserOffset >= 265) && (parserOffset <= endOffset)){ //&& ((int)read.readByte() == 10)
-
 		String items[] = line.split("\\|");
 		dataRec.LINE = line;
 		//System.out.println("ID:  " + GeoFeatures.FEATURE_ID );
@@ -159,19 +157,7 @@ public class GISRecordParser {
 		return dataRec;
 		
 		}
-		else {
-			if (((parserOffset >= 0) && (parserOffset < 265) ) || ((int)read.readByte() != 10)){
-				
-				throw new GISRecordException(" Unaligned offset");
-			}
-			else if (parserOffset > offset){
-				throw new GISRecordException("Offset too large");
-			}
-			throw new GISRecordException("Offset is not positive");
-		}
-
 		
-	}
 		/*
 		 * Feature ID (FID) non-negative integer unique identifier for this
 		 * geographic feature

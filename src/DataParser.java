@@ -153,7 +153,7 @@ public class DataParser {
 				
 						if (dmsPoints.inBox(wLong, eLong , sLat , nLat)){
 							
-							System.out.println("importOffset: " + offset);
+							System.out.println("importOffset: " + offset + " " + names.getName());
 							table.insertHash(names, (int) offset);
 	
 							quadTree.insert(dmsPoints);
