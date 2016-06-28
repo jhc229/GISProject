@@ -7,27 +7,27 @@
  *
  */
 public class GeoFeatures {
-	private static int 						FEATURE_ID = 0;
-	private static String					FEATURE_NAME;
-	private static String 					FEATURE_CLASS;
-	private static String 					STATE_ALPHA;
-	private static double  				STATE_NUMERIC = 0.0;
-	private static String 					COUNTY_NAME;
-	private static double  				COUNTY_NUMERIC = 0.0;
-	private static DMScoordinates PRIMARY_LAT_DMS;
-	private static DMScoordinates PRIM_LONG_DMS;
-	private static double 				PRIM_LAT_DEC = 0.0;
-	private static double 				PRIM_LONG_DEC = 0.0;
-	private static DMScoordinates SOURCE_LAT_DMS;
-	private static DMScoordinates SOURCE_LONG_DMS;
-	private static double  				SOURCE_LAT_DEC = 0.0;
-	private static double 				SOURCE_LONG_DEC = 0.0;
-	private static int 						ELEV_IN_M = 0;
-	private static int 						ELEV_IN_FT = 0;
-	private static String  				MAP_NAME;
-	private static String  				DATE_CREATED;
-	private static String  				DATE_EDITED;
-	private static int 						OFFSET = 0;
+	public static int 						FEATURE_ID = 0;
+	public static String					FEATURE_NAME;
+	public static String 					FEATURE_CLASS;
+	public static String 					STATE_ALPHA;
+	public static double  				STATE_NUMERIC = 0.0;
+	public static String 					COUNTY_NAME;
+	public static double  				COUNTY_NUMERIC = 0.0;
+	public static DMScoordinates PRIMARY_LAT_DMS;
+	public static DMScoordinates PRIM_LONG_DMS;
+	public static double 				PRIM_LAT_DEC = 0.0;
+	public static double 				PRIM_LONG_DEC = 0.0;
+	public static DMScoordinates SOURCE_LAT_DMS;
+	public static DMScoordinates SOURCE_LONG_DMS;
+	public static double  				SOURCE_LAT_DEC = 0.0;
+	public static double 				SOURCE_LONG_DEC = 0.0;
+	public static int 						ELEV_IN_M = 0;
+	public static int 						ELEV_IN_FT = 0;
+	public static String  				MAP_NAME;
+	public static String  				DATE_CREATED;
+	public static String  				DATE_EDITED;
+	public static int 						OFFSET = 0;
 
 
 

@@ -8,15 +8,38 @@ import java.util.ArrayList;
  */
 public class BufferPool {
 
-	private ArrayList<GeoFeatures> list; // records within the pool are kept in a
+	private ArrayList<Buffer> list; // records within the pool are kept in a
 	private int size;
 
+	public class Buffer{
+		private final int offset;
+		private final String name;
+		private final String cName;
+		
+		public Buffer(int off, String name, String cName)	{
+			offset = off;
+			this.name = name;
+			this.cName = cName;
+			
+		}
+		
+		public int getOff(){
+			return offset;
+		}
+		public String getFeatureName(){
+			return name;
+			
+		}		
+		public String getCountyName(){
+			return cName;
+		}
+	}
 	/**
 	 * construct a new BufferPool of size 20
 	 * @return 
 	 */
 	public  BufferPool() {
-		list = new ArrayList<GeoFeatures>(10);
+		list = new ArrayList<Buffer>(10);
 		size = 0;
 	}
 
@@ -27,16 +50,16 @@ public class BufferPool {
 	 *            the location on database file
 	 * @return the record if found, null otherwise
 	 */
-	public GeoFeatures checkRecord(int offset) {
+	public boolean checkRecord(int offset) {
 		for (int i = 0; i < list.size(); i++) {
-			GeoFeatures founcRecord = list.get(i);
-			if (founcRecord.OFFSET == offset) {
+			Buffer founcRecord = list.get(i);
+			if (founcRecord.getOff() == offset) {
 				list.add(list.remove(i));
 				
-				return founcRecord;
+				return true;
 			}
 		}
-		return null;
+		return false;
 	}
 
 	/**
@@ -44,10 +67,11 @@ public class BufferPool {
 	 * 
 	 * @param record
 	 */
-	public void add(GeoFeatures record) {
+	public void add(String offset, String featureName, String countyName) {
 		if (list.size() >= 10) {
 			list.remove(0);
 		}
+		Buffer record = new Buffer(offset, featureName, countyName);
 		list.add(record);
 		size++;
 	}
