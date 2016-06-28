@@ -128,8 +128,8 @@ public class Parser {
 					db.importFile();
 					//db = new DataBase(dataFile, stat);
 					//db.importFile(str[1]); //GIS record file>
-					stat.write("import: "+ str[1]  + "\n" + "\n" );
-					System.out.println("import: "+ str[1] );
+					stat.write("Command  "+ cmdCount+":	" + "import: "+ str[1]  + "\n" + "\n" );
+					System.out.println("Command  "+ cmdCount+":	" + "import: "+ str[1] );
 					count++; // # of import calls.
 					cmdCount++;
 					
@@ -137,8 +137,8 @@ public class Parser {
 				
 				else if (str[0].matches("what_is_at")) {
 					
-					System.out.println("what_is_at: "+ str[1] +" " + str[2] +"\n" );
-					stat.write("what_is_at: "+ str[1] +" " + str[2] + "\n" + "\n" );
+					System.out.println("Command  "+ cmdCount+":	" +"what_is_at:	"+ str[1] +" " + str[2] +"\n" );
+					stat.write("Command  "+ cmdCount+":	" +"what_is_at: "+ str[1] +" " + str[2] + "\n" + "\n" );
 					db.whatIsAt(str[1], str[2]); // geographic coordinate "382812N	0793156W "
 					
 					cmdCount++;
@@ -151,10 +151,10 @@ public class Parser {
 					for (int i =2; i<str.length-1; i++){
 						featureName += " "+ str[i];
 					}
-					System.out.println("what_is : " + featureName+" "+ str[str.length-1]);
+					System.out.println("Command  "+ cmdCount+":	"+ "what_is : " + featureName+" "+ str[str.length-1]);
 
 					db.whatIs(featureName, str[str.length-1]); // <feature name> and <state abbreviation> in string
-					stat.write("what_is: "+ featureName +" "+ str[str.length-1] + "\n" + "\n");
+					stat.write("Command  "+ cmdCount+":	"+ "what_is: "+ featureName +" "+ str[str.length-1] + "\n" + "\n");
 					cmdCount++;
 
 				} 
@@ -164,20 +164,20 @@ public class Parser {
 					// -c		<geographic coordinate>		<half-height>		<half-width>
 					if  (str[1].matches("-l")){
 					//	db.whatIsInL(str[2], str[3], Integer.parseInt(str[4]), Integer.parseInt(str[5]));
-						System.out.println("what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] + " "+  str[5] );
-						stat.write("what_is_in : "+ str[1] +" " + str[2] +" " + Integer.parseInt(str[3]) +" " + Integer.parseInt(str[4]) + " "+  str[5]   + "\n" + "\n");
+						System.out.println("Command  "+ cmdCount+":	" + "what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] + " "+  str[5] );
+						stat.write("Command  "+ cmdCount+":	" +"what_is_in : "+ str[1] +" " + str[2] +" " + Integer.parseInt(str[3]) +" " + Integer.parseInt(str[4]) + " "+  str[5]   + "\n" + "\n");
 
 					}
 					else if (str[1].matches("-c")) {
 					//		db.whatIsInC(str[2], str[3], Integer.parseInt(str[4]), Integer.parseInt(str[5]));
-						System.out.println("what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] + " "+  str[5] ) ;
-						stat.write("what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4]+ " "+  str[5]  + "\n"  + "\n");
+						System.out.println("Command  "+ cmdCount+":	" + "what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] + " "+  str[5] ) ;
+						stat.write("Command  "+ cmdCount+":	" +  "what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4]+ " "+  str[5]  + "\n"  + "\n");
 
 					}
 					else {
 						//db.whatIsIn(str[1], str[2],  Integer.parseInt(str[3]), Integer.parseInt(str[4]));
-						System.out.println("what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4]);
-						stat.write("what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4]+ "\n" + "\n");
+						System.out.println("Command  "+ cmdCount+":	" + "what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4]);
+						stat.write("Command  "+ cmdCount+":	" + "what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4]+ "\n" + "\n");
 
 					}
 					cmdCount++;
