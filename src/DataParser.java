@@ -435,10 +435,7 @@ public class DataParser {
 	 * @throws IOException
 	 */
 	public void quit() throws IOException {
-		System.out.println("Terminating execution of commands.\n" +LocalDateTime.now());
-		
-		
-		stat.write("\n   Exiting");
+
 		dataFile.close();
 		stat.close();
 
