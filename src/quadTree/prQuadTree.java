@@ -140,8 +140,8 @@ private prQuadNode fInsert(prQuadNode rt, T elem, double xMin, double xMax,
 					internalNode = (prQuadInternal) fInsert(internalNode,
 							element, xMin, xMax, yMin, yMax);
 				}
-				return internalNode = (prQuadInternal) fInsert(internalNode, elem , xMin, xMax, yMin, yMax);
 			}
+			return internalNode = (prQuadInternal) fInsert(internalNode, elem , xMin, xMax, yMin, yMax);
 		}
 	}
    
