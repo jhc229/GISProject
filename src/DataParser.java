@@ -496,7 +496,7 @@ public class DataParser {
 				temp.add(newRecord);
 			} 
 			else {
-				System.out.println("Record:" + currentOffset);
+				System.out.println("Record:" + off);
 				GeoFeatures dataRec = new GeoFeatures();
 				dataRec= gisRecord.gisRecordsUpdate(currentOffset);
 				
