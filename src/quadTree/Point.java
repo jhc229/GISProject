@@ -19,8 +19,8 @@ public class Point implements Compare2D<Point> {
 		xcoord = 0;
 		ycoord = 0;
 	}
-	
-	public Point(int x, int y){
+
+	public Point(int x, int y) {
 		xcoord = x;
 		ycoord = y;
 	}
@@ -49,6 +49,20 @@ public class Point implements Compare2D<Point> {
 	}
 
 	public Direction directionFrom(long X, long Y) {
+		/*if (xcoord <= X && ycoord > Y)
+			return Direction.NW;
+
+		else if (xcoord > X && ycoord >= Y)
+			return Direction.NE;
+
+		else if (xcoord < X && ycoord <= Y)
+			return Direction.SW;
+
+		else if (xcoord >= X && ycoord < Y)
+			return Direction.SE;
+
+		return Direction.NOQUADRANT;*/
+		
 		if (xcoord <= X && ycoord > Y) return Direction.NW;
 
 		else if (xcoord > X && ycoord >= Y) return Direction.NE;
@@ -61,27 +75,42 @@ public class Point implements Compare2D<Point> {
 		return Direction.NOQUADRANT;
 	}
 
-	public Direction inQuadrant(double xLo, double xHi, double yLo, double 
-
-yHi) {
-		if (!inBox(xLo, xHi, yLo, yHi)) return Direction.NOQUADRANT;
+	public Direction inQuadrant(double xLo, double xHi, double yLo, double yHi) {
+		/*if (!inBox(xLo, xHi, yLo, yHi))
+			return Direction.NOQUADRANT;
 		else {
-			Direction dir = directionFrom((long) (xLo + xHi) / 2, 
+			Direction dir = directionFrom((long) (xLo + xHi) / 2,
 
-(long) (yLo + yHi) / 2);
-			if (dir == Direction.NOQUADRANT) return Direction.NE;
+					(long) (yLo + yHi) / 2);
+			if (dir == Direction.NOQUADRANT)
+				return Direction.NE;
 			return dir;
+		}*/
+		
+		if ( !inBox(xLo, xHi, yLo, yHi)){
+			return Direction.NOQUADRANT;
 		}
+		double xCenter = ((xLo + xHi)/2);
+		double yCenter = ((yLo + yHi)/2);
+		
+		Direction dir = directionFrom((long) xCenter, (long) yCenter);
+		
+		if(dir == Direction.NOQUADRANT){
+			return Direction.NE;
+		}
+		return dir;
+		
+		
 	}
 
 	public boolean inBox(double xLo, double xHi, double yLo, double yHi) {
-		/*
-		 * if ( xcoord < xLo || xcoord > xHi || ycoord < yLo || ycoord 
-
-> yHi){
-		 * return false; } return true;
-		 */
-		return xcoord >= xLo && xcoord <= xHi && ycoord >= yLo && ycoord <= yHi;
+		
+		 if ( xcoord < xLo || xcoord > xHi || ycoord < yLo || ycoord> yHi)
+		 { 
+			 return false; 
+		 } return true;
+		 
+		//return xcoord >= xLo && xcoord <= xHi && ycoord >= yLo && ycoord <= yHi;
 	}
 
 	public boolean equals(Object o) {
@@ -99,9 +128,9 @@ yHi) {
 	}
 
 	public String toString() {
-		return "[( " + xcoord + ", " + ycoord + ")," + 
+		return "[( " + xcoord + ", " + ycoord + ")," +
 
-offsets.toString() + "]";
+		offsets.toString() + "]";
 	}
 
 }
