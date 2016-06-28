@@ -395,7 +395,7 @@ private T fFind(prQuadNode rt, T elem, double xMin, double xMax,
 			for (int i = 0; i < leafNode.Elements.size(); i++) {
 
 				// check if elem is within the region wanted
-				if (leafNode.Elements.get(i).inBox(x1, x2, y1, y2) {
+				if (leafNode.Elements.get(i).inBox(x1, x2, y1, y2) ){
 					res.add(leafNode.Elements.get(i));
 				}
 			}
