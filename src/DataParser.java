@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.Buffer;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 import quadTree.Point;
@@ -134,6 +136,35 @@ public class DataParser {
 		
 		gisRecords = new GISRecordParser(dataFile, endOffset); // Begin at the second line where records start.
 		int countIdx = 0;
+		BufferedReader br = new BufferedReader(new FileReader(data));
+		List<String> aisLines = new ArrayList<String>();
+		String line, cvsSplitBy = ",";
+		try {
+			
+			while ((line = br.readLine()) != null) {
+		      
+				GeoFeatures newRec = gisRecords.gisUpdate(line);
+				/*if(line.charAt(0) == '!') {
+		            String[] cols = line.split(cvsSplitBy);
+		            if(cols.length>=8) {
+		                line = "";
+		                for(int i=0; i<cols.length-1; i++) {
+		                    if(i == cols.length-2) {
+		                        line = line + cols[i];
+		                    } else {
+		                        line = line + cols[i] + ",";
+		                    }
+		                }
+		                aisLines.add(line);
+		            } else {
+		                aisLines.add(line);
+		            }*/
+		        }
+		    
+		} catch (Exception e) {
+		    e.printStackTrace();
+		}
+		
 		while (dataFile.readLine() != null) {
 
 			GeoFeatures newRec = gisRecords.gisRecordsUpdate(offset);
