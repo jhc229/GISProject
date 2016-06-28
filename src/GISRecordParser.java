@@ -41,7 +41,7 @@ public class GISRecordParser {
 		this.endOffset = endoffset;
 	}
 
-	public GeoFeatures gisRecordsUpdate(long parserOffset) throws IOException, GISRecordException {
+	private GeoFeatures gisRecordsUpdate(long parserOffset) throws IOException, GISRecordException {
 		if ((parserOffset >= 265) && (parserOffset <= endOffset)){ //&& ((int)read.readByte() == 10)
 			GeoFeatures dataRec = new GeoFeatures();
 			//System.out.println("current pointer" + read.getFilePointer());

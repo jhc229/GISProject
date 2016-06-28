@@ -22,7 +22,7 @@ import quadTree.prQuadTree;
  */
 public class DataParser {
 	// ~ Fields
-	private RandomAccessFile dataFile = null;
+	//private RandomAccessFile dataFile = null;
 	private File data = null;
 	
 	private long offset;
@@ -46,23 +46,16 @@ public class DataParser {
 	 * 
 	 * @throws IOException
 	 */
-	public DataParser(File dataFile, BufferedWriter result)  {
+	public DataParser(File dataFile, BufferedWriter result) throws FileNotFoundException  {
 		
 		// endOffset = 265;
 		// pool = new BufferPool();
 		// table = new HashTable<NameIndex, Integer>(1024);
 		// offset = 0;
 		offset = 265;
-		try {
-			data = dataFile;
-			this.dataFile = new RandomAccessFile(dataFile, "rw");
-			stat = result;
-
-
-			
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+		data = dataFile;
+		//this.dataFile = new RandomAccessFile(dataFile, "rw");
+		stat = result;
 		table = new HashTable<NameIndex, Integer>(1024);
 		pool = new BufferPool();
 		
@@ -70,17 +63,28 @@ public class DataParser {
 	}
 
 
-	
+	/**
+	 * 
+	 * @param gisRecordFile
+	 * @param count
+	 * @throws IOException
+	 */
 	public void appendFile(String gisRecordFile, int count) throws IOException {
 		
 		BufferedReader gisRecord = new BufferedReader(new FileReader(gisRecordFile)); 
+		RandomAccessFile dataFile = new RandomAccessFile(data, "rw");
+		
 		String str = "";
 		if (count == 0){
+			dataFile.seek(0);
 			dataFile.setLength(0);
 		}
 		if (count > 0){
+			System.out.println("count???: " + count);
+
 			gisRecord.readLine();
 			dataFile.seek(endOffset);
+			offset = endOffset;
 		}
 
 		while ((str =gisRecord.readLine()) != null) { 
@@ -139,6 +143,7 @@ public class DataParser {
 		int countIdx = 0;
 		
 		BufferedReader br = new BufferedReader(new FileReader(data));
+		
 		br.readLine();
 		List<String> aisLines = new ArrayList<String>();
 		String line, cvsSplitBy = ",";
@@ -153,7 +158,7 @@ public class DataParser {
 				
 						if (dmsPoints.inBox(wLong, eLong , sLat , nLat)){
 							
-							System.out.println("importOffset: " + offset + " " + names.getName());
+							System.out.println("importOffset: " + offset +" "+ newRec.FEATURE_NAME);
 							table.insertHash(names, (int) offset);
 	
 							quadTree.insert(dmsPoints);
@@ -167,7 +172,7 @@ public class DataParser {
 		}catch (Exception e) {
 		    e.printStackTrace();
 		}
-		dataFile.seek(265);
+		//dataFile.seek(265);
 		System.out.println("");
 		System.out.println("Imported Features by name: " + countIdx);
 		System.out.println("Longest probe sequence:     " + table.getProbe());
@@ -453,9 +458,9 @@ public class DataParser {
 		}
 		else if(arg.matches("hash")){
 			//System.out.println("Number of probes: " + table.getProbe());
-			System.out.println("Current table size: " + table.getCurrentSize());
-			System.out.println("Number of elements: " + table.getNumElements());
-			System.out.println("toString:     \n" + table.hashToString());
+		//	System.out.println("Current table size: " + table.getCurrentSize());
+		//	System.out.println("Number of elements: " + table.getNumElements());
+		//	System.out.println("toString:     \n" + table.hashToString());
 		}
 		else if(arg.matches("quad")){
 			//
@@ -471,7 +476,6 @@ public class DataParser {
 	 */
 	public void quit() throws IOException {
 
-		dataFile.close();
 		stat.close();
 
 	}
@@ -506,7 +510,7 @@ public class DataParser {
 				//pool.add(dataRec.OFFSET, dataRec.FEATURE_NAME, dataRec.COUNTY_NAME, dataRec.STATE_ALPHA);
 			}
 		}
-		dataFile.seek(0);
+	//	dataFile.seek(0);
 		return temp;
 	}
 
