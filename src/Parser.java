@@ -204,7 +204,7 @@ public class Parser {
 				}
 				else if (str[0].matches("quit")) {
 					
-					System.out.println("Command "+ cmdCount + ":  quit" );
+					System.out.println("Command "+ cmdCount + ":  quit\n" );
 					db.quit();
 					stat.write("quit \n");
 
