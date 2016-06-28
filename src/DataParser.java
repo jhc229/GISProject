@@ -151,9 +151,11 @@ public class DataParser {
 			offset += dataFile.readLine().length() +1; // Next line
 		}
 
+		System.out.println("");
 		System.out.println("Imported Features by name: " + table.getCurrentSize());
 		System.out.println("Longest probe sequence:     " + table.getProbe());
 		System.out.println("Imported Locations:         " + table.getCurrentSize());
+		System.out.println("--------------------------------------------------------------------------------");
 
 		
 		stat.write("\n");
@@ -203,6 +205,8 @@ public class DataParser {
 		 else{
 				System.out.println("     Nothing was found at " + y + " "  + x );
 		 }
+		System.out.println("--------------------------------------------------------------------------------");
+
 	}
 	
 
@@ -238,6 +242,9 @@ public class DataParser {
 		 else{
 				System.out.println("No records match  " + fName + " and "  + sState );
 		 }
+
+		System.out.println("--------------------------------------------------------------------------------");
+
 	}
 /*
  * what_is_in<tab>-l<tab><geographic coordinate><tab><half-height><tab><half-width>
@@ -265,12 +272,11 @@ public class DataParser {
 
 			try {
 				Vector<Integer> newSets = new Vector<Integer>(0);
-				System.out.println("	The following " + pts.size() + " features were found in ");
-				//System.out.println("size:   " + pts);
+				System.out.println("	The following " + pts.size() + " features were found in (" + y + " +/-" + halfHeight+", " + x + " +/-" + halfWidth + ")");
+				//System.out.println("tree coordinates:   " + pts);
 					for (int i =0; i< pts.size(); i++){
 				 		newSets.addAll(pts.get(i).getOffset());
 				 	}
-				 	
 				 	
 					for(GeoFeatures a : poolOffset(newSets)){
 						 	
@@ -287,6 +293,9 @@ public class DataParser {
 		else{
 			System.out.println("     Nothing was found in (" + y + " +/-" + halfHeight+", " + x + " +/-" + halfWidth + ")");
 		}
+
+		System.out.println("--------------------------------------------------------------------------------");
+
 	}
 
 	public void whatIsInC(String x, String y, String halfHeight, String halfWidth) {
@@ -314,6 +323,9 @@ public class DataParser {
 		else{
 			System.out.println("     Nothing was found in (" + y + " +/-" + halfHeight+", " + x + " +/-" + halfWidth + ")");
 		}
+
+		System.out.println("--------------------------------------------------------------------------------");
+
 	}
 	
 	public void whatIsInL(String x, String y, String halfHeight, String halfWidth) {
@@ -342,24 +354,47 @@ public class DataParser {
 		else{
 			System.out.println("     Nothing was found in (" + y + " +/-" + halfHeight+", " + x + " +/-" + halfWidth + ")");
 		}
-		
-		
+
+		System.out.println("--------------------------------------------------------------------------------");
 	}
 		
 		
+	/**
+	 * 
+	 * The following 1 features were found in (803133W +/- 5, 371105N +/- 5)
+	 * 41632: Radford AAP Heliport VA 371105N 803133W
+	 * 
+	 * 
+	 * (37115N, 803133W) 
+	 * tree coordinates: [[( -289886, 133815),[27941]]] The
+	 * 
+	 * following 1 features were found in (0803133W +/-5, 371105N +/-5) 
+	 * tree coordinates: [[( -289886, 133815),[27941]]] 
+	 * 27941: New River Church VA 371015N 803126W
+	 * 
+	 * @param x
+	 * @param y
+	 * @param halfHeight
+	 * @param halfWidth
+	 * @return
+	 */
 	private Vector<Point> whatIsInHelper(String x, String y, int halfHeight, int halfWidth){
 		
 		DMScoordinates latitude=  toCoord(Integer.parseInt(x.substring(0, 2)), Integer.parseInt(x.substring(2, 4)), Integer.parseInt(x.substring(4, 6)), x.substring(6));
 		DMScoordinates longitude = toCoord(Integer.parseInt(y.substring(0, 3)), Integer.parseInt(y.substring(3, 5)), Integer.parseInt(y.substring(5, 7)), y.substring(7));
 		
 		GeoCoordinates geo = new GeoCoordinates(latitude, longitude);
+		System.out.println(geo.toString());
 		
-		 Point p = new Point(geo.getlongitude().toSeconds(), geo.getlatitude().toSeconds());
-		 
+		
+		Point p = new Point(geo.getlongitude().toSeconds(), geo.getlatitude().toSeconds());
 		 Vector<Point>pts = quadTree.find(p.getX() - halfWidth, p.getX() + halfWidth, p.getY() -halfHeight, p.getY() +halfHeight);
 		
-		Vector<GeoFeatures> records = new Vector<GeoFeatures>(0);
-		Vector<Integer> offsets = new Vector<Integer>(0);
+		 
+		 System.out.println("tree coordinates:   " + pts);
+		 
+		///Vector<GeoFeatures> records = new Vector<GeoFeatures>(0);
+		//Vector<Integer> offsets = new Vector<Integer>(0);
 		
 		return pts;
 		
@@ -378,6 +413,9 @@ public class DataParser {
 		else if(arg.matches("quad")){
 			//
 		}
+
+		System.out.println("--------------------------------------------------------------------------------");
+
 	}
 
 
