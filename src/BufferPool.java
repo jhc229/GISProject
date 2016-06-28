@@ -8,6 +8,8 @@ import java.util.ArrayList;
  */
 public class BufferPool {
 
+	
+	/*
 	public class Buffer {
 		private final int offset;
 		private final String name;
@@ -39,7 +41,7 @@ public class BufferPool {
 			return sName;
 		}
 	}
-
+*/
 	private ArrayList<GeoFeatures> list; // records within the pool are kept in a
 	private int size;
 
@@ -76,16 +78,17 @@ public class BufferPool {
 	 * 
 	 * @param record
 	 */
-	public void add(int offset, String featureName, String countyName, String stateName) {
+	public void add(GeoFeatures record) {
 		if (list.size() >= 10) {
 			list.remove(0);
 		}
-		GeoFeatures record = new GeoFeatures();
-				//Buffer(offset, featureName, countyName, stateName);
+		//GeoFeatures record1 = new GeoFeatures();
+		// Buffer(offset, featureName, countyName, stateName);
 		list.add(record);
 		size++;
 	}
-	public int size(){
+
+	public int size() {
 		return size;
 	}
 
@@ -96,7 +99,7 @@ public class BufferPool {
 		String out = "MRU\n";
 		for (int i = list.size() - 1; i >= 0; i--) {
 			GeoFeatures record = list.get(i);
-			out += record.getOff() + ":  " + record.getFeatureName() +" "+ record.getCountyName()+"\n";
+			out += record.OFFSET + ":  " + record.FEATURE_NAME +" "+ record.COUNTY_NAME+"\n";
 		}
 		out += "LRU \n";
 		return out;
