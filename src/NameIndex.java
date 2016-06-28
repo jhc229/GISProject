@@ -15,7 +15,7 @@ public class NameIndex {
 	public NameIndex(String featureName, String state) {
 		this.featureName = featureName;
 		this.state = state;
-		str =featureName + ":" + state;
+		str =featureName + "			:" + state;
 	}
 
 	/*
