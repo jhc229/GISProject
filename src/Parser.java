@@ -122,13 +122,10 @@ public class Parser {
 				// append existing datafile
 				else if (str[0].matches("import")) {
 					
-
-					db.appendFile((str[1]), count); // Add all the valid GIS records in the specified file to the database file.
-					db.importFile();
-					//db = new DataBase(dataFile, stat);
-					//db.importFile(str[1]); //GIS record file>
 					stat.write("Command  "+ cmdCount+":	" + "import: "+ str[1]  + "\n"  );
 					System.out.println("Command  "+ cmdCount+":	" + "import: "+ str[1] );
+					db.appendFile((str[1]), count); // Add all the valid GIS records in the specified file to the database file.
+					db.importFile();
 					count++; // # of import calls.
 					cmdCount++;
 					

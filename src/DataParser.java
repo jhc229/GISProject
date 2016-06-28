@@ -152,9 +152,9 @@ public class DataParser {
 		}
 
 		System.out.println("");
-		System.out.println("Imported Features by name: " + table.getCurrentSize());
+		System.out.println("Imported Features by name: " + countIdx);
 		System.out.println("Longest probe sequence:     " + table.getProbe());
-		System.out.println("Imported Locations:         " + table.getCurrentSize());
+		System.out.println("Imported Locations:         " + countIdx);
 		System.out.println("--------------------------------------------------------------------------------");
 
 		
@@ -400,8 +400,8 @@ public class DataParser {
 		// Vector<Point>pts = quadTree.find(b - halfWidth, b+ halfWidth,a -halfHeight, a +halfHeight);
 		 Vector<Point>pts = quadTree.find(minX, maxX, minY, maxY);
 		
-		 System.out.println("number of records" + pts.size());
-		 System.out.println("tree coordinates:   " + pts);
+		// System.out.println("number of records" + pts.size());
+	//	 System.out.println("tree coordinates:   " + pts);
 		 
 		///Vector<GeoFeatures> records = new Vector<GeoFeatures>(0);
 		//Vector<Integer> offsets = new Vector<Integer>(0);
