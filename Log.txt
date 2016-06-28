@@ -24,7 +24,7 @@ debug: hash
 
 ;
 ; Let's try a single-match name/state search:
-what_is: Trimble Knob  VA
+what_is: Trimble Knob VA
 
 ;
 ; Let's check the buffer pool:
@@ -40,11 +40,11 @@ debug: pool
 
 ;
 ; Let's try a few more name/state searches:
-what_is: Swope Hollow  VA
+what_is: Swope Hollow VA
 
-what_is: Possum Trot  VA
+what_is: Possum Trot VA
 
-what_is: Blue Grass  VA
+what_is: Blue Grass VA
 
 ;
 ; Let's check the buffer pool:
