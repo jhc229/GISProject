@@ -154,7 +154,7 @@ public class Parser {
 					
 					System.out.println("Command  "+ cmdCount+":	" +"what_is_at:	"+ str[1] +" " + str[2] +"\n" );
 					stat.write("Command  "+ cmdCount+":	" +"what_is_at: "+ str[1] +" " + str[2] + "\n" );
-			//		db.whatIsAt(str[1], str[2]); // geographic coordinate "382812N	0793156W "
+					db.whatIsAt(str[1], str[2]); // geographic coordinate "382812N	0793156W "
 					
 					cmdCount++;
 
@@ -168,7 +168,7 @@ public class Parser {
 					}
 					System.out.println("Command  "+ cmdCount+":	"+ "what_is : " + featureName+" "+ str[str.length-1]);
 
-		//			db.whatIs(featureName, str[str.length-1]); // <feature name> and <state abbreviation> in string
+					db.whatIs(featureName, str[str.length-1]); // <feature name> and <state abbreviation> in string
 					stat.write("Command  "+ cmdCount+":	"+ "what_is: "+ featureName +" "+ str[str.length-1] + "\n" );
 					cmdCount++;
 
@@ -180,20 +180,20 @@ public class Parser {
 					if  (str[1].matches("-l")){
 						System.out.println("Command  "+ cmdCount+":	" + "what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] + " "+  str[5]  +"\n");
 						stat.write("Command  "+ cmdCount+":	" +"what_is_in : "+ str[1] +" " + str[2] +" " + (str[3]) +" " + (str[4]) + " "+  str[5]   + "\n" );
-				//		db.whatIsInL(str[2], str[3], str[4], str[5]);
+						db.whatIsInL(str[2], str[3], str[4], str[5]);
 
 					}
 					else if (str[1].matches("-c")) {
 						System.out.println("Command  "+ cmdCount+":	" + "what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] + " "+  str[5]  +"\n") ;
 						stat.write("Command  "+ cmdCount+":	" +  "what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4]+ " "+  str[5]  + "\n" );
-				//		db.whatIsInC(str[2], str[3], str[4], str[5]);
+						db.whatIsInC(str[2], str[3], str[4], str[5]);
 
 					}
 					else {
 						//db.whatIsIn(str[1], str[2],  Integer.parseInt(str[3]), Integer.parseInt(str[4]));
 						System.out.println("Command  "+ cmdCount+":	" + "what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] +"\n");
 						stat.write("Command  "+ cmdCount+":	" + "what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4]+ "\n" );
-					//	db.whatIsIn(str[1], str[2], str[3], str[4]);
+						db.whatIsIn(str[1], str[2], str[3], str[4]);
 
 					}
 					cmdCount++;
@@ -203,7 +203,7 @@ public class Parser {
 				else if (str[0].matches("debug")) {
 					
 					System.out.println("debug: "+ str[1] + "\n"  );
-					//db.debug(str[1]);
+					db.debug(str[1]);
 					stat.write("debug: "+ str[1] + "\n" );
 					cmdCount++;
 
