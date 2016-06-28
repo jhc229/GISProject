@@ -1,67 +1,57 @@
-; Script 1
+; Script 4
 ;
-; Very basic testing of the simple search commands with a tiny DB.
+; General test of searches with a larger database file.
 ;
 ; Specify boundaries of coordinate space:
--286890 -285990 137700 138600world: 0794130W 0792630W 381500N 383000N
+-290700 -288000 133200 135900world: 0804500W 0800000W 370000N 374500N
 
 ;
-; Import some data:
+; Import a smallish DB file:
 
 
-Command  2:	import: VA_Monterey.txt
+Command  2:	import: VA_Montgomery.txt
 
 ;
-; Let's take a look at our data set... this is NOT a required feature
-; and you may comment the following command out:
-debug: world
+; Check the location and name/state indices if you dare:
 ;
-; Check the location and name/state indices:
-debug: quad
-debug: hash
-;
-; Let's try a single-match name/state search:
-Command  6:	what_is: Trimble Knob VA
+; Try a few name/state searches:
+Command  3:	what_is: Paul Derring Hall VA
+
+Command  4:	what_is: Holden Hall VA
+
+Command  5:	what_is: Sugar Bottom Hollow VA
+
+Command  6:	what_is: Blacksburg Quarry VA
 
 ;
-; Let's check the buffer pool:
-debug: pool
-;
-; Let's try a single-match location search:
-Command  8:	what_is_at: 382812N 0793156W
+; And a few location searches:
+Command  7:	what_is_at: 371347N 0802514W
+
+Command  8:	what_is_at: 370817N 0802808W
+
+Command  9:	what_is_at: 371105N 0803133W
 
 ;
-; Let's check the buffer pool:
-debug: pool
-;
-; Let's try a few more name/state searches:
-Command  10:	what_is: Swope Hollow VA
+; And a few region searches:
+Command  10:	what_is_in : 371347N 0802514W 5 5
 
-Command  11:	what_is: Possum Trot VA
+Command  11:	what_is_in : 371105N 0803133W 5 5
 
-Command  12:	what_is: Blue Grass VA
+Command  12:	what_is_in : 370822N 0802430W 10 10
 
 ;
-; Let's check the buffer pool:
-debug: pool
-;
-; Let's try a few more location searches:
-Command  14:	what_is_at: 382145N 0793031W
-
-Command  15:	what_is_at: 382442N 0793451W
-
-Command  16:	what_is_at: 382607N 0793312W
+; This one's special because there's nothing at the given coordinates,
+; but there is something within the box centered there:
+Command  13:	what_is_in : 372230N 0802230W 120 120
 
 ;
-; Let's check the buffer pool:
-debug: pool
-;
-; Let's try a two-match location search:
-Command  18:	what_is_at: 382856N 0793031W
+; And a few search failures:
+Command  14:	what_is: Monterey VA
 
-;
-; Let's check the buffer pool:
-debug: pool
+Command  15:	what_is_at: 371347N 0804505W
+
+Command  16:	what_is_in : 372230N 0802230W 10 10
+
 ;
 ; Exit
 quit 

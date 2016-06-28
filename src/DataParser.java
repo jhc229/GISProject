@@ -151,6 +151,11 @@ public class DataParser {
 			offset += dataFile.readLine().length() +1; // Next line
 		}
 
+		System.out.println("Imported Features by name: " + table.getCurrentSize());
+		System.out.println("Longest probe sequence:     " + table.getProbe());
+		System.out.println("Imported Locations:         " + table.getCurrentSize());
+
+		
 		stat.write("\n");
 	}
 

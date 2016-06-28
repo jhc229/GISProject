@@ -108,16 +108,15 @@ public class Parser {
 				if (str[0].matches(";")){
 					
 					stat.write(line + "\n" );
-					System.out.println(line + "\n");
+					System.out.println(line);
 				}
 				
 				else if (str[0].matches("world")) {  // 4 coordinates westlong eastlong southlat northlat
 					System.out.println("world: "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] );
 					db.world(str[1], str[2], str[3], str[4]);
-					stat.write("world: "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] + "\n" +"\n" );
+					stat.write("world: "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] + "\n" );
 					//cmd.diskReads =2;
 					//System.out.println("stat check: " + cmd.cacheHits + " " +cmd.diskReads);
-					cmdCount++;
 					
 				} 
 				// append existing datafile
@@ -128,7 +127,7 @@ public class Parser {
 					db.importFile();
 					//db = new DataBase(dataFile, stat);
 					//db.importFile(str[1]); //GIS record file>
-					stat.write("Command  "+ cmdCount+":	" + "import: "+ str[1]  + "\n" + "\n" );
+					stat.write("Command  "+ cmdCount+":	" + "import: "+ str[1]  + "\n"  );
 					System.out.println("Command  "+ cmdCount+":	" + "import: "+ str[1] );
 					count++; // # of import calls.
 					cmdCount++;
@@ -138,7 +137,7 @@ public class Parser {
 				else if (str[0].matches("what_is_at")) {
 					
 					System.out.println("Command  "+ cmdCount+":	" +"what_is_at:	"+ str[1] +" " + str[2] +"\n" );
-					stat.write("Command  "+ cmdCount+":	" +"what_is_at: "+ str[1] +" " + str[2] + "\n" + "\n" );
+					stat.write("Command  "+ cmdCount+":	" +"what_is_at: "+ str[1] +" " + str[2] + "\n" );
 					db.whatIsAt(str[1], str[2]); // geographic coordinate "382812N	0793156W "
 					
 					cmdCount++;
@@ -154,7 +153,7 @@ public class Parser {
 					System.out.println("Command  "+ cmdCount+":	"+ "what_is : " + featureName+" "+ str[str.length-1]);
 
 					db.whatIs(featureName, str[str.length-1]); // <feature name> and <state abbreviation> in string
-					stat.write("Command  "+ cmdCount+":	"+ "what_is: "+ featureName +" "+ str[str.length-1] + "\n" + "\n");
+					stat.write("Command  "+ cmdCount+":	"+ "what_is: "+ featureName +" "+ str[str.length-1] + "\n" );
 					cmdCount++;
 
 				} 
@@ -164,20 +163,20 @@ public class Parser {
 					// -c		<geographic coordinate>		<half-height>		<half-width>
 					if  (str[1].matches("-l")){
 						System.out.println("Command  "+ cmdCount+":	" + "what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] + " "+  str[5]  +"\n");
-						stat.write("Command  "+ cmdCount+":	" +"what_is_in : "+ str[1] +" " + str[2] +" " + (str[3]) +" " + (str[4]) + " "+  str[5]   + "\n" + "\n");
+						stat.write("Command  "+ cmdCount+":	" +"what_is_in : "+ str[1] +" " + str[2] +" " + (str[3]) +" " + (str[4]) + " "+  str[5]   + "\n" );
 						db.whatIsInL(str[2], str[3], str[4], str[5]);
 
 					}
 					else if (str[1].matches("-c")) {
 						System.out.println("Command  "+ cmdCount+":	" + "what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] + " "+  str[5]  +"\n") ;
-						stat.write("Command  "+ cmdCount+":	" +  "what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4]+ " "+  str[5]  + "\n"  + "\n");
+						stat.write("Command  "+ cmdCount+":	" +  "what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4]+ " "+  str[5]  + "\n" );
 						db.whatIsInC(str[2], str[3], str[4], str[5]);
 
 					}
 					else {
 						//db.whatIsIn(str[1], str[2],  Integer.parseInt(str[3]), Integer.parseInt(str[4]));
 						System.out.println("Command  "+ cmdCount+":	" + "what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4] +"\n");
-						stat.write("Command  "+ cmdCount+":	" + "what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4]+ "\n" + "\n");
+						stat.write("Command  "+ cmdCount+":	" + "what_is_in : "+ str[1] +" " + str[2] +" " + str[3] +" " + str[4]+ "\n" );
 						db.whatIsIn(str[1], str[2], str[3], str[4]);
 
 					}
@@ -196,7 +195,7 @@ public class Parser {
 				else if (str[0].matches("quit")) {
 					
 					System.out.println("quit: " );
-					stat.write("quit \n\n");
+					stat.write("quit \n");
 
 					//stat.append("\n quit");
 					//db.quit();

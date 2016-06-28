@@ -218,7 +218,7 @@ public class HashTable<Key, E> {
 				return probeCount;
 			}
 			//System.out.println(" sadads:  " + table[pos].getKey());
-			if (table[pos].getKey().equals(k)){ // Duplicates
+			if ((((NameIndex) tableList[pos].getKey()).nameIndexToString()).equals( ((NameIndex) k).nameIndexToString())){ // Duplicates
 				table[pos].addValue(e);
 				//numElements++;
 							//System.out.println(" iooihiohiohihohoiuohiuoihoihiohioh");
