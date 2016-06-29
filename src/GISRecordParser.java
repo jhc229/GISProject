@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 import java.io.RandomAccessFile;
+import java.nio.Buffer;
 
 /**
  * Parse the data records with given offsets.
@@ -16,6 +17,7 @@ import java.io.RandomAccessFile;
 public class GISRecordParser {
 	// ~ Fields
 	private RandomAccessFile read = null;
+	private BufferedReader bufferReader = null;
 	private long offset = 0;
 	private long endOffset = 0;
 
@@ -32,6 +34,7 @@ public class GISRecordParser {
 	public GISRecordParser(File fil, long endoffset)
 			throws IOException {
 		read = new RandomAccessFile(fil, "r");
+		bufferReader  = new BufferedReader(new FileReader(fil));
 		// stat = result;
 		read.seek(0); // initialize the pointer in the record to the beginning.
 		this.endOffset = endoffset;
