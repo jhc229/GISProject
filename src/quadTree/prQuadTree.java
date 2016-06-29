@@ -441,4 +441,56 @@ private T fFind(prQuadNode rt, T elem, int xMin, int xMax,
 			return res;
 		}
    }
+		public String treeToString(){
+			int count = 0;
+			String Out = "";
+			if (rt == null) return "";
+			printTree(rt, "");
+		}
+		
+		private String printTree(prQuadNode rt, String Pad ){
+			return Pad;
+			
+			if (rt == null) {
+				Out += (" " + pad + "*L*\n");
+				return Out;
+			}
+			// Check for and process SW and SE subtrees
+			if (!sRoot.isLeaf()) {
+				prQuadInternal p = (prQuadInternal) rt;
+				printTreeHelper(p.SW, pad + "---");
+				printTreeHelper(p.SE, pad + "---");
+			}
+
+			// Determine if at leaf or internal and display accordingly
+			if (rt.isLeaf()) {
+				prQuadLeaf p = (prQuadLeaf) rt;
+				Out += pad;
+				for (int pos = 0; pos < p.Elements.size(); pos++) {
+					Out += p.Elements.get(pos);
+
+					// prints an output every 100 leaf found
+					count++;
+					if (count % 100 == 0) {
+						System.out.println(count + " records added to tree");
+					}
+				}
+				Out += "\n";
+
+			} else if (!sRoot.isLeaf())
+				Out += (pad + "@I@\n");
+			else
+				Out += (rt.getClass().getName() + "#\n");
+
+			// Check for and process NE and NW subtrees
+			if (!sRoot.isLeaf()) {
+				prQuadInternal p = (prQuadInternal) sRoot;
+				printTreeHelper(p.NE, pad + "---");
+				printTreeHelper(p.NW, pad + "---");
+			}
+			return Out;
+		}
+			
+		
+	
 }

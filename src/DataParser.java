@@ -315,12 +315,10 @@ public class DataParser {
 				Vector<Integer> newSets = new Vector<Integer>(0);
 				//System.out.println("	The following " + pts.size() + " features were found in (" + y + " +/-" + halfHeight+", " + x + " +/-" + halfWidth + ")");
 				//System.out.println("tree coordinates:   " + pts);
-					int i;
-					for (i = 0; i < pts.size(); ++i) {
+					for (int i = 0; i < pts.size(); ++i) {
 						newSets.addAll(pts.get(i).getOffset());
 					}
-					i++;
-					System.out.println("	The following " +  i+ " features were found in (" + y + " +/-" + halfHeight + ", " + x + " +/-" + halfWidth + ")");
+					System.out.println("	The following " + newSets.size()+ " features were found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")");
 					for (GeoFeatures a : poolOffset(newSets)) {
 	
 						System.out.println(a.OFFSET + ":  " + a.FEATURE_NAME + " " + a.STATE_ALPHA + " " + a.PRIMARY_LAT_DMS.toString() + " " + a.PRIM_LONG_DMS.toString());
@@ -331,7 +329,7 @@ public class DataParser {
 				}
 			}
 		else{
-			System.out.println("     Nothing was found in (" + y + " +/-" + halfHeight+", " + x + " +/-" + halfWidth + ")");
+			System.out.println("     Nothing was found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")");
 		}
 		System.out.println("--------------------------------------------------------------------------------");
 	}
@@ -348,7 +346,7 @@ public class DataParser {
 					newSets.addAll(pts.get(i).getOffset());
 					count++;
 				}
-				System.out.println(count + " features were found in (" + y + " +/-" + halfHeight + ", " + x + " +/-" + halfWidth + ")");
+				System.out.println(count + " features were found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")");
 				poolOffset(newSets);
 
 				} catch (Exception e) {
@@ -356,7 +354,7 @@ public class DataParser {
 				}
 			}
 		else{
-			System.out.println("     Nothing was found in (" + y + " +/-" + halfHeight+", " + x + " +/-" + halfWidth + ")");
+			System.out.println("     Nothing was found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")");
 		}
 		System.out.println("--------------------------------------------------------------------------------");
 
@@ -373,7 +371,7 @@ public class DataParser {
 						newSets.addAll(pts.get(i).getOffset());
 					}
 					i++;
-					System.out.println("	The following " +  i+ " features were found in (" + y + " +/-" + halfHeight + ", " + x + " +/-" + halfWidth + ")");
+					System.out.println("	The following " +  i+ " features were found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")");
 					for (GeoFeatures a : poolOffset(newSets)) {
 	
 						System.out.println("  Feature ID   : "+ a.FEATURE_ID);
@@ -381,11 +379,14 @@ public class DataParser {
 						System.out.println("  Feature Cat  : "+ a.FEATURE_CLASS);
 						System.out.println("  State        : "+ a.STATE_ALPHA);
 						System.out.println("  County       : "+ a.COUNTY_NAME);
-						System.out.println("  Latitude     :  "+ a.PRIMARY_LAT_DMS.toString());
+						System.out.println("  Latitude     : "+ a.PRIMARY_LAT_DMS.toString());
 						System.out.println("  Longitude    : "+ a.PRIM_LONG_DMS.toString());
 						System.out.println("  Elev in ft   : "+ a.ELEV_IN_FT);
 						System.out.println("  USGS Quad    : "+ a.MAP_NAME);
-						System.out.println("  Date created : "+ a.DATE_CREATED + "\n");
+						System.out.println("  Date created : "+ a.DATE_CREATED);
+						if (a.DATE_EDITED != null) System.out.println("  Date Mod     : "+ a.DATE_EDITED);
+						System.out.println("");
+
 					}
 					
 				} catch (Exception e) {
@@ -393,7 +394,7 @@ public class DataParser {
 				}
 			}
 		else{
-			System.out.println("     Nothing was found in (" + y + " +/-" + halfHeight+", " + x + " +/-" + halfWidth + ")");
+			System.out.println("     Nothing was found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")");
 		}
 		System.out.println("--------------------------------------------------------------------------------");
 	}
@@ -455,10 +456,10 @@ public class DataParser {
 			System.out.println(pool.toString());
 		}
 		else if(arg.matches("hash")){
-			//System.out.println("Number of probes: " + table.getProbe());
-		//	System.out.println("Current table size: " + table.getCurrentSize());
-		//	System.out.println("Number of elements: " + table.getNumElements());
-		//	System.out.println("toString:     \n" + table.hashToString());
+			System.out.println("Number of probes: " + table.getProbe());
+			System.out.println("Current table size: " + table.getCurrentSize());
+			System.out.println("Number of elements: " + table.getNumElements());
+			System.out.println("toString:     \n" + table.hashToString());
 		}
 		else if(arg.matches("quad")){
 			//
