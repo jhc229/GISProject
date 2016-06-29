@@ -46,10 +46,6 @@ public class DataParser {
 	 */
 	public DataParser(File dataFile, BufferedWriter result) throws FileNotFoundException  {
 		
-		// endOffset = 265;
-		// pool = new BufferPool();
-		// table = new HashTable<NameIndex, Integer>(1024);
-		// offset = 0;
 		offset = 265;
 		data = dataFile;
 		//this.dataFile = new RandomAccessFile(dataFile, "rw");
@@ -60,7 +56,7 @@ public class DataParser {
 	}
 
 	/**
-	 * 
+	 *  This method  will appened a data file.
 	 * @param gisRecordFile
 	 * @param count
 	 * @throws IOException
@@ -84,10 +80,7 @@ public class DataParser {
 		}
 
 		while ((str =gisRecord.readLine()) != null) { 
-			//dataFile.write((str +"\n").getBytes());
-			//System.out.println(str);
 			dataFile.write((str + "\n").getBytes());
-			//System.out.println(str.length());
 
 		}
 		System.out.println(dataFile.getFilePointer());
@@ -130,7 +123,6 @@ public class DataParser {
 	 */
 	public void importFile(String filePath) throws IOException, GISRecordException {
 		
-		//gisRecords = new GISRecordParser(dataFile, endOffset); // Begin at the second line where records start.
 		int countIdx = 0;
 		
 		BufferedReader br = new BufferedReader(new FileReader(filePath));
@@ -141,21 +133,17 @@ public class DataParser {
 		try {
 			while ((line = br.readLine()) != null) {
 				GeoFeatures newRec = gisRecords.gisUpdate(line , (int) offset);
-			//	System.out.println("import Line 	 " + offset);
 				if (newRec !=null){
 					NameIndex names = new NameIndex(newRec.FEATURE_NAME, newRec.STATE_ALPHA);
 					Point dmsPoints = new Point(newRec.PRIM_LONG_DMS.toSeconds(), newRec.PRIMARY_LAT_DMS.toSeconds(), offset);
 				
 						if (dmsPoints.inBox(wLong, eLong , sLat , nLat)){
 							
-							//System.out.println("importOffset: " + offset +" "+ newRec.FEATURE_NAME);
 							table.insertHash(names, (int) offset);
-	
 							quadTree.insert(dmsPoints);
 							countIdx++;
 						}	
 		        }
-			//	System.out.println("current pointer: " + offset) ;
 				
 				offset += line.length() +1; // Next line
 			} 
@@ -172,34 +160,7 @@ public class DataParser {
 		stat.write("Longest probe sequence:     " + table.getProbe() + "\n");
 		stat.write("Imported Locations:         " + countIdx + "\n");
 		stat.write("--------------------------------------------------------------------------------");
-		/*
-		while (dataFile.readLine() != null) {
 
-			GeoFeatures newRec = gisRecords.gisRecordsUpdate(offset);
-
-			if (newRec !=null){
-				NameIndex names = new NameIndex(newRec.FEATURE_NAME, newRec.STATE_ALPHA);
-				Point dmsPoints = new Point(newRec.PRIM_LONG_DMS.toSeconds(), newRec.PRIMARY_LAT_DMS.toSeconds(), offset);
-			
-				if (dmsPoints.inBox(wLong, eLong , sLat , nLat)){
-					table.insertHash(names, (int) offset);
-
-					quadTree.insert(dmsPoints);
-					countIdx++;
-				}
-				dataFile.seek(offset); //Bring the pointer back to beginning of the line after reading from the gisRecordsUpdate
-				offset += dataFile.readLine().length() +1; // Next line
-			}
-		}
-
-		System.out.println("");
-		System.out.println("Imported Features by name: " + countIdx);
-		System.out.println("Longest probe sequence:     " + table.getProbe());
-		System.out.println("Imported Locations:         " + countIdx);
-		System.out.println("--------------------------------------------------------------------------------");
-
-		
-		stat.write("\n");*/
 	}
 
 	/**
@@ -236,14 +197,7 @@ public class DataParser {
 				 System.out.println(a.OFFSET + ":  " + a.FEATURE_NAME + " " + a.COUNTY_NAME + " "+a.STATE_ALPHA);
 				 stat.write(a.OFFSET + ":  " + a.FEATURE_NAME + " " + a.COUNTY_NAME + " "+a.STATE_ALPHA + "\n");
 			 }
-			// System.out.println(poolOffset(offset));
-			 
-			 
-		//	 System.out.println(pool.toString());
-			 //Vector<GeoFeatures> name = poolOffset(offset);
-			// for (GeoFeatures gf : name){
-			//	 System.out.println("found   " +  gf.OFFSET + ":	" + gf.FEATURE_NAME + " " + gf.COUNTY_NAME + " "+gf.STATE_ALPHA);
-			
+
 		 }
 		 else{
 				System.out.println("     Nothing was found at " + y + " "  + x );
