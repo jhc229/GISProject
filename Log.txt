@@ -10,7 +10,7 @@ GIS Program
 dbFile:	dataBase.txt
 script:	Script03.txt
 log:	Log.txt
-Start time: 2016/06/28 22:43:29
+Start time: 2016/06/28 22:51:46
 Quadtree children are printed in the order SW  SE  NE  NW
 --------------------------------------------------------------------------------
 
@@ -2554,7 +2554,7 @@ debug: hash
 ; Try a couple of range searches:
 Command  7:	what_is_in  -l 381257N 0794039W 60 60
 
-	The following 6 features were found in (0794039W +/-60, 381257N +/-60)
+	The following 7 features were found in (0794039W +/-60, 381257N +/-60)
   Feature ID   : 1481912
   Feature Name : Bolar Gap
   Feature Cat  : Gap
@@ -2630,7 +2630,7 @@ Command  7:	what_is_in  -l 381257N 0794039W 60 60
 --------------------------------------------------------------------------------
 Command  8:	what_is_in  -l 381257N 0794039W 120 60
 
-	The following 7 features were found in (0794039W +/-60, 381257N +/-120)
+	The following 8 features were found in (0794039W +/-60, 381257N +/-120)
   Feature ID   : 1481912
   Feature Name : Bolar Gap
   Feature Cat  : Gap

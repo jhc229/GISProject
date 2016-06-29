@@ -328,8 +328,8 @@ public class DataParser {
 						newSets.addAll(pts.get(i).getOffset());
 					}
 					i++;
-					System.out.println("	The following " +  i+ " features were found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")");
-					stat.write("	The following " +  i+ " features were found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")\n");
+					System.out.println("	The following " +  newSets.size()+ " features were found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")");
+					stat.write("	The following " +newSets.size()+ " features were found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")\n");
 					for (GeoFeatures a : poolOffset(newSets)) {
 	
 						System.out.println("  Feature ID   : "+ a.FEATURE_ID);
