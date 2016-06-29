@@ -7,12 +7,12 @@ world: 0794130W 0792630W 381500N 383000N
 
 GIS Program
 dbFile:	dataBase.txt
-script:	MS949
-log:	java.io.BufferedWriter@75b84c92
+script:	Script02.txt
+log:	Log.txt
 
 GIS Program
 
-Start time: 2016/06/28 21:37:44
+Start time: 2016/06/28 21:52:00
 Quadtree children are printed in the order SW  SE  NE  NW
 --------------------------------------------------------------------------------
 

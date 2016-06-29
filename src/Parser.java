@@ -46,10 +46,11 @@ public class Parser {
 	// ~ Fields
 	// ................................................................
 	private File dataFile = null;
-	private FileReader commandFile = null;
+	private File commmandFile = null;
+	private File log = null;
+	private FileReader commandReader = null;
 	private BufferedWriter stat = null;
 	
-	private Stat cmd = null;
 
 	// private File theRecord = null;
 	private DataParser db = null;
@@ -65,16 +66,18 @@ public class Parser {
 	 * @param cmdFile
 	 *            The file received.
 	 */
-	public Parser(String dataFile, File commandFile, String logFile) {
+	public Parser(String dataFile, String commandFile, String logFile) {
 		// db = new DataBase();
 		// Takes the input stream file from the main class parse through each
 		// individual line.
 		try {
 			date = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-			
-			this.dataFile = new File(dataFile);
-			this.commandFile = new FileReader(commandFile);
-			stat = new BufferedWriter(new FileWriter(logFile, false));
+			 
+			this.dataFile				= new File(dataFile);
+			this.commmandFile = new File(commandFile);
+			log 								= new File(logFile);
+			this.commandReader = new FileReader(commandFile);
+			stat = new BufferedWriter(new FileWriter(log, false));
 			
 			db = new DataParser(this.dataFile, stat);
 		}
@@ -102,7 +105,7 @@ public class Parser {
 		String line = "";
 		try {
 			//brRecord = new BufferedWriter(new FileWriter(dataFile));
-			brCommand = new BufferedReader(commandFile);
+			brCommand = new BufferedReader(commandReader);
 			newDate = new Date();
 
 			int cmdCount = 1;
@@ -124,20 +127,18 @@ public class Parser {
 					
 					System.out.println("\nGIS Program\n");
 					System.out.println("dbFile:\t"  +dataFile.getName());
-					System.out.println("script:\t" + commandFile.getClass() );
-					System.out.println("log:\t" + stat);
-					System.out.println("\nGIS Program\n");
+					System.out.println("script:\t" + commmandFile.getName() );
+					System.out.println("log:\t" +  log.getName());
 					System.out.println("Start time: " + date.format(newDate) );
 					System.out.println("Quadtree children are printed in the order SW  SE  NE  NW");
 					System.out.println("--------------------------------------------------------------------------------\n");
 					System.out.println("Latitude/longitude values in index entries are shown as signed integers, in total seconds.\n");
 					System.out.println("World boundaries are set to:");
 				
-					stat.write("\nGIS Program\n");
+					stat.write("\nGIS Program\n\n");
 					stat.write("dbFile:\t"  +dataFile.getName() + "\n");
-					stat.write("script:\t" + commandFile.getEncoding() + "\n");
-					stat.write("log:\t" + stat+ "\n");
-					stat.write("\nGIS Program\n"+ "\n");
+					stat.write("script:\t" + commmandFile.getName() + "\n");
+					stat.write("log:\t" + log.getName()+ "\n");
 					stat.write("Start time: " + date.format(newDate) + "\n");
 					stat.write("Quadtree children are printed in the order SW  SE  NE  NW"+ "\n");
 					stat.write("--------------------------------------------------------------------------------\n"+ "\n");
