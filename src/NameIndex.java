@@ -1,5 +1,6 @@
 /**
  *  Feature Name and state
+ *  This is the Key for the hash table
  * @author sean
  *
  */

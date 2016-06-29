@@ -1,5 +1,5 @@
 /**
- * DMS coordinates
+ * DMS coordinates which is used as a coordinates for prQuadtree
  * @author sean
  *
  */
@@ -58,6 +58,11 @@ public class DMScoordinates {
 		
 	}
 	
+	/*
+	 * Returns into original geograpical coordinate in string
+	 * (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	public String toString(){
 		return ""+ degree+""+minute+""+second+direction;
 	}

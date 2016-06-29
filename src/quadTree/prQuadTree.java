@@ -128,28 +128,23 @@ private prQuadNode fInsert(prQuadNode rt, T elem, int xMin, int xMax,
 		else{
 				prQuadInternal	internalNode =  new prQuadInternal(); // create an internal node
 				prQuadLeaf leafNode = (prQuadLeaf) rt;
-				
+				insert_Flag =false;
 				if (leafNode.Elements.size() < bucketSize){ // Check the number of leafs
-					insert_Flag =true;
 					//return bucketSplit(leafNode, elem);
 					//if (!bucketSplit(leafNode, elem)) leafNode.Elements.addElement(elem);
 					//return leafNode;
-					int i=0;   
-					do {
-						   if ( leafNode.Elements.get(i).equals(elem)){
-							   leafNode.Elements.get(i).addOffset(elem.getOffset());
-							   insert_Flag = true;
-							   i++;
-						   }
-						   else{
-							   insert_Flag = false;
-							   i++;
-						   }
-					   }while ( i <leafNode.Elements.size() );
+					//int i=0;   
+							for (int i = 0; i < leafNode.Elements.size(); i++) {
+										if ( leafNode.Elements.get(i).equals(elem)){
+											leafNode.Elements.get(i).addOffset(elem.getOffset());
+											insert_Flag = true;
+							  // i++;
+										}
+
+					   }//while ( i <leafNode.Elements.size() );
 					if(!insert_Flag)  leafNode.Elements.addElement(elem);
 					return leafNode;
 				}
-			
 				// For Leaf splitting, the original leafnode will be inserted into
 				// current internal node then the new element will be added.			
 					for (int i = 0; i <leafNode.Elements.size(); i++) {

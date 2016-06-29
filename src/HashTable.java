@@ -59,25 +59,7 @@ public class HashTable<Key, E> {
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void rehash() {
-		/*size *= 2;
-		KVpair[] old = tableList; // Contains the original entries
-		tableList = new KVpair[size]; // Allocate new size
 
-		
-		for (int i = 0; i < old.length; i++) { // old entries into the new one
-			//Key k = (Key) old[i].getKey(); // old k value
-			//Vector<E> e = old[i].getValue(); // old e value
-
-			if (old[i] != null) { // when it contains some value
-				if (findEntry((Key) old[i] .getKey()) == 1){
-				tableList[index_flag] = new KVpair<Key, E>((Key) old[i] .getKey(), null);
-				tableList[index_flag].setValues(old[i] .getValue());
-				}
-				//numbElements++;
-				//System.out.println(((NameIndex) old[i].getKey()).nameIndexToString() + "");
-			}
-		}*/
-		
 		ArrayList<KVpair<Key, E>> oldTable = new ArrayList<KVpair<Key, E>>();
 
 		for(int i = 0; i < size; i++){
@@ -134,13 +116,7 @@ public class HashTable<Key, E> {
 		}
 		return 0;
 	}
-	/*public Object find(Key key) {
-		KVpair<Key, E> entry = tableList[quadProbe(key)];
-		if (entry != null) {
-			return entry.getValue();
-		}
-		return null;
-	}
+/*
 	
 		public int findEntry(Key k){
 		index_flag = -1;
