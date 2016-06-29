@@ -114,7 +114,7 @@ public class Parser {
 				
 				if (str[0].matches(";")){
 					
-					stat.write(line + "\n" );
+					stat.write(line + "\n\n" );
 					System.out.println(line);
 				}
 				

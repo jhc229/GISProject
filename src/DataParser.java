@@ -462,7 +462,7 @@ public class DataParser {
 			System.out.println("toString:     \n" + table.hashToString());
 		}
 		else if(arg.matches("quad")){
-			//
+			System.out.println(quadTree.treeToString());
 		}
 
 		System.out.println("--------------------------------------------------------------------------------");

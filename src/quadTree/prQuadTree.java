@@ -441,59 +441,48 @@ private T fFind(prQuadNode rt, T elem, int xMin, int xMax,
 			return res;
 		}
    }
-	int count = 0;
-	String Out = "";
-	
+
 	
 		public String treeToString(){
-			count = 0;
-			Out = "";
-			if (root == null) return "";
-			printTree(root, "");
-			return Out;
+
+			return printTree(root, "");
 		}
 		
 		private String printTree(prQuadNode rt, String pad ){
-			return Pad;
-			
+			String resultTree = "";
 			if (rt == null) {
-				Out += (" " + pad + "*L*\n");
-				return Out;
+			
+				resultTree = "\n " + pad + "*\n";
+				return resultTree;
 			}
-			// Check for and process SW and SE subtrees
-			if (!rt.isLeaf()) {
+
+			
+			if (rt.getClass().equals(prQuadInternal.class)) {
 				prQuadInternal p = (prQuadInternal) rt;
-				printTreeHelper(p.SW, pad + "---");
-				printTreeHelper(p.SE, pad + "---");
+				
+				resultTree+= printTree(p.SE, pad + "   ");
+				resultTree+= printTree(p.SW, pad + "   ");
 			}
 
 			// Determine if at leaf or internal and display accordingly
-			if (rt.isLeaf()) {
+			if (rt.getClass().equals(prQuadLeaf.class)) {
 				prQuadLeaf p = (prQuadLeaf) rt;
-				Out += pad;
-				for (int pos = 0; pos < p.Elements.size(); pos++) {
-					Out += p.Elements.get(pos);
-
-					// prints an output every 100 leaf found
-					count++;
-					if (count % 100 == 0) {
-						System.out.println(count + " records added to tree");
-					}
+				resultTree += pad;
+				for (int i = 0; i < p.Elements.size(); i++) {
+					resultTree += p.Elements.get(i);
 				}
-				Out += "\n";
-
-			} else if (!rt.isLeaf())
-				Out += (pad + "@I@\n");
-			else
-				Out += (rt.getClass().getName() + "#\n");
-
-			// Check for and process NE and NW subtrees
-			if (!rt.isLeaf()) {
-				prQuadInternal p = (prQuadInternal) rt;
-				printTreeHelper(p.NE, pad + "---");
-				printTreeHelper(p.NW, pad + "---");
+				resultTree += "\n";
 			}
-			return Out;
+			else{
+				resultTree += "\n"+ pad + "@\n";
+			}
+
+			if (!rt.getClass().equals(prQuadLeaf.class)) {
+				prQuadInternal p = (prQuadInternal) rt;
+				resultTree += printTree(p.NE,  pad + "   ");
+				resultTree += printTree(p.NW, pad + "   ");
+			}
+			return resultTree;
 		}
 			
 		
