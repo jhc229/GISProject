@@ -228,6 +228,7 @@ public class DataParser {
 			try {
 				 for(GeoFeatures a : poolOffset(off)){
 						 System.out.println(a.OFFSET + ":  " + a.COUNTY_NAME + " " + a.PRIM_LONG_DMS.toString() + " "+a.PRIMARY_LAT_DMS.toString());
+						 stat.write(a.OFFSET + ":  " + a.COUNTY_NAME + " " + a.PRIM_LONG_DMS.toString() + " "+a.PRIMARY_LAT_DMS.toString() + "\n");
 				 }
 				
 			} catch (Exception e) {
@@ -236,6 +237,7 @@ public class DataParser {
 		}
 		 else{
 				System.out.println("No records match  " + fName + " and "  + sState );
+				stat.write("No records match  " + fName + " and "  + sState + "\n");
 		 }
 		System.out.println("--------------------------------------------------------------------------------");
 		stat.write("--------------------------------------------------------------------------------\n");

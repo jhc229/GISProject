@@ -131,28 +131,44 @@ private prQuadNode fInsert(prQuadNode rt, T elem, int xMin, int xMax,
 				
 				if (leafNode.Elements.size() < bucketSize){ // Check the number of leafs
 					insert_Flag =true;
-					return bucketSplit(leafNode, elem);
+					//return bucketSplit(leafNode, elem);
+					//if (!bucketSplit(leafNode, elem)) leafNode.Elements.addElement(elem);
+					//return leafNode;
+					int i=0;   
+					do {
+						   if ( leafNode.Elements.get(i).equals(elem)){
+							   leafNode.Elements.get(i).addOffset(elem.getOffset());
+							   insert_Flag = true;
+							   i++;
+						   }
+						   else{
+							   insert_Flag = false;
+							   i++;
+						   }
+					   }while ( i <leafNode.Elements.size() );
+					if(!insert_Flag)  leafNode.Elements.addElement(elem);
+					return leafNode;
 				}
-				else{
+			
 				// For Leaf splitting, the original leafnode will be inserted into
 				// current internal node then the new element will be added.			
 					for (int i = 0; i <leafNode.Elements.size(); i++) {
 						internalNode = (prQuadInternal) fInsert(internalNode, leafNode.Elements.get(i), xMin, xMax, yMin, yMax);
 					}
 				return internalNode = (prQuadInternal) fInsert(internalNode, elem, xMin, xMax, yMin, yMax);
-			}
+			
 		}
 	}
    
    /*
     * private helper when duplicates found or leafNodes still < bucketSize
     */
-   private prQuadLeaf bucketSplit(prQuadLeaf leafNode, T elem){
+   private Boolean bucketSplit(prQuadLeaf leafNode, T elem){
 	  //  prQuadLeaf leaf= new prQuadLeaf();
 	   // leaf = leafNode;
 		int i = 0;
 		if (elem == null) {
-			return null;
+			return false;
 		}
 	   do {
 		   if ( leafNode.Elements.get(i).equals(elem)){
@@ -164,10 +180,11 @@ private prQuadNode fInsert(prQuadNode rt, T elem, int xMin, int xMax,
 			   insert_Flag = false;
 			   i++;
 		   }
-	   }while ( leafNode.Elements.size() > i);
-		  
-	   if(insert_Flag == false) leafNode.Elements.addElement(elem);
-		return leafNode;
+	   }while ( i <leafNode.Elements.size() );
+		  return insert_Flag;
+	  // if(insert_Flag == false) leafNode.Elements.addElement(elem);
+	   
+		//return leafNode;
    }
 
    // Pre:  elem != null
