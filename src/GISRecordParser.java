@@ -49,18 +49,11 @@ public class GISRecordParser {
 	public GeoFeatures gisRecordsUpdate(long parserOffset) throws IOException, GISRecordException {
 		if ((parserOffset >= 265) && (parserOffset <= endOffset)){ //&& ((int)read.readByte() == 10)
 			GeoFeatures dataRec = new GeoFeatures();
-			//System.out.println("current pointer" + read.getFilePointer());
-			//read.seek(265);
-			//System.out.println("seek 265" + read.getFilePointer());
 			read.seek(parserOffset);
-			//System.out.println("parser pointer" + read.getFilePointer());
 			String line= read.readLine();
 			
 			String items[] = line.split("\\|");
 			dataRec.LINE = line;
-			//System.out.println("ID:  " + GeoFeatures.FEATURE_ID );
-			//System.out.println("Offset " +items[0] );
-			//System.out.println("line : 	 " + line);
 			dataRec.FEATURE_ID = Integer.parseInt(items[0]);
 			dataRec.FEATURE_NAME = items[1];
 			dataRec.FEATURE_CLASS = items[2];
@@ -111,7 +104,6 @@ public class GISRecordParser {
 			throw new GISRecordException("Offset is not positive");
 		}
 
-	//	int result = Integer.parseInt(items[0]);
 	}
 
 	
@@ -119,10 +111,6 @@ public class GISRecordParser {
 		GeoFeatures dataRec = new GeoFeatures();
 		String items[] = line.split("\\|");
 		dataRec.LINE = line;
-		//System.out.println("ID:  " + GeoFeatures.FEATURE_ID );
-		//System.out.println("LINE " + line );
-		//System.out.println("off " + parserOffset );
-		//System.out.println("item 1 	 " + items[1]);
 		dataRec.FEATURE_ID = Integer.parseInt(items[0]);
 		dataRec.FEATURE_NAME = items[1];
 		dataRec.FEATURE_CLASS = items[2];
