@@ -9,8 +9,8 @@ import java.util.Vector;
  */
 class KVpair<Key, E> {
 
-	private Key k;
-	private Vector<E> offset;
+	private Key k; // NameIndex 
+	private Vector<E> offset; // int variable
 	
 	// Constructor
 	KVpair(){

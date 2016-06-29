@@ -213,26 +213,19 @@ public class HashTable<Key, E> {
 								//System.out.println("pos:" + pos +" ");
 			if (table[pos] == null){
 				table[pos] = new KVpair<Key, E>(k, e);
-				//numElements++;
-							//System.out.println(" ");
 				return probeCount;
 			}
-			//System.out.println(" sadads:  " + table[pos].getKey());
 			if ((((NameIndex) tableList[pos].getKey()).nameIndexToString()).equals( ((NameIndex) k).nameIndexToString())){ // Duplicates
 				table[pos].addValue(e);
-				//numElements++;
-							//System.out.println(" iooihiohiohihohoiuohiuoihoihiohioh");
 				return probeCount;
 			}
 			probeCount++;
-			//pos = home + (probeCount * probeCount + probeCount) / 2
 			pos = home + step(k, probeCount);
 		    if (pos >= table.length){
 				pos = pos % table.length; 
 			}
 		}
 		return -1;
-	//	table[pos] = new KVpair<Key, E>(k, e);
 	}
 
 	
