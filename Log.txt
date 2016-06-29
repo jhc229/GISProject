@@ -10,7 +10,7 @@ GIS Program
 dbFile:	dataBase.txt
 script:	Script03.txt
 log:	Log.txt
-Start time: 2016/06/28 22:51:46
+Start time: 2016/06/28 22:52:13
 Quadtree children are printed in the order SW  SE  NE  NW
 --------------------------------------------------------------------------------
 
