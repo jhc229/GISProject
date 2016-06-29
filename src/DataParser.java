@@ -462,11 +462,11 @@ public class DataParser {
 		for (int i = 0; i < off.size(); i++) {
 			int currentOffset = off.get(i);
 			
-			GeoFeatures newRecord = pool.checkRecord(currentOffset); 
+			GeoFeatures newRecord = pool.checkPool(currentOffset); 
 			if ( newRecord != null) { // is found
 				//str += inPool.getOff() +  ":	" + inPool.getFeatureName() + " " + inPool.getCountyName() +  inPool.getStateName() + "\n";
 
-				temp.add(newRecord);
+				temp.add(newRecord); 
 			} 
 			else {
 				//System.out.println("Record:" + off);
