@@ -136,11 +136,10 @@ private prQuadNode fInsert(prQuadNode rt, T elem, int xMin, int xMax,
 				else{
 				// For Leaf splitting, the original leafnode will be inserted into
 				// current internal node then the new element will be added.			
-					for (T element : leafNode.Elements) {
-						internalNode = (prQuadInternal) fInsert(internalNode,
-								element, xMin, xMax, yMin, yMax);
+					for (int i = 0; i <leafNode.Elements.size(); i++) {
+						internalNode = (prQuadInternal) fInsert(internalNode, leafNode.Elements.get(i), xMin, xMax, yMin, yMax);
 					}
-				return internalNode = (prQuadInternal) fInsert(internalNode, elem , xMin, xMax, yMin, yMax);
+				return internalNode = (prQuadInternal) fInsert(internalNode, elem, xMin, xMax, yMin, yMax);
 			}*/
 			
 			
@@ -199,8 +198,9 @@ private prQuadNode fInsert(prQuadNode rt, T elem, int xMin, int xMax,
 			   i++;
 		   }
 	   }while ( leafNode.Elements.size() > i);
-		   leafNode.Elements.addElement(elem);
-		   return leafNode;
+		  
+	   if(insert_Flag == false) leafNode.Elements.addElement(elem);
+		return leafNode;
    }
 
    // Pre:  elem != null
@@ -422,32 +422,26 @@ private T fFind(prQuadNode rt, T elem, int xMin, int xMax,
 		
 		else { // when the node reaches leaf node, simply adds the element and
 			   // and rewind the recursive.
-			
-			prQuadLeaf leafNode = (prQuadLeaf) rt;
-			for (int i = 0; i < leafNode.Elements.size(); i++) {
 
-				// check if elem is within the region wanted
-				if (leafNode.Elements.get(i).inBox(x1, x2, y1, y2) ){
-					res.add(leafNode.Elements.get(i));
-				}
+			prQuadLeaf leafNode = (prQuadLeaf) rt;
+			for (int i= 0; i < leafNode.Elements.size(); i++){
+				if (leafNode.Elements.get(i).inBox(x1, x2, y1, y2))  res.add(leafNode.Elements.get(i));
 			}
-			
-			/*
-			for (T element : leafNode.Elements){
-				if (element.inBox(x1, x2, y1, y2)){
-					 res.add(leafNode.Elements.firstElement());
-				}
-			}*/
 			return res;
 		}
    }
 
-	
+		/*
+		 * Creates a tree into string format.
+		 */
 		public String treeToString(){
 
 			return printTree(root, "");
 		}
 		
+		/*
+		 *  private Helper class
+		 */
 		private String printTree(prQuadNode rt, String pad ){
 			String resultTree = "";
 			if (rt == null) {
