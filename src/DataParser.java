@@ -57,9 +57,7 @@ public class DataParser {
 		table = new HashTable<NameIndex, Integer>(1024);
 		pool = new BufferPool();
 		
-
 	}
-
 
 	/**
 	 * 
@@ -233,8 +231,10 @@ public class DataParser {
 		 if (p != null){
 			 Vector<Integer> offset = p.getOffset();
 			System.out.println("   The following features were found at	" + y +" " + x);
+			stat.write("   The following features were found at	" + y +" " + x + "\n");
 			 for(GeoFeatures a : poolOffset(offset)){
 				 System.out.println(a.OFFSET + ":  " + a.FEATURE_NAME + " " + a.COUNTY_NAME + " "+a.STATE_ALPHA);
+				 stat.write(a.OFFSET + ":  " + a.FEATURE_NAME + " " + a.COUNTY_NAME + " "+a.STATE_ALPHA + "\n");
 			 }
 			// System.out.println(poolOffset(offset));
 			 
@@ -247,8 +247,10 @@ public class DataParser {
 		 }
 		 else{
 				System.out.println("     Nothing was found at " + y + " "  + x );
+				stat.write("     Nothing was found at " + y + " "  + x + "\n");
 		 }
 		System.out.println("--------------------------------------------------------------------------------");
+		stat.write("--------------------------------------------------------------------------------\n");
 
 	}
 	
@@ -260,7 +262,7 @@ public class DataParser {
 	 * county name, the primary latitude, and the primary longitude. Do not log
 	 * any other data from the matching records.
 	 */
-	public void whatIs(String fName, String sState) {
+	public void whatIs(String fName, String sState) throws IOException {
 	//	Vector<GeoFeatures> records = new Vector<GeoFeatures>(0);
 		NameIndex names = new NameIndex(fName, sState);
 	//	System.out.println("whatis: ");
@@ -270,23 +272,19 @@ public class DataParser {
 		
 		if (off != null){
 			try {
-				 
 				 for(GeoFeatures a : poolOffset(off)){
 						 System.out.println(a.OFFSET + ":  " + a.COUNTY_NAME + " " + a.PRIM_LONG_DMS.toString() + " "+a.PRIMARY_LAT_DMS.toString());
 				 }
 				
 			} catch (Exception e) {
-				
 				e.printStackTrace();
 			}
-			
 		}
 		 else{
 				System.out.println("No records match  " + fName + " and "  + sState );
 		 }
-
 		System.out.println("--------------------------------------------------------------------------------");
-
+		stat.write("--------------------------------------------------------------------------------\n");
 	}
 /*
  * what_is_in<tab>-l<tab><geographic coordinate><tab><half-height><tab><half-width>
@@ -304,7 +302,7 @@ public class DataParser {
 		Do not log any data from the records themselves. The half-height and half-width are specified as seconds.
 
  	*/
-	public void whatIsIn(String x, String y, String halfHeight, String halfWidth) {
+	public void whatIsIn(String x, String y, String halfHeight, String halfWidth) throws IOException {
 		
 		Vector<Point> pts = whatIsInHelper(x, y, Integer.parseInt(halfHeight), Integer.parseInt(halfWidth));
 
@@ -317,9 +315,11 @@ public class DataParser {
 						newSets.addAll(pts.get(i).getOffset());
 					}
 					System.out.println("	The following " + newSets.size()+ " features were found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")");
+					stat.write("	The following " + newSets.size()+ " features were found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")+\n");
 					for (GeoFeatures a : poolOffset(newSets)) {
 	
 						System.out.println(a.OFFSET + ":  " + a.FEATURE_NAME + " " + a.STATE_ALPHA + " " + a.PRIMARY_LAT_DMS.toString() + " " + a.PRIM_LONG_DMS.toString());
+						stat.write(a.OFFSET + ":  " + a.FEATURE_NAME + " " + a.STATE_ALPHA + " " + a.PRIMARY_LAT_DMS.toString() + " " + a.PRIM_LONG_DMS.toString() + "\n");
 					}
 					
 				} catch (Exception e) {
@@ -328,11 +328,13 @@ public class DataParser {
 			}
 		else{
 			System.out.println("     Nothing was found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")");
+			stat.write("     Nothing was found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")\n");
 		}
 		System.out.println("--------------------------------------------------------------------------------");
+		stat.write("--------------------------------------------------------------------------------\n");
 	}
 
-	public void whatIsInC(String x, String y, String halfHeight, String halfWidth) {
+	public void whatIsInC(String x, String y, String halfHeight, String halfWidth) throws IOException {
 
 		Vector<Point> pts = whatIsInHelper(x, y, Integer.parseInt(halfHeight), Integer.parseInt(halfWidth));
 		
@@ -345,6 +347,7 @@ public class DataParser {
 					count++;
 				}
 				System.out.println(count + " features were found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")");
+				stat.write(count + " features were found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")\n");
 				poolOffset(newSets);
 
 				} catch (Exception e) {
@@ -353,12 +356,14 @@ public class DataParser {
 			}
 		else{
 			System.out.println("     Nothing was found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")");
+			stat.write("     Nothing was found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")\n");
 		}
 		System.out.println("--------------------------------------------------------------------------------");
+		stat.write("--------------------------------------------------------------------------------\n");
 
 	}
 	
-	public void whatIsInL(String x, String y, String halfHeight, String halfWidth) {
+	public void whatIsInL(String x, String y, String halfHeight, String halfWidth) throws IOException {
 		Vector<Point> pts = whatIsInHelper(x, y, Integer.parseInt(halfHeight), Integer.parseInt(halfWidth));
 		
 		if (pts.size() > 0) {
@@ -395,6 +400,8 @@ public class DataParser {
 			System.out.println("     Nothing was found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")");
 		}
 		System.out.println("--------------------------------------------------------------------------------");
+		stat.write("--------------------------------------------------------------------------------\n");
+
 	}
 		
 		
@@ -468,21 +475,13 @@ public class DataParser {
 		}
 		else if(arg.matches("quad")){
 			System.out.println(quadTree.treeToString());
+			stat.write(quadTree.treeToString());
 		}
-
+		stat.write("--------------------------------------------------------------------------------\n");
 		System.out.println("--------------------------------------------------------------------------------");
 
 	}
 
-	/**
-	 * 
-	 * @throws IOException
-	 */
-	public void quit() throws IOException {
-
-		stat.close();
-
-	}
 	private Vector<GeoFeatures> poolOffset(Vector<Integer> off)
 			throws Exception {
 		//System.out.println("current pointer" + dataFile.getFilePointer());
@@ -518,7 +517,13 @@ public class DataParser {
 		return temp;
 	}
 
-
+	/**
+	 * Close all the files
+	 * @throws IOException
+	 */
+	public void quit() throws IOException {
+		stat.close();
+	}
 
 
 }
