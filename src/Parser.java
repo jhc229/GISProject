@@ -114,7 +114,7 @@ public class Parser {
 				
 				if (str[0].matches(";")){
 					
-					stat.write(line + "\n\n" );
+					stat.write(line + "\n" );
 					System.out.println(line);
 				}
 				
@@ -124,7 +124,7 @@ public class Parser {
 					
 					System.out.println("\nGIS Program\n");
 					System.out.println("dbFile:\t"  +dataFile.getName());
-					System.out.println("script:\t" + commandFile.getEncoding() );
+					System.out.println("script:\t" + commandFile.toString() );
 					System.out.println("log:\t" + stat);
 					System.out.println("\nGIS Program\n");
 					System.out.println("Start time: " + date.format(newDate) );

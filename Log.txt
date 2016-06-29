@@ -1,37 +1,82 @@
 ; Script 2
+
 ;
+
 ; Very basic testing of the region search commands with a tiny DB.
+
 ;
+
 ; Specify boundaries of coordinate space:
+
 world: 0794130W 0792630W 381500N 383000N
+
+GIS Program
+dbFile:	dataBase.txt
+script:	MS949
+log:	java.io.BufferedWriter@75b84c92
+
+GIS Program
+
+Start time: 2016/06/28 21:33:35
+Quadtree children are printed in the order SW  SE  NE  NW
+--------------------------------------------------------------------------------
+
+Latitude/longitude values in index entries are shown as signed integers, in total seconds.
+
+World boundaries are set to:
 ;
+
 ; Import some data:
+
 Command  1:	import: VA_Monterey.txt
 
 ;
+
 ; Check the location indices:
+
 debug: quad
 debug: hash
 ;
+
 ; Let's try some variations of a single-match region search with a square region:
+
 Command  4:	what_is_in : -c 382148N 0793109W 15 15
+
 Command  5:	what_is_in : 382148N 0793109W 15 15
+
 Command  6:	what_is_in : -l 382148N 0793109W 15 15
+
 ;
+
 ; Let's check the buffer pool:
+
 debug: pool
 ;
+
 ; Let's try increasing the size of the region:
+
 Command  8:	what_is_in : 382148N 0793109W 60 60
+
 Command  9:	what_is_in : 382148N 0793109W 120 120
+
 Command  10:	what_is_in : 382148N 0793109W 180 180
+
 ;
+
 ; Let's check the buffer pool:
+
 debug: pool
 ; Now let's try a non-square region:
+
 Command  12:	what_is_in : 382957N 0793303W 240 60
+
 ;
+
 ; And another one:
+
 Command  13:	what_is_in : 382957N 0793303W 60 240
+
 ;
+
 ; Exit
+
