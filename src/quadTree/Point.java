@@ -71,10 +71,7 @@ public class Point implements Compare2D<Point> {
 	}
 
 	public boolean inBox(int xLo, int xHi, int yLo, int yHi) {
-		
-		  if ( xcoord < xLo || xcoord > xHi || ycoord < yLo || ycoord > yHi) return false;
-		  return true;
-		 
+		return xcoord >= xLo && xcoord <= xHi && ycoord >= yLo && ycoord <= yHi;
 	}
 
 	public boolean equals(Object o) {
