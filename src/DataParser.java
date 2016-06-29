@@ -22,7 +22,6 @@ import quadTree.prQuadTree;
  */
 public class DataParser {
 	// ~ Fields
-	//private RandomAccessFile dataFile = null;
 	private File data = null;
 	
 	private long offset;
@@ -34,7 +33,6 @@ public class DataParser {
 	
 	private GeoCoordinates geoCoord;
 	private DMScoordinates coord;
-	// private Stats stat = null;
 
 	public prQuadTree<Point> quadTree;
 	public BufferPool pool;
@@ -114,17 +112,13 @@ public class DataParser {
 		quadTree = new prQuadTree<Point>(wLong, eLong , sLat , nLat);
 		System.out.println("\t\t\t" +  sLat + "\n\t" + wLong + "\t\t\t" + eLong + "\n\t\t\t"+ nLat);
 		System.out.println("--------------------------------------------------------------------------------\n");
-		//stat.write(wLong+ " "+ eLong +" "+ sLat +" "+ nLat);
+		stat.write("\t\t\t" +  sLat + "\n\t" + wLong + "\t\t\t" + eLong + "\n\t\t\t"+ nLat + "\n");
+		stat.write("--------------------------------------------------------------------------------\n\n");
 		
 	}
 	
-	/**
-	 * 
-	 * @param degree
-	 * @param Minute
-	 * @param Second
-	 * @param direction
-	 * @return
+	/*
+	 *  Returns coordinate.
 	 */
 	private DMScoordinates toCoord(int degree, int Minute, int Second, String direction){
 		return coord = new DMScoordinates(degree, Minute, Second, direction);
@@ -176,6 +170,10 @@ public class DataParser {
 		System.out.println("Longest probe sequence:     " + table.getProbe());
 		System.out.println("Imported Locations:         " + countIdx);
 		System.out.println("--------------------------------------------------------------------------------");
+		stat.write("\nImported Features by name: " + countIdx + "\n");
+		stat.write("Longest probe sequence:     " + table.getProbe() + "\n");
+		stat.write("Imported Locations:         " + countIdx + "\n");
+		stat.write("--------------------------------------------------------------------------------");
 		/*
 		while (dataFile.readLine() != null) {
 
@@ -451,15 +449,22 @@ public class DataParser {
 		
 	}
  
-	public void debug(String arg) {
+	public void debug(String arg) throws IOException {
 		if (arg.matches("pool")){
 			System.out.println(pool.toString());
+			stat.write("\n" + pool.toString());
 		}
 		else if(arg.matches("hash")){
 			System.out.println("Number of probes: " + table.getProbe());
 			System.out.println("Current table size: " + table.getCurrentSize());
 			System.out.println("Number of elements: " + table.getNumElements());
 			System.out.println("toString:     \n" + table.hashToString());
+			
+			stat.write("Format of display is: \n");
+			stat.write("Slot number: data record \n");
+			stat.write("Current table size: " + table.getCurrentSize() + "\n");
+			stat.write("Number of elements in table is  :" + table.getNumElements() + "\n");
+			stat.write("\n"  + table.hashToString());
 		}
 		else if(arg.matches("quad")){
 			System.out.println(quadTree.treeToString());

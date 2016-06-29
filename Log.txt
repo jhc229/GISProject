@@ -6,26 +6,101 @@
 world: 0794130W 0792630W 381500N 383000N
 
 GIS Program
+
 dbFile:	dataBase.txt
 script:	Script02.txt
 log:	Log.txt
-
-GIS Program
-
-Start time: 2016/06/28 21:52:00
+Start time: 2016/06/28 22:05:28
 Quadtree children are printed in the order SW  SE  NE  NW
 --------------------------------------------------------------------------------
 
 Latitude/longitude values in index entries are shown as signed integers, in total seconds.
 
 World boundaries are set to:
+			137700
+	-286890			-285990
+			138600
+--------------------------------------------------------------------------------
+
 ;
 ; Import some data:
 Command  1:	import: VA_Monterey.txt
 
-;
+
+Imported Features by name: 63
+Longest probe sequence:     11
+Imported Locations:         63
+--------------------------------------------------------------------------------;
 ; Check the location indices:
 debug: quad
+Format of display is: 
+Slot number: data record 
+Current table size: 1024
+Number of elements in table is  :63
+
+0:  [Strait Creek School (historical)	:VA, [8513]]  probe: 11 
+1:  [Clover Creek	:VA, [6560]]  probe: 11 
+15:  [Possum Trot	:VA, [6940]]  probe: 11 
+16:  [Smith Field	:VA, [7818]]  probe: 11 
+31:  [Barren Rock	:VA, [4409]]  probe: 11 
+32:  [Highland Elementary School	:VA, [8225]]  probe: 11 
+47:  [Jack Mountain	:VA, [3037]]  probe: 11 
+65:  [Highland Wildlife Management Area	:VA, [2612]]  probe: 11 
+79:  [Bluegrass Valley	:VA, [515]]  probe: 11 
+95:  [Blue Grass	:VA, [387]]  probe: 11 
+96:  [Buck Hill	:VA, [675]]  probe: 11 
+98:  [Miracle Ridge	:VA, [3879]]  probe: 11 
+101:  [Doe Hill	:VA, [6693]]  probe: 11 
+105:  [Monterey	:VA, [7682]]  probe: 11 
+161:  [Seybert Chapel	:VA, [4696]]  probe: 11 
+209:  [Monterey Mountain	:VA, [4001]]  probe: 11 
+210:  [Monterey District	:VA, [8654]]  probe: 11 
+225:  [Little Doe Hill	:VA, [3593]]  probe: 11 
+255:  [Central Church	:VA, [1078]]  probe: 11 
+257:  [Strait Creek	:VA, [5102]]  probe: 11 
+258:  [West Strait Creek	:VA, [5829]]  probe: 11 
+271:  [Blue Grass School (historical)	:VA, [7942]]  probe: 11 
+305:  [Thorny Bottom Church	:VA, [5419]]  probe: 11 
+337:  [Claylick Hollow	:VA, [1201]]  probe: 11 
+353:  [Union Chapel	:VA, [5548]]  probe: 11 
+367:  [Meadow Draft	:VA, [3720]]  probe: 11 
+368:  [Seybert Hills	:VA, [7188]]  probe: 11 
+401:  [Gulf Mountain	:VA, [2223]]  probe: 11 
+417:  [Hightown Church	:VA, [2754]]  probe: 11 
+481:  [Highland High School	:VA, [2473]]  probe: 11 
+545:  [Clover Creek Presbyterian Church	:VA, [8081]]  probe: 11 
+561:  [New Salem Church	:VA, [4128]]  probe: 11 
+562:  [Sounding Knob	:VA, [7309]]  probe: 11 
+655:  [Forks of Waters	:VA, [1822]]  probe: 11 
+657:  [Ginseng Mountain	:VA, [2100]]  probe: 11 
+671:  [Vance Hollow	:VA, [5669]]  probe: 11 
+751:  [Trimble Knob	:VA, [7562]]  probe: 11 
+767:  [Swope Hollow	:VA, [5259]]  probe: 11 
+769:  [Seldom Seen Hollow	:VA, [4530]]  probe: 11 
+815:  [Town of Monterey	:VA, [8792]]  probe: 11 
+863:  [Hamilton Chapel	:VA, [2346]]  probe: 11 
+879:  [Hupman Valley	:VA, [2877]]  probe: 11 
+929:  [Crab Run	:VA, [1361]]  probe: 11 
+930:  [Davis Run	:VA, [1513]]  probe: 11 
+932:  [Elk Run	:VA, [1670]]  probe: 11 
+935:  [Frank Run	:VA, [1946]]  probe: 11 
+939:  [Key Run	:VA, [3162]]  probe: 11 
+944:  [Laurel Run	:VA, [3438]]  probe: 11 
+950:  [Peck Run	:VA, [4256]]  probe: 11 
+957:  [White Run	:VA, [5991]]  probe: 11 
+961:  [Asbury Church	:VA, [265]]  probe: 11 
+962:  [Mount Carlyle	:VA, [953]]  probe: 11 
+965:  [Wooden Run	:VA, [6142]]  probe: 11 
+974:  [Hannah Field Airport	:VA, [6294]]  probe: 11 
+984:  [Rich Hills	:VA, [7069]]  probe: 11 
+993:  [Burners Run	:VA, [797]]  probe: 11 
+994:  [Bear Mountain	:VA, [6434]]  probe: 11 
+995:  [Trimble	:VA, [7435]]  probe: 11 
+1007:  [Monterey Methodist Episcopal Church	:VA, [8369]]  probe: 11 
+1009:  [Simmons Run	:VA, [4819]]  probe: 11 
+1010:  [Southall Chapel	:VA, [4975]]  probe: 11 
+1012:  [New Hampden	:VA, [6811]]  probe: 11 
+1023:  [Lantz Mountain	:VA, [3314]]  probe: 11 
 debug: hash
 ;
 ; Let's try some variations of a single-match region search with a square region:
@@ -37,6 +112,10 @@ Command  6:	what_is_in : -l 382148N 0793109W 15 15
 
 ;
 ; Let's check the buffer pool:
+
+MRU
+3593:  1484896|Little Doe Hill|Summit|VA|51|Highland|091|382148N|0793109W|38.3634555|-79.5192122|||||988|3241|Monterey SE|09/28/1979|
+LRU 
 debug: pool
 ;
 ; Let's try increasing the size of the region:
@@ -48,6 +127,15 @@ Command  10:	what_is_in : 382148N 0793109W 180 180
 
 ;
 ; Let's check the buffer pool:
+
+MRU
+6434:  1495244|Bear Mountain|Summit|VA|51|Highland|091|382012N|0793254W|38.3367894|-79.5483795|||||1076|3530|Monterey SE|09/28/1979|
+4530:  1486995|Seldom Seen Hollow|Valley|VA|51|Highland|091|382145N|0793031W|38.3626223|-79.5086563|382227N|0793004W|38.3741667|-79.5011111|750|2461|Monterey SE|09/28/1979|
+3593:  1484896|Little Doe Hill|Summit|VA|51|Highland|091|382148N|0793109W|38.3634555|-79.5192122|||||988|3241|Monterey SE|09/28/1979|
+675:  1482110|Buck Hill|Summit|VA|51|Highland|091|381902N|0793358W|38.3173452|-79.5661577|||||1003|3291|Monterey SE|09/28/1979|
+6693:  1495470|Doe Hill|Summit|VA|51|Highland|091|382313N|0793113W|38.3870661|-79.5203237|||||1210|3970|Monterey|09/28/1979|
+8513:  1673781|Strait Creek School (historical)|School|VA|51|Highland|091|382447N|0793217W|38.4131765|-79.5381022|||||935|3068|Monterey|11/13/1995|
+LRU 
 debug: pool
 ; Now let's try a non-square region:
 Command  12:	what_is_in : 382957N 0793303W 240 60
