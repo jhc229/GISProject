@@ -47,11 +47,11 @@ public class GIS {
         String LogFileName = args[2].trim();
         
       // File dataFile = new File(datFileName);
-        File commandFile = new File(commandFileName);
+        //File commandFile = new File(commandFileName);
       //  File logFile = new File(LogFileName);
 
         // Takes the file to be parsed.
-        Parser p = new Parser(datFileName, commandFile, LogFileName);
+        Parser p = new Parser(datFileName, commandFileName, LogFileName);
         p.parsing(); // This begins the program
      }
 }
