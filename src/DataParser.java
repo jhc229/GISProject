@@ -136,7 +136,9 @@ public class DataParser {
 	 * @param string
 	 * @throws IOException
 	 */
-	public void importFile() throws IOException, GISRecordException {
+	public void importFile(String filePath, int ct) throws IOException, GISRecordException {
+		
+		
 		
 		//gisRecords = new GISRecordParser(dataFile, endOffset); // Begin at the second line where records start.
 		int countIdx = 0;
