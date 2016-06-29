@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+import javax.swing.text.StyledEditorKit.ForegroundAction;
+
 /**
  * Buffer Pool
  * 
@@ -45,58 +47,52 @@ public class BufferPool {
 	private ArrayList<GeoFeatures> list; 
 	private int size;
 
-	/**
-	 * construct a new BufferPool of size 20
-	 * @return 
-	 */
+
 	public  BufferPool() {
 		list = new ArrayList<GeoFeatures>(10);
 		size = 0;
 	}
 
-	/**
-	 * check if the pool contain a record with the desired offset
+
+	/*
+	 * Checks inside the pool
+	 * If true remove the element and place it in to the MRU slot.
 	 * 
-	 * @param offset
-	 *            the location on database file
-	 * @return the record if found, null otherwise
 	 */
-	public GeoFeatures checkRecord(int offset) {
+	public GeoFeatures checkPool(int offset) {
 		for (int i = 0; i < list.size(); i++) {
-			GeoFeatures founcRecord = list.get(i);
-			if (founcRecord.OFFSET == offset) {
+		GeoFeatures foundRecord = list.get(i);
+			if (foundRecord.OFFSET == offset) {
 				list.add(list.remove(i));
-				
-				return founcRecord;
+				return foundRecord;
 			}
 		}
 		return null;
 	}
 
-	/**
-	 * add a record into the pool if it not already in there
-	 * 
-	 * @param record
+	/*
+	 * Add method
 	 */
 	public void add(GeoFeatures record) {
-		if (list.size() >= 10) {
-			list.remove(0);
-		}
+		if (list.size() >= 10) list.remove(0);
 		//GeoFeatures record1 = new GeoFeatures();
 		// Buffer(offset, featureName, countyName, stateName);
 		list.add(record);
 		size++;
 	}
 
+	/*
+	 * Returns pool current size.
+	 */
 	public int size() {
 		return size;
 	}
 
-	/**
-	 * print the pool in a nice looking format
+	/*
+	 * Buffer lists to string in MRU to LRU
 	 */
 	public String toString() {
-		String out = "MRU\n";
+		String out = "MRU   \n";
 		for (int i = list.size() - 1; i >= 0; i--) {
 			GeoFeatures record = list.get(i);
 			out += record.OFFSET + ":  " + record.LINE +"\n";
