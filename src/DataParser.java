@@ -346,8 +346,8 @@ public class DataParser {
 					newSets.addAll(pts.get(i).getOffset());
 					count++;
 				}
-				System.out.println(count + " features were found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")");
-				stat.write(count + " features were found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")\n");
+				System.out.println( newSets.size() + " features were found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")");
+				stat.write( newSets.size() + " features were found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")\n");
 				poolOffset(newSets);
 
 				} catch (Exception e) {
@@ -375,6 +375,7 @@ public class DataParser {
 					}
 					i++;
 					System.out.println("	The following " +  i+ " features were found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")");
+					stat.write("	The following " +  i+ " features were found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")\n");
 					for (GeoFeatures a : poolOffset(newSets)) {
 	
 						System.out.println("  Feature ID   : "+ a.FEATURE_ID);
@@ -387,7 +388,21 @@ public class DataParser {
 						System.out.println("  Elev in ft   : "+ a.ELEV_IN_FT);
 						System.out.println("  USGS Quad    : "+ a.MAP_NAME);
 						System.out.println("  Date created : "+ a.DATE_CREATED);
-						if (a.DATE_EDITED != null) System.out.println("  Date Mod     : "+ a.DATE_EDITED);
+						stat.write("  Feature ID   : "+ a.FEATURE_ID + "\n");
+						stat.write("  Feature Name : "+ a.FEATURE_NAME+ "\n");
+						stat.write("  Feature Cat  : "+ a.FEATURE_CLASS+ "\n");
+						stat.write("  State        : "+ a.STATE_ALPHA+ "\n");
+						stat.write("  County       : "+ a.COUNTY_NAME+ "\n");
+						stat.write("  Latitude     : "+ a.PRIMARY_LAT_DMS.toString()+ "\n");
+						stat.write("  Longitude    : "+ a.PRIM_LONG_DMS.toString()+ "\n");
+						stat.write("  Elev in ft   : "+ a.ELEV_IN_FT+ "\n");
+						stat.write("  USGS Quad    : "+ a.MAP_NAME+ "\n");
+						stat.write("  Date created : "+ a.DATE_CREATED+ "\n");
+
+						if (a.DATE_EDITED != null){
+							System.out.println("  Date Mod     : "+ a.DATE_EDITED);
+							stat.write("  Date Mod     : "+ a.DATE_EDITED+ "\n");
+						}
 						System.out.println("");
 
 					}
@@ -398,6 +413,7 @@ public class DataParser {
 			}
 		else{
 			System.out.println("     Nothing was found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")");
+			stat.write("     Nothing was found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")");
 		}
 		System.out.println("--------------------------------------------------------------------------------");
 		stat.write("--------------------------------------------------------------------------------\n");
@@ -450,7 +466,6 @@ public class DataParser {
 		
 		// Vector<Point>pts = quadTree.find(b - halfWidth, b+ halfWidth,a -halfHeight, a +halfHeight);
 		 Vector<Point>pts = quadTree.find(minX, maxX, minY, maxY);
-		
 		
 		return pts;
 		
@@ -513,7 +528,6 @@ public class DataParser {
 				//pool.add(dataRec.OFFSET, dataRec.FEATURE_NAME, dataRec.COUNTY_NAME, dataRec.STATE_ALPHA);
 			}
 		}
-	//	dataFile.seek(0);
 		return temp;
 	}
 

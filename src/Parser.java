@@ -163,8 +163,8 @@ public class Parser {
 				
 				else if (str[0].matches("what_is_at")) {
 					
-					System.out.println("Command  "+ cmdCount+":	" +"what_is_at:	"+ str[1] +" " + str[2] +"\n" );
-					stat.write("Command  "+ cmdCount+":	" +"what_is_at: "+ str[1] +" " + str[2] + "\n" + "\n");
+					System.out.println("Command  "+ cmdCount+":	" +"what_is_at	"+ str[1] +" " + str[2] +"\n" );
+					stat.write("Command  "+ cmdCount+":	" +"what_is_at "+ str[1] +" " + str[2] + "\n" + "\n");
 					db.whatIsAt(str[1], str[2]); // geographic coordinate "382812N	0793156W "
 					
 					cmdCount++;
@@ -177,7 +177,7 @@ public class Parser {
 					for (int i =2; i<str.length-1; i++){
 						featureName += " "+ str[i];
 					}
-					System.out.println("Command  "+ cmdCount+":	"+ "what_is : " + featureName+" "+ str[str.length-1]);
+					System.out.println("Command  "+ cmdCount+":	"+ "what_is  " + featureName+" "+ str[str.length-1]);
 					stat.write("Command  "+ cmdCount+":	"+ "what_is: "+ featureName +" "+ str[str.length-1] + "\n" );
 
 					db.whatIs(featureName, str[str.length-1]); // <feature name> and <state abbreviation> in string
