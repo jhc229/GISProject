@@ -136,18 +136,16 @@ public class DataParser {
 	 * @param string
 	 * @throws IOException
 	 */
-	public void importFile(String filePath, int ct) throws IOException, GISRecordException {
-		
-		
+	public void importFile(String filePath) throws IOException, GISRecordException {
 		
 		//gisRecords = new GISRecordParser(dataFile, endOffset); // Begin at the second line where records start.
 		int countIdx = 0;
 		
-		BufferedReader br = new BufferedReader(new FileReader(data));
+		BufferedReader br = new BufferedReader(new FileReader(filePath));
 		gisRecords = new GISRecordParser(data, endOffset);
 
 		br.readLine();
-		String line, cvsSplitBy = ",";
+		String line = "";
 		try {
 			while ((line = br.readLine()) != null) {
 				GeoFeatures newRec = gisRecords.gisUpdate(line , (int) offset);
@@ -158,7 +156,7 @@ public class DataParser {
 				
 						if (dmsPoints.inBox(wLong, eLong , sLat , nLat)){
 							
-							System.out.println("importOffset: " + offset +" "+ newRec.FEATURE_NAME);
+							//System.out.println("importOffset: " + offset +" "+ newRec.FEATURE_NAME);
 							table.insertHash(names, (int) offset);
 	
 							quadTree.insert(dmsPoints);
@@ -387,7 +385,7 @@ public class DataParser {
 						System.out.println("  Longitude    : "+ a.PRIM_LONG_DMS.toString());
 						System.out.println("  Elev in ft   : "+ a.ELEV_IN_FT);
 						System.out.println("  USGS Quad    : "+ a.MAP_NAME);
-						System.out.println("  Date created : "+ a.DATE_CREATED);
+						System.out.println("  Date created : "+ a.DATE_CREATED + "\n");
 					}
 					
 				} catch (Exception e) {
@@ -497,8 +495,8 @@ public class DataParser {
 				temp.add(newRecord);
 			} 
 			else {
-				System.out.println("Record:" + off);
-				System.out.println("curoff :" + currentOffset);
+				//System.out.println("Record:" + off);
+				//System.out.println("curoff :" + currentOffset);
 				GeoFeatures dataRec = new GeoFeatures();
 				dataRec= gisRecord.gisRecordsUpdate(currentOffset);
 				
