@@ -441,14 +441,19 @@ private T fFind(prQuadNode rt, T elem, int xMin, int xMax,
 			return res;
 		}
    }
+	int count = 0;
+	String Out = "";
+	
+	
 		public String treeToString(){
-			int count = 0;
-			String Out = "";
-			if (rt == null) return "";
-			printTree(rt, "");
+			count = 0;
+			Out = "";
+			if (root == null) return "";
+			printTree(root, "");
+			return Out;
 		}
 		
-		private String printTree(prQuadNode rt, String Pad ){
+		private String printTree(prQuadNode rt, String pad ){
 			return Pad;
 			
 			if (rt == null) {
@@ -456,7 +461,7 @@ private T fFind(prQuadNode rt, T elem, int xMin, int xMax,
 				return Out;
 			}
 			// Check for and process SW and SE subtrees
-			if (!sRoot.isLeaf()) {
+			if (!rt.isLeaf()) {
 				prQuadInternal p = (prQuadInternal) rt;
 				printTreeHelper(p.SW, pad + "---");
 				printTreeHelper(p.SE, pad + "---");
@@ -477,14 +482,14 @@ private T fFind(prQuadNode rt, T elem, int xMin, int xMax,
 				}
 				Out += "\n";
 
-			} else if (!sRoot.isLeaf())
+			} else if (!rt.isLeaf())
 				Out += (pad + "@I@\n");
 			else
 				Out += (rt.getClass().getName() + "#\n");
 
 			// Check for and process NE and NW subtrees
-			if (!sRoot.isLeaf()) {
-				prQuadInternal p = (prQuadInternal) sRoot;
+			if (!rt.isLeaf()) {
+				prQuadInternal p = (prQuadInternal) rt;
 				printTreeHelper(p.NE, pad + "---");
 				printTreeHelper(p.NW, pad + "---");
 			}
