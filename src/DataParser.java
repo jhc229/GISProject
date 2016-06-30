@@ -162,7 +162,7 @@ public class DataParser {
 		stat.write("\nImported Features by name: " + countIdx + "\n");
 		stat.write("Longest probe sequence:     " + table.getProbe() + "\n");
 		stat.write("Imported Locations:         " + countIdx + "\n");
-		stat.write("--------------------------------------------------------------------------------");
+		stat.write("--------------------------------------------------------------------------------\n");
 
 	}
 
@@ -374,7 +374,7 @@ public class DataParser {
 			}
 		else{
 			System.out.println("     Nothing was found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")");
-			stat.write("     Nothing was found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")");
+			stat.write("     Nothing was found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")\n");
 		}
 		System.out.println("--------------------------------------------------------------------------------");
 		stat.write("--------------------------------------------------------------------------------\n");
