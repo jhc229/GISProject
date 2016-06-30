@@ -43,136 +43,13 @@ public class HashTable<Key, E> {
 	 * insert element into hashtable
 	 */
 	public void insertHash(Key k, E e){
-		//System.out.println("probe?? " + longestProbe);
 		longestProbe =  Math.max(fInsertHash(tableList, k, e), longestProbe); 
-		//System.out.println("probe:   " + longestProbe);
-
 		numbElements++;
 		if ( ((double)numbElements/ (double)size) >= .70){
-			//System.out.println("size???  " + size );
 			rehash(); // Rehash the table when it reaches 70% full
 		}
 	}
 	
-	/*
-	 * Linear time, inserting N items costs
-	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private void rehash() {
-
-		ArrayList<KVpair<Key, E>> oldTable = new ArrayList<KVpair<Key, E>>();
-
-		for(int i = 0; i < size; i++){
-			if(tableList[i] != null){
-				oldTable.add(tableList[i]);
-			}
-		}
-		// Create new table for the function
-		size *= 2;
-		tableList = new KVpair[size];
-	//	System.out.println("newsize: "+ tableList.length);
-		
-		// Rehash all the elements into the new table
-		for(KVpair<Key, E> x : oldTable){
-			if(x != null){
-				fInsertHash(tableList, x.getKey(), x.getValue().firstElement());
-			}
-		}
-	}
-	
-	/*
-	 * index_flag holds the index of the given key.
-	 * Return 0 when nothing is found but its available for storage.
-	 * 				 1 when there is key found given key entry.
-	 * @param k
-	 * @return
-	 */
-	public int findEntry(Key key) {
-		int home;
-		int index = home = Math.abs((elfHash( ((NameIndex) key).nameIndexToString() )) % size); 
-		int probeCount = 0;
-		//System.out.println("quadprobe arg1 " + ((NameIndex) key).nameIndexToString());
-		//System.out.println("quadprobe arg2 " +   ((NameIndex) tableList[1012].getKey()).nameIndexToString());
-		//System.out.println("compare " +   tableList[1012].getKey());
-		//System.out.println("compare " +   key);
-		
-		// keep looking if the space exists and the key is not already in there
-		while (tableList[index] != null) {
-			//System.out.println("quadprobe arg1 " + ((NameIndex) key).nameIndexToString());
-			//System.out.println("quadprobe arg2 " +   ((NameIndex) tableList[index].getKey()).nameIndexToString());
-			//System.out.println("compare1 " +   key);
-			//System.out.println("compare2 " +   tableList[index].getKey());
-
-			if ( (((NameIndex) tableList[index].getKey()).nameIndexToString()).equals( ((NameIndex) key).nameIndexToString())) {
-				//System.out.println("matching arg " +   ((NameIndex) tableList[index].getKey()).nameIndexToString());
-				index_flag =index;
-				return 1;
-			}
-			probeCount++;
-			index = home + ((probeCount * probeCount + probeCount)/2);;
-			if (index >= size){
-				index = index % size;
-			}
-		}
-		return 0;
-	}
-/*
-	
-		public int findEntry(Key k){
-		index_flag = -1;
-		int probeCount = 0; //update probe
-
-		if (k == ""){
-			index_flag = -1;
-			return -1;
-		}
-		int home; 
-		
-	//	int pos = home = (Math.abs(k.hashCode()) % size); 
-		int pos = home = Math.abs((elfHash( ((NameIndex) k).nameIndexToString() )) % size); 
-		for (int i = 0; i < size; i++){
-			//Key entry1 = tableList[pos].getKey();
-			//System.out.println(size);
-			//System.out.println(tableList[pos]);
-			if (tableList[pos] == null){
-				//System.out.println("skip");
-			}
-			else if (tableList[pos].getKey().equals(k)){
-				index_flag= pos;			//index_flag will hold the key found
-				return 1;	//Found
-			}
-			else if (index_flag < 0){
-				index_flag = pos;
-			}
-			probeCount++;
-			pos = home + step(k, probeCount);
-			if (pos >= size){
-				pos = pos % size;
-			}
-		}
-		return 0; //Not found
-	}
-	
-	
-	*/
-	/*
-	 *  Get Key
-	 */
-	public NameIndex getNameIndex(Key k){
-		int a = findEntry(k);
-		if (a <= 0) return null;
-		return (NameIndex) tableList[index_flag].getKey();
-	}
-	
-	/*
-	 * Get Vector<E>
-	 */
-	public Vector<E> getEntries(Key k){
-		int a = findEntry(k);
-		if (a <= 0) return null;
-		return tableList[index_flag].getValue();
-	}
-
 	/*
 	 *  (n^2  + n) /2
 	 *  
@@ -205,21 +82,76 @@ public class HashTable<Key, E> {
 	}
 
 	
-	private static int elfHash(String str) {
-		long hashValue = 0;
-		for (int Pos = 0; Pos < str.length(); Pos++) { // use all elements
+	/*
+	 * Linear time, inserting N items costs
+	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private void rehash() {
 
-			hashValue = (hashValue << 4) + str.charAt(Pos); // shift/mix
+		ArrayList<KVpair<Key, E>> oldTable = new ArrayList<KVpair<Key, E>>();
 
-			long hiBits = hashValue &  0xF000000000000000L; // get high nybble
-
-			if (hiBits != 0)
-				hashValue ^= hiBits >> 56; // xor high nybble with second nybble
-
-			hashValue &= ~hiBits; // clear high nybble
+		for(int i = 0; i < size; i++){
+			if(tableList[i] != null){
+				oldTable.add(tableList[i]);
+			}
 		}
-		return (int) hashValue;
+		// Create new table for the function
+		size *= 2;
+		tableList = new KVpair[size];
+		
+		// Rehash all the elements into the new table
+		for(KVpair<Key, E> x : oldTable){
+			if(x != null){
+				fInsertHash(tableList, x.getKey(), x.getValue().firstElement());
+			}
+		}
 	}
+	
+	/*
+	 * index_flag holds the index of the given key.
+	 * Return 0 when nothing is found but its available for storage.
+	 * 				 1 when there is key found given key entry.
+	 * @param k
+	 * @return
+	 */
+	public int findEntry(Key key) {
+		int home;
+		int index = home = Math.abs((elfHash( ((NameIndex) key).nameIndexToString() )) % size); 
+		int probeCount = 0;
+		
+		while (tableList[index] != null) {
+			// Concatnate both keys so that they compare correct values
+			if ( (((NameIndex) tableList[index].getKey()).nameIndexToString()).equals( ((NameIndex) key).nameIndexToString())) {
+				index_flag =index;
+				return 1;
+			}
+			probeCount++;
+			index = home + ((probeCount * probeCount + probeCount)/2);;
+			if (index >= size){
+				index = index % size;
+			}
+		}
+		return 0;
+	}
+
+	/*
+	 *  Get Key
+	 */
+	public NameIndex getNameIndex(Key k){
+		int a = findEntry(k);
+		if (a <= 0) return null;
+		return (NameIndex) tableList[index_flag].getKey();
+	}
+	
+	/*
+	 * Get Vector<E>
+	 */
+	public Vector<E> getEntries(Key k){
+		int a = findEntry(k);
+		if (a <= 0) return null;
+		return tableList[index_flag].getValue();
+	}
+
 	
 	/**
 	 * Get the number of probes
@@ -245,7 +177,30 @@ public class HashTable<Key, E> {
 		return size;
 	}
 	
+	/*
+	 * Source code from course notes.
+	 * (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	private static int elfHash(String str) {
+		long hashValue = 0;
+		for (int Pos = 0; Pos < str.length(); Pos++) { // use all elements
 
+			hashValue = (hashValue << 4) + str.charAt(Pos); // shift/mix
+
+			long hiBits = hashValue &  0xF000000000000000L; // get high nybble
+
+			if (hiBits != 0)
+				hashValue ^= hiBits >> 56; // xor high nybble with second nybble
+
+			hashValue &= ~hiBits; // clear high nybble
+		}
+		return (int) hashValue;
+	}
+
+	/*
+	 * This is used to print out all hash values in the following format.
+	 */
 	public String hashToString(){
 		
 		String output = "";

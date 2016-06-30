@@ -11,45 +11,12 @@ import javax.swing.text.StyledEditorKit.ForegroundAction;
 public class BufferPool {
 
 	
-	/*
-	public class Buffer {
-		private final int offset;
-		private final String name;
-		private final String cName;
-		private final String sName;
-
-		public Buffer(int off, String name, String cName, String sName) {
-			offset = off;
-			this.name = name;
-			this.cName = cName;
-			this.sName = sName;
-
-		}
-
-		public int getOff() {
-			return offset;
-		}
-
-		public String getFeatureName() {
-			return name;
-
-		}
-
-		public String getCountyName() {
-			return cName;
-		}
-		
-		public String getStateName() {
-			return sName;
-		}
-	}
-*/
-	private ArrayList<GeoFeatures> list; 
+	private ArrayList<GeoFeatures> bufferList; 
 	private int size;
 
 
 	public  BufferPool() {
-		list = new ArrayList<GeoFeatures>(10);
+		bufferList = new ArrayList<GeoFeatures>(10);
 		size = 0;
 	}
 
@@ -60,10 +27,10 @@ public class BufferPool {
 	 * 
 	 */
 	public GeoFeatures checkPool(int offset) {
-		for (int i = 0; i < list.size(); i++) {
-		GeoFeatures foundRecord = list.get(i);
+		for (int i = 0; i < bufferList.size(); i++) {
+		GeoFeatures foundRecord = bufferList.get(i);
 			if (foundRecord.OFFSET == offset) {
-				list.add(list.remove(i));
+				bufferList.add(bufferList.remove(i));
 				return foundRecord;
 			}
 		}
@@ -74,10 +41,10 @@ public class BufferPool {
 	 * Add method
 	 */
 	public void add(GeoFeatures record) {
-		if (list.size() >= 10) list.remove(0);
+		if (bufferList.size() >= 10) bufferList.remove(0);
 		//GeoFeatures record1 = new GeoFeatures();
 		// Buffer(offset, featureName, countyName, stateName);
-		list.add(record);
+		bufferList.add(record);
 		size++;
 	}
 
@@ -93,8 +60,8 @@ public class BufferPool {
 	 */
 	public String toString() {
 		String out = "MRU   \n";
-		for (int i = list.size() - 1; i >= 0; i--) {
-			GeoFeatures record = list.get(i);
+		for (int i = bufferList.size() - 1; i >= 0; i--) {
+			GeoFeatures record = bufferList.get(i);
 			out += record.OFFSET + ":  " + record.LINE +"\n";
 		}
 		out += "LRU \n";
