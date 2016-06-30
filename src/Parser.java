@@ -214,8 +214,8 @@ public class Parser {
 				else if (str[0].matches("debug")) {
 					
 					System.out.println("debug: "+ str[1] + "\n\n"  );
-					db.debug(str[1]);
 					stat.write("debug: "+ str[1] + "\n" );
+					db.debug(str[1]);
 					cmdCount++;
 
 				}
@@ -223,9 +223,12 @@ public class Parser {
 					
 					System.out.println("Command "+ cmdCount + ":  quit\n" );
 					System.out.println("Terminating execution of commands.\n" +LocalDateTime.now());
-
+					stat.write("Command "+ cmdCount + ":  quit\n\n" );
+					stat.write("Terminating execution of commands.\n" +LocalDateTime.now() + "\n");
 					newDate = new Date();
 					System.out.println("End time:  " + date.format(newDate) );
+					stat.write("End time:  " + date.format(newDate) );
+					
 					db.quit();
 					
 					//stat.append("\n quit");
