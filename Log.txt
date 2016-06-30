@@ -1,243 +1,304 @@
-; Script 5
+; Script 7
 ;
-; Test of "extreme" region searches with a larger database file.
+; Test of searches and the buffer pool with another large database file.
 ;
 ; Specify boundaries of coordinate space:
-world: 0804500W 0800000W 370000N 374500N
+world: 1100000W 1020000W 303000N 383000N
 
 GIS Program
 
 dbFile:	dataBase.txt
-script:	Script05.txt
+script:	Script07.txt
 log:	Log.txt
-Start time: 2016/06/30 12:57:49
+Start time: 2016/06/30 13:12:03
 Quadtree children are printed in the order SW  SE  NE  NW
 --------------------------------------------------------------------------------
 
 Latitude/longitude values in index entries are shown as signed integers, in total seconds.
 
 World boundaries are set to:
-			133200
-	-290700			-288000
-			135900
+			109800
+	-396000			-367200
+			138600
 --------------------------------------------------------------------------------
 
 ;
-; Import a smallish DB file:
-Command  1:	import: VA_Montgomery.txt
+; Import a large DB file:
+Command  1:	import: NM_All.txt
 
 
-Imported Features by name: 752
-Longest probe sequence:     85
-Imported Locations:         752
+Imported Features by name: 50633
+Longest probe sequence:     3885
+Imported Locations:         50633
 --------------------------------------------------------------------------------;
 ; Check the location and name/state indices if you dare:
 ;
-; And a few region searches:
-Command  2:	what_is_in  370359N 0802626W 10 10
+; Try a few name/state searches:
+Command  2:	what_is Clines Corners NM
 
-	The following 2 features were found in (0802626W +/-10, 370359N +/-10)+
-12722:  Riner VA 37359N 802626W
-78819:  Riner Historic District VA 37350N 802625W
+1807716:  Torrance 105409W 35034N
 --------------------------------------------------------------------------------
-Command  3:	what_is_in  370359N 0802626W 30 30
+Command  3:	what_is 11476 Water Well NM
 
-	The following 6 features were found in (0802626W +/-30, 370359N +/-30)+
-101691:  Auburn Elementary School VA 37341N 802645W
-12722:  Riner VA 37359N 802626W
-265:  Auburn High School VA 37343N 802634W
-78682:  Auburn Middle School VA 37347N 802632W
-78819:  Riner Historic District VA 37350N 802625W
-104373:  Riner Census Designated Place VA 37346N 802622W
+6051198:  Curry 103957W 345047N
+6651211:  Roosevelt 103446W 334935N
 --------------------------------------------------------------------------------
-Command  4:	what_is_in  370930N 0801859W 10 10
+Command  4:	what_is Trinity Site NM
 
-	The following 2 features were found in (0801859W +/-10, 370930N +/-10)+
-17443:  Montgomery VA 37923N 80198W
-47615:  Big Tunnel VA 37930N 801859W
+2340590:  Socorro 1062831W 334038N
 --------------------------------------------------------------------------------
-Command  5:	what_is_in  370930N 0801859W 30 30
+Command  5:	what_is Brazos Cliffs NM
 
-	The following 5 features were found in (0801859W +/-30, 370930N +/-30)+
-17443:  Montgomery VA 37923N 80198W
-47615:  Big Tunnel VA 37930N 801859W
-5276:  Den Hill Cemetery VA 37920N 801844W
-10676:  Mount Calvary Church VA 37919N 801848W
-55765:  Den Hill VA 37920N 801847W
+206013:  Rio Arriba 1062337W 364458N
 --------------------------------------------------------------------------------
-Command  6:	what_is_in  371347N 0802514W 5 5
+Command  6:	what_is Tierra Amarilla NM
 
-	The following 14 features were found in (0802514W +/-5, 371347N +/-5)+
-67006:  McBryde Hall VA 371349N 802519W
-58561:  Femoyer Hall VA 371352N 802517W
-92754:  Robert Femoyer Hall VA 371352N 802517W
-66868:  Major Williams Dormitory VA 371351N 802515W
-98990:  Major Lloyd W Williams Hall VA 371352N 802516W
-94855:  Arts and Science Administration Building VA 371352N 802513W
-98020:  James H Lane Hall VA 371351N 802512W
-49514:  Brodie Hall VA 371348N 802512W
-64863:  Lane Hall VA 371351N 802511W
-78022:  Rasche Hall VA 371351N 80259W
-93907:  William H "Bosco" Rasche Hall VA 371350N 80259W
-93317:  Torgersen Hall VA 371347N 802514W
-93626:  War Memorial Chapel VA 371343N 802515W
-71827:  Newman Library VA 371344N 802510W
+5114619:  Rio Arriba 1063259W 36421N
 --------------------------------------------------------------------------------
-Command  7:	what_is_in  371347N 0802514W 10 10
+Command  7:	what_is Truth or Consequences NM
 
-	The following 39 features were found in (0802514W +/-10, 371347N +/-10)+
-92498:  Price House VA 371352N 802521W
-77895:  Randolph Hall VA 371351N 802524W
-98716:  Lingan Randolph Hall VA 371350N 802524W
-67006:  McBryde Hall VA 371349N 802519W
-72224:  Norris Hall VA 371348N 802521W
-60465:  Holden Hall VA 371347N 802524W
-74430:  Patton Hall VA 371345N 802520W
-94051:  William Patton Hall VA 371345N 802521W
-93055:  Roy Holden Hall VA 371340N 802521W
-68615:  Monteith Hall VA 371355N 802513W
-86337:  Thomas Hall VA 371354N 802515W
-94710:  Art and Design Learning Center VA 371354N 802515W
-97229:  Herbert J Thomas Hall VA 371356N 802513W
-99657:  Military Building VA 371354N 802518W
-100074:  Old Security Building VA 371353N 802518W
-81044:  Shanks Hall VA 371354N 802512W
-82119:  Shultz Hall VA 371354N 80257W
-97627:  J H Shultz Hall VA 371354N 80257W
-98147:  Jimmie Monteith Junior Hall VA 371354N 802511W
-58561:  Femoyer Hall VA 371352N 802517W
-92754:  Robert Femoyer Hall VA 371352N 802517W
-66868:  Major Williams Dormitory VA 371351N 802515W
-98990:  Major Lloyd W Williams Hall VA 371352N 802516W
-94855:  Arts and Science Administration Building VA 371352N 802513W
-98020:  James H Lane Hall VA 371351N 802512W
-49514:  Brodie Hall VA 371348N 802512W
-64863:  Lane Hall VA 371351N 802511W
-78022:  Rasche Hall VA 371351N 80259W
-93907:  William H "Bosco" Rasche Hall VA 371350N 80259W
-93317:  Torgersen Hall VA 371347N 802514W
-93626:  War Memorial Chapel VA 371343N 802515W
-71827:  Newman Library VA 371344N 802510W
-84421:  Squires Hall VA 371346N 80256W
-98289:  John Houston Squires Student Center VA 371346N 80256W
-57525:  Eggleston Hall VA 371338N 802513W
-56411:  Donaldson Brown Continuing Education Center VA 371342N 80254W
-94437:  Alumni Hall-Virginia Tech VA 371342N 80255W
-95266:  Charles Vawter Senior Hall VA 371337N 80254W
-95955:  Donaldson Brown Hotel and Conference Center VA 371341N 80254W
+1647335:  Sierra 1071510W 33742N
 --------------------------------------------------------------------------------
 ;
-; And one that extends outside the region (that IS fair):
-Command  8:	what_is_in  370157N 0802908W 240 60
+; Let's see what the buffer pool looks like now:
+debug: pool
 
-	The following 8 features were found in (0802908W +/-60, 370157N +/-240)+
-6462:  Fairview Church VA 3730N 802953W
-51795:  Childress School (historical) VA 37342N 802954W
-58165:  Fairview VA 3732N 802951W
-3130:  Calfee Knob VA 37157N 80298W
-13973:  Sidney Church VA 37144N 802815W
-1068:  Bethany Church VA 37048N 802843W
-10805:  Mount Jackson Church VA 37037N 802851W
-51653:  Chestnut Ridge School (historical) VA 37047N 802844W
+
+MRU
+    1647335:  897496|Truth or Consequences|Populated Place|NM|35|Sierra|051|330742N|1071510W|33.1284047|-107.2528069|||||1294|4245|Cuchillo|11/13/1980|03/21/2008
+    5114619:  923704|Tierra Amarilla|Populated Place|NM|35|Rio Arriba|039|364201N|1063259W|36.7002922|-106.5497566|||||2295|7529|Tierra Amarilla|11/13/1980|01/29/2011
+    206013:  886720|Brazos Cliffs|Cliff|NM|35|Rio Arriba|039|364458N|1062337W|36.7494587|-106.393641|||||2991|9813|Penasco Amarillo|11/13/1980|
+    2340590:  902746|Trinity Site|Locale|NM|35|Socorro|053|334038N|1062831W|33.6772929|-106.4752871|||||1500|4921|Trinity Site|01/01/1993|
+    6651211:  936263|11476 Water Well|Well|NM|35|Roosevelt|041|334935N|1030446W|33.8264821|-103.0793885|||||1209|3966|Lingo|09/01/1994|
+    6051198:  931178|11476 Water Well|Well|NM|35|Curry|009|345047N|1030957W|34.8464538|-103.1657817|||||1367|4485|Broadview|05/01/1994|
+    1807716:  898646|Clines Corners|Populated Place|NM|35|Torrance|057|350034N|1054009W|35.0094982|-105.6691804|||||2151|7057|Clines Corners|11/13/1980|
+LRU 
 --------------------------------------------------------------------------------
 ;
-; And one really small one:
-Command  9:	what_is_in  371347N 0802514W 1 1
+; Try a few location searches:
+Command  9:	what_is_at 364201N 1063259W
 
-	The following 1 features were found in (0802514W +/-1, 371347N +/-1)+
-93317:  Torgersen Hall VA 371347N 802514W
+   The following features were found at	1063259W 364201N
+4678409:  Santo Nino Church Rio Arriba NM
+5114619:  Tierra Amarilla Rio Arriba NM
+6118282:  Tierra Amarilla Historical Marker Rio Arriba NM
+6120559:  Fort Lowell Historical Marker Rio Arriba NM
+6214003:  Tierra Amarilla Weather Station Rio Arriba NM
+6361195:  La Clinica Del Pueblo De Rio Arriba, Inc. Rio Arriba NM
+6387965:  Tierra Amarilla Elementary School Rio Arriba NM
+6388117:  Tierra Amarilla Middle School Rio Arriba NM
+6388265:  Escallante High School Rio Arriba NM
+6591450:  Tierra Amarilla Historic District Rio Arriba NM
+6594565:  Tierra Amarilla Community Ditch Rio Arriba NM
+6889066:  Tierra Amarilla Post Office Rio Arriba NM
 --------------------------------------------------------------------------------
 ;
-; And two really skinny ones, one East-West and one North-South:
-Command  10:	what_is_in  371347N 0802514W 2 360
+; And let's check the pool again; at this point, you might have some records
+; in a different order than I'm showing:
+debug: pool
 
-	The following 25 features were found in (0802514W +/-360, 371347N +/-2)+
-21838:  Fairview Church VA 371349N 802943W
-58290:  Fairview School (historical) VA 371349N 802943W
-29656:  Poff Hollow VA 371349N 80303W
-30939:  Shaffer Hollow VA 371345N 802957W
-100672:  Town of Blacksburg VA 371348N 802540W
-55241:  Cowgil Hall VA 371347N 802529W
-95680:  Clinton Cowgill Hall VA 371347N 802530W
-95010:  Burchard Hall VA 371346N 802529W
-60723:  Hancock Hall VA 371349N 802526W
-67006:  McBryde Hall VA 371349N 802519W
-72224:  Norris Hall VA 371348N 802521W
-33387:  Virginia Polytechnic Institute and State University VA 371345N 802526W
-60465:  Holden Hall VA 371347N 802524W
-74430:  Patton Hall VA 371345N 802520W
-94051:  William Patton Hall VA 371345N 802521W
-49514:  Brodie Hall VA 371348N 802512W
-93317:  Torgersen Hall VA 371347N 802514W
-60985:  Henderson Student Health Service Building VA 371349N 80251W
-84421:  Squires Hall VA 371346N 80256W
-98289:  John Houston Squires Student Center VA 371346N 80256W
-48298:  Blacksburg Post Office VA 371348N 802452W
-41209:  Blacksburg VA 371346N 802450W
-49103:  Blacksburg United Methodist Church VA 371347N 802445W
-47070:  Berryfield VA 371346N 802434W
-64333:  Knob Hill VA 371348N 802355W
---------------------------------------------------------------------------------
-Command  11:	what_is_in  371347N 0802514W 360 2
 
-	The following 22 features were found in (0802514W +/-2, 371347N +/-360)+
-35213:  Blacksburg Ranger Station VA 371634N 802516W
-87556:  University Terrace VA 371438N 802515W
-68615:  Monteith Hall VA 371355N 802513W
-86337:  Thomas Hall VA 371354N 802515W
-94710:  Art and Design Learning Center VA 371354N 802515W
-97229:  Herbert J Thomas Hall VA 371356N 802513W
-81044:  Shanks Hall VA 371354N 802512W
-66868:  Major Williams Dormitory VA 371351N 802515W
-98990:  Major Lloyd W Williams Hall VA 371352N 802516W
-94855:  Arts and Science Administration Building VA 371352N 802513W
-98020:  James H Lane Hall VA 371351N 802512W
-49514:  Brodie Hall VA 371348N 802512W
-93317:  Torgersen Hall VA 371347N 802514W
-93626:  War Memorial Chapel VA 371343N 802515W
-57525:  Eggleston Hall VA 371338N 802513W
-67401:  Memorial Gymnasium VA 371334N 802515W
-94309:  Al Payne Hall VA 371333N 802513W
-56283:  Dietrick Hall VA 371328N 802516W
-92359:  Peddrew-Yates Residence Hall VA 371330N 802513W
-45715:  Ambler Johnston Hall VA 371323N 802516W
-97490:  J Ambler Johnston Hall VA 371323N 802516W
-31101:  Shaffer Memorial Cemetery VA 37747N 802515W
+MRU
+    6889066:  938095|Tierra Amarilla Post Office|Post Office|NM|35|Rio Arriba|039|364201N|1063259W|36.7002922|-106.5497566|||||2295|7529|Tierra Amarilla|08/01/1993|
+    6594565:  935798|Tierra Amarilla Community Ditch|Canal|NM|35|Rio Arriba|039|364201N|1063259W|36.7002922|-106.5497566|||||2295|7529|Tierra Amarilla|09/01/1994|
+    6591450:  935767|Tierra Amarilla Historic District|Locale|NM|35|Rio Arriba|039|364201N|1063259W|36.7002922|-106.5497566|||||2295|7529|Tierra Amarilla|09/01/1994|
+    6388265:  934141|Escallante High School|School|NM|35|Rio Arriba|039|364201N|1063259W|36.7002922|-106.5497566|||||2295|7529|Tierra Amarilla|09/01/1992|
+    6388117:  934140|Tierra Amarilla Middle School|School|NM|35|Rio Arriba|039|364201N|1063259W|36.7002922|-106.5497566|||||2295|7529|Tierra Amarilla|09/01/1992|
+    6387965:  934139|Tierra Amarilla Elementary School|School|NM|35|Rio Arriba|039|364201N|1063259W|36.7002922|-106.5497566|||||2295|7529|Tierra Amarilla|09/01/1992|
+    6361195:  933928|La Clinica Del Pueblo De Rio Arriba, Inc.|Hospital|NM|35|Rio Arriba|039|364201N|1063259W|36.7002922|-106.5497566|||||2295|7529|Tierra Amarilla|09/01/1992|
+    6214003:  932548|Tierra Amarilla Weather Station|Locale|NM|35|Rio Arriba|039|364201N|1063259W|36.7002922|-106.5497566|||||2295|7529|Tierra Amarilla|05/01/1994|
+    6120559:  931713|Fort Lowell Historical Marker|Park|NM|35|Rio Arriba|039|364201N|1063259W|36.7002922|-106.5497566|||||2295|7529|Tierra Amarilla|05/01/1994|
+    6118282:  931697|Tierra Amarilla Historical Marker|Park|NM|35|Rio Arriba|039|364201N|1063259W|36.7002922|-106.5497566|||||2295|7529|Tierra Amarilla|05/01/1994|
+LRU 
 --------------------------------------------------------------------------------
 ;
-; And just to push the limits:
-Command  12:	what_is_in  371002N 0802042W 10 60000
+Command  11:	what_is_at 351018N 1034330W
 
-	The following 23 features were found in (0802042W +/-60000, 371002N +/-10)+
-42825:  Centerville VA 371011N 803218W
-103607:  Belview Census Designated Place VA 37100N 803035W
-29095:  Pine View Church VA 371012N 80300W
-38855:  Vicker Heights VA 37954N 802839W
-19038:  Belmont Church VA 37953N 802727W
-36565:  Rolling Hills VA 37955N 802730W
-46652:  Belmont Community Cemetery VA 37954N 802729W
-30311:  Roselawn Memorial Cemetery VA 37107N 802526W
-46793:  Belmont Estates VA 37107N 802629W
-50719:  Carma Heights VA 37955N 802613W
-71407:  New River Valley Mall Shopping Center VA 37952N 802529W
-36239:  Virginia Polytechnic Institute and State University Horticultural Research Area VA 37958N 80255W
-85928:  The Marketplace Shopping Center VA 37102N 802517W
-68743:  Montgomery County VA 37100N 802259W
-8687:  Iron Mine Hollow VA 37102N 802042W
-14253:  Slaughterpen Hollow VA 371010N 802035W
-39663:  Dee Cee Hill VA 37103N 80199W
-16656:  Wheeling Hollow VA 37957N 801741W
-14094:  Skillet Hollow VA 37107N 80173W
-9286:  Kirk Hollow VA 37957N 801515W
-40704:  Shawsville VA 37106N 801519W
-81170:  Shawsville Historic District VA 37105N 801522W
-14885:  Spring Branch VA 37959N 801415W
+   The following features were found at	1034330W 351018N
+2188288:  Tucumcari Area vocational School Quay NM
+2236869:  First Baptist Church Quay NM
+2236995:  First Christian Church Quay NM
+2237123:  First Presbyterian Church Quay NM
+2238635:  Full Gospel Grace Tabernacle Quay NM
+2238769:  First Spanish Baptist Church Quay NM
+2238903:  First Assembly of God Church Quay NM
+2250068:  Church of God Quay NM
+2255970:  The Church of Jesus Christ of Latter Day Saints Quay NM
+2297874:  Temple Baptist Quay NM
+2297994:  Trinity Baptist Church Quay NM
+2298122:  Primitive Baptist Church Quay NM
+2298252:  Bethel Tabernacle Quay NM
+2299990:  Church of the Nazarene Quay NM
+2300118:  Church of Christ Scientist Quay NM
+2300250:  Church of Christ Quay NM
+2304436:  Saint Michael Episcopal Church Quay NM
+2306145:  Center Saint United Methodist Church Quay NM
+2306287:  Mount Calvary Baptist Church Quay NM
+2334359:  Seventh Day Adventist Church Quay NM
+2334493:  Saint Annes Catholic Church Quay NM
+3994731:  Tucumcari High School Quay NM
+4151646:  Tucumcari Quay NM
+4668036:  United Pentecostal Church Quay NM
+4670442:  Kingdom Hall Quay NM
+4686849:  Christian Science Services Church Quay NM
+4693166:  First Church of the Nazarene Quay NM
+4811107:  Rayo Del Luz Baptist Church Quay NM
+5819240:  Rural Bookmobile East Library Quay NM
+5835135:  Tucumcari Area Vocational School Library Quay NM
+5843914:  Tucumcari Historical Research Institute Quay NM
+6207470:  Tucumcari Historical Marker Quay NM
+6298397:  Baca-Goodman House Historic Site Quay NM
+6377456:  Temple Baptist Academy Quay NM
+6401052:  Tucumcari Junior High School Quay NM
+6409229:  Rock Island-Southern Pacific Passenger Depot Historic Site Quay NM
+6416511:  Quay County Courthouse Historic Site Quay NM
+6815430:  Tucumcari Post Office Quay NM
+--------------------------------------------------------------------------------
+Command  12:	what_is_at 354929N 1055845W
+
+   The following features were found at	1055845W 354929N
+2557172:  Camel Rock Santa Fe NM
+--------------------------------------------------------------------------------
+Command  13:	what_is_at 360337N 1075801W
+
+   The following features were found at	1075801W 360337N
+296953:  Chaco Canyon San Juan NM
+--------------------------------------------------------------------------------
+;
+; And a few region searches, some with modifiers:
+Command  14:	what_is_in  364201N 1063259W 60 60
+
+	The following 16 features were found in (1063259W +/-60, 364201N +/-60)+
+1563133:  La Canada Ditch NM 364249N 1063250W
+5463058:  Water Well 2 NM 36425N 1063322W
+1402686:  Tierra Amarilla Ditch NM 364148N 1063251W
+4678409:  Santo Nino Church NM 36421N 1063259W
+5114619:  Tierra Amarilla NM 36421N 1063259W
+6118282:  Tierra Amarilla Historical Marker NM 36421N 1063259W
+6120559:  Fort Lowell Historical Marker NM 36421N 1063259W
+6214003:  Tierra Amarilla Weather Station NM 36421N 1063259W
+6361195:  La Clinica Del Pueblo De Rio Arriba, Inc. NM 36421N 1063259W
+6387965:  Tierra Amarilla Elementary School NM 36421N 1063259W
+6388117:  Tierra Amarilla Middle School NM 36421N 1063259W
+6388265:  Escallante High School NM 36421N 1063259W
+6591450:  Tierra Amarilla Historic District NM 36421N 1063259W
+6594565:  Tierra Amarilla Community Ditch NM 36421N 1063259W
+6889066:  Tierra Amarilla Post Office NM 36421N 1063259W
+6591301:  Rio Arriba County Courthouse NM 36420N 1063259W
+--------------------------------------------------------------------------------
+Command  15:	what_is_in  -c 351018N 1034330W 15 15
+
+40 features were found in (1034330W +/-15, 351018N +/-15)
+--------------------------------------------------------------------------------
+Command  16:	what_is_in  351018N 1034330W 15 15
+
+	The following 40 features were found in (1034330W +/-15, 351018N +/-15)+
+2188288:  Tucumcari Area vocational School NM 351018N 1034330W
+2236869:  First Baptist Church NM 351018N 1034330W
+2236995:  First Christian Church NM 351018N 1034330W
+2237123:  First Presbyterian Church NM 351018N 1034330W
+2238635:  Full Gospel Grace Tabernacle NM 351018N 1034330W
+2238769:  First Spanish Baptist Church NM 351018N 1034330W
+2238903:  First Assembly of God Church NM 351018N 1034330W
+2250068:  Church of God NM 351018N 1034330W
+2255970:  The Church of Jesus Christ of Latter Day Saints NM 351018N 1034330W
+2297874:  Temple Baptist NM 351018N 1034330W
+2297994:  Trinity Baptist Church NM 351018N 1034330W
+2298122:  Primitive Baptist Church NM 351018N 1034330W
+2298252:  Bethel Tabernacle NM 351018N 1034330W
+2299990:  Church of the Nazarene NM 351018N 1034330W
+2300118:  Church of Christ Scientist NM 351018N 1034330W
+2300250:  Church of Christ NM 351018N 1034330W
+2304436:  Saint Michael Episcopal Church NM 351018N 1034330W
+2306145:  Center Saint United Methodist Church NM 351018N 1034330W
+2306287:  Mount Calvary Baptist Church NM 351018N 1034330W
+2334359:  Seventh Day Adventist Church NM 351018N 1034330W
+2334493:  Saint Annes Catholic Church NM 351018N 1034330W
+3994731:  Tucumcari High School NM 351018N 1034330W
+4151646:  Tucumcari NM 351018N 1034330W
+4668036:  United Pentecostal Church NM 351018N 1034330W
+4670442:  Kingdom Hall NM 351018N 1034330W
+4686849:  Christian Science Services Church NM 351018N 1034330W
+4693166:  First Church of the Nazarene NM 351018N 1034330W
+4811107:  Rayo Del Luz Baptist Church NM 351018N 1034330W
+5819240:  Rural Bookmobile East Library NM 351018N 1034330W
+5835135:  Tucumcari Area Vocational School Library NM 351018N 1034330W
+5843914:  Tucumcari Historical Research Institute NM 351018N 1034330W
+6207470:  Tucumcari Historical Marker NM 351018N 1034330W
+6298397:  Baca-Goodman House Historic Site NM 351018N 1034330W
+6377456:  Temple Baptist Academy NM 351018N 1034330W
+6401052:  Tucumcari Junior High School NM 351018N 1034330W
+6409229:  Rock Island-Southern Pacific Passenger Depot Historic Site NM 351018N 1034330W
+6416511:  Quay County Courthouse Historic Site NM 351018N 1034330W
+6815430:  Tucumcari Post Office NM 351018N 1034330W
+6816940:  Douglas Post Office (historical) NM 351018N 1034328W
+583370:  Granger School NM 351013N 1034341W
+--------------------------------------------------------------------------------
+Command  17:	what_is_in  354929N 1055845W 30 30
+
+	The following 3 features were found in (1055845W +/-30, 354929N +/-30)+
+2557172:  Camel Rock NM 354929N 1055845W
+4976251:  Water Well 2 NM 354930N 1055854W
+5351777:  Camel Rock 1 Water Well NM 354940N 1055850W
+--------------------------------------------------------------------------------
+Command  18:	what_is_in  -l 354929N 1055845W 30 30
+
+	The following 3 features were found in (1055845W +/-30, 354929N +/-30)
+  Feature ID   : 904308
+  Feature Name : Camel Rock
+  Feature Cat  : Pillar
+  State        : NM
+  County       : Santa Fe
+  Latitude     : 354929N
+  Longitude    : 1055845W
+  Elev in ft   : 6325
+  USGS Quad    : Tesuque
+  Date created : 11/13/1980
+  Feature ID   : 922593
+  Feature Name : Water Well 2
+  Feature Cat  : Well
+  State        : NM
+  County       : Santa Fe
+  Latitude     : 354930N
+  Longitude    : 1055854W
+  Elev in ft   : 6263
+  USGS Quad    : Tesuque
+  Date created : 09/01/1993
+  Feature ID   : 925587
+  Feature Name : Camel Rock 1 Water Well
+  Feature Cat  : Well
+  State        : NM
+  County       : Santa Fe
+  Latitude     : 354940N
+  Longitude    : 1055850W
+  Elev in ft   : 6283
+  USGS Quad    : Tesuque
+  Date created : 03/01/1994
+--------------------------------------------------------------------------------
+;
+; Let's check the pool again; we should agree on the top four, although they
+; could be in a different order:
+debug: pool
+
+
+MRU
+    5351777:  925587|Camel Rock 1 Water Well|Well|NM|35|Santa Fe|049|354940N|1055850W|35.8278049|-105.9805778|||||1915|6283|Tesuque|03/01/1994|
+    4976251:  922593|Water Well 2|Well|NM|35|Santa Fe|049|354930N|1055854W|35.8250272|-105.9816889|||||1909|6263|Tesuque|09/01/1993|
+    2557172:  904308|Camel Rock|Pillar|NM|35|Santa Fe|049|354929N|1055845W|35.8247494|-105.9791889|||||1928|6325|Tesuque|11/13/1980|
+    583370:  889543|Granger School|School|NM|35|Quay|037|351013N|1034341W|35.1703341|-103.7280219|||||1250|4101|Tucumcari|11/13/1980|
+    6816940:  937548|Douglas Post Office (historical)|Post Office|NM|35|Quay|037|351018N|1034328W|35.1716667|-103.7244444|||||1247|4091|Tucumcari|08/01/1993|05/12/2010
+    6815430:  937537|Tucumcari Post Office|Post Office|NM|35|Quay|037|351018N|1034330W|35.171723|-103.7249662|||||1247|4091|Tucumcari|08/01/1993|
+    6416511:  934351|Quay County Courthouse Historic Site|Building|NM|35|Quay|037|351018N|1034330W|35.171723|-103.7249662|||||1247|4091|Tucumcari|09/01/1994|
+    6409229:  934301|Rock Island-Southern Pacific Passenger Depot Historic Site|Building|NM|35|Quay|037|351018N|1034330W|35.171723|-103.7249662|||||1247|4091|Tucumcari|09/01/1994|
+    6401052:  934239|Tucumcari Junior High School|School|NM|35|Quay|037|351018N|1034330W|35.171723|-103.7249662|||||1247|4091|Tucumcari|09/01/1992|
+    6377456:  934056|Temple Baptist Academy|School|NM|35|Quay|037|351018N|1034330W|35.171723|-103.7249662|||||1247|4091|Tucumcari|09/01/1992|
+LRU 
 --------------------------------------------------------------------------------
 ;
 ; Exit
-Command 13:  quit
+Command 20:  quit
 
 Terminating execution of commands.
-2016-06-30T12:57:49.731
-End time:  2016/06/30 12:57:49
+2016-06-30T13:12:04.403
+End time:  2016/06/30 13:12:04
 --------------------------------------------------------------------------------

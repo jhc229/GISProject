@@ -117,7 +117,7 @@ public class GISRecordParser {
 		dataRec.STATE_ALPHA= items[3];
 		dataRec.STATE_NUMERIC = Double.parseDouble(items[4]);
 		dataRec.COUNTY_NAME = items[5];
-		dataRec.COUNTY_NUMERIC = Double.parseDouble(items[6]);
+		dataRec.COUNTY_NUMERIC = Float.parseFloat(items[6]);
 		if( Double.parseDouble(items[9]) == 0){
 			return null;
 		}
