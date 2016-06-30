@@ -30,7 +30,8 @@ public class BufferPool {
 		for (int i = 0; i < bufferList.size(); i++) {
 		GeoFeatures foundRecord = bufferList.get(i);
 			if (foundRecord.OFFSET == offset) {
-				bufferList.add(bufferList.remove(i));
+				GeoFeatures removedRecord = bufferList.remove(i);
+				bufferList.add(removedRecord);
 				return foundRecord;
 			}
 		}
@@ -60,7 +61,8 @@ public class BufferPool {
 	 */
 	public String toString() {
 		String out = "MRU   \n";
-		for (int i = bufferList.size() - 1; i >= 0; i--) {
+		int indexSize = bufferList.size() - 1;
+		for (int i =indexSize; i >= 0; i--) {
 			GeoFeatures record = bufferList.get(i);
 			out += record.OFFSET + ":  " + record.LINE +"\n";
 		}
