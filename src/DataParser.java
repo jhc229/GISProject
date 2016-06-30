@@ -453,7 +453,7 @@ public class DataParser {
 		
 			int currentOffset = off.get(i);
 			
-			GeoFeatures newRecord = pool.checkPool(currentOffset); 
+			GeoFeatures newRecord = pool.contains(currentOffset); 
 			if ( newRecord != null) { // is found
 				temp.add(newRecord); 
 			} 
