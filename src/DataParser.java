@@ -263,7 +263,7 @@ public class DataParser {
 				Vector<Integer> newSets = new Vector<Integer>(0);
 				//System.out.println("	The following " + pts.size() + " features were found in (" + y + " +/-" + halfHeight+", " + x + " +/-" + halfWidth + ")");
 				//System.out.println("tree coordinates:   " + pts);
-					for (int i = 0; i < pts.size(); ++i) {
+					for (int i = 0; i < pts.size(); i++) {
 						newSets.addAll(pts.get(i).getOffset());
 					}
 					System.out.println("	The following " + newSets.size()+ " features were found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")");
