@@ -86,7 +86,6 @@ public class prQuadTree< T extends Compare2D<? super T> > {
    // Return true iff elem is inserted into the tree. 
    public boolean insert(T elem) {
 	   if (!elem.inBox(xMin, xMax, yMin, yMax)) return false; //duplicates allowed
-		//System.out.println("point:  " +elem.getX() +" " + elem.getY() + " " + elem.getOffset());
 
 	   root = fInsert(root, elem, xMin, xMax, yMin, yMax);
 	   return true;
@@ -130,9 +129,6 @@ private prQuadNode fInsert(prQuadNode rt, T elem, int xMin, int xMax,
 				prQuadLeaf leafNode = (prQuadLeaf) rt;
 				insert_Flag =false;
 				if (leafNode.Elements.size() < bucketSize){ // Check the number of leafs
-					//return bucketSplit(leafNode, elem);
-					//if (!bucketSplit(leafNode, elem)) leafNode.Elements.addElement(elem);
-					//return leafNode;
 						int i=0;   
 						while( i < leafNode.Elements.size()){
 							if ( leafNode.Elements.get(i).equals(elem)){
@@ -141,15 +137,7 @@ private prQuadNode fInsert(prQuadNode rt, T elem, int xMin, int xMax,
 							}
 							i++;
 						}
-						/*	for (int i = 0; i < leafNode.Elements.size(); i++) {
-										if ( leafNode.Elements.get(i).equals(elem)){
-											leafNode.Elements.get(i).addOffset(elem.getOffset());
-											insert_Flag = true;
-							  // i++;
-										}
 
-					   }//while ( i <leafNode.Elements.size() );*/
-						
 					if(!insert_Flag)  leafNode.Elements.addElement(elem);
 					return leafNode;
 				}
