@@ -10,7 +10,7 @@ GIS Program
 dbFile:	dataBase.txt
 script:	Script01.txt
 log:	Log.txt
-Start time: 2016/06/30 12:44:09
+Start time: 2016/06/30 12:46:43
 Quadtree children are printed in the order SW  SE  NE  NW
 --------------------------------------------------------------------------------
 
@@ -247,6 +247,8 @@ debug: pool
 
 MRU   
  6940:  1496110|Possum Trot|Populated Place|VA|51|Highland|091|382812N|0793156W|38.4701196|-79.5322693|||||768|2520|Monterey|09/28/1979|
+LRU 
+MRU   
  7562:  1496326|Trimble Knob|Summit|VA|51|Highland|091|382417N|0793517W|38.404843|-79.5881037|||||952|3123|Monterey|09/28/1979|
 LRU 
 --------------------------------------------------------------------------------
@@ -271,8 +273,14 @@ debug: pool
 
 MRU   
  387:  1481852|Blue Grass|Populated Place|VA|51|Highland|091|383000N|0793259W|38.5001188|-79.5497702|||||777|2549|Monterey|09/28/1979|
+LRU 
+MRU   
  6940:  1496110|Possum Trot|Populated Place|VA|51|Highland|091|382812N|0793156W|38.4701196|-79.5322693|||||768|2520|Monterey|09/28/1979|
+LRU 
+MRU   
  5259:  1487758|Swope Hollow|Valley|VA|51|Highland|091|381531N|0793005W|38.2587359|-79.5014329|381619N|0793014W|38.2719444|-79.5038889|541|1775|Monterey SE|09/28/1979|
+LRU 
+MRU   
  7562:  1496326|Trimble Knob|Summit|VA|51|Highland|091|382417N|0793517W|38.404843|-79.5881037|||||952|3123|Monterey|09/28/1979|
 LRU 
 --------------------------------------------------------------------------------
@@ -300,11 +308,23 @@ debug: pool
 
 MRU   
  265:  1481345|Asbury Church|Church|VA|51|Highland|091|382607N|0793312W|38.4353981|-79.5533807|||||818|2684|Monterey|09/28/1979|
+LRU 
+MRU   
  8792:  2391311|Town of Monterey|Civil|VA|51|Highland|091|382442N|0793451W|38.4115829|-79.580854|||||884|2900|Monterey|02/19/2008|
+LRU 
+MRU   
  4530:  1486995|Seldom Seen Hollow|Valley|VA|51|Highland|091|382145N|0793031W|38.3626223|-79.5086563|382227N|0793004W|38.3741667|-79.5011111|750|2461|Monterey SE|09/28/1979|
+LRU 
+MRU   
  387:  1481852|Blue Grass|Populated Place|VA|51|Highland|091|383000N|0793259W|38.5001188|-79.5497702|||||777|2549|Monterey|09/28/1979|
+LRU 
+MRU   
  6940:  1496110|Possum Trot|Populated Place|VA|51|Highland|091|382812N|0793156W|38.4701196|-79.5322693|||||768|2520|Monterey|09/28/1979|
+LRU 
+MRU   
  5259:  1487758|Swope Hollow|Valley|VA|51|Highland|091|381531N|0793005W|38.2587359|-79.5014329|381619N|0793014W|38.2719444|-79.5038889|541|1775|Monterey SE|09/28/1979|
+LRU 
+MRU   
  7562:  1496326|Trimble Knob|Summit|VA|51|Highland|091|382417N|0793517W|38.404843|-79.5881037|||||952|3123|Monterey|09/28/1979|
 LRU 
 --------------------------------------------------------------------------------
@@ -323,13 +343,29 @@ debug: pool
 
 MRU   
  5102:  1487661|Strait Creek|Stream|VA|51|Highland|091|382856N|0793031W|38.4823417|-79.5086575|382442N|0793222W|38.4116667|-79.5394444|705|2313|Monterey|09/28/1979|
+LRU 
+MRU   
  1822:  1483492|Forks of Waters|Locale|VA|51|Highland|091|382856N|0793031W|38.4823417|-79.5086575|||||705|2313|Monterey|09/28/1979|
+LRU 
+MRU   
  265:  1481345|Asbury Church|Church|VA|51|Highland|091|382607N|0793312W|38.4353981|-79.5533807|||||818|2684|Monterey|09/28/1979|
+LRU 
+MRU   
  8792:  2391311|Town of Monterey|Civil|VA|51|Highland|091|382442N|0793451W|38.4115829|-79.580854|||||884|2900|Monterey|02/19/2008|
+LRU 
+MRU   
  4530:  1486995|Seldom Seen Hollow|Valley|VA|51|Highland|091|382145N|0793031W|38.3626223|-79.5086563|382227N|0793004W|38.3741667|-79.5011111|750|2461|Monterey SE|09/28/1979|
+LRU 
+MRU   
  387:  1481852|Blue Grass|Populated Place|VA|51|Highland|091|383000N|0793259W|38.5001188|-79.5497702|||||777|2549|Monterey|09/28/1979|
+LRU 
+MRU   
  6940:  1496110|Possum Trot|Populated Place|VA|51|Highland|091|382812N|0793156W|38.4701196|-79.5322693|||||768|2520|Monterey|09/28/1979|
+LRU 
+MRU   
  5259:  1487758|Swope Hollow|Valley|VA|51|Highland|091|381531N|0793005W|38.2587359|-79.5014329|381619N|0793014W|38.2719444|-79.5038889|541|1775|Monterey SE|09/28/1979|
+LRU 
+MRU   
  7562:  1496326|Trimble Knob|Summit|VA|51|Highland|091|382417N|0793517W|38.404843|-79.5881037|||||952|3123|Monterey|09/28/1979|
 LRU 
 --------------------------------------------------------------------------------
@@ -338,6 +374,6 @@ LRU
 Command 19:  quit
 
 Terminating execution of commands.
-2016-06-30T12:44:09.795
-End time:  2016/06/30 12:44:09
+2016-06-30T12:46:43.160
+End time:  2016/06/30 12:46:43
 --------------------------------------------------------------------------------

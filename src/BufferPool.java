@@ -60,14 +60,13 @@ public class BufferPool {
 	 * Buffer lists to string in MRU to LRU
 	 */
 	public String toString() {
-		//String out = "MRU   \n";
-		String out ="";
+		String out = "MRU";
 		int indexSize = bufferList.size() - 1;
 		for (int i =indexSize; i >= 0; i--) {
 			GeoFeatures record = bufferList.get(i);
-			out += "MRU   \n " + record.OFFSET + ":  " + record.LINE +"\nLRU \n";
+			out += "   \n " + record.OFFSET + ":  " + record.LINE +"\n";
 		}
-		//out += "LRU \n";
+		out += "LRU \n";
 		return out;
 	}
 }
