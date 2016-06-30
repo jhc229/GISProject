@@ -485,6 +485,8 @@ public class DataParser {
 	 * @throws IOException
 	 */
 	public void quit() throws IOException {
+		System.out.println("--------------------------------------------------------------------------------");
+		stat.write("--------------------------------------------------------------------------------\n");
 		stat.close();
 	}
 
