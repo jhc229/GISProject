@@ -57,11 +57,12 @@ public class GISRecordParser {
 			dataRec.FEATURE_ID = Integer.parseInt(items[0]);
 			dataRec.FEATURE_NAME = items[1];
 			dataRec.FEATURE_CLASS = items[2];
+			dataRec.STATE_ALPHA= items[3];
+			dataRec.STATE_NUMERIC = Integer.parseInt(items[4]);
+			dataRec.COUNTY_NAME = items[5];
 			if (!items[6].equals("")){
 				dataRec.COUNTY_NUMERIC = Integer.parseInt(items[6]);
 			}
-			dataRec.COUNTY_NAME = items[5];
-			dataRec.COUNTY_NUMERIC = Double.parseDouble(items[6]);
 			if( Double.parseDouble(items[9]) == 0){
 				return null;
 			}
