@@ -266,8 +266,8 @@ public class DataParser {
 				//System.out.println("tree coordinates:   " + pts);
 					for (int i = 0; i < pts.size(); ++i) {
 						newSets.addAll(pts.get(i).getOffset());
-						System.out.println(newSets);
 					}
+					System.out.println(newSets);
 					System.out.println("	The following " + newSets.size()+ " features were found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")");
 					stat.write("	The following " + newSets.size()+ " features were found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")+\n");
 					for (GeoFeatures a : poolOffset(newSets)) {
