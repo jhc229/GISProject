@@ -11,7 +11,7 @@ public class GeoFeatures {
 	public  String					FEATURE_NAME;
 	public  String 					FEATURE_CLASS;
 	public  String 					STATE_ALPHA;
-	public  double  				STATE_NUMERIC = 0.0;
+	public  int			  				STATE_NUMERIC = 0;
 	public  String 					COUNTY_NAME;
 	public  double  				COUNTY_NUMERIC = 0.0;
 	public  DMScoordinates 	PRIMARY_LAT_DMS;
