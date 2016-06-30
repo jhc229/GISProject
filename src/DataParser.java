@@ -266,6 +266,7 @@ public class DataParser {
 				//System.out.println("tree coordinates:   " + pts);
 					for (int i = 0; i < pts.size(); ++i) {
 						newSets.addAll(pts.get(i).getOffset());
+						System.out.println(newSets);
 					}
 					System.out.println("	The following " + newSets.size()+ " features were found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")");
 					stat.write("	The following " + newSets.size()+ " features were found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")+\n");
@@ -287,6 +288,10 @@ public class DataParser {
 		stat.write("--------------------------------------------------------------------------------\n");
 	}
 
+	/*
+	 * Do not log any data from the records themselves. The half-height and
+	 * half-width are specified as seconds.
+	 */
 	public void whatIsInC(String x, String y, String halfHeight, String halfWidth) throws IOException {
 
 		Vector<Point> pts = whatIsInHelper(x, y, Integer.parseInt(halfHeight), Integer.parseInt(halfWidth));
@@ -313,7 +318,13 @@ public class DataParser {
 		stat.write("--------------------------------------------------------------------------------\n");
 
 	}
-	
+
+	/*
+	 * log every important non-empty field, nicely formatted and labeled. See
+	 * the posted log files for an example. Do not log any empty fields. The
+	 * half-height and half-width are specified as seconds.
+	 * 
+	 */
 	public void whatIsInL(String x, String y, String halfHeight, String halfWidth) throws IOException {
 		Vector<Point> pts = whatIsInHelper(x, y, Integer.parseInt(halfHeight), Integer.parseInt(halfWidth));
 		
