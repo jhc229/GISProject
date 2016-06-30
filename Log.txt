@@ -10,7 +10,7 @@ GIS Program
 dbFile:	dataBase.txt
 script:	Script07.txt
 log:	Log.txt
-Start time: 2016/06/30 13:17:30
+Start time: 2016/06/30 13:18:51
 Quadtree children are printed in the order SW  SE  NE  NW
 --------------------------------------------------------------------------------
 
@@ -27,9 +27,9 @@ World boundaries are set to:
 Command  1:	import: NM_All.txt
 
 
-Imported Features by name: 50633
+Imported Features by name: 54760
 Longest probe sequence:     3885
-Imported Locations:         50633
+Imported Locations:         54760
 --------------------------------------------------------------------------------;
 ; Check the location and name/state indices if you dare:
 ;
@@ -168,8 +168,11 @@ Command  13:	what_is_at 360337N 1075801W
 ; And a few region searches, some with modifiers:
 Command  14:	what_is_in  364201N 1063259W 60 60
 
-	The following 16 features were found in (1063259W +/-60, 364201N +/-60)+
+	The following 20 features were found in (1063259W +/-60, 364201N +/-60)+
+7481252:  Tierra Amarilla Census Designated Place NM 364221N 1063354W
 1563133:  La Canada Ditch NM 364249N 1063250W
+7504558:  La Clinica Emergency Medical Services NM 364242N 1063344W
+7544781:  Tierra Amarilla Volunteer Fire Department NM 364238N 1063331W
 5463058:  Water Well 2 NM 36425N 1063322W
 1402686:  Tierra Amarilla Ditch NM 364148N 1063251W
 4678409:  Santo Nino Church NM 36421N 1063259W
@@ -185,6 +188,7 @@ Command  14:	what_is_in  364201N 1063259W 60 60
 6594565:  Tierra Amarilla Community Ditch NM 36421N 1063259W
 6889066:  Tierra Amarilla Post Office NM 36421N 1063259W
 6591301:  Rio Arriba County Courthouse NM 36420N 1063259W
+7231328:  Tierra Amarilla Division NM 364113N 1063324W
 --------------------------------------------------------------------------------
 Command  15:	what_is_in  -c 351018N 1034330W 15 15
 
@@ -236,14 +240,15 @@ Command  16:	what_is_in  351018N 1034330W 15 15
 --------------------------------------------------------------------------------
 Command  17:	what_is_in  354929N 1055845W 30 30
 
-	The following 3 features were found in (1055845W +/-30, 354929N +/-30)+
+	The following 4 features were found in (1055845W +/-30, 354929N +/-30)+
 2557172:  Camel Rock NM 354929N 1055845W
 4976251:  Water Well 2 NM 354930N 1055854W
 5351777:  Camel Rock 1 Water Well NM 354940N 1055850W
+7489617:  Camel Rock Casino NM 354918N 1055825W
 --------------------------------------------------------------------------------
 Command  18:	what_is_in  -l 354929N 1055845W 30 30
 
-	The following 3 features were found in (1055845W +/-30, 354929N +/-30)
+	The following 4 features were found in (1055845W +/-30, 354929N +/-30)
   Feature ID   : 904308
   Feature Name : Camel Rock
   Feature Cat  : Pillar
@@ -274,6 +279,16 @@ Command  18:	what_is_in  -l 354929N 1055845W 30 30
   Elev in ft   : 6283
   USGS Quad    : Tesuque
   Date created : 03/01/1994
+  Feature ID   : 2628400
+  Feature Name : Camel Rock Casino
+  Feature Cat  : Building
+  State        : NM
+  County       : Santa Fe
+  Latitude     : 354918N
+  Longitude    : 1055825W
+  Elev in ft   : 6342
+  USGS Quad    : Tesuque
+  Date created : 05/19/2010
 --------------------------------------------------------------------------------
 ;
 ; Let's check the pool again; we should agree on the top four, although they
@@ -282,6 +297,7 @@ debug: pool
 
 
 MRU
+    7489617:  2628400|Camel Rock Casino|Building|NM|35|Santa Fe|049|354918N|1055825W|35.8216667|-105.9736111|||||1933|6342|Tesuque|05/19/2010|
     5351777:  925587|Camel Rock 1 Water Well|Well|NM|35|Santa Fe|049|354940N|1055850W|35.8278049|-105.9805778|||||1915|6283|Tesuque|03/01/1994|
     4976251:  922593|Water Well 2|Well|NM|35|Santa Fe|049|354930N|1055854W|35.8250272|-105.9816889|||||1909|6263|Tesuque|09/01/1993|
     2557172:  904308|Camel Rock|Pillar|NM|35|Santa Fe|049|354929N|1055845W|35.8247494|-105.9791889|||||1928|6325|Tesuque|11/13/1980|
@@ -291,7 +307,6 @@ MRU
     6416511:  934351|Quay County Courthouse Historic Site|Building|NM|35|Quay|037|351018N|1034330W|35.171723|-103.7249662|||||1247|4091|Tucumcari|09/01/1994|
     6409229:  934301|Rock Island-Southern Pacific Passenger Depot Historic Site|Building|NM|35|Quay|037|351018N|1034330W|35.171723|-103.7249662|||||1247|4091|Tucumcari|09/01/1994|
     6401052:  934239|Tucumcari Junior High School|School|NM|35|Quay|037|351018N|1034330W|35.171723|-103.7249662|||||1247|4091|Tucumcari|09/01/1992|
-    6377456:  934056|Temple Baptist Academy|School|NM|35|Quay|037|351018N|1034330W|35.171723|-103.7249662|||||1247|4091|Tucumcari|09/01/1992|
 LRU 
 --------------------------------------------------------------------------------
 ;
@@ -299,6 +314,6 @@ LRU
 Command 20:  quit
 
 Terminating execution of commands.
-2016-06-30T13:17:32.167
-End time:  2016/06/30 13:17:32
+2016-06-30T13:18:52.290
+End time:  2016/06/30 13:18:52
 --------------------------------------------------------------------------------
