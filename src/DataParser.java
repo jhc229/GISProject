@@ -186,6 +186,7 @@ public class DataParser {
 		
 		Point p = quadTree.find(new Point(geo.getlongitude().toSeconds(),  geo.getlatitude().toSeconds()));
 
+		
 		// Vector<Records> records = new Vector<Records>(0);
 		 if (p != null){
 			 Vector<Integer> offset = p.getOffset();
@@ -258,12 +259,12 @@ public class DataParser {
 		
 		Vector<Point> pts = whatIsInHelper(x, y, Integer.parseInt(halfHeight), Integer.parseInt(halfWidth));
 
-		if (pts != null) {
+		if (pts.size() > 0) {
 			try {
 				Vector<Integer> newSets = new Vector<Integer>(0);
 				//System.out.println("	The following " + pts.size() + " features were found in (" + y + " +/-" + halfHeight+", " + x + " +/-" + halfWidth + ")");
 				//System.out.println("tree coordinates:   " + pts);
-					for (int i = 0; i < pts.size(); i++) {
+					for (int i = 0; i < pts.size(); ++i) {
 						newSets.addAll(pts.get(i).getOffset());
 					}
 					System.out.println("	The following " + newSets.size()+ " features were found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")");
