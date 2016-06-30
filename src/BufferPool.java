@@ -12,11 +12,15 @@ public class BufferPool {
 
 	// Since list is small, array list would do the best job.
 	private ArrayList<GeoFeatures> bufferList; 
+	private static final int defaultSize = 10;
 	private int size; // current size in the list.
 
 
+	/*
+	 * Constructor 
+	 */
 	public  BufferPool() {
-		bufferList = new ArrayList<GeoFeatures>(10);
+		bufferList = new ArrayList<GeoFeatures>(defaultSize);
 		size = 0;
 	}
 
@@ -26,7 +30,7 @@ public class BufferPool {
 	 * If true remove the element and place it in to the MRU slot.
 	 * 
 	 */
-	public GeoFeatures checkPool(int offset) {
+	public GeoFeatures contains(int offset) {
 		for (int i = 0; i < bufferList.size(); i++) {
 		GeoFeatures foundRecord = bufferList.get(i);
 			if (foundRecord.OFFSET == offset) {
