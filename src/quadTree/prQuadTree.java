@@ -133,15 +133,15 @@ private prQuadNode fInsert(prQuadNode rt, T elem, int xMin, int xMax,
 					//return bucketSplit(leafNode, elem);
 					//if (!bucketSplit(leafNode, elem)) leafNode.Elements.addElement(elem);
 					//return leafNode;
-					//int i=0;   
-							for (int i = 0; i < leafNode.Elements.size(); i++) {
-										if ( leafNode.Elements.get(i).equals(elem)){
-											leafNode.Elements.get(i).addOffset(elem.getOffset());
-											insert_Flag = true;
-							  // i++;
-										}
-
-					   }//while ( i <leafNode.Elements.size() );
+						int i=0;   
+						while( i < leafNode.Elements.size()){
+							if ( leafNode.Elements.get(i).equals(elem)){
+								leafNode.Elements.get(i).addOffset(elem.getOffset());
+								insert_Flag = true;
+							}
+							i++;
+						}
+						
 					if(!insert_Flag)  leafNode.Elements.addElement(elem);
 					return leafNode;
 				}

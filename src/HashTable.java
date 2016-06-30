@@ -25,6 +25,7 @@ public class HashTable<Key, E> {
 	/*
 	 *  Constructor
 	 */
+	@SuppressWarnings("unchecked")
 	public HashTable(int size){
 		
 		tableList = new KVpair[size];
@@ -54,7 +55,7 @@ public class HashTable<Key, E> {
 	 *  (n^2  + n) /2
 	 *  
 	 */
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private int fInsertHash(KVpair[] table, Key k, E e){
 		int home; // initial position
 		int probeCount = 0; //update probe
@@ -85,7 +86,7 @@ public class HashTable<Key, E> {
 	/*
 	 * Linear time, inserting N items costs
 	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings({ "unchecked" })
 	private void rehash() {
 
 		ArrayList<KVpair<Key, E>> oldTable = new ArrayList<KVpair<Key, E>>();

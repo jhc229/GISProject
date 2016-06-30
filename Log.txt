@@ -1,361 +1,243 @@
-; Script 1
+; Script 5
 ;
-; Very basic testing of the simple search commands with a tiny DB.
+; Test of "extreme" region searches with a larger database file.
 ;
 ; Specify boundaries of coordinate space:
-world: 0794130W 0792630W 381500N 383000N
+world: 0804500W 0800000W 370000N 374500N
 
 GIS Program
 
 dbFile:	dataBase.txt
-script:	Script01.txt
+script:	Script05.txt
 log:	Log.txt
-Start time: 2016/06/30 12:48:00
+Start time: 2016/06/30 12:57:49
 Quadtree children are printed in the order SW  SE  NE  NW
 --------------------------------------------------------------------------------
 
 Latitude/longitude values in index entries are shown as signed integers, in total seconds.
 
 World boundaries are set to:
-			137700
-	-286890			-285990
-			138600
+			133200
+	-290700			-288000
+			135900
 --------------------------------------------------------------------------------
 
 ;
-; Import some data:
-Command  1:	import: VA_Monterey.txt
+; Import a smallish DB file:
+Command  1:	import: VA_Montgomery.txt
 
 
-Imported Features by name: 63
-Longest probe sequence:     11
-Imported Locations:         63
+Imported Features by name: 752
+Longest probe sequence:     85
+Imported Locations:         752
 --------------------------------------------------------------------------------;
-; Let's take a look at our data set... this is NOT a required feature
-; and you may comment the following command out:
-debug: world
+; Check the location and name/state indices if you dare:
+;
+; And a few region searches:
+Command  2:	what_is_in  370359N 0802626W 10 10
 
+	The following 2 features were found in (0802626W +/-10, 370359N +/-10)+
+12722:  Riner VA 37359N 802626W
+78819:  Riner Historic District VA 37350N 802625W
+--------------------------------------------------------------------------------
+Command  3:	what_is_in  370359N 0802626W 30 30
+
+	The following 6 features were found in (0802626W +/-30, 370359N +/-30)+
+101691:  Auburn Elementary School VA 37341N 802645W
+12722:  Riner VA 37359N 802626W
+265:  Auburn High School VA 37343N 802634W
+78682:  Auburn Middle School VA 37347N 802632W
+78819:  Riner Historic District VA 37350N 802625W
+104373:  Riner Census Designated Place VA 37346N 802622W
+--------------------------------------------------------------------------------
+Command  4:	what_is_in  370930N 0801859W 10 10
+
+	The following 2 features were found in (0801859W +/-10, 370930N +/-10)+
+17443:  Montgomery VA 37923N 80198W
+47615:  Big Tunnel VA 37930N 801859W
+--------------------------------------------------------------------------------
+Command  5:	what_is_in  370930N 0801859W 30 30
+
+	The following 5 features were found in (0801859W +/-30, 370930N +/-30)+
+17443:  Montgomery VA 37923N 80198W
+47615:  Big Tunnel VA 37930N 801859W
+5276:  Den Hill Cemetery VA 37920N 801844W
+10676:  Mount Calvary Church VA 37919N 801848W
+55765:  Den Hill VA 37920N 801847W
+--------------------------------------------------------------------------------
+Command  6:	what_is_in  371347N 0802514W 5 5
+
+	The following 14 features were found in (0802514W +/-5, 371347N +/-5)+
+67006:  McBryde Hall VA 371349N 802519W
+58561:  Femoyer Hall VA 371352N 802517W
+92754:  Robert Femoyer Hall VA 371352N 802517W
+66868:  Major Williams Dormitory VA 371351N 802515W
+98990:  Major Lloyd W Williams Hall VA 371352N 802516W
+94855:  Arts and Science Administration Building VA 371352N 802513W
+98020:  James H Lane Hall VA 371351N 802512W
+49514:  Brodie Hall VA 371348N 802512W
+64863:  Lane Hall VA 371351N 802511W
+78022:  Rasche Hall VA 371351N 80259W
+93907:  William H "Bosco" Rasche Hall VA 371350N 80259W
+93317:  Torgersen Hall VA 371347N 802514W
+93626:  War Memorial Chapel VA 371343N 802515W
+71827:  Newman Library VA 371344N 802510W
+--------------------------------------------------------------------------------
+Command  7:	what_is_in  371347N 0802514W 10 10
+
+	The following 39 features were found in (0802514W +/-10, 371347N +/-10)+
+92498:  Price House VA 371352N 802521W
+77895:  Randolph Hall VA 371351N 802524W
+98716:  Lingan Randolph Hall VA 371350N 802524W
+67006:  McBryde Hall VA 371349N 802519W
+72224:  Norris Hall VA 371348N 802521W
+60465:  Holden Hall VA 371347N 802524W
+74430:  Patton Hall VA 371345N 802520W
+94051:  William Patton Hall VA 371345N 802521W
+93055:  Roy Holden Hall VA 371340N 802521W
+68615:  Monteith Hall VA 371355N 802513W
+86337:  Thomas Hall VA 371354N 802515W
+94710:  Art and Design Learning Center VA 371354N 802515W
+97229:  Herbert J Thomas Hall VA 371356N 802513W
+99657:  Military Building VA 371354N 802518W
+100074:  Old Security Building VA 371353N 802518W
+81044:  Shanks Hall VA 371354N 802512W
+82119:  Shultz Hall VA 371354N 80257W
+97627:  J H Shultz Hall VA 371354N 80257W
+98147:  Jimmie Monteith Junior Hall VA 371354N 802511W
+58561:  Femoyer Hall VA 371352N 802517W
+92754:  Robert Femoyer Hall VA 371352N 802517W
+66868:  Major Williams Dormitory VA 371351N 802515W
+98990:  Major Lloyd W Williams Hall VA 371352N 802516W
+94855:  Arts and Science Administration Building VA 371352N 802513W
+98020:  James H Lane Hall VA 371351N 802512W
+49514:  Brodie Hall VA 371348N 802512W
+64863:  Lane Hall VA 371351N 802511W
+78022:  Rasche Hall VA 371351N 80259W
+93907:  William H "Bosco" Rasche Hall VA 371350N 80259W
+93317:  Torgersen Hall VA 371347N 802514W
+93626:  War Memorial Chapel VA 371343N 802515W
+71827:  Newman Library VA 371344N 802510W
+84421:  Squires Hall VA 371346N 80256W
+98289:  John Houston Squires Student Center VA 371346N 80256W
+57525:  Eggleston Hall VA 371338N 802513W
+56411:  Donaldson Brown Continuing Education Center VA 371342N 80254W
+94437:  Alumni Hall-Virginia Tech VA 371342N 80255W
+95266:  Charles Vawter Senior Hall VA 371337N 80254W
+95955:  Donaldson Brown Hotel and Conference Center VA 371341N 80254W
 --------------------------------------------------------------------------------
 ;
-; Check the location and name/state indices:
-debug: quad
+; And one that extends outside the region (that IS fair):
+Command  8:	what_is_in  370157N 0802908W 240 60
 
-      [( -286212, 137722),[4975]][( -286205, 137731),[5259]]
-         [( -286314, 137725),[2877]][( -286224, 137708),[3720]]
-         [( -286433, 137756),[953]][( -286358, 137773),[1201]][( -286376, 137772),[6560]][( -286356, 137772),[8081]]
-
-      @
-
-             *
-            [( -286304, 137827),[1361]][( -286311, 137845),[4128]]
-
-         @
-            [( -286253, 137904),[1513]][( -286219, 137891),[5669]][( -286229, 137889),[7818]]
-
-             *
-
-          *
-
-   @
-
-       *
-      [( -286438, 137942),[675]][( -286269, 138108),[3593]][( -286231, 138105),[4530]][( -286374, 138012),[6434]]
-      [( -286627, 137860),[2346]][( -286628, 137896),[7435]]
-
-       *
-
-   @
-      [( -286479, 137945),[2612]][( -286502, 138023),[3037]][( -286523, 138047),[7309]][( -286562, 138080),[8654]]
-
-       *
-
-@
-      [( -286213, 138302),[4409]]
-         [( -286273, 138193),[6693]]
-
-          *
-
-      @
-
-          *
-            [( -286345, 138312),[4696]][( -286337, 138287),[8513]]
-            [( -286416, 138293),[7069]]
-
-         @
-            [( -286353, 138352),[7188]]
-            [( -286392, 138367),[265]][( -286393, 138370),[5991]]
-
-   @
-
-       *
-
-             *
-            [( -286301, 138424),[5419]][( -286324, 138413),[5829]]
-
-         @
-            [( -286269, 138486),[4256]]
-            [( -286319, 138445),[3438]][( -286321, 138438),[6142]]
-         [( -286329, 138414),[4819]]
-
-      @
-            [( -286231, 138536),[1822, 5102]]
-            [( -286299, 138530),[2100]][( -286316, 138492),[6940]]
-
-         @
-            [( -286263, 138580),[2223]]
-            [( -286313, 138576),[1670]]
-
-             *
-
-             *
-
-         @
-            [( -286379, 138600),[387]][( -286342, 138593),[515]][( -286358, 138591),[3162]]
-            [( -286403, 138593),[1078]][( -286390, 138593),[1946]][( -286428, 138574),[6811]][( -286383, 138597),[7942]]
-         [( -286517, 138257),[7562]]
-         [( -286561, 138234),[6294]]
-
-      @
-
-                *
-
-                   *
-                  [( -286484, 138266),[2473]][( -286486, 138267),[8225]]
-
-               @
-
-                   *
-                  [( -286490, 138284),[7682]][( -286486, 138282),[8369]][( -286491, 138282),[8792]]
-
-            @
-               [( -286449, 138309),[797]]
-
-                *
-
-             *
-
-         @
-
-             *
-            [( -286500, 138341),[3879]]
-         [( -286638, 138326),[2754]][( -286582, 138315),[4001]]
-
-       *
-
-   @
-      [( -286612, 138532),[3314]][( -286475, 138508),[5548]]
-
-       *
---------------------------------------------------------------------------------
-debug: hash
-
-Format of display is: 
-Slot number: data record 
-Current table size: 1024
-Number of elements in table is  :63
-
-0:  [Strait Creek School (historical)	:VA, [8513]]  
-1:  [Clover Creek	:VA, [6560]]  
-15:  [Possum Trot	:VA, [6940]]  
-16:  [Smith Field	:VA, [7818]]  
-31:  [Barren Rock	:VA, [4409]]  
-32:  [Highland Elementary School	:VA, [8225]]  
-47:  [Jack Mountain	:VA, [3037]]  
-65:  [Highland Wildlife Management Area	:VA, [2612]]  
-79:  [Bluegrass Valley	:VA, [515]]  
-95:  [Blue Grass	:VA, [387]]  
-96:  [Buck Hill	:VA, [675]]  
-98:  [Miracle Ridge	:VA, [3879]]  
-101:  [Doe Hill	:VA, [6693]]  
-105:  [Monterey	:VA, [7682]]  
-161:  [Seybert Chapel	:VA, [4696]]  
-209:  [Monterey Mountain	:VA, [4001]]  
-210:  [Monterey District	:VA, [8654]]  
-225:  [Little Doe Hill	:VA, [3593]]  
-255:  [Central Church	:VA, [1078]]  
-257:  [Strait Creek	:VA, [5102]]  
-258:  [West Strait Creek	:VA, [5829]]  
-271:  [Blue Grass School (historical)	:VA, [7942]]  
-305:  [Thorny Bottom Church	:VA, [5419]]  
-337:  [Claylick Hollow	:VA, [1201]]  
-353:  [Union Chapel	:VA, [5548]]  
-367:  [Meadow Draft	:VA, [3720]]  
-368:  [Seybert Hills	:VA, [7188]]  
-401:  [Gulf Mountain	:VA, [2223]]  
-417:  [Hightown Church	:VA, [2754]]  
-481:  [Highland High School	:VA, [2473]]  
-545:  [Clover Creek Presbyterian Church	:VA, [8081]]  
-561:  [New Salem Church	:VA, [4128]]  
-562:  [Sounding Knob	:VA, [7309]]  
-655:  [Forks of Waters	:VA, [1822]]  
-657:  [Ginseng Mountain	:VA, [2100]]  
-671:  [Vance Hollow	:VA, [5669]]  
-751:  [Trimble Knob	:VA, [7562]]  
-767:  [Swope Hollow	:VA, [5259]]  
-769:  [Seldom Seen Hollow	:VA, [4530]]  
-815:  [Town of Monterey	:VA, [8792]]  
-863:  [Hamilton Chapel	:VA, [2346]]  
-879:  [Hupman Valley	:VA, [2877]]  
-929:  [Crab Run	:VA, [1361]]  
-930:  [Davis Run	:VA, [1513]]  
-932:  [Elk Run	:VA, [1670]]  
-935:  [Frank Run	:VA, [1946]]  
-939:  [Key Run	:VA, [3162]]  
-944:  [Laurel Run	:VA, [3438]]  
-950:  [Peck Run	:VA, [4256]]  
-957:  [White Run	:VA, [5991]]  
-961:  [Asbury Church	:VA, [265]]  
-962:  [Mount Carlyle	:VA, [953]]  
-965:  [Wooden Run	:VA, [6142]]  
-974:  [Hannah Field Airport	:VA, [6294]]  
-984:  [Rich Hills	:VA, [7069]]  
-993:  [Burners Run	:VA, [797]]  
-994:  [Bear Mountain	:VA, [6434]]  
-995:  [Trimble	:VA, [7435]]  
-1007:  [Monterey Methodist Episcopal Church	:VA, [8369]]  
-1009:  [Simmons Run	:VA, [4819]]  
-1010:  [Southall Chapel	:VA, [4975]]  
-1012:  [New Hampden	:VA, [6811]]  
-1023:  [Lantz Mountain	:VA, [3314]]  
+	The following 8 features were found in (0802908W +/-60, 370157N +/-240)+
+6462:  Fairview Church VA 3730N 802953W
+51795:  Childress School (historical) VA 37342N 802954W
+58165:  Fairview VA 3732N 802951W
+3130:  Calfee Knob VA 37157N 80298W
+13973:  Sidney Church VA 37144N 802815W
+1068:  Bethany Church VA 37048N 802843W
+10805:  Mount Jackson Church VA 37037N 802851W
+51653:  Chestnut Ridge School (historical) VA 37047N 802844W
 --------------------------------------------------------------------------------
 ;
-; Let's try a single-match name/state search:
-Command  5:	what_is Trimble Knob VA
+; And one really small one:
+Command  9:	what_is_in  371347N 0802514W 1 1
 
-7562:  Highland 793517W 382417N
+	The following 1 features were found in (0802514W +/-1, 371347N +/-1)+
+93317:  Torgersen Hall VA 371347N 802514W
 --------------------------------------------------------------------------------
 ;
-; Let's check the buffer pool:
-debug: pool
+; And two really skinny ones, one East-West and one North-South:
+Command  10:	what_is_in  371347N 0802514W 2 360
 
+	The following 25 features were found in (0802514W +/-360, 371347N +/-2)+
+21838:  Fairview Church VA 371349N 802943W
+58290:  Fairview School (historical) VA 371349N 802943W
+29656:  Poff Hollow VA 371349N 80303W
+30939:  Shaffer Hollow VA 371345N 802957W
+100672:  Town of Blacksburg VA 371348N 802540W
+55241:  Cowgil Hall VA 371347N 802529W
+95680:  Clinton Cowgill Hall VA 371347N 802530W
+95010:  Burchard Hall VA 371346N 802529W
+60723:  Hancock Hall VA 371349N 802526W
+67006:  McBryde Hall VA 371349N 802519W
+72224:  Norris Hall VA 371348N 802521W
+33387:  Virginia Polytechnic Institute and State University VA 371345N 802526W
+60465:  Holden Hall VA 371347N 802524W
+74430:  Patton Hall VA 371345N 802520W
+94051:  William Patton Hall VA 371345N 802521W
+49514:  Brodie Hall VA 371348N 802512W
+93317:  Torgersen Hall VA 371347N 802514W
+60985:  Henderson Student Health Service Building VA 371349N 80251W
+84421:  Squires Hall VA 371346N 80256W
+98289:  John Houston Squires Student Center VA 371346N 80256W
+48298:  Blacksburg Post Office VA 371348N 802452W
+41209:  Blacksburg VA 371346N 802450W
+49103:  Blacksburg United Methodist Church VA 371347N 802445W
+47070:  Berryfield VA 371346N 802434W
+64333:  Knob Hill VA 371348N 802355W
+--------------------------------------------------------------------------------
+Command  11:	what_is_in  371347N 0802514W 360 2
 
-MRU   
- 7562:  1496326|Trimble Knob|Summit|VA|51|Highland|091|382417N|0793517W|38.404843|-79.5881037|||||952|3123|Monterey|09/28/1979|
-LRU 
+	The following 22 features were found in (0802514W +/-2, 371347N +/-360)+
+35213:  Blacksburg Ranger Station VA 371634N 802516W
+87556:  University Terrace VA 371438N 802515W
+68615:  Monteith Hall VA 371355N 802513W
+86337:  Thomas Hall VA 371354N 802515W
+94710:  Art and Design Learning Center VA 371354N 802515W
+97229:  Herbert J Thomas Hall VA 371356N 802513W
+81044:  Shanks Hall VA 371354N 802512W
+66868:  Major Williams Dormitory VA 371351N 802515W
+98990:  Major Lloyd W Williams Hall VA 371352N 802516W
+94855:  Arts and Science Administration Building VA 371352N 802513W
+98020:  James H Lane Hall VA 371351N 802512W
+49514:  Brodie Hall VA 371348N 802512W
+93317:  Torgersen Hall VA 371347N 802514W
+93626:  War Memorial Chapel VA 371343N 802515W
+57525:  Eggleston Hall VA 371338N 802513W
+67401:  Memorial Gymnasium VA 371334N 802515W
+94309:  Al Payne Hall VA 371333N 802513W
+56283:  Dietrick Hall VA 371328N 802516W
+92359:  Peddrew-Yates Residence Hall VA 371330N 802513W
+45715:  Ambler Johnston Hall VA 371323N 802516W
+97490:  J Ambler Johnston Hall VA 371323N 802516W
+31101:  Shaffer Memorial Cemetery VA 37747N 802515W
 --------------------------------------------------------------------------------
 ;
-; Let's try a single-match location search:
-Command  7:	what_is_at 382812N 0793156W
+; And just to push the limits:
+Command  12:	what_is_in  371002N 0802042W 10 60000
 
-   The following features were found at	0793156W 382812N
-6940:  Possum Trot Highland VA
---------------------------------------------------------------------------------
-;
-; Let's check the buffer pool:
-debug: pool
-
-
-MRU   
- 6940:  1496110|Possum Trot|Populated Place|VA|51|Highland|091|382812N|0793156W|38.4701196|-79.5322693|||||768|2520|Monterey|09/28/1979|
-   
- 7562:  1496326|Trimble Knob|Summit|VA|51|Highland|091|382417N|0793517W|38.404843|-79.5881037|||||952|3123|Monterey|09/28/1979|
-LRU 
---------------------------------------------------------------------------------
-;
-; Let's try a few more name/state searches:
-Command  9:	what_is Swope Hollow VA
-
-5259:  Highland 79305W 381531N
---------------------------------------------------------------------------------
-Command  10:	what_is Possum Trot VA
-
-6940:  Highland 793156W 382812N
---------------------------------------------------------------------------------
-Command  11:	what_is Blue Grass VA
-
-387:  Highland 793259W 38300N
---------------------------------------------------------------------------------
-;
-; Let's check the buffer pool:
-debug: pool
-
-
-MRU   
- 387:  1481852|Blue Grass|Populated Place|VA|51|Highland|091|383000N|0793259W|38.5001188|-79.5497702|||||777|2549|Monterey|09/28/1979|
-   
- 6940:  1496110|Possum Trot|Populated Place|VA|51|Highland|091|382812N|0793156W|38.4701196|-79.5322693|||||768|2520|Monterey|09/28/1979|
-   
- 5259:  1487758|Swope Hollow|Valley|VA|51|Highland|091|381531N|0793005W|38.2587359|-79.5014329|381619N|0793014W|38.2719444|-79.5038889|541|1775|Monterey SE|09/28/1979|
-   
- 7562:  1496326|Trimble Knob|Summit|VA|51|Highland|091|382417N|0793517W|38.404843|-79.5881037|||||952|3123|Monterey|09/28/1979|
-LRU 
---------------------------------------------------------------------------------
-;
-; Let's try a few more location searches:
-Command  13:	what_is_at 382145N 0793031W
-
-   The following features were found at	0793031W 382145N
-4530:  Seldom Seen Hollow Highland VA
---------------------------------------------------------------------------------
-Command  14:	what_is_at 382442N 0793451W
-
-   The following features were found at	0793451W 382442N
-8792:  Town of Monterey Highland VA
---------------------------------------------------------------------------------
-Command  15:	what_is_at 382607N 0793312W
-
-   The following features were found at	0793312W 382607N
-265:  Asbury Church Highland VA
---------------------------------------------------------------------------------
-;
-; Let's check the buffer pool:
-debug: pool
-
-
-MRU   
- 265:  1481345|Asbury Church|Church|VA|51|Highland|091|382607N|0793312W|38.4353981|-79.5533807|||||818|2684|Monterey|09/28/1979|
-   
- 8792:  2391311|Town of Monterey|Civil|VA|51|Highland|091|382442N|0793451W|38.4115829|-79.580854|||||884|2900|Monterey|02/19/2008|
-   
- 4530:  1486995|Seldom Seen Hollow|Valley|VA|51|Highland|091|382145N|0793031W|38.3626223|-79.5086563|382227N|0793004W|38.3741667|-79.5011111|750|2461|Monterey SE|09/28/1979|
-   
- 387:  1481852|Blue Grass|Populated Place|VA|51|Highland|091|383000N|0793259W|38.5001188|-79.5497702|||||777|2549|Monterey|09/28/1979|
-   
- 6940:  1496110|Possum Trot|Populated Place|VA|51|Highland|091|382812N|0793156W|38.4701196|-79.5322693|||||768|2520|Monterey|09/28/1979|
-   
- 5259:  1487758|Swope Hollow|Valley|VA|51|Highland|091|381531N|0793005W|38.2587359|-79.5014329|381619N|0793014W|38.2719444|-79.5038889|541|1775|Monterey SE|09/28/1979|
-   
- 7562:  1496326|Trimble Knob|Summit|VA|51|Highland|091|382417N|0793517W|38.404843|-79.5881037|||||952|3123|Monterey|09/28/1979|
-LRU 
---------------------------------------------------------------------------------
-;
-; Let's try a two-match location search:
-Command  17:	what_is_at 382856N 0793031W
-
-   The following features were found at	0793031W 382856N
-1822:  Forks of Waters Highland VA
-5102:  Strait Creek Highland VA
---------------------------------------------------------------------------------
-;
-; Let's check the buffer pool:
-debug: pool
-
-
-MRU   
- 5102:  1487661|Strait Creek|Stream|VA|51|Highland|091|382856N|0793031W|38.4823417|-79.5086575|382442N|0793222W|38.4116667|-79.5394444|705|2313|Monterey|09/28/1979|
-   
- 1822:  1483492|Forks of Waters|Locale|VA|51|Highland|091|382856N|0793031W|38.4823417|-79.5086575|||||705|2313|Monterey|09/28/1979|
-   
- 265:  1481345|Asbury Church|Church|VA|51|Highland|091|382607N|0793312W|38.4353981|-79.5533807|||||818|2684|Monterey|09/28/1979|
-   
- 8792:  2391311|Town of Monterey|Civil|VA|51|Highland|091|382442N|0793451W|38.4115829|-79.580854|||||884|2900|Monterey|02/19/2008|
-   
- 4530:  1486995|Seldom Seen Hollow|Valley|VA|51|Highland|091|382145N|0793031W|38.3626223|-79.5086563|382227N|0793004W|38.3741667|-79.5011111|750|2461|Monterey SE|09/28/1979|
-   
- 387:  1481852|Blue Grass|Populated Place|VA|51|Highland|091|383000N|0793259W|38.5001188|-79.5497702|||||777|2549|Monterey|09/28/1979|
-   
- 6940:  1496110|Possum Trot|Populated Place|VA|51|Highland|091|382812N|0793156W|38.4701196|-79.5322693|||||768|2520|Monterey|09/28/1979|
-   
- 5259:  1487758|Swope Hollow|Valley|VA|51|Highland|091|381531N|0793005W|38.2587359|-79.5014329|381619N|0793014W|38.2719444|-79.5038889|541|1775|Monterey SE|09/28/1979|
-   
- 7562:  1496326|Trimble Knob|Summit|VA|51|Highland|091|382417N|0793517W|38.404843|-79.5881037|||||952|3123|Monterey|09/28/1979|
-LRU 
+	The following 23 features were found in (0802042W +/-60000, 371002N +/-10)+
+42825:  Centerville VA 371011N 803218W
+103607:  Belview Census Designated Place VA 37100N 803035W
+29095:  Pine View Church VA 371012N 80300W
+38855:  Vicker Heights VA 37954N 802839W
+19038:  Belmont Church VA 37953N 802727W
+36565:  Rolling Hills VA 37955N 802730W
+46652:  Belmont Community Cemetery VA 37954N 802729W
+30311:  Roselawn Memorial Cemetery VA 37107N 802526W
+46793:  Belmont Estates VA 37107N 802629W
+50719:  Carma Heights VA 37955N 802613W
+71407:  New River Valley Mall Shopping Center VA 37952N 802529W
+36239:  Virginia Polytechnic Institute and State University Horticultural Research Area VA 37958N 80255W
+85928:  The Marketplace Shopping Center VA 37102N 802517W
+68743:  Montgomery County VA 37100N 802259W
+8687:  Iron Mine Hollow VA 37102N 802042W
+14253:  Slaughterpen Hollow VA 371010N 802035W
+39663:  Dee Cee Hill VA 37103N 80199W
+16656:  Wheeling Hollow VA 37957N 801741W
+14094:  Skillet Hollow VA 37107N 80173W
+9286:  Kirk Hollow VA 37957N 801515W
+40704:  Shawsville VA 37106N 801519W
+81170:  Shawsville Historic District VA 37105N 801522W
+14885:  Spring Branch VA 37959N 801415W
 --------------------------------------------------------------------------------
 ;
 ; Exit
-Command 19:  quit
+Command 13:  quit
 
 Terminating execution of commands.
-2016-06-30T12:48:00.108
-End time:  2016/06/30 12:48:00
+2016-06-30T12:57:49.731
+End time:  2016/06/30 12:57:49
 --------------------------------------------------------------------------------

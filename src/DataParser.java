@@ -17,7 +17,7 @@ import quadTree.prQuadTree;
 
 /**
  *
- * Parse the given records and process them by the given instructions.
+ * Parse the and process the records by the given instructions.
  * @author Jung Hyun Choi (jhc229)
  * @version 05.23.2016
  */
@@ -62,6 +62,7 @@ public class DataParser {
 	 * @param count
 	 * @throws IOException
 	 */
+	@SuppressWarnings("resource")
 	public void appendFile(String gisRecordFile, int count) throws IOException {
 		
 		BufferedReader gisRecord = new BufferedReader(new FileReader(gisRecordFile)); 
@@ -122,6 +123,7 @@ public class DataParser {
 	 * @param string
 	 * @throws IOException
 	 */
+	@SuppressWarnings("resource")
 	public void importFile(String filePath) throws IOException, GISRecordException {
 		
 		int countIdx = 0;
@@ -184,11 +186,6 @@ public class DataParser {
 		
 		Point p = quadTree.find(new Point(geo.getlongitude().toSeconds(),  geo.getlatitude().toSeconds()));
 
-		//System.out.println("whatisat???????:        " +geo.getlongitude().toSeconds()+"  "+ geo.getlatitude().toSeconds() );
-	//	System.out.println("whatisat???????:        " + quadTree.find(p) );
-		 
-		
-		// System.out.println("whatisat???????" );
 		// Vector<Records> records = new Vector<Records>(0);
 		 if (p != null){
 			 Vector<Integer> offset = p.getOffset();
@@ -220,10 +217,8 @@ public class DataParser {
 	public void whatIs(String fName, String sState) throws IOException {
 	//	Vector<GeoFeatures> records = new Vector<GeoFeatures>(0);
 		NameIndex names = new NameIndex(fName, sState);
-	//	System.out.println("whatis: ");
 		Vector<Integer> off = (Vector<Integer>) table.getEntries(names);
 		//Vector<Integer> off = table.getEntries(names);
-		//System.out.println("whatis offset?: "+  off);
 		
 		if (off != null){
 			try {
@@ -298,10 +293,8 @@ public class DataParser {
 		if (pts.size() > 0) {
 			try {
 				Vector<Integer> newSets = new Vector<Integer>(0);
-				int count= 1;
 				for (int i = 0; i < pts.size(); ++i) {
 					newSets.addAll(pts.get(i).getOffset());
-					count++;
 				}
 				System.out.println( newSets.size() + " features were found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")");
 				stat.write( newSets.size() + " features were found in (" + y + " +/-" + halfWidth + ", " + x + " +/-" + halfHeight + ")\n");
@@ -446,32 +439,29 @@ public class DataParser {
 
 	}
 
+	/*
+	 * Buffer helper method to bring data from the pool or add the data into the pool
+	 */
 	private Vector<GeoFeatures> poolOffset(Vector<Integer> off)
 			throws Exception {
 		//System.out.println("current pointer" + dataFile.getFilePointer());
 		Vector<GeoFeatures> temp = new Vector<GeoFeatures>();
 		//gisRecords = new GISRecordParser(dataFile, endOffset);
 		GISRecordParser gisRecord = new GISRecordParser(data, endOffset);
-		//System.out.println("current pointer" + dataFile.getFilePointer());
-		String str = "";
 		for (int i = 0; i < off.size(); i++) {
+		
 			int currentOffset = off.get(i);
 			
 			GeoFeatures newRecord = pool.checkPool(currentOffset); 
 			if ( newRecord != null) { // is found
-				//str += inPool.getOff() +  ":	" + inPool.getFeatureName() + " " + inPool.getCountyName() +  inPool.getStateName() + "\n";
-
 				temp.add(newRecord); 
 			} 
 			else {
-				//System.out.println("Record:" + off);
-				//System.out.println("curoff :" + currentOffset);
 				GeoFeatures dataRec = new GeoFeatures();
 				dataRec= gisRecord.gisRecordsUpdate(currentOffset);
 				
-				temp.add(dataRec);
-				pool.add(dataRec);
-				//System.out.println("Record:" + dataRec.OFFSET);
+				temp.add(dataRec); // add to the temp file for return
+				pool.add(dataRec);	// add to the pool
 				
 				//str +=dataRec.OFFSET +  ":	" + dataRec.FEATURE_NAME + " " + dataRec.COUNTY_NAME + " "+dataRec.STATE_ALPHA + "\n";
 				//pool.add(dataRec.OFFSET, dataRec.FEATURE_NAME, dataRec.COUNTY_NAME, dataRec.STATE_ALPHA);
