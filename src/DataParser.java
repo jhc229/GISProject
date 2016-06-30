@@ -258,7 +258,7 @@ public class DataParser {
 		
 		Vector<Point> pts = whatIsInHelper(x, y, Integer.parseInt(halfHeight), Integer.parseInt(halfWidth));
 
-		if (pts.size() > 0) {
+		if (pts != null) {
 			try {
 				Vector<Integer> newSets = new Vector<Integer>(0);
 				//System.out.println("	The following " + pts.size() + " features were found in (" + y + " +/-" + halfHeight+", " + x + " +/-" + halfWidth + ")");

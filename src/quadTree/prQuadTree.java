@@ -141,6 +141,14 @@ private prQuadNode fInsert(prQuadNode rt, T elem, int xMin, int xMax,
 							}
 							i++;
 						}
+						/*	for (int i = 0; i < leafNode.Elements.size(); i++) {
+										if ( leafNode.Elements.get(i).equals(elem)){
+											leafNode.Elements.get(i).addOffset(elem.getOffset());
+											insert_Flag = true;
+							  // i++;
+										}
+
+					   }//while ( i <leafNode.Elements.size() );*/
 						
 					if(!insert_Flag)  leafNode.Elements.addElement(elem);
 					return leafNode;

@@ -10,7 +10,7 @@ GIS Program
 dbFile:	dataBase.txt
 script:	Script07.txt
 log:	Log.txt
-Start time: 2016/06/30 13:18:51
+Start time: 2016/06/30 13:25:30
 Quadtree children are printed in the order SW  SE  NE  NW
 --------------------------------------------------------------------------------
 
@@ -61,7 +61,7 @@ Command  7:	what_is Truth or Consequences NM
 --------------------------------------------------------------------------------
 ;
 ; Let's see what the buffer pool looks like now:
-debug: pool
+Command  8:	debug: pool
 
 
 MRU
@@ -95,7 +95,7 @@ Command  9:	what_is_at 364201N 1063259W
 ;
 ; And let's check the pool again; at this point, you might have some records
 ; in a different order than I'm showing:
-debug: pool
+Command  10:	debug: pool
 
 
 MRU
@@ -293,7 +293,7 @@ Command  18:	what_is_in  -l 354929N 1055845W 30 30
 ;
 ; Let's check the pool again; we should agree on the top four, although they
 ; could be in a different order:
-debug: pool
+Command  19:	debug: pool
 
 
 MRU
@@ -314,6 +314,6 @@ LRU
 Command 20:  quit
 
 Terminating execution of commands.
-2016-06-30T13:18:52.290
-End time:  2016/06/30 13:18:52
+2016-06-30T13:25:31.581
+End time:  2016/06/30 13:25:31
 --------------------------------------------------------------------------------
