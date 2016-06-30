@@ -10,7 +10,7 @@ GIS Program
 dbFile:	dataBase.txt
 script:	Script07.txt
 log:	Log.txt
-Start time: 2016/06/30 15:41:41
+Start time: 2016/06/30 15:45:48
 Quadtree children are printed in the order SW  SE  NE  NW
 --------------------------------------------------------------------------------
 
@@ -314,6 +314,6 @@ LRU
 Command 20:  quit
 
 Terminating execution of commands.
-2016-06-30T15:41:43.029
-End time:  2016/06/30 15:41:43
+2016-06-30T15:45:49.780
+End time:  2016/06/30 15:45:49
 --------------------------------------------------------------------------------

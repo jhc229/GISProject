@@ -33,6 +33,9 @@ public class NameIndex {
 		return state;
 	}
 	
+	/*
+	 * Returns the string in the following format.
+	 */
 	public String nameIndexToString(){
 		return str;
 	}
