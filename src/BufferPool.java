@@ -10,9 +10,9 @@ import javax.swing.text.StyledEditorKit.ForegroundAction;
  */
 public class BufferPool {
 
-	
+	// Since list is small, array list would do the best job.
 	private ArrayList<GeoFeatures> bufferList; 
-	private int size;
+	private int size; // current size in the list.
 
 
 	public  BufferPool() {
