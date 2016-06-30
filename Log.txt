@@ -10,7 +10,7 @@ GIS Program
 dbFile:	dataBase.txt
 script:	Script01.txt
 log:	Log.txt
-Start time: 2016/06/30 12:28:34
+Start time: 2016/06/30 12:36:14
 Quadtree children are printed in the order SW  SE  NE  NW
 --------------------------------------------------------------------------------
 
@@ -33,10 +33,11 @@ Imported Locations:         63
 --------------------------------------------------------------------------------;
 ; Let's take a look at our data set... this is NOT a required feature
 ; and you may comment the following command out:
---------------------------------------------------------------------------------
 debug: world
+--------------------------------------------------------------------------------
 ;
 ; Check the location and name/state indices:
+debug: quad
       [( -286212, 137722),[4975]][( -286205, 137731),[5259]]
          [( -286314, 137725),[2877]][( -286224, 137708),[3720]]
          [( -286433, 137756),[953]][( -286358, 137773),[1201]][( -286376, 137772),[6560]][( -286356, 137772),[8081]]
@@ -144,7 +145,7 @@ debug: world
 
        *
 --------------------------------------------------------------------------------
-debug: quad
+debug: hash
 Format of display is: 
 Slot number: data record 
 Current table size: 1024
@@ -214,7 +215,6 @@ Number of elements in table is  :63
 1012:  [New Hampden	:VA, [6811]]  
 1023:  [Lantz Mountain	:VA, [3314]]  
 --------------------------------------------------------------------------------
-debug: hash
 ;
 ; Let's try a single-match name/state search:
 Command  5:	what_is Trimble Knob VA
@@ -222,12 +222,12 @@ Command  5:	what_is Trimble Knob VA
 --------------------------------------------------------------------------------
 ;
 ; Let's check the buffer pool:
+debug: pool
 
 MRU   
 7562:  1496326|Trimble Knob|Summit|VA|51|Highland|091|382417N|0793517W|38.404843|-79.5881037|||||952|3123|Monterey|09/28/1979|
 LRU 
 --------------------------------------------------------------------------------
-debug: pool
 ;
 ; Let's try a single-match location search:
 Command  7:	what_is_at 382812N 0793156W
@@ -237,13 +237,13 @@ Command  7:	what_is_at 382812N 0793156W
 --------------------------------------------------------------------------------
 ;
 ; Let's check the buffer pool:
+debug: pool
 
 MRU   
 6940:  1496110|Possum Trot|Populated Place|VA|51|Highland|091|382812N|0793156W|38.4701196|-79.5322693|||||768|2520|Monterey|09/28/1979|
 7562:  1496326|Trimble Knob|Summit|VA|51|Highland|091|382417N|0793517W|38.404843|-79.5881037|||||952|3123|Monterey|09/28/1979|
 LRU 
 --------------------------------------------------------------------------------
-debug: pool
 ;
 ; Let's try a few more name/state searches:
 Command  9:	what_is Swope Hollow VA
@@ -257,6 +257,7 @@ Command  11:	what_is Blue Grass VA
 --------------------------------------------------------------------------------
 ;
 ; Let's check the buffer pool:
+debug: pool
 
 MRU   
 387:  1481852|Blue Grass|Populated Place|VA|51|Highland|091|383000N|0793259W|38.5001188|-79.5497702|||||777|2549|Monterey|09/28/1979|
@@ -265,7 +266,6 @@ MRU
 7562:  1496326|Trimble Knob|Summit|VA|51|Highland|091|382417N|0793517W|38.404843|-79.5881037|||||952|3123|Monterey|09/28/1979|
 LRU 
 --------------------------------------------------------------------------------
-debug: pool
 ;
 ; Let's try a few more location searches:
 Command  13:	what_is_at 382145N 0793031W
@@ -285,6 +285,7 @@ Command  15:	what_is_at 382607N 0793312W
 --------------------------------------------------------------------------------
 ;
 ; Let's check the buffer pool:
+debug: pool
 
 MRU   
 265:  1481345|Asbury Church|Church|VA|51|Highland|091|382607N|0793312W|38.4353981|-79.5533807|||||818|2684|Monterey|09/28/1979|
@@ -296,7 +297,6 @@ MRU
 7562:  1496326|Trimble Knob|Summit|VA|51|Highland|091|382417N|0793517W|38.404843|-79.5881037|||||952|3123|Monterey|09/28/1979|
 LRU 
 --------------------------------------------------------------------------------
-debug: pool
 ;
 ; Let's try a two-match location search:
 Command  17:	what_is_at 382856N 0793031W
@@ -307,6 +307,7 @@ Command  17:	what_is_at 382856N 0793031W
 --------------------------------------------------------------------------------
 ;
 ; Let's check the buffer pool:
+debug: pool
 
 MRU   
 5102:  1487661|Strait Creek|Stream|VA|51|Highland|091|382856N|0793031W|38.4823417|-79.5086575|382442N|0793222W|38.4116667|-79.5394444|705|2313|Monterey|09/28/1979|
@@ -320,6 +321,10 @@ MRU
 7562:  1496326|Trimble Knob|Summit|VA|51|Highland|091|382417N|0793517W|38.404843|-79.5881037|||||952|3123|Monterey|09/28/1979|
 LRU 
 --------------------------------------------------------------------------------
-debug: pool
 ;
 ; Exit
+Command 19:  quit
+
+Terminating execution of commands.
+2016-06-30T12:36:14.414
+End time:  2016/06/30 12:36:14

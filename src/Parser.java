@@ -214,7 +214,7 @@ public class Parser {
 				else if (str[0].matches("debug")) {
 					
 					System.out.println("debug: "+ str[1] + "\n\n"  );
-					stat.write("debug: "+ str[1] + "\n" );
+					stat.write("debug: "+ str[1] + "\n\n" );
 					db.debug(str[1]);
 					cmdCount++;
 
